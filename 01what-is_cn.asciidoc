@@ -1,6 +1,6 @@
-[role =“ pagenumrestart”]
+[role="pagenumrestart"]
 [[whatis_chapter]]
-什么是以太坊
+== 什么是以太坊
 
 ((("Ethereum (generally)","about", id="ix_01what-is-asciidoc0", range="startofrange")))以太坊 ((("world computer, Ethereum as")))经常被称为世界计算机.&#x201d; 但这意味着什么呢? 让我们从一段突出计算机科学的说明开始, 然后再尝试对以太坊的功能和特征做实用分析来解密它, 同时将它与比特币或其他去中心化的信息交互平台 (或简称为“区块链”)作对比.
 
@@ -77,77 +77,84 @@ https://vitalik.ca/general/2017/09/14/prehistory.html[].
 ====
 
 [[development_stages]]
-===以太坊发展的四个阶段
+=== 以太坊发展的四个阶段
 
 ((("Ethereum (generally)","four stages of development")))以太坊的发展被分为四个明确的阶段，每个阶段都有重要的改变。 ((("hard forks", seealso="DAO; other specific hard forks, e.g.: Spurious Dragon")))一个阶段可能包含多个子发布，也就是众所周知的“硬分叉” ，它以一种不向后兼容的方式来改变功能。
 
-以太坊四个主要的开发阶段分别名为_Frontier _，_ Homestead _，_ Metropolis_和_Serenity_。迄今为止已经发生（或计划中）的硬分叉的代号为_Ice Age _，_ DAO _，_ Tangerine Whistle _，_ Spurious Dragon _，_ Byzantium_和_Constantinople_。在以下时间轴上显示了开发阶段和中间的硬分叉，并按区块号标记为“日期”：
+以太坊四个主要的开发阶段分别名为 _Frontier_，_Homestead_，_Metropolis_和_Serenity_。迄今为止已经发生（或计划中）的硬分叉的代号为 _Ice Age_，_DAO_，_Tangerine Whistle_，_Spurious Dragon_，_Byzantium_和 _Constantinople_。在以下时间轴上显示了开发阶段和中间的硬分叉，并按区块号标记为“日期”：
 
 
-区块#0:: ((("Frontier")))__Frontier__&#x2014以太坊的初始阶段，持续时间从2015年7月30日到2016年3月。
+区块 #0:: ((("Frontier")))__Frontier__&#x2014以太坊的初始阶段，持续时间从2015年7月30日到2016年3月。
 
-Block#200,000:: ((("Ice Age")))__Ice Age__&#x2014;硬分叉版本引入指数难度增加，促使系统在适当时间向PoS过渡。
+区块 #200,000:: ((("Ice Age")))__Ice Age__&#x2014;硬分叉版本引入指数难度增加，促使系统在适当时间向PoS过渡。
 
 区块 #1,150,000:: ((("Homestead")))__Homestead__&#x2014;以太坊的第二阶段，于2016年3月推出。
 
 区块 #1,192,000:: ((("DAO (Decentralized Autonomous Organization)")))__DAO__&#x2014;硬分叉，用于补偿被黑客攻击的DAO合同的受害人，并导致以太坊和以太坊经典分成两个竞争系统。
 
-Block #2,463,000:: ((("Tangerine Whistle")))__Tangerine Whistle__&#x2014;硬分叉，用于更改某些I / O繁重操作的gas计算，并且当黑客利用这些操作的低gas成本来实施拒绝服务（DoS）时，可以清除系统中的累积状态，保护系统。
+区块 #2,463,000:: ((("Tangerine Whistle")))__Tangerine Whistle__&#x2014;硬分叉，用于更改某些I / O繁重操作的gas计算，并且当黑客利用这些操作的低gas成本来实施拒绝服务（DoS）时，可以清除系统中的累积状态，保护系统。
 
-Block#2,675,000:: ((("Spurious Dragon")))__Spurious Dragon__&#x2014; 硬分叉用于解决更多DoS攻击媒介，以及另一种状态清除方法。此外，还提供了对重放攻击的保护机制。
+区块 #2,675,000:: ((("Spurious Dragon")))__Spurious Dragon__&#x2014; 硬分叉用于解决更多DoS攻击媒介，以及另一种状态清除方法。此外，还提供了对重放攻击的保护机制。
 
 
 区块 #4,370,000:: ((("Metropolis")))((("Byzantium fork")))__Metropolis Byzantium__&#x2014;Metropolis是以太坊的第三阶段，在撰写此书时，该阶段于2017年10月启动。Byzantium是计划用于Metropolis的两个硬叉中的第一个。
+
+Block #7,280,000:: ((("Constantinople fork")))((("St. Petersburg fork")))__Constantinople / St. Petersburg__&#x2014;Constantinople was planned to be the second part of Metropolis with similar improvements. A few hours before its activation, a https://bit.ly/2Ast7rz[critical bug] was discovered. The hard fork was therefore postponed and renamed St. Petersburg.
+
+Block #9,069,000:: ((("Istanbul fork")))__Istanbul__&#x2014;An additional hard fork with the same approach, and naming convention, as for the prior two.
+
+Block #9,200,000:: ((("Muir Glacier fork")))__Muir Glacier__&#x2014;A hard fork whose sole purpose was to adjust the difficulty again due to the exponential increase introduced by Ice Age.
+
 
 
 在Byzantium分叉之后，还有针对Metropolis计划的另一个硬分叉：((("Constantinople fork")))((("Serenity"))) Constantinople。在Metropolis之后，将进行以太坊部署的最后阶段，代号为Serenity。
 
 
 [[general_purpose_blockchain]]
-===以太坊：通用区块链
+=== 以太坊：通用区块链
 
-((("Bitcoin","Ethereum blockchain compared to Bitcoin blockchain")))((("Ethereum (generally)","as general-purpose blockchain"))) 最初的区块链（即比特币的区块链）跟踪比特币单位的状态及其所有权。((("distributed state machine, Ethereum as")))你可以将比特币看作是分布式共识_状态机_，交易会导致全局状态转换，从而改变比特币的所有权。状态转换受到共识规则的约束，允许所有参与者在挖掘出足够多的区块后，可以（最终）收敛于系统的共同（共识）状态。
+((("Bitcoin","Ethereum blockchain compared to Bitcoin blockchain")))((("Ethereum (generally)","as general-purpose blockchain"))) 最初的区块链（即比特币的区块链）跟踪比特币单位的状态及其所有权。((("distributed state machine, Ethereum as")))你可以将比特币看作是分布式共识 _状态机_，交易会导致全局 _状态转换_，从而改变比特币的所有权。状态转换受到共识规则的约束，允许所有参与者在挖掘出足够多的区块后，可以（最终）收敛于系统的共同（共识）状态。
 
-以太坊也是一个分布式状态机。但是，以太坊（Ethereum）不仅记录和保存货币所有权的状态，还记录通用数据((("键-值 元组")))的状态转换。元组结构中每个键值的数据存储区包含任意值，每个值都由某个键引用。例如，键“书名”所指向的值为“ 精通以太坊”。在某些方面，这与大多数通用计算机使用的_随机存取存储器_（RAM）数据存储模型具有相同的用途。以太坊具有存储代码和数据的内存，并使用以太坊区块链来跟踪该内存随时间的变化。像通用存储程序计算机一样，以太坊可以将代码加载到其状态机中并运行该代码，从而将结果状态更改存储在其区块链中。与大多数通用计算机的两个关键区别是，以太坊状态变化受共识规则支配，并且状态在全球范围内分布。以太坊回答了一个问题：“如果我们可以跟踪任何任意状态并对状态机进行编程以创建在共识下运行的全球计算机呢？”
+以太坊也是一个分布式状态机。但是，以太坊（Ethereum）不仅记录和保存货币所有权的状态，还记录通用数据((("键-值 元组")))的状态转换。元组结构中每个键值的数据存储区包含任意值，每个值都由某个键引用。例如，键“书名”所指向的值为“ 精通以太坊”。在某些方面，这与大多数通用计算机使用的 _随机存取存储器_（RAM）数据存储模型具有相同的用途。以太坊具有存储代码和数据的内存，并使用以太坊区块链来跟踪该内存随时间的变化。像通用存储程序计算机一样，以太坊可以将代码加载到其状态机中并运行该代码，从而将结果状态更改存储在其区块链中。与大多数通用计算机的两个关键区别是，以太坊状态变化受共识规则支配，并且状态在全球范围内分布。以太坊回答了一个问题：“如果我们可以跟踪任何任意状态并对状态机进行编程以创建在共识下运行的全球计算机呢？”
 
 [[ethereum_components]]
-===以太坊的组成部分
+=== 以太坊的组成部分
 
 ((("blockchain","components of")))((("Ethereum (generally)","blockchain components")))在以太坊中，对区块链系统组件的描述在< <blockchain_components> >中，更具体地说：
 
 
-P2P网络：：以太坊运行在_Ethereum主网络_上，该主网络可在TCP端口30303上寻址，并运行称为_ÐΞvp2p_的协议。
+P2P网络:: 以太坊运行在 _Ethereum主网络_ 上，该主网络可在TCP端口30303上寻址，并运行称为 _ÐΞvp2p_ 的协议。
 
-共识规则：：以太坊的共识规则在“黄皮书”的参考规范中定义（请参见<<references>>）。
+共识规则:: 以太坊的共识规则在“黄皮书”的参考规范中定义（请参见<<references>>）。
 
 交易:: 以太坊交易是网络中的消息，其中包括（除其他事项外）发送者，接收者，价值和有效数据载荷。
 
-[role =“ pagebreak-before”]
-状态机:: 以太坊状态转换由_Ethereum虚拟机_（EVM）处理，EVM是执行_二进制代码_（机器语言指令）的基于堆栈的虚拟机。 EVM程序（称为“智能合约”）以高级语言（例如Solidity）编写，并可以编译为二进制码以在EVM上执行。
+[role="pagebreak-before"]
+状态机:: 以太坊状态转换由 _Ethereum虚拟机_（EVM）处理，EVM是执行 _二进制代码_（机器语言指令）的基于堆栈的虚拟机。 EVM程序（称为“智能合约”）以高级语言（例如Solidity）编写，并可以编译为二进制码以在EVM上执行。
 
-数据结构:: 以太坊的状态可以作为_数据库_（通常是Google的LevelDB）存储在每个节点上，该状态在名为_Merkle Patricia Tree_默克尔树的序列化哈希数据结构中包含交易和系统状态。
+数据结构:: 以太坊的状态可以作为 _数据库_（通常是Google的LevelDB）存储在每个节点上，该状态在名为 _Merkle Patricia Tree_ 默克尔树的序列化哈希数据结构中包含交易和系统状态。
 
-共识算法：以太坊使用比特币的共识模型中本共识，该模型单个签名块按时间顺序排列后，通过工作量证明PoW对其重要性进行加权，以确定最长的链，从而确定当前状态。但是，有计划在不久的将来使用代号为_Casper_的PoS加权投票系统。
+共识算法:: 以太坊使用比特币的共识模型中本共识，该模型单个签名块按时间顺序排列后，通过工作量证明PoW对其重要性进行加权，以确定最长的链，从而确定当前状态。但是，有计划在不久的将来使用代号为 _Casper_ 的PoS加权投票系统。
 
-经济安全性：：以太坊当前使用一种称为_Ethash_的PoW算法，但是最终转到PoS共识。
+经济安全性:: 以太坊当前使用一种称为 _Ethash_ 的PoW算法，但是最终转到PoS共识。
 
-客户端：：以太坊有几种可互操作的客户端软件实现，其中最突出的是_Go-Ethereum_（_Geth_）和_Parity_。
+客户端:: 以太坊有几种可互操作的客户端软件实现，其中最突出的是 _Go-Ethereum_（_Geth_）和 _Parity_。
 
 [[references]]
-====深入阅读
+==== 深入阅读
 
 以下参考资料提供了此处提到的技术的更加详细的信息：
 
-*以太坊黄皮书：
+* 以太坊黄皮书：
 https://ethereum.github.io/yellowpaper/paper.pdf
 
 * The Beige Paper（橙皮书），以比较通俗的语言重写了黄皮书，以面向更广泛的用户：
 https://github.com/chronaeon/beigepaper
 
-*ÐΞvp2p网络协议：
+* ÐΞvp2p网络协议：
 http://bit.ly/2quAlTE
 
-*以太坊虚拟机资源列表：
+* 以太坊虚拟机资源列表：
 http://bit.ly/2PmtjiS
 
 * LevelDB数据库（最常用于存储区块链数据的本地数据库备份）：
@@ -162,72 +169,72 @@ https://github.com/ethereum/wiki/wiki/Ethash
 * Casper PoS v1实施指南：
 http://bit.ly/2DyPr3l
 
-*以太坊GO语言客户端（Geth）：
+* 以太坊GO语言客户端（Geth）：
 https://geth.ethereum.org/
 
-*以太坊Rust语言客户端Parity：
+* 以太坊Rust语言客户端Parity：
 https://parity.io/
 
 [[turing_completeness]]
-===以太坊和图灵完备性
+=== 以太坊和图灵完备性
 
 ((("Ethereum (generally)","Turing completeness and")))((("Turing completeness","Ethereum and"))) 一旦开始了解以太坊，您将立即遇到术语“ 图灵完备”。以太坊与比特币的一个主要不同，就是以太坊具备图灵完备。这到底是什么意思呢？
 
-((("Turing, Alan"))) 该术语是指被认为是计算机科学之父的英国数学家艾伦·图灵Alan Turing。 1936年，他创建了由状态机组成的计算机的数学模型，该状态机通过在顺序存储器（类似于无限长的纸带）上读写符号来操纵符号。通过这种构造，图灵继续提供了数学基础，以回答（否定的）有关“通用可计算性”的问题，即所有问题是否都可以解决。他证明了有些问题是无法解决的。 ((("halting problem")))具体来说，他证明了_停机问题_（是否有可能在给定任意程序及其输入的情况下确定该程序最终是否停止运行）是无法解决的。
+((("Turing, Alan"))) 该术语是指被认为是计算机科学之父的英国数学家艾伦·图灵Alan Turing。 1936年，他创建了由状态机组成的计算机的数学模型，该状态机通过在顺序存储器（类似于无限长的纸带）上读写符号来操纵符号。通过这种构造，图灵继续提供了数学基础，以回答（否定的）有关“通用可计算性”的问题，即所有问题是否都可以解决。他证明了有些问题是无法解决的。 ((("halting problem")))具体来说，他证明了 _停机问题_（是否有可能在给定任意程序及其输入的情况下确定该程序最终是否停止运行）是无法解决的。
 
-((("Universal Turing machine (UTM)")))((("UTM (Universal Turing machine)")))Alan Turing进一步定义了一个系统为_图灵完备_，如果该系统可用于模拟任何图灵机。这样的系统称为“通用图灵机”（UTM）。
+((("Universal Turing machine (UTM)")))((("UTM (Universal Turing machine)")))Alan Turing进一步定义了一个系统为 _图灵完备_，如果该系统可用于模拟任何图灵机。这样的系统称为 _通用图灵机_（UTM）。
 
 以太坊能够在称为以太坊虚拟机的状态机中执行存储的程序，同时将数据读写到内存中，从而使其成为一个图灵完备的系统，从而成为一个UTM。在有限内存的限制下，以太坊可以计算任何可以在图灵机上执行的算法。
 
 以太坊的突破性创新是将存储程序计算机的通用计算架构与分布式区块链相结合，从而创建一个分布式单状态（单例）世界计算机。以太坊程序可以“无处不在”运行，但是会产生一种通行规则所保证的共同状态：[ <span class="keep-together">共识</span> ]。
 
 [[turing_completeness_feature]]
-====作为“特性”的图灵完备
+==== 作为“特性”的图灵完备
 
-((("Turing completeness","as feature"))) 如果说以太坊是图灵完备的系统，你可能会得出这样的结论：这是_feature_，在某种程度上缺少图灵不完整的系统。相反，情况恰恰相反。图灵完备性非常容易实现；实际上，http://bit.ly/2ABft33 [已知的最简单的图灵完备状态机]具有4个状态，并使用6个符号，并且状态定义只有22条指令。确实，有时发现系统“偶然地完成了图灵完备”。可以在http://bit.ly/2Og1VgX []中找到此类系统的有趣参考。
+((("Turing completeness","as feature"))) 如果说以太坊是图灵完备的系统，你可能会得出这样的结论：这是 _特性_，在某种程度上缺少图灵不完整的系统。相反，情况恰恰相反。图灵完备性非常容易实现；实际上，http://bit.ly/2ABft33 [已知的最简单的图灵完备状态机]具有4个状态，并使用6个符号，并且状态定义只有22条指令。确实，有时发现系统“偶然地完成了图灵完备”。可以在http://bit.ly/2Og1VgX []中找到此类系统的有趣参考。
 
 但是，由于我们前面提到的暂停问题，图灵完备性可能会非常危险，特别是在诸如公共区块链之类的开放式访问系统中。例如，现代打印机是图灵完备的打印机，可以通过给它们提供打印文件，使打印机进入冻结状态。以太坊是图灵完备的事实意味着以太坊可以计算任何复杂程度的程序。但是这种灵活性带来了一些棘手的安全性和资源管理问题。无响应的打印机可以关闭然后重新启动。但是公共区块链是无法做到关闭和重新启动的。
 
 [[turing_completeness_implications]]
-====图灵完整性的含义
+==== 图灵完整性的含义
 
 ((("Turing completeness","implications of")))图灵证明你无法通过在计算机上模拟程序来预测程序是否将终止。简单来说，如果不运行程序，我们将无法预测程序的路径。((("infinite loops")))完整的系统可以在“ 无限循环”中运行，该术语用于简化程序，用于描述不终止的程序。创建一个运行永远不会结束的循环的程序很简单。但是由于起始条件和代码之间的复杂交互，可能会在没有警告的情况下出现意想不到的永无止境的循环。在以太坊中，这构成了一个挑战：每个参与节点（客户端）必须验证每个交易，并运行它调用的任何智能合约。但是这里存在一个问题。依据图灵的证明，以太坊如果不运行一个智能合约，则无法预测这个智能合约是否会终止，或者它会运行多长时间（可能永远运行）。那么，智能合约可以在创建的时候，无论是偶然还是有意，使得当节点尝试对其进行验证时，就可以永远地运行下去。这实际上是一种拒绝服务攻击DoS。当然，在仅需要花费一毫秒时间进行验证的程序与永远运行的程序之间，还有无数浪费资源的程序。这些臭名昭著的程序会滥用资源，消耗内存，以及空转导致CPU过热。在世界计算机中，滥用资源的程序会滥用整个世界的资源。如果以太坊无法提前预测一个智能合约的资源使用情况，以太坊将如何限制其使用资源？
 
-((("EVM (Ethereum Virtual Machine)","gas and")))((("gas","as counter to Turing completeness")))为了应对这一挑战，以太坊引入了一种称为_gas_的计量机制。当EVM执行智能合约时，它会仔细考虑每条指令（计算，数据访问等）。每条指令具有以gas为单位的预定成本。当交易触发智能合约的执行时，它必须包含一定数量的gas，该gas量设置了运行智能合约可以消耗的上限。如果计算所消耗的gas量超过交易中可用的gas量，则EVM将终止执行。 Gas是以太坊用于允许图灵完备计算同时限制程序消耗资源的机制。
+((("EVM (Ethereum Virtual Machine)","gas and")))((("gas","as counter to Turing completeness")))为了应对这一挑战，以太坊引入了一种称为 _gas_ 的计量机制。当EVM执行智能合约时，它会仔细考虑每条指令（计算，数据访问等）。每条指令具有以gas为单位的预定成本。当交易触发智能合约的执行时，它必须包含一定数量的gas，该gas量设置了运行智能合约可以消耗的上限。如果计算所消耗的gas量超过交易中可用的gas量，则EVM将终止执行。 Gas是以太坊用于允许图灵完备计算同时限制程序消耗资源的机制。
 
 下一个问题是，“如何获得gas来支付以太坊世界计算机上的计算费用？”你不会在任何交易所找到gas。 ((("ether (generally)","gas and")))只能作为交易的一部分购买，并且只能与ether一起购买。ether需要与交易一起发送，并且必须明确指定用于购买gas以及可接受的gas价格。就像在加油站的油泵上一样，gas的价格不是固定的。购买gas以进行交易，执行计算，并将所有未使用的gas退还给交易的发送者。
 
 [[DApp]]
-===从通用区块链到去中心化应用程序（DApps）
+=== 从通用区块链到去中心化应用程序（DApps）
 
 ((("DApps (decentralized applications)","Ethereum as platform for")))((("Ethereum (generally)","DApps and")))以太坊起初是一种制造通用区块链的方法，可以编程用于多种用途。但是很快，以太坊的愿景就扩展到了成为一个可以对DApp进行编程的平台。 DApp比智能合约具有更广阔的前景。 DApp最少包括智能合约和Web用户界面。更广泛地说，DApp是一个Web应用程序，它建立在开放的，分散的，点对点的基础架构服务之上。
 
 一个DApp至少需要包括：
 
--区块链上的智能合约
--网页前端用户界面
+- 区块链上的智能合约
+- 网页前端用户界面
 
 此外，许多DApp还包括其他分布式的组件，例如：
 
--一套分布（P2P）存储协议和平台
--分布式（P2P）通讯协议和平台
+- 一套分布（P2P）存储协议和平台
+- 分布式（P2P）通讯协议和平台
 
-[提示]
+[TIP]
 ====
-您可能会看到DApp拼写为_ÐApps_。 Ð字符是拉丁字符，称为“ ETH”，暗指以太坊。要显示此字符，请使用Unicode代码点+0xD0+，或者在必要时使用HTML字符实体+eth+（或十进制实体 +#208+）。
+您可能会看到DApp拼写为 _ÐApps_。 Ð字符是拉丁字符，称为“ ETH”，暗指以太坊。要显示此字符，请使用Unicode代码点+0xD0+，或者在必要时使用HTML字符实体+eth+（或十进制实体 +#208+）。
 ====
 
 [[evolving_WWW]]
-===互联网的第三纪元
+=== 互联网的第三纪元
 
 ((("DApps (decentralized applications)","web3 and")))((("Ethereum (generally)","web3 and")))((("web3")))2004年，术语“ Web 2.0”开始流行，描述了网络向用户生成的内容，响应式界面和交互性的发展。 Web 2.0不是技术规范，而是描述Web pass的新焦点的术语：[ <span class="keep-together">应用程序</span> ]。
 
-DApps的概念旨在将互联网带入下一个进化阶段，将点对点协议的去中心化引入网页应用程序的各个方面。用于描述这种演变的术语是_web3_，表示网络的第三个“版本”。 ((("Wood, Dr. Gavin","and web3")))首先由Gavin Wood博士提出，web3代表了Web应用程序的新愿景和新焦点：从集中拥有和管理的应用程序到基于分布协议构建的应用程序。
+DApps的概念旨在将互联网带入下一个进化阶段，将点对点协议的去中心化引入网页应用程序的各个方面。用于描述这种演变的术语是 _web3_，表示网络的第三个“版本”。 ((("Wood, Dr. Gavin","and web3")))首先由Gavin Wood博士提出，web3代表了Web应用程序的新愿景和新焦点：从集中拥有和管理的应用程序到基于分布协议构建的应用程序。
 
-在后面的章节中，我们将介绍以太坊web3.js JavaScript软件库，该软件库将在用户的网页浏览器中运行的JavaScript应用程序与以太坊区块链联系起来。 web3.js软件库还包括一个称为_Swarm_的P2P存储网络的接口和一个名为_Whisper_的P2P消息服务。通过网页浏览器中运行的JavaScript库中包含的这三个组件，开发人员可以使用完整的应用程序开发组件来构建基于web3 的DApp。
+在后面的章节中，我们将介绍以太坊web3.js JavaScript软件库，该软件库将在用户的网页浏览器中运行的JavaScript应用程序与以太坊区块链联系起来。 web3.js软件库还包括一个称为 _Swarm_ 的P2P存储网络的接口和一个名为 _Whisper_ 的P2P消息服务。通过网页浏览器中运行的JavaScript库中包含的这三个组件，开发人员可以使用完整的应用程序开发组件来构建基于web3 的DApp。
 
 [[development_culture]]
-===以太坊的发展文化
+=== 以太坊的发展文化
 
 ((("development culture, Ethereum")))((("Ethereum (generally)","development culture"))) 到目前为止，我们已经讨论了以太坊的目标和技术与之前的其他区块链，比如比特币，有何不同之处。以太坊也有非常不同的社区发展文化。
 
@@ -244,14 +251,14 @@ DApps的概念旨在将互联网带入下一个进化阶段，将点对点协议
 最终，以太坊平台的开发将放缓，其接口将变得稳定。但与此同时，创新是驱动力。你最好保持同步，因为没人会慢下来等你。
 
 [[why_learn]]
-===为什么要学习以太坊？
+=== 为什么要学习以太坊？
 
 ((("blockchain","Ethereum as developer&#39;s blockchain")))((("Ethereum (generally)","reasons to learn"))) 区块链具有非常陡峭的学习曲线，因为它们将多个学科结合在一起：编程，信息安全，密码学，经济学，分布式系统，对等网络等。但是，在一个看似简单的环境的表面之下，还有更多的东西。当您学习并开始更深入地学习时，总会有另一层复杂性和奇迹。
 
-以太坊是一个学习区块链的好平台，它正在建立一个庞大的开发者社区，比其他任何区块链平台都要快。以太坊比其他任何东西都更重要，它是开发人员为开发人员构建的_开发人员区块链_。熟悉JavaScript应用程序的开发人员可以加入以太坊，并开始快速开发可运行的代码。在以太坊创建的头几年，很常见的情况是看到一些T恤衫上印着“仅用五行代码就可以创建自己的货币”。当然，这是一把双刃剑。编写代码很容易，但是很难编写_运行良好_和_安全的_代码。
+以太坊是一个学习区块链的好平台，它正在建立一个庞大的开发者社区，比其他任何区块链平台都要快。以太坊比其他任何东西都更重要，它是开发人员为开发人员构建的 _开发人员区块链_。熟悉JavaScript应用程序的开发人员可以加入以太坊，并开始快速开发可运行的代码。在以太坊创建的头几年，很常见的情况是看到一些T恤衫上印着“仅用五行代码就可以创建自己的货币”。当然，这是一把双刃剑。编写代码很容易，但是很难编写 _运行良好_ 和 _安全的_ 代码。
 
 [[teaching_objectives]]
-===这本书将教导你什么
+=== 这本书将教导你什么
 
 本书深入探讨了以太坊，并研究了它的每个组成部分。您将从一个简单的交易开始，剖析它的工作原理，创建一个简单的智能合约，了解如何使其变得更好，并跟踪它在以太坊系统上的整个执行过程。
 
