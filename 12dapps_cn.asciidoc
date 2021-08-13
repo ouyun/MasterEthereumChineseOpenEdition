@@ -15,17 +15,17 @@ image::images/web3suite.png["Web3: A decentralized web using smart contracts and
 在本章中，我们将开发和部署示例DApp：拍卖平台。您可以在本书的存储库中的 http://bit.ly/2DcmjyA[_code/auction_dapp_] 下找到源代码。我们将研究拍卖应用程序的各个方面，并了解如何尽可能去中心化地构建应用程序。不过，首先，让我们仔细看看DApp的定义特征和优点。
 
 [[what_is_a_dapp_sec]]
-===什么是DApp？
+=== 什么是DApp？
 
 ((("DApps (decentralized applications)","elements of", id="ix_12dapps-asciidoc1", range="startofrange"))) DApp是一个大部分或完全去中心化的应用程序。
 
 考虑一个应用程序所有可能改变为去中心化的方面：
 
-*后端软件（应用程序逻辑）
-*前端软件
+* 后端软件（应用程序逻辑）
+* 前端软件
 * 数据存储
-*信息通讯
-*名称解析
+* 信息通讯
+* 名称解析
 
 这些中的每一个都可以有些集中或有些分散。例如，前端可以开发为在集中式服务器上运行的Web应用程序，也可以开发为在设备上运行的移动应用程序。后端和存储可以在专用服务器和专有数据库上，或者你可以使用智能合约和P2P存储。
 
@@ -43,7 +43,7 @@ DApp的链上性质使每个人都可以检查代码并更确定其中的函数�
 在当今的以太坊生态系统中，真正去中心化的应用程序很少，大多数仍依赖集中式服务和服务器来运行。将来，我们希望任何DApp的每个部分都可以完全分布的方式进行操作。
 
 [[blockchain_smart_contracts_sec]]
-====后端程序（智能合约）
+==== 后端程序（智能合约）
 
 ((("DApps (decentralized applications)","backend (smart contract)")))((("smart contracts","as DApp backend"))) 在DApp中，智能合约用于存储业务逻辑（程序代码）以及应用程序的相关状态。你可以想到智能合约可以替换常规应用程序中的服务器端（也称为“后端”）组件。当然，这过于简单了。主要区别之一是，智能合约中执行的任何计算都非常昂贵，因此应尽可能减少。因此，重要的是要确定应用程序的哪些方面需要受信任且去中心化的执行平台。
 
@@ -54,7 +54,7 @@ DApp的链上性质使每个人都可以检查代码并更确定其中的函数�
 智能合约体系结构设计的第二个主要考虑因素是DApp大小。一个非常大的整体智能合约可能会花费大量燃料来部署和使用。因此，某些应用程序可能选择使用链外计算和外部数据源。但是请记住，使DApp的核心业务逻辑依赖于外部数据（例如，来自中央服务器）意味着你的用户将必须信任这些外部资源。
 
 [[front_end_web_ui_cec]]
-====前端（网络用户界面）
+==== 前端（网络用户界面）
 
 ((("DApps (decentralized applications)","frontend (web user interface)")))((("user interface, as DApp frontend")))((("web user interface, as DApp frontend"))) 与DApp的业务逻辑不同，DApp的业务逻辑要求开发人员理解EVM和诸如Solidity之类的新语言，而DApp的客户端界面可以使用标准的Web技术（HTML，CSS，JavaScript等）。这使传统的Web开发人员可以使用熟悉的工具，库和框架。与以太坊的交互（例如，签名消息，发送交易和管理密钥）通常通过Web浏览器，通过诸如MetaMask之类的扩展程序进行（请参见<<intro_chapter>>;）。
 
@@ -63,7 +63,7 @@ DApp的链上性质使每个人都可以检查代码并更确定其中的函数�
 前端通常通过_web3.js_ JavaScript库链接到以太坊，该库与前端资源捆绑在一起，并由Web服务器提供给浏览器。
 
 [[data_storage_sec]]
-====数据存储
+==== 数据存储
 
 ((("DApps (decentralized applications)","data storage")))((("data storage","DApps and"))) 由于燃料成本高和当前的区块的燃料上限比较低，智能合约不是非常适合存储或处理大量数据。因此，大多数DApp使用脱链数据存储服务，这意味着它们在数据存储平台上将大量数据存储在以太坊链之外。该数据存储平台可以是集中式的（例如，典型的云数据库），也可以是分散的数据，存储在P2P平台（例如IPFS）或以太坊自己的Swarm平台上。
 
@@ -89,14 +89,14 @@ https://swarm-gateways.net/bzz:/theswarm.eth/[].
 
 
 [[interdapp_coammunications_protocol_sec]]
-====去中心化的信息通信协议
+==== 去中心化的信息通信协议
 
 ((("DApps (decentralized applications)","decentralized message communication protocols")))((("message communication protocols"))) 应用程序的另一个主要组成部分是进程间通信。这意味着能够在应用程序之间，应用程序的不同实例之间或应用程序的用户之间交换消息。传统上，这是依赖中央服务器来实现的。但是，对于基于服务器的协议，有许多去中心化的替代方法，它们可通过P2P网络提供消息传递。 ((("Whisper"))) DApp最著名的P2P信息协议是 Whisper http://bit.ly/2CSls5h[_Whisper_] ，它是以太坊基金会Go-Ethereum工具组件的一部分。
 
 可以去中心化处理的应用程序的最后一个方面是名称解析。在本章后面，我们将详细介绍以太坊的名称服务。现在，让我们看一个例子。(((range="endofrange", startref="ix_12dapps-asciidoc1")))
 
 [[auction_dapp_intro]]
-===基本DApp示例：拍卖DApp
+=== 基本DApp示例：拍卖DApp
 
 ((("Auction DApp", id="ix_12dapps-asciidoc2", range="startofrange")))((("DApps (decentralized applications)","Auction DApp example", seealso="Auction DApp", id="ix_12dapps-asciidoc3", range="startofrange"))) 在本节中，我们将开始构建示例DApp，以探索各种去中心化工具。我们的DApp将实施去中心化拍卖。
 
@@ -106,9 +106,9 @@ https://swarm-gateways.net/bzz:/theswarm.eth/[].
 
 我们的拍卖DApp的主要组件是：
 
-*一个实现ERC721不可替代的“契约”通证的智能合约（通过：[ <code><span class="keep-together">DeedRepository</span></code> ]）
-*实施拍卖（+ AuctionRepository +）来出售契约的智能合约
-*使用Vue / Vuetify JavaScript框架的Web前端
+* 一个实现ERC721不可替代的“契约”通证的智能合约（通过：[ <code><span class="keep-together">DeedRepository</span></code> ]）
+* 实施拍卖（+ AuctionRepository +）来出售契约的智能合约
+* 使用Vue / Vuetify JavaScript框架的Web前端
 * _web3.js_库以连接到以太坊区块链（通过MetaMask或其他客户端）
 * Swarm客户端，用于存储图像等资源
 * Whisper客户端，为所有参与者创建拍卖前的聊天室
@@ -120,7 +120,7 @@ image::images/auction_diagram.png["Auction DApp: A simple example auction DApp"]
 你可以在本书的存储库中找到拍卖DApp的源代码 http://bit.ly/2DcmjyA[in the book's repository] 。
 
 
-====拍卖DApp：后端智能合约
+==== 拍卖DApp：后端智能合约
 
 ((("Auction DApp","backend smart contracts", id="ix_12dapps-asciidoc4", range="startofrange")))((("smart contracts","as DApp backend", id="ix_12dapps-asciidoc5", range="startofrange"))) 我们的Auction DApp示例受到两个智能合约的支持，我们需要将其部署在以太坊区块链上以支持该应用程序：pass：[ <code><span class="keep-together">AuctionRepository</span></code> ]和+ DeedRepository +。
 
@@ -217,7 +217,7 @@ $ <strong>truffle migrate --network ropsten</strong>
 
 构建DApp时，你必须决定是否要使智能合约真正独立，启动并随后脱离控制，或者创建特权帐户并冒被破坏的风险。任一种选择都有风险，但从长远来看，真正的DApp不能为特权帐户开辟专门的访问，这样是非去中心化的。(((range="endofrange", startref="ix_12dapps-asciidoc5")))(((range="endofrange", startref="ix_12dapps-asciidoc4")))
 
-====拍卖DApp：前端用户界面
+==== 拍卖DApp：前端用户界面
 
 ((("Auction DApp","frontend user interface"))) 部署了拍卖 DApp的合约后，你可以使用自己喜欢的JavaScript控制台和web3.js或另一个web3库与它们进行交互。但是，大多数用户将需要一个易于使用的界面。我们的拍卖 DApp用户界面是使用Google的Vue2 / Vuetify JavaScript框架构建的。
 
@@ -277,7 +277,7 @@ $ <strong>npm run dev</strong>
 .拍卖DApp的用户界面
 image::images/auction_dapp_home_screen.png["Auction DApp User interface"]
 
-===将拍卖DApp进一步去中心化
+=== 将拍卖DApp进一步去中心化
 
 ((("Auction DApp","further decentralizing of")))我们的DApp已经相当去中心化了，但是我们还可以改进一些地方。
 
@@ -287,18 +287,18 @@ image::images/auction_dapp_home_screen.png["Auction DApp User interface"]
 
 我们可以做两件事来使此DApp成为分布式的和弹性的：
 
-*将所有应用程序代码存储在Swarm或IPFS上。
-*使用以太坊名称服务通过引用名称访问DApp。
+* 将所有应用程序代码存储在Swarm或IPFS上。
+* 使用以太坊名称服务通过引用名称访问DApp。
 
 我们将在下一部分中了解第一个选项，并在<<ethereum_naming_system_ens>>中研究第二个。
 
-===将拍卖DApp存储在Swarm上
+=== 将拍卖DApp存储在Swarm上
 
 ((("Auction DApp","storing on Swarm", id="ix_12dapps-asciidoc6", range="startofrange")))((("Swarm","storing Auction DApp on", id="ix_12dapps-asciidoc7", range="startofrange"))) 我们在<<swarm_sec>>中介绍过Swarm，在本章前面。我们的Auction DApp已经使用Swarm来存储每次拍卖的图标图像。这比尝试直接在以太坊上存储数据要有效得多。与将这些图像存储在Web服务器或文件服务器等集中式服务中相比，它具有更大的弹性。
 
 但是，我们可以采取进一步的行动。我们可以将DApp本身的整个前端存储在Swarm中，并直接从Swarm节点运行它，而不是运行Web服务器。
 
-====准备Swarm
+==== 准备Swarm
 
 ((("Swarm","installing and initializing"))) 要开始，你需要安装Swarm并初始化Swarm节点。 Swarm是以太坊基金会Go-Ethereum工具套件的一部分。请参阅<<go_ethereum_geth>>中安装Go-Ethereum的说明，或者安装Swarm发布的可执行版，请按照Swarm文档 http://bit.ly/2Q75KXw[Swarm documentation] 中的说明进行操作。
 
@@ -346,7 +346,7 @@ http://localhost:8500.
 .localhost上的swarm网关
 image::images/swarm-gateway.png["Swarm gateway on localhost"]
 
-====上传文件到Swarm
+==== 上传文件到Swarm
 
 ((("Swarm","uploading files to", id="ix_12dapps-asciidoc8", range="startofrange"))) 一旦运行了本地Swarm节点和网关，就可以上传到Swarm，文件将只需参考文件哈希即可在任何Swarm节点上访问。
 
@@ -432,7 +432,7 @@ ab164cf37dc10647e43a233486cdeffa8334b026e32a480dd9cbd020c12d4581
 我们虽然在分布式DApp方面取得了一些进展，但目前它并不好使用。这样的URL比像__auction_dapp.com__这样的好名字，对用户的友好程度要低得多。我们是否被迫牺牲可用性以实现分布化？不必要。在下一节中，我们将探讨以太坊的名称服务，该服务使我们能够使用易于阅读的名称，但仍保留应用程序的去中心化性质。(((range="endofrange", startref="ix_12dapps-asciidoc7")))(((range="endofrange", startref="ix_12dapps-asciidoc6")))
 
 [[ethereum_naming_system_ens]]
-===以太坊名称服务（ENS）
+=== 以太坊名称服务（ENS）
 
 ((("Auction DApp","ENS and", id="ix_12dapps-asciidoc9", range="startofrange")))((("ENS (Ethereum Name Service)", id="ix_12dapps-asciidoc10", range="startofrange")))((("ENS (Ethereum Name Service)","DApps and", id="ix_12dapps-asciidoc11", range="startofrange"))) 你可以设计世界上最好的智能合约，但是如果你没有为用户提供良好的界面，他们将无法访问它。
 
@@ -444,7 +444,7 @@ ENS不仅仅是一个智能合约。它本身就是基本的DApp，提供分布�
 
 在本节中，我们将研究ENS的工作原理。我们将演示如何设置自己的名称并将其链接到钱包或以太坊地址，如何将ENS嵌入另一个DApp中，以及如何使用ENS命名DApp资源以使其更易于使用。
 
-====以太坊名称服务的历史
+==== 以太坊名称服务的历史
 
 ((("ENS (Ethereum Name Service)","history of"))) 域名注册是Namecoin率先开发的区块链的第一个非货币应用程序。以太坊白皮书 http://bit.ly/2Of1gfZ[White Paper] 中提供了两行式的类似于Namecoin的注册系统，作为其示例应用程序之一。
 
@@ -507,16 +507,16 @@ namehash('mastering-ethereum.eth')
 
 当然，子域本身也可以具有子域：在+ subdomain.example.eth +之后可能有+ sub.subdomain.example.eth +，然后是+ sub.sub.subdomain.example.eth +，依此类推。为避免昂贵的重新计算，由于Namehash仅取决于名称本身，因此可以预先计算给定名称的节点并将其插入到合约中，从而无需进行字符串操作，并允许立即查找ENS记录，而无需考虑原始名称中的组件数量。
 
-=====如何选择一个有效的名字
+===== 如何选择一个有效的名字
 ((("ENS (Ethereum Name Service)","choosing a valid name"))) 名称由一系列点分隔的标签组成。尽管允许使用大写和小写字母，但所有标签都应遵循UTS＃46规范化过程，该过程会在对标签进行哈希处理之前对标签进行大小写合并，因此，具有不同大小写但相同拼写的名称将以相同的Namehash结尾。
 
 你可以使用任何长度的标签和域名，但是为了与旧版DNS兼容，建议使用以下规则：
 
-*标签的长度不得超过64个字符。
-*完整的ENS名称不得超过255个字符。
-*标签不应以连字符开头或结尾，也不能以数字开头。
+* 标签的长度不得超过64个字符。
+* 完整的ENS名称不得超过255个字符。
+* 标签不应以连字符开头或结尾，也不能以数字开头。
 
-=====根节点所有权
+===== 根节点所有权
 
 ((("ENS (Ethereum Name Service)","root node ownership"))) 此分层系统的结果之一是，它依赖于能够创建顶级域的根节点所有者（ TLD）。
 
@@ -525,16 +525,16 @@ namehash('mastering-ethereum.eth')
 
 目前，这些主要负责人的目的和目标是与社区达成共识，以：
 
-*一旦对系统进行评估完成，就将+ .eth + TLD的临时所有权迁移并升级为更永久的合约。
-*如果社群同意需要，则允许添加新的TLD。
-*在同意，测试和实施这样的系统时，将根多重签名的所有权迁移到更分布式的合约。
-*作为解决顶级注册表中所有错误或漏洞的最后手段。
+* 一旦对系统进行评估完成，就将+ .eth + TLD的临时所有权迁移并升级为更永久的合约。
+* 如果社群同意需要，则允许添加新的TLD。
+* 在同意，测试和实施这样的系统时，将根多重签名的所有权迁移到更分布式的合约。
+* 作为解决顶级注册表中所有错误或漏洞的最后手段。
 
-=====解析器
+===== 解析器
 
 ((("ENS (Ethereum Name Service)","resolvers")))((("resolver contracts"))) 基本ENS合约无法向名称添加元数据；这就是所谓的“解析程序合约”的工作。这些是用户创建的合约，可以回答有关名称的问题，例如与该应用程序关联的Swarm地址，哪个地址接收对应用程序的付款（以太币或通证）或该应用程序的哈希是什么（以验证其完整性）。(((range="endofrange", startref="ix_12dapps-asciidoc13")))
 
-====中间层：.eth节点
+==== 中间层：.eth节点
 
 (((".eth nodes")))((("ENS (Ethereum Name Service)","middle layer: .eth nodes")))((("eth nodes"))) 在撰写本文时，在智能合约中唯一可唯一注册的顶级域是+ .eth +。
 
@@ -572,7 +572,7 @@ namehash('mastering-ethereum.eth')
 1.后期清理。如果你是获胜者，则可以完成拍卖，以收回出价与第二高的出价之间的差额。
 如果你忘记披露，则可以进行较晚的披露并收回部分报价。
 
-====顶层：契约
+==== 顶层：契约
 
 ((("deed","as ENS top layer")))((("ENS (Ethereum Name Service)","top layer: deeds"))) ENS的顶层是与单一目的：持有资金。
 
@@ -583,7 +583,7 @@ namehash('mastering-ethereum.eth')
 契约合约非常简单（大约50行代码），它仅允许将资金转移回一个帐户（契约所有者）并由一个实体调用（注册商合约）。
 这种方法极大地减少了漏洞可能使资金面临风险的攻击面。(((range="endofrange", startref="ix_12dapps-asciidoc12")))
 
-====注册名称
+==== 注册名称
 
 ((("ENS (Ethereum Name Service)","registering a name", id="ix_12dapps-asciidoc14", range="startofrange")))((("registering a name", id="ix_12dapps-asciidoc15", range="startofrange"))) 在ENS中注册名称是一个四步过程，正如我们在<<vickrey_auction>>所见。首先，我们对任何可用的名称进行出价，然后在48小时后披露出价以确保名称安全。 <<ens_registration_timeline>>是显示注册时间表的图。
 
@@ -602,7 +602,7 @@ image::images/ens-flow.png[]
 首先，我们需要确保所需名称可用。编写本书时，我们确实想注册名称+ mastering.eth +，但是，<<ens-name-search>> 显示已被占用！由于ENS注册仅持续一年，因此将来有可能确保该名称的安全。同时，让我们搜索+ ethereumbook.eth +（<<ens-name-search>>）。
 
 [[ens-name-search]]
-在MyCrypto.com上搜索ENS名称
+.在MyCrypto.com上搜索ENS名称
 image::images/ens-checkname.png["Searching for ENS names on MyCrypto.com"]
 
 很好！这个名称可用。为了注册它，我们需要按<<ens-auction>>中的指示操作。让我们解锁MetaMask并开始+ ethereumbook.eth +的拍卖。
@@ -635,7 +635,7 @@ image::images/ens-metamask-bid.png["MetaMask transaction containing your bid"]
 
 如果一切顺利，以这种方式提交交易后，你可以在48小时内返回并开标，这样你所请求的名称将被注册到你的以太坊地址。（（（（range =“ endofrange”，startref =“ ix_12dapps- asciidoc15“）））（（（（range =” endofrange“，startref =” ix_12dapps-asciidoc14“））））
 
-====管理你的ENS名称
+==== 管理你的ENS名称
 
 ((("ENS (Ethereum Name Service)","managing your ENS name"))) 一旦注册了ENS名称，就可以使用另一个用户友好的界面进行管理：https://manager.ens.domains/[ENS Manager]。
 
@@ -648,7 +648,7 @@ image::images/ens-manager.png["ENS网络管理界面"]
 
 使用这个接口，我们可以创建子域，设置解析器合约（稍后会详细介绍），并将每个名称连接到适当的资源，例如DApp前端的Swarm地址。
 
-=====创建一个ENS子域
+===== 创建一个ENS子域
 
 首先，让我们为示例拍卖DApp创建一个子域（请参见<<ens-manager-add-subdomain>>）。我们将子域名命名为+ auction +，因此完全限定名称为+ auction.ethereumbook.eth +。
 
@@ -678,7 +678,7 @@ image::images/ens_manager_add_subdomain.png["Adding the subdomain auction.ethere
 .设置域名 auction.ethereumbook.eth 的默认公共解析器
 image::images/ens-manager-set-default-resolver.png["Set the default public resolver for auction.ethereumbook.eth"]
 
-====将名称解析为Swarm哈希（内容）
+==== 将名称解析为Swarm哈希（内容）
 
 ((("ENS (Ethereum Name Service)","resolving a name to a Swarm hash")))((("Swarm","resolving a name to a Swarm hash")))((("Swarm hash, resolving a name to"))) 当将 +auction.ethereumbook.eth+ 的解析器设置为公共解析器后，我们可以设置其解析我们名称的内容为返回Swarm的哈希（请参见<<ens-set-content>>）。
 
@@ -702,7 +702,7 @@ image::images/ens-manager-set-content.png["Set the 'content' return for auction.
 </ul>
 ++++
 
-[role =“ pagebreak-before”]
+[role="pagebreak-before"]
 现在我们已经将其附加到名称上，这变得容易得多：
 
 ++++
@@ -713,7 +713,7 @@ image::images/ens-manager-set-content.png["Set the 'content' return for auction.
 
 我们也可以通过在任何与ENS兼容的钱包或DApp浏览器中搜索“ auction.ethereumbook.eth”来找到它（例如Mist）(((range="endofrange", startref="ix_12dapps-asciidoc16"))).(((range="endofrange", startref="ix_12dapps-asciidoc11")))(((range="endofrange", startref="ix_12dapps-asciidoc10")))(((range="endofrange", startref="ix_12dapps-asciidoc9")))
 
-===将App转换到DApp
+=== 将App转换到DApp
 
 在过去的几节中，我们逐渐构建了一个去中心化的应用程序。我们从一对智能合约开始，进行了ERC721契约的拍卖。这些合约被设计为没有管理帐户或特权帐户，因此它们的操作确实是分布式的。我们添加了一个用JavaScript实现的前端，该前端为我们的DApp提供了方便且用户友好的界面。拍卖DApp使用分布式存储系统Swarm来存储应用程序资源，例如图像。 DApp还使用分布式通信协议Whisper为每次拍卖提供加密的聊天室，而无需任何中央服务器。
 
@@ -727,6 +727,6 @@ image::images/ens-manager-set-content.png["Set the 'content' return for auction.
 .拍卖DApp的架构
 image::images/auction_dapp_final_architecture.png [“拍卖DApp的架构”]
 
-===本章小结
+=== 本章小结
 
 分去中心化应用程序是以太坊愿景的最高潮，正如最早的设计者所表达的那样。尽管当今有许多应用程序自称为“ DApps”，但大多数应用程序尚未完全分布式。但是，已经有可能构建几乎完全分布式的应用程序。随着时间的流逝，随着技术的进一步成熟，我们越来越多的应用程序可以构成分布式，从而产生更具弹性，抗审查性和免费的网络。(((range="endofrange", startref="ix_12dapps-asciidoc0")))

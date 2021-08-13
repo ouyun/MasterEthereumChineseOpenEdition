@@ -4,7 +4,7 @@
 ((("oracles", id="ix_11oracles-asciidoc0", range="startofrange")))在本章中，我们讨论_oracles_，这是可以为以太坊智能合约提供外部数据源的系统。 预言机“Oracles”一词来自希腊神话，在希腊神话中是指与众神交流的人，他们可以看到未来的愿景。在区块链的背景下，Oracle是一个可以回答以太坊外部问题的系统。 ((("trustless systems", seealso="oracles")))理想情况下，oracle是一个无需信任_trustless_的系统，这意味着它们不需要被信任，因为它们基于分布式的原则进行操作。
 
 [[why_oracles]]
-===为什么需要预言机Oracles
+=== 为什么需要预言机Oracles
 
 ((("oracles","reasons for using")))以太坊虚拟机的一个关键组件是Ethereum虚拟机，它能够在遵从共识规则的前提下在以太坊分布式网络的任何节点上执行程序并更新以太坊状态。为了保持共识状态，EVM的执行必须是完全确定性的，并且仅基于以太坊的共享状态和已签名的交易。这有两个特别重要的结果：首先，EVM和智能合约无法使用任何内在的随机性源；第二点是，外部数据只能作为一个交易的数据引入。
 
@@ -21,21 +21,21 @@
 
 oracle可能提供的其他一些数据示例包括：
 
-*来自物理来源（例如量子/热过程）的随机数/熵：例如，公平地选择彩票智能合约的赢家
-*与自然灾害相关的参数触发：例如，触发灾害相关的智能合约，例如用于地震相关的里氏标度测量。
-*汇率数据：例如，用于将加密货币与法定货币精确挂钩
-*资本市场数据：例如，通证化资产/证券的定价篮子
-*基准参考数据：例如，将利率纳入智能金融衍生工具中
-*静态/伪静态数据：安全标识符，国家/地区代码，货币代码等。
-*时间和间隔数据：用于基于精确时间测量的事件触发
-*气象数据：例如，基于天气预报的保险费计算
-*政治事件：用于预测市场解决方案
-*体育赛事：用于预测市场方案和虚拟体育项目的合约
-*地理位置数据：例如，用于跟踪供应链的数据
-*损害验证：用于保险合同
-*其他区块链上发生的事件：互操作性功能
-*以太币市场价格：例如，用法定货币定价燃料gas的预言机
-*航班统计信息：例如，团体和俱乐部用于机票拼单的统计信息
+* 来自物理来源（例如量子/热过程）的随机数/熵：例如，公平地选择彩票智能合约的赢家
+* 与自然灾害相关的参数触发：例如，触发灾害相关的智能合约，例如用于地震相关的里氏标度测量。
+* 汇率数据：例如，用于将加密货币与法定货币精确挂钩
+* 资本市场数据：例如，通证化资产/证券的定价篮子
+* 基准参考数据：例如，将利率纳入智能金融衍生工具中
+* 静态/伪静态数据：安全标识符，国家/地区代码，货币代码等。
+* 时间和间隔数据：用于基于精确时间测量的事件触发
+* 气象数据：例如，基于天气预报的保险费计算
+* 政治事件：用于预测市场解决方案
+* 体育赛事：用于预测市场方案和虚拟体育项目的合约
+* 地理位置数据：例如，用于跟踪供应链的数据
+* 损害验证：用于保险合同
+* 其他区块链上发生的事件：互操作性功能
+* 以太币市场价格：例如，用法定货币定价燃料gas的预言机
+* 航班统计信息：例如，团体和俱乐部用于机票拼单的统计信息
 
 
 在以下各节中，我们将研究可实现oracle的一些方法，包括基本oracle模式，计算型oracle，分散式oracle和如何在Solidity中实现oracle客户端。
@@ -45,9 +45,9 @@ oracle可能提供的其他一些数据示例包括：
 
 ((("oracles","design patterns", id="ix_11oracles-asciidoc1", range="startofrange")))根据定义，所有的预言机Oracles都需要提供一些关键功能。这些功能包括：
 
-*从链外来源收集数据。
-*通过签名消息在链上传输数据。
-*通过将数据放在智能合约的存储中来使其可被使用。
+* 从链外来源收集数据。
+* 通过签名消息在链上传输数据。
+* 通过将数据放在智能合约的存储中来使其可被使用。
 
 一旦数据在智能合约的存储中可用，其他智能合约就可以通过oracle智能合约的“检索”功能中的消息调用来访问这些数据。以太坊节点或启用网络的客户端也可以通过“查看” oracle的存储直接访问这些数据。
 
@@ -61,13 +61,13 @@ oracle可能提供的其他一些数据示例包括：
 
 请求-响应预言机的运行步骤可以总结如下：
 
-1.接收来自DApp的查询请求。
-2.解析查询请求。
-3.检查请求中是否提供了付款和数据访问的权限。
-4.从链外源检索相关数据（并在必要时对其进行加密）。
-5.签署包含数据的交易。
-6.将交易广播到网络。
-7.安排其他进一步的交易操作，例如通知等。
+1. 接收来自DApp的查询请求。
+2. 解析查询请求。
+3. 检查请求中是否提供了付款和数据访问的权限。
+4. 从链外源检索相关数据（并在必要时对其进行加密）。
+5. 签署包含数据的交易。
+6. 将交易广播到网络。
+7. 安排其他进一步的交易操作，例如通知等。
 
 一系列其他方案也是可能的。例如，可以从EOA请求数据并直接由EOA返回数据，从而无需使用Oracle智能合约。同样，请求和响应模式可以与启用了物联网的硬件传感器进行交互。因此，oracle可以是人员，软件或硬件。
 
@@ -78,7 +78,7 @@ oracle可能提供的其他一些数据示例包括：
 ((("broadcast (multicast) oracle")))((("multicast (broadcast) oracle")))((("oracles","broadcast/multicast")))I在广播或多播模式中，会将所有消息发布到某个频道，并且订阅合约将在各种订阅模式下收听该频道。例如，oracle可能会将消息发布到加密货币汇率通道。如果订阅智能合约需要按时间排序的信息（例如，移动平均计算），则可以请求频道的全部内容；另一个可能只需要最新价格即可计算现货价格。甲骨文不需要知道订阅通行证的身份时，可以使用广播模式：[<span class="keep-together">合约</span>]。(((range="endofrange", startref="ix_11oracles-asciidoc1")))
 
 [[data_authentication_sec]]
-===数据认证
+=== 数据认证
 
 ((("data authentication, oracles and")))((("oracles","and data authentication")))((("oracles","data authentication with")))假设我们通过 DApp查询到的数据既权威又值得信赖（一个重要的假设），仍然存在一个悬而未决的问题：鉴于oracle和请求-响应机制可能是由不同的实体操作的，我们如何才能信任该机制？数据在传输过程中极有可能被篡改，因此链下方法能够证明返回的数据的完整性至关重要。数据认证的两种常见方法是真实性证明_authenticityproofs_和可信赖运行环境_trusted execution environment_（TEE）。
 
@@ -87,7 +87,7 @@ oracle可能提供的其他一些数据示例包括：
 ((("TEEs (trusted execution environments)")))((("Town Crier")))((("trusted execution environments (TEEs)"))) http://www.town-crier.org/ [Town Crier]是基于TEE方法的经过身份验证的数据馈送的Oracle系统；这种方法利用基于硬件的安全区域来确保数据完整性。 Town Crier使用Intel的((("SGX (Software Guard eXtensions)")))((("Software Guard eXtensions (SGX)"))) Software Guard eXtensions（SGX）确保来自HTTPS查询的响应可以被验证为真实。 SGX提供完整性保证，确保在非本地环境中运行的应用程序受到CPU的保护，以防止被其他任何进程篡改。它还提供机密性，确保在安全区域内运行时应用程序的状态对于其他进程是不透明的。最后，SGX通过生成数字签名证明来证明应用程序（该应用程序通过其构建的哈希值安全地标识）实际上在某个区域中运行。通过验证此数字签名，分布式应用程序可以证明Town Crier实例在SGX的非本地环境中安全运行。反过来，这证明该实例未被篡改，因此Town Crier发出的数据是真实的。机密性属性还允许Town Crier处理数据，方法是允许使用Town Crier实例的公钥对数据查询进行加密。在诸如SGX之类的飞地中运行oracle的查询/响应机制，可以有效地使我们认为它在受信任的第三方硬件上安全运行，从而确保返回的请求数据不受任何篡改（假设我们信任Intel / SGX）。
 
 [[computation_oracles_sec]]
-===计算型Oracle
+=== 计算型Oracle
 
 ((("oracles","computation oracles", id="ix_11oracles-asciidoc2", range="startofrange")))到目前为止，我们仅讨论了oracle在请求和传递数据的上下文中的作用。但是，oracle也可以用于执行各种计算工作。如果考虑到以太坊固有的区块燃料gas限制和相对昂贵的计算成本，那么该功能将特别有用。计算型oracle不仅可以传递查询结果，还可以对一组输入进行计算，并返回计算结果，而这些计算可能无法在链上进行。例如，可以使用计算型oracle来执行计算繁重的回归计算，以估算债券合约的收益。
 
@@ -112,7 +112,7 @@ public class SampleContractCryptlet : Cryptlet
 True机器之类的系统存在广泛的应用，范围涵盖从机器学习到工作量证明。后者的一个示例是Doge-Ethereum桥，该桥使用TrueBit来验证Dogecoin的工作量证明（Scrypt），这是一种难以存储且计算量大的功能，无法在以太坊区块限制范围内进行计算。通过在TrueBit上执行此验证，可以在以太坊的Rinkeby测试网上的智能合约中安全地验证Dogecoin交易。(((range="endofrange", startref="ix_11oracles-asciidoc2")))
 
 [[decentralized_orackes_sec]]
-===分布式的Oracle
+=== 分布式的Oracle
 
 ((("oracles","decentralized")))虽然集中式数据或计算型oracles可以满足许多应用程序的需求，但它们代表了以太坊网络中的单点故障。围绕分布式oracle的想法已经提出了许多方案，以确保数据的可用性以及使用链上数据聚合系统创建单个数据提供者的网络。
 
@@ -199,8 +199,8 @@ contract EthUsdPriceTicker is usingOraclize {
 
 要与Oraclize集成，合约 +EthUsdPriceTicker+ 必须是pass的子合约：[ <span class="keep-together"><code>usingOraclize</code></span> ]; +usingOraclize+ 合约在_oraclizeAPI_文件中定义。数据请求使用 +oraclize_query+ 函数进行，该函数继承自 +usingOraclize+ 合约。这是一个重载函数，至少需要两个参数：
 
-*支持可用的数据源，例如URL，WolframAlpha，IPFS或计算
-*给定数据源的参数，可能包括使用JSON或XML解析帮助器
+* 支持可用的数据源，例如URL，WolframAlpha，IPFS或计算
+* 给定数据源的参数，可能包括使用JSON或XML解析帮助器
 
 价格查询在+queryTicker+函数中执行。为了执行查询，Oraclize要求支付一小笔以太币的费用，以支付处理结果并将其传输到 +pass：[__] callback+ 函数的燃料gas成本以及该服务的附加费用。此数量取决于数据源以及（在指定的情况下）所需的真实性证明的类型。检索到数据后，由Oraclize控制的帐户有权执行 +pass：[__] callback+ 函数进行回调；它传入响应值和一个唯一的查询 +queryId+ 参数，例如，该参数可用于处理和跟踪来自Oraclize的多个等待的回调。
 
@@ -277,7 +277,7 @@ contract OracleB1IQClient {
 这将返回 +uint256+ 标识符，该标识符随后可用于提供其他参数。 +addArgumentToRequestString+ 函数用于指定路透工具代码（RIC）（此处为IBM股票），并通过：[ <span class="keep-together"><code>addArgumentToRequestUint</code></span> ]允许指定时间戳。现在，为 +block.timestamp+ 传递别名将检索IBM的当前价格。然后，该请求由 +executeRequest+ 函数执行。处理完请求后，oracle合同将使用查询标识符调用 +onSuccess+ 回调函数，从而允许检索结果数据；如果检索失败，则pass：[ <span class="keep-together"><code>onFailure</code></span> ]回调将返回错误代码。成功获取的可用字段包括 +open+，+high+，+low+，+close+（OHLC）和 +bid+ / +ask+ 价格。(((range="endofrange", startref="ix_11oracles-asciidoc5")))(((range="endofrange", startref="ix_11oracles-asciidoc4")))(((range="endofrange", startref="ix_11oracles-asciidoc3")))
 
 
-===本章小结
+=== 本章小结
 
 如你所见，Oracle为智能合约提供了至关重要的服务：它们将外部事实带到了合约执行中。当然，这也给Oracle带来了巨大的风险。如果Oracle被信任的同时，遭到破坏，则可能导致依赖于它们的智能合约的执行受到破坏。
 

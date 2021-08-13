@@ -1,8 +1,8 @@
-[附录]
+[appendix]
 [[web3js_tutorial]]
 == web3.js教程
 
-===说明
+=== 说明
 ((("web3.js","tutorial", id="ix_appdx-web3js-tutorial-asciidoc0", range="startofrange")))本教程基于web3@1.0.0-beta.29 web3.js 。作为对web3.js的一个介绍教程。
 
 web3.js JavaScript软件库是一个模块集合，这些模块包含针对以太坊生态系统的特定功能，以及实现通用JSON RPC规范的与以太坊兼容的JavaScript API。
@@ -70,7 +70,7 @@ $ <strong>node code/web3js/web3-contract-basic-interaction.js \
 
 这将使用你自己的令牌读取文件，并将其作为命令行参数传递给实际命令。
 
-===查看演示脚本
+=== 查看演示脚本
 
 ((("web3.js","reviewing demo script")))接下来，让我们审查我们的演示脚本_web3-contract-basic-interaction_。
 
@@ -108,11 +108,11 @@ web3.eth.getBlockNumber().then(function(blockNumber) {
   })
 ----
 
-===合约的使用
+=== 合约的使用
 
 ((("web3.js","contract interaction", id="ix_appdx-web3js-tutorial-asciidoc1", range="startofrange")))现在让我们学习一些智能合约的基本使用方法。对于这些示例，我们将在Kovan测试网上使用https://bit.ly/2MPZZLx[+WETH9_+ contract]。
 
-[role =“ pagebreak-before”]
+[role="pagebreak-before"]
 首先，让我们初始化合约地址：
 
 [source,solidity]
@@ -244,6 +244,6 @@ our_contract.methods.totalSupply().call().then(function(totalSupply){
 });
 ----
 
-===使用Await命令完成的异步操作
+=== 使用Await命令完成的异步操作
 
 ((("await construct")))((("web3.js","asynchronous operation with await")))现在，你已经看过基本教程，可以使用异步+ await +结构尝试完成相同的操作。查看http://bit.ly/2ABrFkl[_code/web3js_]中的_web3-contract-basic-interaction-async-await.js_脚本，并将其与本教程进行比较，以了解它们之间的区别。异步等待操作的命令更易于阅读，因为它使异步操作的行为更像是一系列阻塞调用。(((range="endofrange", startref="ix_appdx-web3js-tutorial-asciidoc0")))
