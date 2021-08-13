@@ -1,9 +1,9 @@
-[附录]
+[appendix]
 [[ethereum_standards]]
-==以太坊标准
+== 以太坊标准
 
 [[eips]]
-===以太坊改进提案（EIP）
+=== 以太坊改进提案（EIP）
 
 ((("EIPs (Ethereum Improvement Proposals)")))((("Ethereum (generally)","EIPs")))((("Ethereum (generally)","standards")))以太坊改进提案的文件存在 https://github.com/ethereum/EIPs/[]. ((("EIPs (Ethereum Improvement Proposals)","workflow")))工作流程图在<<eip_workflow>>.
 
@@ -15,15 +15,15 @@ ____
 
 [[eip_workflow]]
 以太坊改善提案工作流程
-image :: images / eip_workflow.png [“以太坊改进提案工作流程”]
+image::images/eip_workflow.png["以太坊改进提案工作流程"]
 
 [[eip_table]]
-===最重要的EIP和ERC列表
+=== 最重要的EIP和ERC列表
 
 重要的EIP和ERC
-[options =“ header”]
-| ===
-| EIP / ERC＃|标题/说明|作者|层|现状|创建版本
+[options="header"]
+|===
+| EIP/ERC＃ | 标题/说明 | 作者 | 层 | 现状 | 创建版本
 | http://bit.ly/2OVq6qa[EIP-1] | EIP目的和准则 | Martin Becze，Hudson Jameson |注解|定稿|
 | http://bit.ly/2yJtTNa[EIP-2] |家园版本硬分叉的变化 | Vitalik Buterin |核心|定稿|
 
@@ -80,4 +80,4 @@ image :: images / eip_workflow.png [“以太坊改进提案工作流程”]
 | http://bit.ly/2RnqlHy[EIP-801] | ERC-801 Canary 标准| ligi |界面|草稿|
 | http://bit.ly/2DdTKkf[EIP-827] | ERC827通证标准。通证的标准接口ERC20的扩展，其方法允许执行+ transfer +和批准内的调用。该标准提供了传输通证的基本功能，并允许通证被批准，以便其他链上第三方可以使用它们。此外，它还允许开发人员执行对转移和批准的调用。 |Augusto Lemble | ERC |草稿|
 | http://bit.ly/2Jq2hAM[EIP-930] | ERC930永久存储。 ES（外部存储）合约由具有写入许可权的地址拥有。存储是公共的，这意味着每个人都有读取权限。它将数据存储在映射中，每种类型的变量使用一个映射。使用此合约，开发人员可以根据需要轻松地将存储迁移到另一个合约。 |Augusto Lemble| ERC |草稿|
-| ===
+|===

@@ -1,4 +1,4 @@
-= Mastering Ethereum
+= 精通以太坊
 :author: Andreas M. Antonopoulos, Gavin Wood
 :doctype: book
 :toc:

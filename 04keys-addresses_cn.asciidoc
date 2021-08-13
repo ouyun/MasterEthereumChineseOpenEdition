@@ -1,5 +1,5 @@
 [[keys_addresses]]
-==密码学
+== 密码学
 
 ((("cryptography", id="ix_04keys-addresses-asciidoc0", range="startofrange"))) ((("cryptography","defined"))) 密码学_ cryptography_，是数学的一个分支，在计算机安全中被广泛使用，也是以太坊的基础技术之一。密码学在希腊语中是“秘密写作”的意思，即_encryption_。但是密码学的研究不仅仅涉及秘密写作。比如，密码学还可以用于证明了解某些秘密而不泄露该秘密（例如，数字签名），或者用于证明数据的真实性（例如，数字指纹，也称为“哈希”）。这些类型的密码学证明是对以太坊平台（乃至所有区块链系统）运行至关重要的数学工具，并且也广泛用于以太坊的应用程序中。((("encryption", seealso="keys and addresses")))
 
@@ -8,7 +8,7 @@
 在本章中，我们将介绍以太坊中使用的一些加密技术：即公钥加密技术（PKC），用于以私钥和地址的形式控制资金的所有权。
 
 [[keys_addresses_intro]]
-===密钥和地址
+=== 密钥和地址
 
 ((("cryptography","keys and addresses")))((("EOA (Externally Owned Account)","keys and addresses")))((("keys and addresses")))在本书中，以太坊有两种不同类型的账户：外部账户 _externally owned accounts_（EOA）和合约账户_contracts_。 EOA拥有以太币的所有权是通过数字私钥_private keys_，以太坊地址_Ethereum addresses_和数字签名_digital signatures_建立的。 ((("private keys", seealso="keys and addresses")))私钥是所有用户与以太坊交互的核心。实际上，账户地址直接来自私钥：私钥可以唯一地确定一个以太坊地址，也称为_account_。
 
@@ -23,7 +23,7 @@
 在本章的其余部分，我们将首先更详细地探讨基本密码学，并解释以太坊中使用的数学方法。然后，我们将研究如何生成，存储和管理密钥。最后，我们将回顾用于表示私钥，公钥和地址的各种编码格式。
 
 [[pkc]]
-===公钥密码技术和加密货币
+=== 公钥密码技术和加密货币
 
 ((("cryptography","public key cryptography and cryptocurrency", id="ix_04keys-addresses-asciidoc1", range="startofrange")))((("public key cryptography", id="ix_04keys-addresses-asciidoc2", range="startofrange")))公钥密码技术（也称为“非对称密码技术”）是现代信息安全的核心部分。 ((("Diffie, Whitfield")))((("Hellman, Martin")))((("key exchange protocol")))((("Merkle, Ralph")))马丁·海尔曼（Martin Hellman），惠特菲尔德·迪菲（Whitfield Diffie）和拉尔夫·默克尔（Ralph Merkle）在1970年代第一次发表的密钥交换协议论文，是一项巨大的突破，引发了公众对密码学领域的第一波热潮。在1970年代之前，[ <span class="keep-together">政府</span> ]一直将强大的密码学知识对公众保密。
 
@@ -39,11 +39,11 @@
 ====
 如果你有兴趣阅读有关密码学和现代密码学中使用的数学函数的更多信息，请查看以下资源：
 
-*密码学 http://bit.ly/2DcwNhn[Cryptography]
+* 密码学 http://bit.ly/2DcwNhn[Cryptography]
 
 * 活盖门函数 http://bit.ly/2zeZV3c[Trapdoor function]
 
-*质数因子分解 http://bit.ly/2ACJjnV[Prime factorization]
+* 质数因子分解 http://bit.ly/2ACJjnV[Prime factorization]
 
 * 离散对数 http://bit.ly/2Q7mZYI[Discrete logarithm]
 
@@ -54,7 +54,7 @@
 
 [TIP]
 ====
-((("key pairs")))在大多数钱包实现中，为方便起见，私钥和公钥都作为“密钥对”存储在一起。但是，可以根据私钥简单地计算公钥，因此也可以仅存储私钥。
+((("key pairs")))在大多数钱包实现中，为方便起见，私钥和公钥都作为 _“密钥对”_ 存储在一起。但是，可以根据私钥简单地计算公钥，因此也可以仅存储私钥。
 ====
 
 数字签名可以用来签署任何信息。对于以太坊交易，交易本身的详细信息可以用作信息。密码学使用数学方法（在这种情况下为椭圆曲线密码学）为信息（即交易明细）与私钥结合提供了一种途径，以创建只有在知道私钥的情况下才能产生的信息编码。
@@ -67,7 +67,7 @@
 ====
 
 [[private_keys]]
-===私钥
+=== 私钥
 
 ((("private keys", id="ix_04keys-addresses-asciidoc3", range="startofrange")))私钥只是一个随机抽取的数字。私钥的所有权和控制权是用户控制与相应以太坊地址相关联的所有资金以及访问该地址授权合约的根源。私钥用于通过证明交易中使用的资金的所有权来创建花费以太币所需的签名。 ((("warnings and cautions","private key protection")))私钥必须始终保持秘密，因为向第三方透露私钥等同于让他们控制以太坊和由该私钥担保的合约。你还必须备份私钥并保护其免受意外丢失。如果丢失，将无法追回，并且其担保的资金也将永远丢失。
 
@@ -77,15 +77,15 @@
 ====
 
 [[generating_private_key]]
-====由随机数生成私钥
+==== 由随机数生成私钥
 
 ((("entropy","private key generation and")))((("private keys","generating from random number")))((("random numbers, private key generation from")))生成密钥的第一个也是最重要的步骤是找到安全的熵或随机性来源。创建以太坊私钥本质上涉及选择1到2 ^ 256 ^之间的数字。只要数字是不可预测的或确定性的，则用于选择该数字的确切方法并不重要。以太坊软件使用底层操作系统的随机数生成器来生成256个随机比特。通常，操作系统随机数生成器是由人为的随机性源初始化的，这就是为什么系统可能会要求你摆动鼠标几秒钟或按键盘上的随机键的原因。另一种可能是计算机麦克风通道上的宇宙辐射噪声。
 
-更准确地说，私钥可以是任何非零数字，最多可以是一个小于2 ^ 256 ^的非常大的数字，这是一个巨大的78位数字，大约为1.158 * 10 ^ 77 ^。确切数字与2 ^ 256 ^共享前38位，并定义为以太坊中使用的椭圆曲线的顺序（请参见<<elliptic_curve>>）。为了创建私钥，我们需要随机选择一个256位数字，并检查其是否在有效范围内。用编程术语来说，通常的做法是将更大的一串随机比特（从加密的安全随机性源中收集）通过256位哈希算法（例如Keccak-256或SHA-256）来产生256位的数字。如果结果在有效范围内，则我们有合适的私钥。否则，我们只需使用另一个随机数再试一次。
+更准确地说，私钥可以是任何非零数字，最多可以是一个小于2^256^的非常大的数字，这是一个巨大的78位数字，大约为1.158 * 10^77^。确切数字与2^256^共享前38位，并定义为以太坊中使用的椭圆曲线的顺序（请参见<<elliptic_curve>>）。为了创建私钥，我们需要随机选择一个256位数字，并检查其是否在有效范围内。用编程术语来说，通常的做法是将更大的一串随机比特（从加密的安全随机性源中收集）通过256位哈希算法（例如Keccak-256或SHA-256）来产生256位的数字。如果结果在有效范围内，则我们有合适的私钥。否则，我们只需使用另一个随机数再试一次。
 
 [TIP]
 ====
-2 ^ 256 ^（以太坊的私钥空间的大小）是一个令人难以置信的大数字。十进制约为10 ^ 77 ^；也就是77位数字。为了比较，目前估计可见的宇宙包含10 ^ 80 ^个原子。因此，几乎有足够的私钥为宇宙中的每个原子提供一个以太坊账户。如果你随机选择一个私钥，那么任何人都无法猜测或选择到它。
+2^256^（以太坊的私钥空间的大小）是一个令人难以置信的大数字。十进制约为10^77^；也就是77位数字。为了比较，目前估计可见的宇宙包含10^80^个原子。因此，几乎有足够的私钥为宇宙中的每个原子提供一个以太坊账户。如果你随机选择一个私钥，那么任何人都无法猜测或选择到它。
 ====
 
 注意，私钥生成过程是一个离线过程；它不需要与以太坊网络进行任何通信，也不需要与任何人进行任何通信。因此，为了挑选一个没人会选择的数字，它必须是真正随机的。如果你自己选择数字，那么其他人猜到它（并带着你的以太币跑路）的机会就太大了。使用错误的随机数生成器（例如大多数编程语言中的伪随机 +rand+ 函数）则更加糟糕，因为它更加易于复制。就像在线帐户的密码一样，私钥也必须不可猜。幸运的是，你永远不需要记住你的私钥，因此你可以采用最佳方法进行选择：即真正的随机性。
@@ -104,7 +104,7 @@ f8f8a2f43c8376ccb0871305060d7b27b0554d2cc72bccf41b2705608452f315
 
 
 [[pubkey]]
-===公钥
+=== 公钥
 
 ((("cryptography","public keys", id="ix_04keys-addresses-asciidoc4", range="startofrange")))((("elliptic curve cryptography","public key generation", id="ix_04keys-addresses-asciidoc5", range="startofrange")))((("public keys", seealso="keys and addresses", id="ix_04keys-addresses-asciidoc6", range="startofrange")))一个以太坊公钥是一条椭圆曲线上的一个点_point_，即它是满足椭圆曲线方程式的_x_和_y_坐标的集合。
 
@@ -128,7 +128,7 @@ f8f8a2f43c8376ccb0871305060d7b27b0554d2cc72bccf41b2705608452f315
 
 
 [[elliptic_curve]]
-====对椭圆曲线密码学的解说
+==== 对椭圆曲线密码学的解说
 
 ((("elliptic curve cryptography","basics", id="ix_04keys-addresses-asciidoc7", range="startofrange")))Elliptic ((("elliptic curve cryptography", id="ix_04keys-addresses-asciidoc8", range="startofrange")))((("public keys","elliptic curve cryptography and", id="ix_04keys-addresses-asciidoc9", range="startofrange")))椭圆曲线密码学是一种一种基于离散对数问题的非对称或公共的密钥密码术，如椭圆曲线上的加法和乘法运算。
 
@@ -201,7 +201,7 @@ image::images/simple_elliptic_curve.png["椭圆曲线"]
 </div>
 ++++
 
-_mod p_（模质数_p_）表示此曲线在素数阶_p_的有限域上，也写为latexmath:[\( \mathbb{F}_p \)]，其中_p_ = 2^256^ – 2^32^ – 2^9^ – 2^8^ – 2^7^ – 2^6^ – 2^4^ – 1,，这是一个非常大的素数。
+_mod p_（模质数 _p_）表示此曲线在素数阶 _p_的有限域上，也写为latexmath:[\( \mathbb{F}_p \)]，其中_p_ = 2^256^ – 2^32^ – 2^9^ – 2^8^ – 2^7^ – 2^6^ – 2^4^ – 1,这是一个非常大的素数。
 
 由于此曲线是在素数的有限域上而不是在实数上定义的，因此它看起来像是散布在二维空间中的点的图案，因此很难可视化。但是，数学与实数上的椭圆曲线相同。例如，<<ecc-over-F17-math>>在素数为17的小得多的有限域上显示了相同的椭圆曲线，显示了网格上的点图案。 +secp256k1+ 以太坊椭圆曲线可以被认为是一个巨大的网格上点的复杂得多的图形。
 
@@ -210,7 +210,7 @@ _mod p_（模质数_p_）表示此曲线在素数阶_p_的有限域上，也写�
 .椭圆曲线密码学：椭圆曲线F(p)的图形，其中p = 17
 image::images/ec_over_small_prime_field.png["ecc-over-F17-math"]
 
-因此，例如，以下是坐标为 (_x_,_y_) 的点_Q_，该点是 +secp256k1+ 曲线上的点：
+因此，例如，以下是坐标为 (_x_,_y_) 的点 _Q_，该点是 +secp256k1+ 曲线上的点：
 
 [[coordinates_example]]
 ----
@@ -239,28 +239,28 @@ Type "help", "copyright", "credits" or "license" for more information.
 ++++
 
 [[EC_math]]
-====椭圆曲线算术运算
+==== 椭圆曲线算术运算
 
 ((("elliptic curve cryptography","arithmetic operations")))许多椭圆曲线数学的外观和工作方式非常类似于我们在学校学习的整数算法。具体来说，我们可以定义一个加法运算符，该运算符不是沿数字线跳转而是跳转到曲线上的其他点。有了加法运算符后，我们还可以定义一个点与一个整数的乘法运算，这等同于重复进行加法运算。
 
-定义椭圆曲线加法，使得在椭圆曲线上给定两个点_P_~1~ 和_P_~2~时，在椭圆曲线上还有一个第三点_P_~3~ = _P_~1~ + _P_~2~。
+定义椭圆曲线加法，使得在椭圆曲线上给定两个点 _P_~1~ 和 _P_~2~时，在椭圆曲线上还有一个第三点 _P_~3~ = _P_~1~ + _P_~2~。
 
-在几何上，通过在 _P_~1~ 和_P_~2~之间画一条线来计算该第三点_P_~3~。这条线将在另外一个点（令人惊奇地）精确与椭圆曲线相交。将此点称为 _P_~3~' = (_x_, _y_)。然后在x轴上反射以获得 _P_~3~ = (_x_, _–y_)。
+在几何上，通过在 _P_~1~ 和 _P_~2~之间画一条线来计算该第三点 _P_~3~。这条线将在另外一个点（令人惊奇地）精确与椭圆曲线相交。将此点称为 _P_~3~' = (_x_, _y_)。然后在x轴上反射以获得 _P_~3~ = (_x_, _–y_)。
 
-如果_P_~1~ 和 _P_~2~是同一点，则_P_~1~和_P_~2~之间的线应延伸为该点_P_~1~处的曲线的切线。该切线将在一条新点处与曲线相交。你可以使用微积分技术确定切线的斜率。令人惊奇的是，即使我们将兴趣限制在具有两个整数坐标的曲线上，这些技术仍然有效！
+如果 _P_~1~ 和 _P_~2~是同一点，则 _P_~1~和 _P_~2~之间的线应延伸为该点 _P_~1~处的曲线的切线。该切线将在一条新点处与曲线相交。你可以使用微积分技术确定切线的斜率。令人惊奇的是，即使我们将兴趣限制在具有两个整数坐标的曲线上，这些技术仍然有效！
 
 在椭圆曲线数学中，还有一个称为“无穷远点”的点，它大致对应于数字零的作用。在计算机上，有时用 _x_ = _y_ = 0表示（它不满足椭圆曲线方程式，但这是一个容易检查的个例情况）。有一些特殊情况解释了无穷远点的必要性。
 
-在某些情况下（例如，如果 _P_~1~ 和 _P_~2~具有相同的 _x_ 值但具有不同的 _y_ 值），则该线将完全垂直，在这种情况下_P_~3~=无穷远点。
+在某些情况下（例如，如果 _P_~1~ 和 _P_~2~具有相同的 _x_ 值但具有不同的 _y_ 值），则该线将完全垂直，在这种情况下 _P_~3~=无穷远点。
 
-如果 _P_~1~ 是无穷远点，则 _P_~1~ + _P_~2~ = _P_~2~。同样，如果 _P_~2~ 是无穷远点，则_P_~1~+ _P_~2~= _P_~1~。这显示了无穷远点如何在“正常”算术中扮演零的角色。
+如果 _P_~1~ 是无穷远点，则 _P_~1~ + _P_~2~ = _P_~2~。同样，如果 _P_~2~ 是无穷远点，则 _P_~1~+ _P_~2~= _P_~1~。这显示了无穷远点如何在“正常”算术中扮演零的角色。
 
 事实证明，加法运算 pass:[+] 满足结合律，这意味着 (_A_ pass:[+] _B_) pass:[+] _C_ = _A_ pass:[+] (_B_ pass:[+] _C_)。这意味着我们可以毫不含糊地编写 _A_ pass:[+] _B_ pass:[+] _C_（不带括号）。
 
-既然我们已经定义了加法，就可以用扩展加法的标准方式来定义乘法。对于椭圆曲线上的点_P_，如果_k_是整数，则 _k_ pass:[*] _P_ = _P_ pass:[+] _P_ pass:[+] _P_ pass:[+] ... pass:[+] _P_ (_k_ times)。请注意，在这种情况下，_k_有时（可能令人困惑）被称为“指数”。(((range="endofrange", startref="ix_04keys-addresses-asciidoc8")))(((range="endofrange", startref="ix_04keys-addresses-asciidoc7")))
+既然我们已经定义了加法，就可以用扩展加法的标准方式来定义乘法。对于椭圆曲线上的点 _P_，如果 _k_是整数，则 _k_ pass:[*] _P_ = _P_ pass:[+] _P_ pass:[+] _P_ pass:[+] ... pass:[+] _P_ (_k_ times)。请注意，在这种情况下，_k_ 有时（可能令人困惑）被称为“指数”。(((range="endofrange", startref="ix_04keys-addresses-asciidoc8")))(((range="endofrange", startref="ix_04keys-addresses-asciidoc7")))
 
 [[public_key_derivation]]
-====生成公钥
+==== 生成公钥
 
 ((("elliptic curve cryptography","public key generation with")))((("generator point")))((("public keys","generating")))使用私钥对应的随机数字_k_，我们将其乘以曲线上预定的点，称为_generator point_ _G_，以在曲线上的其他位置产生另一个点，即对应的公钥_K_：
 
@@ -278,9 +278,9 @@ Type "help", "copyright", "credits" or "license" for more information.
 </div>
 ++++
 
-((("secp256k1 elliptic curve"))) 生成点被指定为 +secp256k1+ 标准的一部分；对于使用 +secp256k1+ 标准的所有运算都是相同的，并且从该曲线派生的所有关键点都使用相同的点_G_。因为所有以太坊用户的生成点总是相同的，所以私钥_k_乘以_G_总是得到相同的公钥_K_。 _k_和_K_之间的关系是固定的，但只能在从_k_到_K_的一个方向上计算。这就是为什么以太坊地址（源自_K_）可以与任何人共享，并且不会透露用户的私钥（_k_）的原因。
+((("secp256k1 elliptic curve"))) 生成点被指定为 +secp256k1+ 标准的一部分；对于使用 +secp256k1+ 标准的所有运算都是相同的，并且从该曲线派生的所有关键点都使用相同的点 _G_。因为所有以太坊用户的生成点总是相同的，所以私钥 _k_乘以_G_总是得到相同的公钥_K_。 _k_和_K_之间的关系是固定的，但只能在从_k_到_K_的一个方向上计算。这就是为什么以太坊地址（源自_K_）可以与任何人共享，并且不会透露用户的私钥（_k_）的原因。
 
-如上一节所述，_k_ * _G_的乘积结果等效于重复加法运算的结果，因此 _G_ pass:[+] _G_ pass:[+] _G_ pass:[+] ... pass:[+] _G_。总而言之，为了从私钥_k_产生公钥_K_，我们将生成点_G_添加到自身_k_次。
+如上一节所述，_k_ * _G_的乘积结果等效于重复加法运算的结果，因此 _G_ pass:[+] _G_ pass:[+] _G_ pass:[+] ... pass:[+] _G_。总而言之，为了从私钥 _k_产生公钥 _K_，我们将生成点 _G_ 添加到自身 _k_ 次。
 
 [TIP]
 ====
@@ -313,16 +313,16 @@ y = 83b5c38e5e2b0c8529d7fa3f64d46daa1ece2d9ac14cab9477d042c84c32ccd0
 
 [[EC_prefix_table]]
 .序列化的EC公钥前缀
-[options =“ header”]
-| ===
+[options="header"]
+|===
 | Prefix | Meaning | Length (bytes counting prefix)
 | +0x00+ | Point at infinity | 1
 | +0x04+ | Uncompressed point | 65
 | +0x02+ | Compressed point with even +y+ | 33
 | +0x03+ | Compressed point with odd +y+ | 33
-| ===
+|===
 
-以太坊只使用未压缩的公钥，因此唯一相关的前缀是（十六进制）+04+。顺序连接公钥的_x_和_y_坐标：
+以太坊只使用未压缩的公钥，因此唯一相关的前缀是（十六进制）+04+。顺序连接公钥的 _x_ 和 _y_ 坐标：
 
 [[concat_coordinates]]
 ----
@@ -338,7 +338,7 @@ c8529d7fa3f64d46daa1ece2d9ac14cab9477d042c84c32ccd0
 ----
 
 [[EC_lib]]
-====椭圆曲线软件库
+==== 椭圆曲线软件库
 
 ((("elliptic curve cryptography","libraries")))((("secp256k1 elliptic curve"))) 加密货币相关的项目通常使用两种 +secp256k1+ 的椭圆曲线：
 
@@ -347,7 +347,7 @@ c8529d7fa3f64d46daa1ece2d9ac14cab9477d042c84c32ccd0
 ((("libsecp256k1 cryptographic library")))https://github.com/bitcoin-core/secp256k1[libsecp256k1]:: 比特币核心的 +libsecp256k1+ 是 +secp256k1+ 椭圆曲线和其他加密方法的C语言实现。它是从头开始编写的，用于替换Bitcoin Core软件中的OpenSSL，并且在性能和安全性上都被认为是卓越的。(((range="endofrange", startref="ix_04keys-addresses-asciidoc6")))(((range="endofrange", startref="ix_04keys-addresses-asciidoc5")))(((range="endofrange", startref="ix_04keys-addresses-asciidoc4")))
 
 [[hash_functions]]
-===密码学哈希函数
+=== 密码学哈希函数
 
 ((("cryptographic hash functions", id="ix_04keys-addresses-asciidoc11", range="startofrange")))((("cryptography","hash functions", id="ix_04keys-addresses-asciidoc12", range="startofrange")))((("hash functions", id="ix_04keys-addresses-asciidoc13", range="startofrange")))密码哈希函数在整个以太坊被普遍使用。事实上，哈希函数几乎在所有密码系统中都有广泛应用，这是密码学家布鲁斯•施奈尔 ((("Schneier, Bruce")))所说的一个事实[<span class="keep-together">cryptographer</span>] http://bit.ly/2Q79qZp[Bruce Schneier],，他说：“单向哈希函数远不止于加密算法，而是现代密码学的主要工具。
 
@@ -373,18 +373,18 @@ c8529d7fa3f64d46daa1ece2d9ac14cab9477d042c84c32ccd0
 
 这些属性的组合使加密哈希函数可用于多种安全应用程序，包括：
 
-*数据指纹
-*消息完整性（错误检测）
-*工作量证明
-*身份验证（密码哈希和密钥扩展）
-*伪随机数生成器
-*信息承诺（提交－披露机制）
-*唯一标识符
+* 数据指纹
+* 消息完整性（错误检测）
+* 工作量证明
+* 身份验证（密码哈希和密钥扩展）
+* 伪随机数生成器
+* 信息承诺（提交－披露机制）
+* 唯一标识符
 
 随着我们对以太坊系统各个层面的介绍，将在以太坊中找到许多这样的应用。
 
 [[keccak256]]
-====以太坊的密码哈希函数：Keccak-256
+==== 以太坊的密码哈希函数：Keccak-256
 
 ((("hash functions","Keccak-256")))((("Keccak-256 hash function")))((("SHA-3 Hash Function")))以太坊中广泛使用了_Keccak-256_加密哈希算法。 Keccak-256是被设计出以参与2007年美国国家科学技术研究院((("National Institute of Science and Technology (NIST)")))((("NIST (National Institute of Science and Technology)")))举办的SHA-3加密哈希算法竞赛的一套方案。 Keccak在竞赛中胜出，并被标准化为2015年的联邦信息处理标准（FIPS）202((("Federal Information Processing Standard (FIPS)")))((("FIPS (Federal Information Processing Standard)")))((("FIPS-202")))。
 
@@ -396,7 +396,7 @@ c8529d7fa3f64d46daa1ece2d9ac14cab9477d042c84c32ccd0
 ====
 
 [[which_hash]]
-====我正在使用哪个哈希函数？
+==== 我正在使用哪个哈希函数？
 
 ((("hash functions","test vector for determining")))((("test vector, determining hash functions with")))如何确定你使用的软件库是否实现了FIPS-202 SHA-3算法还是Keccak-256算法（如果两者都可以称为“ SHA-3”）？
 
@@ -422,13 +422,13 @@ SHA3("") =
 接下来，让我们研究一下Keccak-256在以太坊中的第一个应用，该应用是通过公钥生成以太坊地址。(((range="endofrange", startref="ix_04keys-addresses-asciidoc13")))(((range="endofrange", startref="ix_04keys-addresses-asciidoc12")))(((range="endofrange", startref="ix_04keys-addresses-asciidoc11")))
 
 [[eth_address]]
-===以太坊地址
+=== 以太坊地址
 
 (("addresses", id="ix_04keys-addresses-asciidoc14", range="startofrange")))((("cryptography","Ethereum addresses and", id="ix_04keys-addresses-asciidoc15", range="startofrange")))以太坊地址是“唯一标识符”，它们是使用Keccak-256单向哈希函数从公钥或合约计算得出的。
 
 在前面的示例中，我们从私钥开始，并使用椭圆曲线乘法得出公钥：
 
-[role =“ pagebreak-before”]
+[role="pagebreak-before"]
 私钥 _k_：
 
 ----
@@ -436,7 +436,7 @@ k = f8f8a2f43c8376ccb0871305060d7b27b0554d2cc72bccf41b2705608452f315
 ----
 
 [[concat_pubkey]]
-公钥_K_（已将_x_和_y_坐标串联并显示为十六进制）：
+公钥 _K_（已将 _x_ 和 _y_ 坐标串联并显示为十六进制）：
 
 ----
 K = 6e145ccef1033dea239875dd00dfb4fee6e3348b84985c92f103444683bae07b83b5c38e5e...
@@ -447,7 +447,7 @@ K = 6e145ccef1033dea239875dd00dfb4fee6e3348b84985c92f103444683bae07b83b5c38e5e..
 值得注意的是，计算地址时，公钥未使用前缀（十六进制） +04+ 格式化。
 ====
 
-我们使用Keccak-256方法计算此公钥的哈希值_hash_：
+我们使用Keccak-256方法计算此公钥的哈希值 _hash_：
 
 [[calculate_hash]]
 ----
@@ -469,7 +469,7 @@ Keccak256(K) = 2a5bc342ed616b5ba5732269001d3f1ef827552ae1114027bd3ecf1f086ba0f9
 ----
 
 [[eth_address_format]]
-====以太坊地址格式
+==== 以太坊地址格式
 
 ((("addresses","formats")))以太坊地址是以十六进制数字表示的，对公钥进行Keccak-256哈希后产生的值里面最后20个字节导出的标识符。
 
@@ -490,7 +490,7 @@ IBAN包含最多34个字母数字字符的字符串（不区分大小写），�
 
 ICAP使用相同的结构，通过引入代表“Ethereum”的非标准国家代码“XE”，后面跟着两个字符的校验和以及3个可能的账户标识符变体：
 
-直接 Direct :: 由36个大尾数的整数组成，由最多30个字母数字字符组成，代表以太坊地址的155个最低有效位。由于此编码的容量不足以太坊地址的全部160位，因此仅适用于以一个或多个零字节开头的以太坊地址。优点是就字段长度和校验和而言，它与IBAN兼容。示例：+XE60HAMICDXSV5QXVJA7TJW47Q9CHWKJD+（33个字符长）。
+直接 Direct:: 由36个大尾数的整数组成，由最多30个字母数字字符组成，代表以太坊地址的155个最低有效位。由于此编码的容量不足以太坊地址的全部160位，因此仅适用于以一个或多个零字节开头的以太坊地址。优点是就字段长度和校验和而言，它与IBAN兼容。示例：+XE60HAMICDXSV5QXVJA7TJW47Q9CHWKJD+（33个字符长）。
 
 基础 Basic:: 与直接编码相同，但长度为31个字符。这允许它对任何以太坊地址进行编码，但使其与IBAN字段验证不兼容。示例：+XE18CHDJBPLTBCJ03FE9O2NS0BPOJVQCU2P+（长35个字符）。
 
@@ -538,7 +538,7 @@ XE60HAMICDXSV5QXVJA7TJW47Q9CHWKJD
 可惜的是，目前为止只有少数钱包支持ICAP。(((range="endofrange", startref="ix_04keys-addresses-asciidoc18")))(((range="endofrange", startref="ix_04keys-addresses-asciidoc17")))(((range="endofrange", startref="ix_04keys-addresses-asciidoc16")))
 
 [[EIP55]]
-====大写形式带有校验总量的十六进制编码（EIP-55）
+==== 大写形式带有校验总量的十六进制编码（EIP-55）
 
 ((("addresses","hex encoding with checksum in capitalization (EIP-55)", id="ix_04keys-addresses-asciidoc19", range="startofrange")))((("checksum","EIP-55 and", id="ix_04keys-addresses-asciidoc20", range="startofrange")))((("EIP-55 (Ethereum Improvement Proposal 55)","checksum for addresses", id="ix_04keys-addresses-asciidoc21", range="startofrange")))由于ICAP和名称服务的开发进展缓慢，以太坊改进提案55中提出了一个标准（EIP-55）https://github.com/Ethereum/EIPs/blob/master/EIPS/eip-55.md[Ethereum Improvement Proposal 55 (EIP-55)]。 EIP-55通过修改十六进制地址的大小写为以太坊地址提供了向后兼容的校验和。这个想法是，以太坊地址不区分大小写，并且所有钱包都应该接受以大写或小写字符表示的以太坊地址，而在解析使用上没有任何区别。
 
@@ -561,7 +561,7 @@ XE60HAMICDXSV5QXVJA7TJW47Q9CHWKJD
 
 EIP-55的实现很简单。我们采用小写十六进制地址的Keccak-256哈希值。此哈希充当地址的数字指纹，从而为我们提供了方便的校验和。输入（地址）的任何细微变化都将导致结果哈希（校验和）的较大变化，从而使我们能够有效地检测错误。然后，我们地址的哈希将编码为地址本身的大写形式。让我们将其逐步分解：
 
-1.计算小写地址的哈希值，不带 +0x+ 前缀：
+1. 计算小写地址的哈希值，不带 +0x+ 前缀：
 
 [[hash_lower_case_address]]
 ----
@@ -570,7 +570,7 @@ Keccak256("001d3f1ef827552ae1114027bd3ecf1f086ba0f9") =
 ----
 
 [start=2]
-1.如果哈希的相应十六进制数字大于或等于 +0x8+，则将每个字母地址字符大写。如果我们将地址和哈希对齐，这更容易显示：
+1. 如果哈希的相应十六进制数字大于或等于 +0x8+，则将每个字母地址字符大写。如果我们将地址和哈希对齐，这更容易显示：
 
 [[capitalize_input]]
 ----
@@ -578,7 +578,7 @@ Address: 001d3f1ef827552ae1114027bd3ecf1f086ba0f9
 Hash   : 23a69c1653e4ebbb619b0b2cb8a9bad49892a8b9...
 ----
 
-我们的地址的第四个位置包含字母字符+d+ 。哈希的第四个字符为 +6+，小于 +8+。因此，我们保留 +d+ 小写字母。我们地址中的下一个字母字符是 +f+，位于第六位。十六进制哈希的第六个字符是 +c+，大于 +8+。因此，我们将地址中的 +F+ 大写，依此类推。如你所见，我们仅使用哈希的前20个字节（40个十六进制字符）作为校验和，因为地址中只有20个字节（40个十六进制字符）可以适当地大写。
+我们的地址的第四个位置包含字母字符 +d+ 。哈希的第四个字符为 +6+，小于 +8+。因此，我们保留 +d+ 小写字母。我们地址中的下一个字母字符是 +f+，位于第六位。十六进制哈希的第六个字符是 +c+，大于 +8+。因此，我们将地址中的 +F+ 大写，依此类推。如你所见，我们仅使用哈希的前20个字节（40个十六进制字符）作为校验和，因为地址中只有20个字节（40个十六进制字符）可以适当地大写。
 
 你可以自己检查一下产生的混合大写地址，看看是否可以在地址中分辨出哪些字符大写以及它们对应的地址哈希中的字符：
 
@@ -589,7 +589,7 @@ Hash   : 23a69c1653e4ebbb619b0b2cb8a9bad49892a8b9...
 ----
 
 [[EIP55_error]]
-=====如何检测EIP-55编码地址中的错误
+===== 如何检测EIP-55编码地址中的错误
 
 ((("EIP-55 (Ethereum Improvement Proposal 55)","detecting an error in an encoded address")))现在，让我们看一下EIP-55地址如何帮助我们发现错误。假设我们已经打印出一个以太坊地址，该地址是EIP-55编码的：
 
@@ -629,6 +629,6 @@ Keccak256("001d3f1ef827552ae1114027bd3ecf1f086ba0e9") =
 
 
 [[keys-addresses-conclusions]]
-===本章小结
+=== 本章小结
 
 在本章中，我们提供了对公钥加密的简要概述，并重点介绍了在以太坊地址中如何创建和验证以太坊中的公钥和私钥的过程以及如何使用诸如哈希函数之类的密码工具的过程。我们还研究了数字签名，以及它们如何在不透露私钥的情况下证明其对私钥的所有权。在<<wallets_chapter>>，我们将把这些想法放在一起，看看如何使用钱包来管理多个密钥。(((range="endofrange", startref="ix_04keys-addresses-asciidoc0")))

@@ -1,5 +1,5 @@
 [[tokens_chapter]]
-==通证
+== 通证
 
 
 ((("tokens", id="ix_10tokens-asciidoc0", range="startofrange"))) 单词“ token”源自古英语“tācen”，意为符号。它通常用于指内在价值微不足道的私人发行的特殊用途的类似硬币的物品，例如运输代币，洗衣代币和街机游戏代币。我们在这里翻译为通证。
@@ -11,7 +11,7 @@
 在本章中，我们介绍了通证的各种用途以及如何创建通证。我们还将讨论通证的属性，例如可替代性和内在性。最后，我们检查它们基于的标准和技术，并通过构建我们自己的通证进行试验。
 
 [[tokens_use]]
-===如何使用通证
+=== 如何使用通证
 
 ((("tokens","uses of", id="ix_10tokens-asciidoc1", range="startofrange"))) 通证最明显的用途是作为数字私人货币。但是，这仅是一种可能的用法。通证可以编程为服务许多不同的功能，通常是重叠的。例如，通证可以同时传达投票权，访问权和资源所有权。如下表所示，货币只是第一个“应用”：
 
@@ -38,7 +38,7 @@
 通常，单个通证包含这些功能中的几个。有时很难区分它们之间，因为物理等价物总是有着千丝万缕的联系。例如，在现实世界中，驾驶执照（证明）也是身份证明文件（身份），并且两者不能分开。在数字领域中，以前混合的功能可以独立地分离和开发（例如，匿名证明）。(((range="endofrange", startref="ix_10tokens-asciidoc1")))
 
 [[tokens_fungibility]]
-===通证和可替代性
+=== 通证和可替代性
 
 ((("fungible tokens", seealso="ERC20 token standard")))((("tokens","fungibility"))) https://en.wikipedia.org/wiki/Fungibility[Wikipedia] 说：“在经济学中，可替代性是指商品或商品的属性，其各个单位基本上是可以互换的。”
 
@@ -56,12 +56,12 @@
 ====
 
 [[counterparty_risk]]
-===交易对手风险
+=== 交易对手风险
 
 (("counterparty risk")))((("tokens","counterparty risk"))) 交易对手风险是交易中的另一方将无法履行其义务的风险。某些类型的交易会承受额外的交易对手风险，因为涉及的当事人超过两个。例如，如果你持有贵金属的存单，然后将其出售给某人，则该交易中至少有三方：贵金属的卖方，买方和保管人。持有实物资产的一方；他们必然成为交易履行的当事方，并为涉及该资产的任何交易增加交易对手风险。通常，当通过所有权通证的交换间接交易资产时，资产托管人会产生其他交易对手风险。他们有资产吗？他们会基于通证（例如证书，契约，所有权或数字通证）的转移来识别（或允许）所有权转移吗？在代表资产的数字通证世界中，与在非数字世界中一样，重要的是要了解谁持有通证所代表的资产以及适用于该基础资产的规则。
 
 [[tokens_intrinsicality]]
-===通证和内在性
+=== 通证和内在性
 
 ((("tokens","intrinsicality"))) 单词“ intrinsic”源自拉丁语“ intra”，意为“从内部”。
 
@@ -72,7 +72,7 @@
 基于区块链的通证最重要的后果之一就是能够将外部资产转换为内在资产，从而消除交易对手风险。一个很好的例子是从公司（外部）的股权转移到_DAO_或类似（内部）组织的股权或投票通证。
 
 [[using_tokens]]
-===使用通证：实用或权益
+=== 使用通证：实用或权益
 
 ((("tokens","utility/equity types", id="ix_10tokens-asciidoc2", range="startofrange"))) 今天，以太坊中几乎所有项目都以某种形式的通证启动。但是所有这些项目真的需要通证吗？使用通证是否有任何不利之处，还是我们会看到“对所有事物进行通证化”的口号成为现实？原则上，通证的使用可以看作是最终的管理或组织工具。实际上到目前为止，将包括以太坊在内的区块链平台集成到现有的社会结构中还是受到许多限制。
 
@@ -83,14 +83,14 @@
 ((("equity tokens","defined"))) 权益通证是那些表示对某物（如一家创业公司）的控制或所有权的股份。股权通证可以像分配股利和利润的无投票权一样有限，也可以像去中心化自治组织中的有投票权的股票一样广泛，在该组织中，平台的管理是通过一些基于通证持有者投票的复杂治理系统进行的。
 
 [[its_not_duck]]
-====这是只鸭子！
+==== 这是只鸭子！
 
 ((("equity tokens","utility tokens as")))((("utility tokens","equity tokens disguised as"))) 许多创业公司面临一个难题：通证是一种很好的筹款机制，但提供证券在大多数司法管辖区，对公众的（股本）投资是受管制的活动。通过将股票通证伪装成实用程序通证，许多初创公司希望绕开这些监管限制，从公开募股中筹集资金，同时将其作为“服务访问凭证”或我们称为实用程序通证的预售。这些只披着一薄层伪装的股票发行是否能够避开监管机构还有待观察。
 
 俗话说：“如果它走路像鸭子，而嘎嘎像鸭子，那就是鸭子。”监管者不太可能被这些语义上的扭曲分散注意力。相反，他们更有可能将这种法律诡辩视为企图欺骗公众的行为。
 
 [[who_needs_utility_tokens]]
-====实用通证：谁需要它们？
+==== 实用通证：谁需要它们？
 
 ((("utility tokens","issues to consider when using", id="ix_10tokens-asciidoc3", range="startofrange"))) 真正的问题是实用程序通证给初创企业带来了巨大的风险和实用障碍。也许在遥远的将来，“对所有事物进行通证化”将成为现实，但是目前，一群了解并希望使用通证的人只是已经很小的加密货币市场的一部分。
 
@@ -114,7 +114,7 @@
 ((("tokens","reasons to adopt"))) 做出此决定需要出于正确的原因。采用通证是因为你的应用程序_如果没有通证_就无法运行。之所以采用它，是因为通证解除了基本的市场壁垒或解决了访问问题。不要引入实用程序通证，因为这是你可以快速筹集资金的唯一方法，并且你要假装它不是公共证券产品(((range="endofrange", startref="ix_10tokens-asciidoc3"))).(((range="endofrange", startref="ix_10tokens-asciidoc2")))。
 
 [[token_std]]
-===以太坊上的通证
+=== 以太坊上的通证
 
 ((("tokens","on Ethereum", id="ix_10tokens-asciidoc4", range="startofrange"))) 区块链上的通证在以太坊之前就已经存在了。 ((("Bitcoin","as token"))) 在某些方面，第一个区块链货币比特币本身就是一个通证。在以太坊之前，许多通证平台也是在比特币和其他加密货币上开发的。但是，以太坊上第一个通证标准的引入导致通证的爆炸式增长。
 
@@ -137,32 +137,32 @@ http://bit.ly/2CUf7WG[The ERC20 standard]  ERC20标准为实现通证的合约�
 
 ((("ERC20 token standard","required functions and events"))) 符合ERC20的通证合约必须至少提供以下函数和事件：
 
-+ totalSupply + ：：返回此通证当前存在的总单位。 ERC20通证可以有固定或可变供应。
++totalSupply+:: 返回此通证当前存在的总单位。 ERC20通证可以有固定或可变供应。
 
-+ balanceOf + ::给定一个地址，返回该地址的通证余额。
++balanceOf+:: 给定一个地址，返回该地址的通证余额。
 
-+ transfer + ::给定一个地址和数量，从执行转移的地址余额中将该数量的通证转移到该地址。
++transfer+:: 给定一个地址和数量，从执行转移的地址余额中将该数量的通证转移到该地址。
 
-+ transferFrom + ::给定发件人，收件人和金额，将通证从一个帐户转移到另一个帐户。与+ approve +结合使用。
++transferFrom+:: 给定发件人，收件人和金额，将通证从一个帐户转移到另一个帐户。与+ approve +结合使用。
 
-+ approve + ：：给定收件人的地址和金额，授权该地址从发出批准的帐户中执行不超过该金额的多次转帐。
++approve+:: 给定收件人的地址和金额，授权该地址从发出批准的帐户中执行不超过该金额的多次转帐。
 
-+ allowance + :：给定所有者地址和支出者地址，返回允许支出者从所有者中支取的剩余金额。
++allowance+:: 给定所有者地址和支出者地址，返回允许支出者从所有者中支取的剩余金额。
 
-+ Transfer + ::事件在成功转移（调用+ transfer +或+ transferFrom +）后触发（即使是零价值的转移）。
++Transfer+:: 事件在成功转移（调用+ transfer +或+ transferFrom +）后触发（即使是零价值的转移）。
 
-+ Approval + ::成功调用+ approve +后记录的事件。
++Approval+:: 成功调用+ approve +后记录的事件。
 
 [[ERC20_optional_func]]
 ===== ERC20可选函数功能
 
 ((("ERC20 token standard","optional functions"))) 除了上一节中列出的必需功能外，该标准还定义了以下可选功能：
 
-+name+ :: 返回通证的人为可读名称（例如，“美元”）。
++name+:: 返回通证的人为可读名称（例如，“美元”）。
 
-+ symbol + ::：返回通证的人为可读符号（例如“ USD”）。
++symbol+:: 返回通证的人为可读符号（例如“ USD”）。
 
-+ decimals + ::返回用于划分通证数量的小数位数。例如，如果+ decimals +为+2+，则通证数量除以100，以获得其用户表示：[<span class="keep-together">表示形式</span>]。
++decimals+:: 返回用于划分通证数量的小数位数。例如，如果+ decimals +为+2+，则通证数量除以100，以获得其用户表示：[<span class="keep-together">表示形式</span>]。
 
 [[ERC20_interface]]
 ===== Solidity中定义的ERC20接口
@@ -244,7 +244,7 @@ http://bit.ly/2EUYCMR[Consensys EIP20] ::一个简单易读的ERC20兼容的通�
 https://bit.ly/2xPYck6[OpenZeppelin StandardToken] ：：此实现与ERC20兼容，并带有其他安全预防措施。它构成OpenZeppelin库的基础，该库实现了更复杂的，与ERC20兼容的通证，并具有筹款上限，拍卖，归属时间表和其他功能。(((range="endofrange", startref="ix_10tokens-asciidoc6")))(((range="endofrange", startref="ix_10tokens-asciidoc5")))
 
 [[METoken_example]]
-====发行我们自己的ERC20通证
+==== 发行我们自己的ERC20通证
 
 ((("ERC20 token standard","METoken creation/launch example", id="ix_10tokens-asciidoc9", range="startofrange")))((("METoken (Mastering Ethereum Token)","creation/launch example", id="ix_10tokens-asciidoc10", range="startofrange"))) 让我们试着创建并启动我们自己的通证。对于此示例，我们将使用Truffle框架。该示例假定你已经安装了+ truffle +并对其进行了配置，并且熟悉其基本操作（有关详细信息，请参见<<truffle>>）。
 
@@ -394,7 +394,7 @@ Saving artifacts...
 image::images/ganache_metoken.png["METoken deployment on Ganache"]
 
 [[truffle_console]]
-=====通过Truffle控制台使用METoken
+===== 通过Truffle控制台使用METoken
 
 ((("METoken (Mastering Ethereum Token)","interacting with via Truffle console", id="ix_10tokens-asciidoc11", range="startofrange")))((("Truffle","interacting with METoken via Truffle console", id="ix_10tokens-asciidoc12", range="startofrange"))) 我们可以使用Truffle控制台与+ ganache +区块链上的合约进行交互。这是一个交互式JavaScript环境，可通过Web3访问Truffle环境和区块链。在这种情况下，我们会将Truffle控制台连接到+ ganache +区块链：
 
@@ -504,7 +504,7 @@ METoken的精度为2位小数，即1个METoken为合约中的100个单位。当�
 image::images/ganache_metoken_transfer.png["METoken transfer on Ganache"]
 
 [[sending_erc20_tokens_contracts]]
-=====将ERC20通证发送到合约地址
+===== 将ERC20通证发送到合约地址
 
 ((("Faucet.sol contract (test example)","METoken project", id="ix_10tokens-asciidoc13", range="startofrange")))((("METoken (Mastering Ethereum Token)","sending to contract addresses", id="ix_10tokens-asciidoc14", range="startofrange"))) 到目前为止，我们已经设置了ERC20通证并将一些通证从一个帐户转移到另一个帐户。我们用于这些演示的所有帐户都是外部拥有的帐户EOA，这意味着它们是由私钥而不是合约控制的。如果我们将MET发送到合约地址会怎样？让我们找出答案！
 
@@ -587,7 +587,7 @@ truffle(ganache)&gt; <strong>BigNumber { s: 1, e: 5, c: [ 100000 ] }</strong>
 ERC20通证用户在尝试转移到交易所或其他服务时会无意中丢失其通证的一种方式。他们从交易所的网站复制以太坊地址，以为他们可以简单地向其发送通证。但是，许多交易所发布的收货地址实际上是合约！这些合约仅用于接收以太币，而不是ERC20通证，通常是将发送给他们的所有资金清扫到“冷存储”或另一个集中式钱包中。尽管有很多警告说“请勿将通证发送到此地址”，但许多通证仍会丢失。(((range="endofrange", startref="ix_10tokens-asciidoc14")))(((range="endofrange", startref="ix_10tokens-asciidoc13")))
 
 [[transfer_workflow_demo]]
-=====“批准并转出”工作流程的演示
+===== “批准并转出”工作流程的演示
 
 ((("approve & transferFrom workflow", id="ix_10tokens-asciidoc15", range="startofrange")))((("Faucet.sol contract (test example)","METoken approve & transferFrom workflow demonstration", id="ix_10tokens-asciidoc16", range="startofrange")))((("METoken (Mastering Ethereum Token)","approve & transferFrom workflow demonstration", id="ix_10tokens-asciidoc17", range="startofrange"))) 我们的+水龙头+合约无法处理ERC20通证。使用+ transfer +函数向其发送通证会导致这些通证丢失。现在让我们重写合约，使其能够处理ERC20合约。具体来说，我们将其转换为向任何要求的人赠送MET的水龙头。
 
@@ -772,16 +772,16 @@ ERC223并未得到广泛实施，并且在 https://github.com/ethereum/EIPs/issu
 
 ((("ERC777 token standard proposal", id="ix_10tokens-asciidoc18", range="startofrange")))((("tokens","ERC777 standard proposal", id="ix_10tokens-asciidoc19", range="startofrange"))) 另一个改进通证合约标准的建议是ERC777 https://eips.ethereum.org/EIPS/eip-777[ERC777] 。该提案有几个目标，包括：
 
-*提供与ERC20兼容的接口
-*要使用+ send +功能转移通证，类似于以太坊转移
-*与ERC820兼容以进行通证合约注册
-*允许合约和地址通过在发送之前调用的`tokensToSend`函数控制它们发送哪些通证
-*通过在接收者中调用“ tokensReceived”功能，使合约和地址能够收到通证的通知，并通过要求合约提供通过功能来降低通证被锁定在合约中的可能性：[ <span class="keep-together"><code>tokensReceived</code></span> ]功能
-*允许现有合约将代理合约用于+ tokensToSend +和+ tokensReceived +函数
-*无论是发送到合约还是EOA都以相同的方式操作
-*提供特定事件来铸造和销毁通证
-*使运营商（受信任的第三方，旨在成为经过验证的合约）能够代表通证持有者移动通证
-*在+ userData +和+ operatorData +字段中提供有关通证转移交易的元数据
+* 提供与ERC20兼容的接口
+* 要使用+ send +功能转移通证，类似于以太坊转移
+* 与ERC820兼容以进行通证合约注册
+* 允许合约和地址通过在发送之前调用的`tokensToSend`函数控制它们发送哪些通证
+* 通过在接收者中调用“ tokensReceived”功能，使合约和地址能够收到通证的通知，并通过要求合约提供通过功能来降低通证被锁定在合约中的可能性：[ <span class="keep-together"><code>tokensReceived</code></span> ]功能
+* 允许现有合约将代理合约用于+ tokensToSend +和+ tokensReceived +函数
+* 无论是发送到合约还是EOA都以相同的方式操作
+* 提供特定事件来铸造和销毁通证
+* 使运营商（受信任的第三方，旨在成为经过验证的合约）能够代表通证持有者移动通证
+* 在+ userData +和+ operatorData +字段中提供有关通证转移交易的元数据
 
 当前有关ERC777的讨论可以在https://github.com/ethereum/EIPs/issues/777[On GitHub]上找到。
 
@@ -943,12 +943,12 @@ interface ERC721Enumerable /* is ERC721 */ {
 ----
 
 [[token_std_review]]
-===使用通证标准
+=== 使用通证标准
 
 ((("token standards (generally)", seealso="specific standards, e.g.: ERC20 token standard", id="ix_10tokens-asciidoc24", range="startofrange")))((("tokens","using token standards", id="ix_10tokens-asciidoc25", range="startofrange"))) 在上一节中，我们回顾了一些提议的标准以及通证合约的一些广泛部署的标准。这些标准究竟是做什么的？你应该使用这些标准吗？你应该如何使用它们？你是否应该添加超出这些标准的功能？你应该使用哪些标准？接下来，我们将研究其中的一些问题。
 
 [[token_std_purpose]]
-====什么是通证标准？它们的目的是什么？
+==== 什么是通证标准？它们的目的是什么？
 
 ((("token standards (generally)","defined"))) 通证标准是实现的最小规范。这就是说，为了与ERC20兼容，你至少需要实现ERC20标准指定的函数和行为。你也可以通过实现不属于标准的函数来自由添加功能。
 
@@ -957,7 +957,7 @@ interface ERC721Enumerable /* is ERC721 */ {
 这些标准应该是_descriptive_，而不是_prescriptive_。您如何选择实现这些函数的方法由你决定，合约的内部函数与标准无关。它们具有一些功能要求，这些要求可以控制特定情况下的行为，但是没有规定实现方式。例如，如果值设置为零，则+ transfer +函数的行为该如何实现并没有规定。
 
 [[should_use_std]]
-====你应该使用这些标准吗？
+==== 你应该使用这些标准吗？
 
 ((("token standards (generally)","reasons to use"))) 考虑到所有这些标准，每个开发人员都面临一个难题：使用现有标准或超出这些标准限制的创新？
 
@@ -972,7 +972,7 @@ interface ERC721Enumerable /* is ERC721 */ {
 
 
 [[security_maturity]]
-====安全性来自于成熟度
+==== 安全性来自于成熟度
 
 ((("security (smart contracts)","token standard implementation choices")))((("token standards (generally)","implementation choices"))) 除了标准选择外，还有可以选择自己实现。当你决定使用诸如ERC20之类的标准时，必须决定如何实施兼容的设计。以太坊生态系统中广泛使用了许多现有的“参考”实现，或者你可以从头开始编写自己的参考实现。同样，这种选择代表了一个可能带来严重安全隐患的实现。
 
@@ -987,7 +987,7 @@ interface ERC721Enumerable /* is ERC721 */ {
 
 
 [[extend_token_interface]]
-===通证接口标准的扩展
+=== 通证接口标准的扩展
 
 ((("token standards (generally)","extensions to"))) 本章讨论的通证标准提供了一个非常小的接口，功能有限。许多项目创建了扩展的实现，以支持其应用程序所需的功能。其中一些功能包括：
 
@@ -1012,7 +1012,7 @@ interface ERC721Enumerable /* is ERC721 */ {
 如前所述，决定通过附加功能扩展通证标准表示在创新/风险与互操作性/安全性之间进行权衡。
 
 [[tokens_ico]]
-===通证和ICO
+=== 通证和ICO
 
 ((("Initial Coin Offerings (ICOs)","tokens and")))((("tokens","ICOs and"))) 通证在以太坊生态系统中是爆炸性的发展。它们可能会成为以太坊等所有智能合约平台的重要组成部分。
 
@@ -1020,6 +1020,6 @@ interface ERC721Enumerable /* is ERC721 */ {
 
 关键是将这种技术的长远前景和影响与充斥欺诈的通证ICO的短期泡沫区分开来。通证标准和平台将在当前的通证狂潮中幸存下来，然后可能会改变世界。
 
-===本章小结
+=== 本章小结
 
 通证在以太坊中是一个非常强大的概念，可以构成许多重要的去中心化应用程序的基础。在本章中，我们研究了通证和通证标准的不同类型，并构建了第一个通证和相关应用程序。我们将在<<decentralized_applications_chap>>中再次介绍通证，你将在其中使用不可替代的通证作为拍卖DApp的基础。(((range="endofrange", startref="ix_10tokens-asciidoc0")))
