@@ -1,14 +1,14 @@
-[附录]
+[appendix]
 [[short_links]]
-==短链接参考
+== 短链接参考
 
 在本书中，我们都使用了短链接。这些短链接在页面上占用的空间更少，并使印刷版的读者更容易将其转录到浏览器中。但是，短链接可能会断开，提供这些服务的公司可能不复存在或阻塞某些链接。下面将完整的链接按在文本中出现的顺序显示。
 
 
-===智能合约安全性
+=== 智能合约安全性
 
-[options =“ header”]
-| ===
+[options="header"]
+|===
 |短链接 | 完整链接
 | 2Ogvnng | https://solidity.readthedocs.io/en/latest/units-and-global-variables.html#address-related
 | 2EVo70v | https://solidity.readthedocs.io/en/latest/security-considerations.html#use-the-checks-effects-interactions-pattern
@@ -52,14 +52,14 @@
 | 2SwDnE0 | https://vessenes.com/ethereum-contracts-are-going-to-be-candy-for-hackers/
 | 2qm7ocJ | https://vessenes.com/tx-origin-and-ethereum-oh-my/
 | 2P3KVA4 | https://medium.com/coinmonks/solidity-tx-origin-attacks-58211ad95514
-| ===
+|===
 
-===代币，也称通证
+=== 代币，也称通证
 
-[options =“ header”]
-| ===
+[options="header"]
+|===
 |短链接 | 完整链接
 | 2CUf7WG | https://github.com/ethereum/EIPs/blob/master/EIPS/eip-20.md
 | 2EUYCMR | https://github.com/ConsenSys/Tokens/blob/master/contracts/eip20/EIP20.sol
 | 2xPYck6 | https://github.com/OpenZeppelin/openzeppelin-solidity/blob/v1.12.0/contracts/token/ERC20/StandardToken.sol
-| ===
+|===

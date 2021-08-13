@@ -1,16 +1,16 @@
-[附录]
+[appendix]
 [[ethereum_fork_history]]
-==以太坊分叉历史
+== 以太坊分叉历史
 ((("Ethereum (generally)","fork history", id="ix_appdx-forks-history-asciidoc0", range="startofrange")))((("forks", seealso="hard forks", id="ix_appdx-forks-history-asciidoc1", range="startofrange")))((("hard forks", id="ix_appdx-forks-history-asciidoc2", range="startofrange")))大多数硬分叉计划是升级路线图的一部分，由社区普遍同意的更新（即，存在社区共识）组成。但是，有些硬分叉缺乏共识，这导致了多个不同的区块链。导致以太坊/以太坊经典分裂的事件就是这种情况之一，本附录对此进行了讨论。
 
 [[etc_origin]]
-===以太坊经典（ETC）
+=== 以太坊经典（ETC）
 ((("DAO (Decentralized Autonomous Organization)","and Ethereum Classic origins")))((("Ethereum Classic (ETC)","origins")))((("forks","ETC")))以太坊经典版诞生于以太坊社区成员实施了对时间敏感的硬分叉（代号为“ DAO”）之后。 2016年7月20日，以192万的区块高度，以太坊通过硬分叉引入了不规则的变化，以期返还从名为DAO的智能合约中获得的约360万以太币。几乎所有人都同意，所取的以太币被盗了，将其全部交给小偷会严重损害以太坊生态系统以及平台本身的发展。
 
 就算DAO根本不存在，将以太币归还其各自所有者在技术上也很容易，即使在政治上有争议。生态社区中的许多人不同意这种变化，他们认为不变性应该毫无例外地成为以太坊区块链的基本原则；他们选择以以太坊经典Ethereum Classic的名字继续原有的区块链。尽管分裂本身最初是意识形态上的，但是两条链从此演变成独立的实体。
 
 [[dao_origin]]
-===去中心化的自治组织（The DAO）
+=== 去中心化的自治组织（The DAO）
 
 ((("DAO (Decentralized Autonomous Organization)","about")))((("forks","DAO")))((("DAO (Decentralized Autonomous Organization)", id="ix_appdx-forks-history-asciidoc3", range="startofrange")))DAO由Slock.it创建，旨在为项目提供基于社区的资金和治理。核心思想是，将提交提案，由策展人管理提案，从以太坊社区内的投资者那里筹集资金，如果项目证明成功，投资者将获得一部分利润。
 
@@ -19,26 +19,26 @@ DAO也是以太坊通证中的第一个实验之一。参与者不是直接用�
 DAO代币可从2016年4月5日至2016年4月30日进行众筹购买，积累了https://econ.st/2qfJO1g [将近14％]的现有以太币，在当时价值约1.5亿美元。
 
 [[dao_reentrancy_bug]]
-===重入错误
+=== 重入错误
 
 ((("forks","reentrancy bug")))((("reentrancy bug")))在2016年6月9日，开发人员Peter Vessenes和Chriseth报告说，大多数基于以太坊系统的托管资金合约可能都存在http：/ /bit.ly/2AAaDmA [容易受到攻击的弱点]，可能会清空合约的资金。几天后的6月12日，Stephen Tual（Slock.it的联合创始人）报告说，http://bit.ly/2qmo3g1 [DAO的代码是安全的]，不会受到Peter和Chriseth描述的安全问题的影响。这暂时使得担心的DAO贡献者松了一口气；直到五天后，一个未名的攻击者使用了类似于被警告的漏洞对DAO合约开始攻击http://bit.ly/2Q7zR1h[抽干DAO]开始攻击。最终，DAO攻击者从DAO合约中抽走了约360万以太币。
 
 同时，一群自称为Robin Hood Group（RHG）的志愿者开始使用相同的漏洞来提取剩余资金，以免被DAO攻击者偷走。 6月21日，http：//bit.ly/2PtX4xl [RHG宣布]，他们已经获得了DAO资金的约70％（约720万以太币），并计划将其返还给社区（他们成功地在ETC网络上这样做了 ，而在以太坊网络上分叉后无需进行）。感谢RHG的迅速思考和快速行动，帮助确保了社区的大部分以太币，他们对此表示感谢和赞赏。
 
 [[dao_reentrancy_bug_technicals]]
-====技术细节
+==== 技术细节
 ((("reentrancy bug","technical details")))虽然http://bit.ly/2EQaLCI[Phil Daian]给出了该错误的详细彻底的解释，但简短的解释是DAO中的两行至关重要的代码上出现了顺序错误，这意味着在检查攻击者是否有权提取以太币之前，攻击者多次要求退回以太币的要求已经完成。此类漏洞在<<reentrancy_security>>中进行了描述。
 
 [[dao_reentrancy_bug_attack_flow]]
-====攻击过程
+==== 攻击过程
 (("reentrancy bug","attack flow")))想象一下，你的银行帐户中有$ 100，不过你可以给银行出纳员任意数量的提款单。出纳员会按顺序给您每张提款单的钱，但是只有在处理完所有提款单后他们才会记录你的提款。如果你给他们带来了三张提款单，每张提款单要求提取$ 100怎么办？如果你带他们三千张提款单会怎么样？
 
 DAO攻击的工作方式如下：
 
 1. DAO的攻击者要求从DAO合约提取DAO通证（DAO）。
-2.攻击者再次要求合约撤回DAO，然后合约更新其状态记录以表明DAO已撤回。
-3.攻击者不断重复执行步骤2。
-4.合同最终只记录了一次DAO提款，没有记录在此期间发生的其它提款。
+2. 攻击者再次要求合约撤回DAO，然后合约更新其状态记录以表明DAO已撤回。
+3. 攻击者不断重复执行步骤2。
+4. 合同最终只记录了一次DAO提款，没有记录在此期间发生的其它提款。
 
 [[dao_hard_fork]]
 === The DAO事件的硬分叉
@@ -84,7 +84,7 @@ DAO攻击的工作方式如下：
 -2017年2月20日：ETC 开发团队列表，由早期ETC开发人员Igor Artamonov领导(((range="endofrange", startref="ix_appdx-forks-history-asciidoc6"))) (splix).(((range="endofrange", startref="ix_appdx-forks-history-asciidoc5")))(((range="endofrange", startref="ix_appdx-forks-history-asciidoc4")))(((range="endofrange", startref="ix_appdx-forks-history-asciidoc3")))
 
 [[eth_etc_differences]]
-===以太坊和以太坊经典
+=== 以太坊和以太坊经典
 
 ((("Ethereum (generally)","Ethereum Classic compared to")))((("Ethereum Classic (ETC)","Ethereum compared to")))((("forks","ETC")))((("forks","Ethereum and Ethereum Classic split")))虽然最初的分叉由DAO问题为中心引起，但以太坊和以太坊经典这两个网络现在是独立的项目，尽管大多数开发仍由DAO完成。以太坊社区，只需移植到以太坊经典代码库即可。尽管如此，所有差异仍在不断发展，并且范围太广，无法涵盖在本附录中。但是，值得注意的是，这些区块链在核心发展和社区结构方面确实存在很大差异。接下来讨论一些技术差异。
 
@@ -94,25 +94,25 @@ DAO攻击的工作方式如下：
 ((("EVM OPCODES")))在大多数情况下（在撰写本文时），这两个网络保持高度兼容：为一个链生成的合同代码可以按预期在另一个链上运行；但是EVM操作码有一些细微差异（请参阅EIP链接：http://bit.ly/2yIajkF[140]，链接：http://bit.ly/2qhKz9Y[145]和链接：http://bit .ly/2SxsrFR[214]）。
 
 [[eth_etc_differences_core_development]]
-====核心网络开发
+==== 核心网络开发
 作为开放项目，区块链平台通常具有许多用户和贡献者。但是，由于开发此类软件所需的专业技能和知识，核心网络的开发（即，运行网络的代码的开发）通常由一个专家小组完成。在以太坊的开发上，这项工作由以太坊基金会和志愿者完成。在以太坊经典上，这是由ETCDEV，IOHK和志愿者完成的。
 
 [[ethereum_forks]]
-===其他著名的以太坊分叉
+=== 其他著名的以太坊分叉
 
 ((("Ellaism")))https://ellaism.org/about/ [Ellaism]是一个基于以太坊的网络，旨在专门使用PoW来保护区块链。它没有预挖矿，也没有强制性的开发商费用，所有支持和开发都是社区免费捐赠的。它的开发人员认为，这使他们成为“最诚实的纯以太坊项目之一”，并且“对于认真的开发人员，教育者和发烧友来说，这是一个非常有趣的平台。 Ellaism是一个纯粹的智能合约平台。其目标是创建一个既公平又值得信赖的智能合约平台。”该平台的宗旨如下：
 
 ____
-*对协议的所有更改和升级都应努力维护和加强这些《Ellaism原则》。
-*货币政策：2.8亿枚货币。
-*无审查：没有人可以能够阻止有效的交易被确认。
+* 对协议的所有更改和升级都应努力维护和加强这些《Ellaism原则》。
+* 货币政策：2.8亿枚货币。
+* 无审查：没有人可以能够阻止有效的交易被确认。
 作为开放项目，区块链平台通常具有许多用户和贡献者。但是，由于开发此类软件所需的专业技能和知识，核心网络的开发（即，运行网络的代码的开发）通常由一个专家小组完成。在以太坊的开发上，这项工作由以太坊基金会和志愿者完成。在以太坊经典上，这是由ETCDEV，IOHK和志愿者完成的。
-*无限准入：任何专门的网络防护都不应阻止任何人成为网络的一部分（用户，节点，矿工等）。
-*假名：不要求拥有任何ID，使用Ellaism。
-*可替代：所有货币都是平等的，应同等使用。
-*不可逆转的交易：已确认的区块应当像刻在石头上一样确定。区块链的历史应该是无法改变的。
-*无争议的硬分叉：未经整个社区的一致同意，切勿进行硬分叉。仅在必要时打破现有共识。
-*许多功能升级无需硬分叉即可完成，例如提高EVM的性能。
+* 无限准入：任何专门的网络防护都不应阻止任何人成为网络的一部分（用户，节点，矿工等）。
+* 假名：不要求拥有任何ID，使用Ellaism。
+* 可替代：所有货币都是平等的，应同等使用。
+* 不可逆转的交易：已确认的区块应当像刻在石头上一样确定。区块链的历史应该是无法改变的。
+* 无争议的硬分叉：未经整个社区的一致同意，切勿进行硬分叉。仅在必要时打破现有共识。
+* 许多功能升级无需硬分叉即可完成，例如提高EVM的性能。
 ____
 
 以太坊上也出现了其他几个分支。从某种意义上说，它们是直接从先前存在的以太坊网络中分离出来的，其中有些是硬分叉。其他则是软件分支：它们使用以太坊的客户端/节点软件，但运行完全独立的网络，而没有与以太坊共享任何历史记录。在以太坊的整个生命周期中可能会有更多的分叉。

@@ -1,30 +1,30 @@
 [[smart_contract_security]]
-==智能合约的安全问题
+== 智能合约的安全问题
 
 ((("security (smart contracts)", id="ix_09smart-contracts-security-asciidoc0", range="startofrange")))((("smart contracts","security", id="ix_09smart-contracts-security-asciidoc1", range="startofrange"))) 安全是编写智能合约时最重要的考虑因素之一。在智能合约编程领域，错误代价高昂且容易被利用。在本章中，我们将研究安全的最佳实践和设计模式，以及“不安全模式”，这些实践和模式会在我们的智能合约中引入漏洞。
 
 与其他程序一样，智能合约将完全执行所编写的内容，而这并不总是程序员想要的。此外，所有智能合约都是公开的，任何用户都可以通过创建交易轻松地操作它们。这也会导致任何漏洞都会被发现，并且几乎总是无法挽回损失。因此，遵循最佳实践并使用经过良好测试的设计模式至关重要。
 
-===安全的最佳实践
+=== 安全的最佳实践
 
 ((("defensive programming")))((("security (smart contracts)","best practices")))_Defensive programming是一种非常适合于智能合约的编程方式。它强调以下所有最佳实践：
 
-极简/简单：：复杂性是安全的大敌。代码越简单，作用越少，发生错误或无法预料的影响的机会就越小。刚开始进行智能合约编程时，开发人员通常会尝试编写大量代码。相反，你应该浏览智能合约代码，并尝试找到减少代码行数，减少复杂性和减少“函数”的方法。如果有人告诉你他们的项目已经为他们的智能合约生成了“数千行代码”，那么你应该质疑该项目的安全性。越简单越安全。
+极简/简单:: 复杂性是安全的大敌。代码越简单，作用越少，发生错误或无法预料的影响的机会就越小。刚开始进行智能合约编程时，开发人员通常会尝试编写大量代码。相反，你应该浏览智能合约代码，并尝试找到减少代码行数，减少复杂性和减少“函数”的方法。如果有人告诉你他们的项目已经为他们的智能合约生成了“数千行代码”，那么你应该质疑该项目的安全性。越简单越安全。
 
 代码重用:: 尽量不要重新发明轮子。如果已经存在满足你大部分需求的库或合约，请重新使用它。在你自己的代码中，遵循DRY原则：不要重复自己。如果你看到任何重复的代码片段都不止一次，请问自己是否可以将其编写为函数或库并重新使用。经过广泛使用和测试的代码可能比你编写的任何新代码更安全。谨防“此处未发明”综合症，在这种情况下，你很容易通过从头开始构建来“改进”功能或组件。安全风险通常大于改进的价值。
 
-代码质量：：智能合约代码一旦部署是不可撤回的。每个错误都可能导致金钱损失。你不应将智能合约编程与通用编程一样对待。以Solidity编写DApp不同于使用JavaScript创建Web小部件。相反，你应该应用严格的工程和软件开发方法，就像在航空工程或任何类似的无情学科中一样。一旦“启动”你的代码，你几乎无法解决任何问题。
+代码质量:: 智能合约代码一旦部署是不可撤回的。每个错误都可能导致金钱损失。你不应将智能合约编程与通用编程一样对待。以Solidity编写DApp不同于使用JavaScript创建Web小部件。相反，你应该应用严格的工程和软件开发方法，就像在航空工程或任何类似的无情学科中一样。一旦“启动”你的代码，你几乎无法解决任何问题。
 
-可读性/可审计性：：你的代码应清晰易懂。越容易阅读，越容易审核。智能合约是公开的，因为每个人都可以读取字节码，任何人都可以对其进行逆向编译。因此，使用协作和开放源代码方法在公共环境下开发你的工作，利用开发人员社区的集体智慧并受益于开放源代码开发的最高共同点是有益的。你应该遵循以太坊社区中的样式和命名约定，编写有据可查且易于阅读的代码。
+可读性/可审计性:: 你的代码应清晰易懂。越容易阅读，越容易审核。智能合约是公开的，因为每个人都可以读取字节码，任何人都可以对其进行逆向编译。因此，使用协作和开放源代码方法在公共环境下开发你的工作，利用开发人员社区的集体智慧并受益于开放源代码开发的最高共同点是有益的。你应该遵循以太坊社区中的样式和命名约定，编写有据可查且易于阅读的代码。
 
-测试范围：：尽可能测试所有内容。智能合约在公共执行环境中运行，任何人都可以在任何需要的输入下执行它们。你永远不要以为输入（例如函数参数）格式正确，有界或有良性目的。在允许继续执行代码之前，请测试所有参数以确保它们在预期范围内并且格式正确。
+测试范围:: 尽可能测试所有内容。智能合约在公共执行环境中运行，任何人都可以在任何需要的输入下执行它们。你永远不要以为输入（例如函数参数）格式正确，有界或有良性目的。在允许继续执行代码之前，请测试所有参数以确保它们在预期范围内并且格式正确。
 
-===安全风险和反制模式
+=== 安全风险和反制模式
 
 ((("security (smart contracts)","risks and antipatterns", id="ix_09smart-contracts-security-asciidoc2", range="startofrange"))) 作为智能合约程序员，你应该最熟悉常见的安全风险，以便能够检测和避免使你的合约面临这些风险的编程模式。在接下来的几节中，我们将研究不同的安全风险，漏洞如何产生的示例以及可以用来解决这些漏洞的对策或预防性解决方案。
 
 [[reentrancy_security]]
-===再入式攻击
+=== 重入式攻击
 
 ((("reentrancy attacks", id="ix_09smart-contracts-security-asciidoc3", range="startofrange")))((("security (smart contracts)","reentrancy attacks", id="ix_09smart-contracts-security-asciidoc4", range="startofrange"))) 以太坊智能合约的功能之一是它们的调用
 和利用其他外部合约中的代码。合约通常
@@ -38,7 +38,7 @@
 有关再入攻击的更多信息，请参阅Gus Guimareas关于该主题的博客 http://bit.ly/2zaqSEY[blog post] 和以太坊智能合约最佳实践 http://bit.ly/2ERDMxV[Ethereum Smart Contract Best Practices]。
 
 [role="notoc"]
-====漏洞
+==== 漏洞
 ////
 编者注
 本章中的标题“漏洞”和“预防技术”已从标题更改为粗体格式，以免用重复的措辞使目录混乱。
@@ -175,7 +175,7 @@ contract Attack {
 
 8. _EtherStore.sol_，第17行：攻击合约提取了另外的“ 1 ether”。
 
-9.重复步骤4至8，直到不再出现“ EtherStore.balance > 1”，如_Attack.sol_中的第26行所指示。
+9. 重复步骤4至8，直到不再出现“ EtherStore.balance > 1”，如_Attack.sol_中的第26行所指示。
 
 10. _Attack.sol_，第26行：一旦`EtherStore`合约中剩下1（或更少）个以太币，此`if`语句将失败。然后，这将允许执行“ EtherStore”合约的第18行和第19行（对于每次对“ withdrawFunds”函数的调用）。
 
@@ -186,7 +186,7 @@ contract Attack {
 而仅仅通过一次交易从`EtherStore`合约中获取的。(((range="endofrange", startref="ix_09smart-contracts-security-asciidoc5")))
 
 [role="notoc"]
-====预防技术
+==== 预防技术
 
 ((("reentrancy attacks","preventative techniques"))) 有许多常见的技术可以帮助避免潜在的
 智能合约中的可重入漏洞。 ((("transfer function","to reduce reentrancy vulnerabilities"))) 首先是（尽可能）使用内置的transfer
@@ -246,7 +246,7 @@ contract EtherStore {
 ----
 
 [[real_world_example_the_dao]]
-====实际示例：DAO
+==== 实际示例：DAO
 
 ((("DAO (Decentralized Autonomous Organization)","reentrancy attack")))((("reentrancy attacks","real-world example: DAO attack"))) DAO（去中心化自治组织）攻击是一个主要的骇客攻击事件
 发生在以太坊的早期发展时期。当时，合约
@@ -255,7 +255,7 @@ contract EtherStore {
 产生了以太坊经典（ETC）。有关DAO漏洞的仔细分析，请参见
 http://bit.ly/2EQaLCI 。有关以太坊分叉历史，DAO hack时间轴以及ETC在硬分叉中诞生的更多信息，请参见<<ethereum_standards>>.(((range="endofrange", startref="ix_09smart-contracts-security-asciidoc4")))(((range="endofrange", startref="ix_09smart-contracts-security-asciidoc3")))
 
-===数学运算中的上限/下限溢出
+=== 数学运算中的上限/下限溢出
 
 ((("arithmetic over/underflows", id="ix_09smart-contracts-security-asciidoc6", range="startofrange")))((("overflow", id="ix_09smart-contracts-security-asciidoc7", range="startofrange")))((("security (smart contracts)","arithmetic over/underflow threat", id="ix_09smart-contracts-security-asciidoc8", range="startofrange")))((("underflow", id="ix_09smart-contracts-security-asciidoc9", range="startofrange")))以太坊虚拟机为整数指定固定大小的数据类型
 这意味着整数变量只能代表一定范围内
@@ -271,7 +271,7 @@ http://bit.ly/2EQaLCI 。有关以太坊分叉历史，DAO hack时间轴以及ET
 https://bit.ly/2xvbx1M[&#x201c;Ethereum, Solidity and integer overflows: programming blockchains like 1970&#x201d;].
 
 [role="notoc"]
-====漏洞
+==== 漏洞
 
 ((("arithmetic over/underflows","vulnerability", id="ix_09smart-contracts-security-asciidoc10", range="startofrange"))) 上限溢出/下限溢出错误在执行以下操作时发生，
 一个固定大小的变量存储的数字（或数据）超出了
@@ -395,7 +395,7 @@ contract Token {
 例子中，由于下限溢出漏洞，攻击者可以获得免费通证。(((range="endofrange", startref="ix_09smart-contracts-security-asciidoc10")))
 
 [role="notoc"]
-====预防技术
+==== 预防技术
 
 ((("arithmetic over/underflows","preventative techniques", id="ix_09smart-contracts-security-asciidoc11", range="startofrange"))) 当前用于防止下限/上限溢出错误的常规技术
 是使用或建立数学库来替代
@@ -467,7 +467,7 @@ contract TimeLock {
 在“ SafeMath”库中定义的运算。 `TimeLock`合约不再
 执行任何可能导致溢出的操作。(((range="endofrange", startref="ix_09smart-contracts-security-asciidoc11")))
 
-====实际示例：PoWHC和批量传输溢出（CVE-2018–10299）
+==== 实际示例：PoWHC和批量传输溢出（CVE-2018–10299）
 
 ((("arithmetic over/underflows","real-world examples: PoWHC and batch transfer overflow")))((("batchTransfer function")))((("Proof of Weak Hands Coin (PoWHC)"))) 最初被设计为开玩笑的弱手币（PoWHC）是
 由一群互联网用户编写的庞氏骗局。不幸的是，合约的编写者似乎
@@ -489,7 +489,7 @@ http://bit.ly/2CUf7WG[Another example] 另一个示例]来自将`batchTransfer�
 有关此内容的更多信息，请参见“如何保护您的智能合约” https://bit.ly/2MR8Gp0[&#x201c;How to Secure Your Smart Contracts&#x201d;]  和“Solidity安全模式-强制以太签定合约” http://bit.ly/2RjXmUWl[&#x201c;Solidity Security Patterns - Forcing Ether to a Contract&#x201d;]。
 
 [role="notoc"]
-====漏洞
+==== 漏洞
 
 ((("unexpected ether","vulnerability", id="ix_09smart-contracts-security-asciidoc15", range="startofrange"))) 一个((("invariant checking")))常见的防御性编程技术，可以被用来确保
 正确的状态转换或验证操作，称为
@@ -517,7 +517,7 @@ http://bit.ly/2CUf7WG[ERC20 token]。由于没有函数可以修改此不变式�
 而无需使用支付函数或通过合约执行任何代码
 ：
 
-自毁/自杀：
+自毁/自杀:: 
 
 ((("selfdestruct function"))) 任何合约都可以实施自毁函数
 http://bit.ly/2RovrDf[`selfdestruct`
@@ -534,7 +534,7 @@ function]，从合约地址中删除所有字节码并将
 关于客户端节点如何检查错误的不正确的常量说明，
 这可能导致以太坊网络的灾难性崩溃。
 
-预先发送以太币：:
+预先发送以太币:: 
 
 将以太币发送到合约的另一种方法是预加载含有以太币的合约地址
 合约地址是确定性的；实际上，该地址是
@@ -583,9 +583,9 @@ contract EtherGame {
     }
 
     function claimReward() public {
-//确保游戏完成
+        //确保游戏完成
         require(this.balance == finalMileStone);
-//确保可以分发奖励
+        //确保可以分发奖励
         require(redeemableEther[msg.sender] > 0);
         redeemableEther[msg.sender] = 0;
         msg.sender.transfer(transferValue);
@@ -616,7 +616,7 @@ contract EtherGame {
 “ this.balance”的值大于“ finalMileStone”）。(((range="endofrange", startref="ix_09smart-contracts-security-asciidoc15")))
 
 [role="notoc"]
-====预防技术
+==== 预防技术
 
 ((("unexpected ether","preventative techniques"))) 这种漏洞通常是由于不恰当使用`this.balance`引起的。
 如果可能，合约中的逻辑应避免依赖于确切
@@ -665,9 +665,9 @@ contract EtherGame {
     }
 
     function claimReward() public {
-//确保游戏完成
+        //确保游戏完成
         require(depositedWei == finalMileStone);
-//确保可以分发奖励
+        //确保可以分发奖励
         require(redeemableEther[msg.sender] > 0);
         redeemableEther[msg.sender] = 0;
         msg.sender.transfer(transferValue);
@@ -680,7 +680,7 @@ contract EtherGame {
 用于我们的测试。请注意，我们不再有任何
 变量指向“ this.balance”。
 
-====其他示例
+==== 其他示例
 
 下面的资料中给出了一些有问题合约的例子。
 https://github.com/Arachnid/uscc/tree/master/submissions-2017/[Underhanded
@@ -708,7 +708,7 @@ Stack Exchange question on this topic] 和
 http://bit.ly/2Oi7UlH[Solidity 文档]。
 
 [role="notoc"]
-====漏洞
+==== 漏洞
 
 ((("DELEGATECALL opcode security threat","vulnerability", id="ix_09smart-contracts-security-asciidoc18", range="startofrange"))) 由于“ DELEGATECALL”具有范围内的保留特性，创建
 没有漏洞的自定义库并不像人们想象的那么容易。
@@ -923,7 +923,7 @@ contract Attack {
 劫持整个合约及其以太币。(((range="endofrange", startref="ix_09smart-contracts-security-asciidoc18")))
 
 [role="notoc"]
-====预防技术
+==== 预防技术
 
 ((("DELEGATECALL opcode security threat","preventative techniques"))) Solidity提供`library`关键字用于实现
 合约库（有关更多详细信息，请参见http://bit.ly/2zjD8TI[docs]）。这样可以确保合约库是
@@ -937,7 +937,7 @@ contract Attack {
 尽可能建立无状态的传递：[<span class="keep-together">库</span>]。
 
 [[multisig_secondhack]]
-====实际示例：Pairty Multisig钱包（Second Hack）
+==== 实际示例：Pairty Multisig钱包（Second Hack）
 
 ((("DELEGATECALL opcode security threat","real-world example: Parity Multisig Wallet hack", id="ix_09smart-contracts-security-asciidoc20", range="startofrange")))((("Parity Multisig Wallet","second hack", id="ix_09smart-contracts-security-asciidoc21", range="startofrange")))((("wallets","Parity Multisig Wallet hacks", id="ix_09smart-contracts-security-asciidoc22", range="startofrange"))) 第二个Parity Multisig Wallet黑客程序是一个用于说明运行编写良好的库代码如果运行在预期的范围之外会导致问题的例子。
 有很多关于这次黑客攻击的很好的解释，例如
@@ -1027,7 +1027,7 @@ WaltLibrary合约。常数
 存在此类Parity multisig钱包中的以太币，它们立即丢失或
 永久不可恢复(((range="endofrange", startref="ix_09smart-contracts-security-asciidoc22")))(((range="endofrange", startref="ix_09smart-contracts-security-asciidoc21")))(((range="endofrange", startref="ix_09smart-contracts-security-asciidoc20"))).(((range="endofrange", startref="ix_09smart-contracts-security-asciidoc17")))(((range="endofrange", startref="ix_09smart-contracts-security-asciidoc16")))
 
-===默认的可见性
+=== 默认的可见性
 
 ((("default visibility specifier security problem", id="ix_09smart-contracts-security-asciidoc23", range="startofrange")))((("security (smart contracts)","default visibility specifier threat", id="ix_09smart-contracts-security-asciidoc24", range="startofrange")))((("Solidity","default visibility specifier problem", id="ix_09smart-contracts-security-asciidoc25", range="startofrange")))((("visibility specifiers", id="ix_09smart-contracts-security-asciidoc26", range="startofrange"))) Solidity中的函数具有可见性说明符，这些说明符指示了
 这些函数可以被调用。可见性是用以确定
@@ -1037,7 +1037,7 @@ WaltLibrary合约。常数
 现在，我们将看到对可见性说明符的错误使用将如何导致智能合约中的一些破坏性漏洞。
 
 [role="notoc"]
-====漏洞
+==== 漏洞
 
 ((("default visibility specifier security problem","vulnerability"))) 函数的默认可见性是`public`，因此函数如果
 未指定其可见性，则默认可以被外部用户调用。
@@ -1073,14 +1073,14 @@ contract HashForEther {
 地址可以调用此函数以窃取赏金。
 
 [role="notoc"]
-====预防技术
+==== 预防技术
 
 ((("default visibility specifier security problem","preventative techniques"))) 始终指定合约中所有函数的可见性是一个好习惯
 ，即使它们都是“公开”的。最新版本的
 + solc +会警告
 没有明确的可见性设置的函数，以鼓励这种做法。
 
-====实际示例：Parity Multisig钱包（首次入侵）
+==== 实际示例：Parity Multisig钱包（首次入侵）
 
 ((("default visibility specifier security problem","real world example: Parity Multisig Wallet hack")))((("Parity Multisig Wallet","first hack")))((("wallets","Parity Multisig Wallet hacks"))) 在第一个Parity multisig钱包黑客事件中，价值约3100万美元的以太币被盗，
 大部分来自于三个钱包。下面的这篇文章很好地回顾了这次攻击的情况
@@ -1139,7 +1139,7 @@ contract WalletLibrary is WalletEvents {
 耗尽所有钱包中的以太币。(((range="endofrange", startref="ix_09smart-contracts-security-asciidoc26")))(((range="endofrange", startref="ix_09smart-contracts-security-asciidoc25")))(((range="endofrange", startref="ix_09smart-contracts-security-asciidoc24")))(((range="endofrange", startref="ix_09smart-contracts-security-asciidoc23")))
 
 [[entropyillusion_security]]
-===熵幻像
+=== 熵幻像
 
 ((("entropy illusion security threat")))((("security (smart contracts)","entropy illusion threat"))) 以太坊区块链上的所有交易都是确定性状态
 过渡操作。这意味着每笔交易都会修改
@@ -1152,7 +1152,7 @@ contract WalletLibrary is WalletEvents {
 https://vitalik.ca/files/randomness.html[&#x201c;Validator Ordering and Randomness in PoS&#x201d;].
 
 [role="notoc"]
-====漏洞
+==== 漏洞
 
 ((("entropy illusion security threat","vulnerability"))) 以太坊平台上最先建立的一些合约是基于
 赌博游戏。从根本上讲，赌博需要不确定性（某些可以
@@ -1179,7 +1179,7 @@ https://vitalik.ca/files/randomness.html[&#x201c;Validator Ordering and Randomne
 （如果有最大下注）。
 
 [role="notoc"]
-====预防技术
+==== 预防技术
 
 ((("entropy illusion security threat","preventative techniques"))) 熵的源（随机性）必须在区块链外部。
 这可以在类似以下系统的参与方之间完成：
@@ -1190,7 +1190,7 @@ https://github.com/randao/randao[RandDAO] ）。也可以通过
 （一般来说，有一些例外）不应用作
 熵的来源，因为矿工可以操纵它们。
 
-====实际示例：PRNG合约
+==== 实际示例：PRNG合约
 
 ((("entropy illusion security threat","real world example: PRNG contracts")))((("PRNG (pseudorandom number generator) contracts")))((("pseudorandom number generator (PRNG) contracts"))) 2018年2月，阿森尼·罗伊托夫（Arseny Reutov）在他的博客
 http://bit.ly/2Q589lx[blogged] 中发表了对3,649个实时智能合约的分析，这些智能合约都使用了
@@ -1198,7 +1198,7 @@ http://bit.ly/2Q589lx[blogged] 中发表了对3,649个实时智能合约的分�
 可以被攻击。
 
 [[external_contract_referencing]]
-===外部合约参考
+=== 外部合约参考
 
 ((("external contract referencing security threat", id="ix_09smart-contracts-security-asciidoc27", range="startofrange")))((("security (smart contracts)","external contract referencing threat", id="ix_09smart-contracts-security-asciidoc28", range="startofrange"))) 以太坊“世界计算机”的好处之一是能够
 重用代码并操作网络上已部署的合约。
@@ -1208,7 +1208,7 @@ http://bit.ly/2Q589lx[blogged] 中发表了对3,649个实时智能合约的分�
 意图，我们现在将对这些不明显的方式进行研究。
 
 [role="notoc"]
-====漏洞
+==== 漏洞
 
 ((("external contract referencing security threat","vulnerability", id="ix_09smart-contracts-security-asciidoc29", range="startofrange"))) 在Solidity中，任何一个地址都可以代表一个合约，而不会考虑
 地址上的代码是否能代表正在投放的合约类型。这种情况
@@ -1383,7 +1383,7 @@ contract Print{
      event Print(string text);
      function () {
          emit Print("Here");
-//将恶意代码放在此处，它将运行
+        //将恶意代码放在此处，它将运行
      }
  }
 ----
@@ -1400,7 +1400,7 @@ contract Print{
 ====
 
 [role="notoc"]
-====预防技术
+==== 预防技术
 
 ((("external contract referencing security threat","preventative techniques"))) 如前所述，安全的合约可以（在某些情况下）
 通过恶意方式进行部署。审核员可以
@@ -1439,7 +1439,7 @@ constructor() {
 查看被更改的代码，或让参与者有机会选择
 使用/不使用新合约地址。
 
-====实际示例：可再入的蜜罐
+==== 实际示例：可再入的蜜罐
 
 ((("external contract referencing security threat","real-world example: reentrancy honey pot", id="ix_09smart-contracts-security-asciidoc30", range="startofrange")))((("honey pots", id="ix_09smart-contracts-security-asciidoc31", range="startofrange")))((("reentrancy honey pot security threat", id="ix_09smart-contracts-security-asciidoc32", range="startofrange"))) 主网上已发布了许多最新的蜜罐（Honey Pot）合约。这些
 合约试图诱使以太坊黑客来攻击
@@ -1522,7 +1522,7 @@ http://bit.ly/2Q58VyX[post]
 通过尝试利用预期会出现在合约中的重入攻击缺陷
 (((range="endofrange", startref="ix_09smart-contracts-security-asciidoc32")))(((range="endofrange", startref="ix_09smart-contracts-security-asciidoc31")))(((range="endofrange", startref="ix_09smart-contracts-security-asciidoc30"))).(((range="endofrange", startref="ix_09smart-contracts-security-asciidoc28")))(((range="endofrange", startref="ix_09smart-contracts-security-asciidoc27")))
 
-===短地址/参数攻击
+=== 短地址/参数攻击
 
 ((("security (smart contracts)","short address/parameter attack")))((("short address/parameter attack"))) 此攻击并对不对Solidity合约
 本身进行攻击，但是攻击可能与它们交互的第三方应用程序上。本
@@ -1538,7 +1538,7 @@ http://bit.ly/2CQjBhc[Reddit
 post].
 
 [role="notoc"]
-====漏洞
+==== 漏洞
 
 ((("short address/parameter attack","vulnerability"))) 当将参数传递给智能合约时，参数的编码需要
 根据
@@ -1617,7 +1617,7 @@ ddeaddeaddeaddeaddeaddeadde00000000000000
 毫无防护的交易所里面盗取通证。
 
 [role="notoc"]
-====预防技术
+==== 预防技术
 
 ((("short address/parameter attack","preventative techniques"))) 外部应用程序中的所有输入参数都应先经过验证
 再将它们发送到区块链上。我们需要
@@ -1625,7 +1625,7 @@ ddeaddeaddeaddeaddeaddeadde00000000000000
 仅在最后发生，对智能合约中的参数进行仔细排序
 可以降低这种形式的攻击。
 
-===未检查的调用返回值
+=== 未检查的调用返回值
 
 ((("calls, external", id="ix_09smart-contracts-security-asciidoc33", range="startofrange")))((("external calls", id="ix_09smart-contracts-security-asciidoc34", range="startofrange")))((("security (smart contracts)","unchecked CALL return value threat", id="ix_09smart-contracts-security-asciidoc35", range="startofrange")))((("unchecked CALL return value security threat", id="ix_09smart-contracts-security-asciidoc36", range="startofrange"))) 在Solidity中有多种执行外部调用的方法。发送
 以太坊到外部账户通常是通过“transfer”方法执行的。
@@ -1643,7 +1643,7 @@ http://bit.ly/2RnS1vA[&#x201c;Scanning
 Live Ethereum Contracts for the &lsquo;Unchecked-Send&rsquo; Bug&#x201d;].
 
 [role="notoc"]
-====漏洞
+==== 漏洞
 
 ((("unchecked CALL return value security threat","vulnerability"))) 考虑以下示例：
 
@@ -1682,7 +1682,7 @@ contract Lotto {
 通过`withdrawLeftOver`函数获得`winner`的奖金。
 
 [role="notoc"]
-====预防技术
+==== 预防技术
 
 ((("unchecked CALL return value security threat","preventative techniques"))) 只要有可能，应该使用`transfer`函数而不是`send`，因为
 如果外部交易还原，则“ transfer”将还原。如果
@@ -1698,7 +1698,7 @@ http://bit.ly/2CSdF7y[recommendation]
 其余的代码库，并将潜在失败的负担
 放在最终用户调用+ withdraw +函数进行的交易。
 
-====实际示例：Etherpot 和 King of the Ether
+==== 实际示例：Etherpot 和 King of the Ether
 
 Etherpot http://bit.ly/2OfHalK[Etherpot] ((("Etherpot smart contract lottery")))((("King of the Ether")))((("unchecked CALL return value security threat","real-world example: Etherpot and King of the Ether"))) 是一个智能合约彩票项目，
 与前面提到的示例合约类似。
@@ -1758,7 +1758,7 @@ http://bit.ly/2ESoaub[post-mortem] 是
 可以被用来完成攻击 :[<span class="keep-together">contract</span>].(((range="endofrange", startref="ix_09smart-contracts-security-asciidoc36")))(((range="endofrange", startref="ix_09smart-contracts-security-asciidoc35")))(((range="endofrange", startref="ix_09smart-contracts-security-asciidoc34")))(((range="endofrange", startref="ix_09smart-contracts-security-asciidoc33")))
 
 [[frontrunning_security]]
-===比赛条件/抢跑
+=== 比赛条件/抢跑
 
 ((("front-running attacks", id="ix_09smart-contracts-security-asciidoc37", range="startofrange")))((("security (smart contracts)","race conditions/front running threat", id="ix_09smart-contracts-security-asciidoc38", range="startofrange")))通过 ((("race conditions", seealso="front-running security threat; reentrancy attack")))外部调用其他合约和多用户
 的区块链基础性质带来了各种潜在
@@ -1772,7 +1772,7 @@ Wiki], http://www.dasp.co/#item-7[#7 on the DASP Top10 of 2018], 和
 http://bit.ly/2Q6E4lP[Ethereum Smart Contract Best Practices]。
 
 [role="notoc"]
-====漏洞
+==== 漏洞
 
 ((("front-running attacks","vulnerability"))) 与其他大多数区块链一样，以太坊节点汇集交易并把交易打包
 进入区块。这些交易的有效性仅当矿工
@@ -1830,7 +1830,7 @@ contract FindThisHash {
 以太币，而解决问题的用户将一无所获。请记住，在这种类型的“先行攻击”漏洞中，矿工被独特地激励自己进行攻击（或者被贿赂用昂贵的费用来运行这些攻击）。不应低估攻击者本身就是矿工的可能性。
 
 [role="notoc"]
-====预防技术
+==== 预防技术
 
 ((("front-running attacks","preventative techniques"))) 有两种类型的参与者可以执行以下类型的
 前端攻击：用户（可以修改其交易的“ gasPrice”的
@@ -1873,7 +1873,7 @@ sends&#x201d;]。这个想法的有效实现需要`CREATE2`
 操作码，目前尚未被以太坊系统采用，但可能在
 未来的硬分叉中实现。
 
-====实际示例：ERC20和Bancor
+==== 实际示例：ERC20和Bancor
 
 ((("ERC20 token standard","front-running vulnerability")))((("front-running attacks","real-world examples: ERC 20 and Bancor"))) ERC20标准 http://bit.ly/2CUf7WG[ERC20
 standard]以在以太坊上构建通证而闻名。这个
@@ -1912,7 +1912,7 @@ post] 和讲座 http://bit.ly/2yHgkhs[DevCon3 talk]
 Bancor交易的交易池并进行抢跑交易以从价格差别中获利
 。 Bancor团队已解决了此攻击。(((range="endofrange", startref="ix_09smart-contracts-security-asciidoc38")))(((range="endofrange", startref="ix_09smart-contracts-security-asciidoc37")))
 
-===拒绝服务（DoS）
+=== 拒绝服务（DoS）
 
 ((("denial of service (DoS) attacks", id="ix_09smart-contracts-security-asciidoc39", range="startofrange")))((("security (smart contracts)","denial of service attacks", id="ix_09smart-contracts-security-asciidoc40", range="startofrange"))) 此类别非常广泛，但从根本上讲包含的攻击是
 用户可以在一段时间内使合约无法执行，或者
@@ -1920,7 +1920,7 @@ Bancor交易的交易池并进行抢跑交易以从价格差别中获利
 ，就像<<multisig_secondhack>>。
 
 [role="notoc"]
-====漏洞
+==== 漏洞
 
 ((("denial of service (DoS) attacks","vulnerability"))) 合约可以通过多种方式失效。在这里，我们
 仅强调一些不太明显的Solidity中
@@ -2008,7 +2008,7 @@ function transfer(address _to, uint _value) returns (bool) {
 不接受以太币的合约中。
 
 [role="notoc"]
-====预防技术
+==== 预防技术
 
 ((("denial of service (DoS) attacks","preventative techniques"))) 在第一个示例中，合约不应遍历
 可以由外部用户人为操纵的数据结构。
@@ -2028,7 +2028,7 @@ function transfer(address _to, uint _value) returns (bool) {
 它们可能的故障并可能添加基于时间的状态变化，
 以防期望的调用永远不会到来。
 
-[注意]
+[NOTE]
 ====
 当然，这些建议有一些中心化的替代方案：
 可以添加一个“ maintenanceUser”，该用户可以在
@@ -2036,7 +2036,7 @@ function transfer(address _to, uint _value) returns (bool) {
 的合约中，由于这样一个实体的权利，而导致信任问题。
 ====
 
-====实际示例：GovernMental
+==== 实际示例：GovernMental
 
 http://governmental.github.io/GovernMental/[GovernMental] ((("denial of service (DoS) attacks","real-world example: GovernMental")))((("GovernMental Ponzi scheme","DoS vulnerability"))) 是一个老的
 庞氏骗局，其中积累了大量的以太币（一次为1,100个以太币）。不幸的是，它
@@ -2048,7 +2048,7 @@ http://bit.ly/2Oh8j7R[+0xF45717552f12Ef7cb65e95476F217Ea008167Ae3+]，
 而且你可以从 http://bit.ly/2Ogzrnn[+0x0d80d67202bd9cb6773df8dd2020e719&thinsp;0a1b0793e8ec4fc105257e8128f0506b+] 中看到交易，最终1,100以太币是通过使用以下交易获得的
 2.5M燃料gas（当区块燃料限制已上升到足以允许此类交易时）。(((range="endofrange", startref="ix_09smart-contracts-security-asciidoc40")))(((range="endofrange", startref="ix_09smart-contracts-security-asciidoc39")))
 
-===区块时间戳操作
+=== 区块时间戳操作
 
 ((("block timestamp manipulation security threat", id="ix_09smart-contracts-security-asciidoc41", range="startofrange")))((("security (smart contracts)","block timestamp manipulation threat", id="ix_09smart-contracts-security-asciidoc42", range="startofrange"))) 区块的时间戳在过去已用于多种
 应用程序中，例如随机数的熵（请参见
@@ -2064,7 +2064,7 @@ Solidity docs] 和 http://bit.ly/2CQ8gh4[Joris Bontje's Ethereum Stack
 Exchange question] 的问题解答。
 
 [role="notoc"]
-====漏洞
+==== 漏洞
 
 ((("block timestamp manipulation security threat","vulnerability")))`block.timestamp`及其别名“ now”可以由矿工操纵，如果
 他们有这样做的动力。让我们构建一个简单的游戏，如<<roulette_security>>，那么
@@ -2113,7 +2113,7 @@ contract Roulette {
 （节点将不会验证时间戳在未来的区块）。
 
 [role="notoc"]
-====预防技术
+==== 预防技术
 
 ((("block timestamp manipulation security threat","preventative techniques"))) 不应将区块时间戳用于熵或生成随机
 数字的过程-即，它们不应成为决定因素（直接
@@ -2133,7 +2133,7 @@ ICO] 合约采用了这种策略。
 矿工对区块时间戳的操纵，但这是需要
 在合约开发中所了解的。
 
-====真实示例：GovernMental
+==== 真实示例：GovernMental
 
 http://governmental.github.io/GovernMental/[GovernMental], ((("block timestamp manipulation security threat","real-world example: GovernMental")))((("GovernMental Ponzi scheme","block timestamp-based attack"))) 上面提到的旧庞氏骗局也
 容易受到基于时间戳的攻击。每一回合，合约会支付给
@@ -2146,7 +2146,7 @@ http://governmental.github.io/GovernMental/[GovernMental], ((("block timestamp m
 Tanya 撰写的 http://bit.ly/2Q1AMA6[&#x201c;History
 of Ethereum Security Vulnerabilities, Hacks and Their Fixes&#x201d; post] 以太坊安全漏洞，黑客及其修复》一文：[ <span class="keep-together">Bahrynovska</span> ]。(((range="endofrange", startref="ix_09smart-contracts-security-asciidoc42")))(((range="endofrange", startref="ix_09smart-contracts-security-asciidoc41")))
 
-===仔细编写合约的构建函数
+=== 仔细编写合约的构建函数
 
 security threat")))((("security (smart contracts)","constructors and contract name-change threat"))) 构造函数是一些特殊的函数，经常在初始化合同时执行关键，
 特殊的任务。在Solidity v0.4.22之前，
@@ -2161,7 +2161,7 @@ https://github.com/OpenZeppelin/ethernaut[Ethernaut challenges]
 （特别是Fallout级别）。
 
 [role="notoc"]
-====漏洞
+==== 漏洞
 
 ((("constructor/contract name modification security threat","vulnerability")))((("contract name modification/constructor security threat","vulnerability"))) 如果合约名称被修改，或者有错字在
 构造函数的名称里面，使其与合约的名字不符，
@@ -2196,14 +2196,14 @@ contract OwnerWallet {
 然后通过调用`withdraw`提取合约中所有的以太币。
 
 [role="notoc"]
-====预防技术
+==== 预防技术
 
 ((("constructor/contract name modification security threat","preventative techniques")))((("contract name modification/constructor security threat","preventative techniques"))) 此问题已在Solidity编译器版本0.4.22中得到解决。这个版本引入了`constructor`关键字，
 可以指定构造函数，而不是要求
 函数匹配合约名称。推荐使用此关键字指定
 构造函数来防止命名问题。
 
-====真实示例：Rubixi
+==== 真实示例：Rubixi
 
 http://bit.ly/2ESWG7t[Rubixi] ((("constructor/contract name modification security threat","real-world example: Rubixi")))((("contract name modification/constructor security threat","real-world example: Rubixi")))((("Rubixi pyramid scheme"))) 是另一种展示了这种
 漏洞的例子。它最初称为“动态金字塔”，但
@@ -2214,7 +2214,7 @@ http://bit.ly/2ESWG7t[Rubixi] ((("constructor/contract name modification securit
 从金字塔骗局中获取费用。有关此特定漏洞的更多详细信息
 可以在 http://bit.ly/2Q1AMA6[&#x201c;History of Ethereum Security Vulnerabilities, Hacks and Their Fixes&#x201d;] 中找到。
 
-===未初始化的存储指针
+=== 未初始化的存储指针
 
 ((("security (smart contracts)","uninitialized storage pointer threat", id="ix_09smart-contracts-security-asciidoc43", range="startofrange")))((("storage pointers, uninitialized", id="ix_09smart-contracts-security-asciidoc44", range="startofrange")))((("uninitialized storage pointers security threat", id="ix_09smart-contracts-security-asciidoc45", range="startofrange")))  EVM将数据存储为存储器或内存。准确理解
 这一实现方式以及函数本地变量的默认类型
@@ -2224,7 +2224,7 @@ http://bit.ly/2ESWG7t[Rubixi] ((("constructor/contract name modification securit
 
 要了解有关EVM中存储和内存的更多信息，请参见Solidity文档，网址为 http://bit.ly/2OdUU0l[data location], http://bit.ly/2JslDWf[layout of state variables in storage], 和 http://bit.ly/2Dch2Hc[layout in memory]。
 
-[注意]
+[NOTE]
 ====
 本节基于一个很好的博客文章
 http://bit.ly/2ERI0pb[post
@@ -2234,7 +2234,7 @@ thread]。
 ====
 
 [role="notoc"]
-====漏洞
+==== 漏洞
 
 ((("uninitialized storage pointers security threat","vulnerability", id="ix_09smart-contracts-security-asciidoc46", range="startofrange"))) 函数中的局部变量默认为存储或内存
 取决于它们的类型。未初始化的本地存储变量可能
@@ -2326,7 +2326,7 @@ _name的最后一个字节非零，它将修改
 ----
 
 [role="notoc"]
-====预防技术
+==== 预防技术
 
 ((("uninitialized storage pointers security threat","preventative techniques"))) Solidity编译器会显示未初始化的存储变量警告；
 开发人员在创建智能合约时应注意这些警告
@@ -2335,7 +2335,7 @@ _name的最后一个字节非零，它将修改
 处理复杂类型时，建议显式使用“内存”或“存储”说明符，
 以确保它们的行为符合预期。
 
-====真实示例：OpenAddressLottery和CryptoRoulette Honey Pots
+==== 真实示例：OpenAddressLottery和CryptoRoulette Honey Pots
 
 ((("OpenAddressLottery honey pot")))((("uninitialized storage pointers security threat","real-world examples: OpenAddressLottery and CryptoRoulette honey pots"))) 一个名为OpenAddressLottery的蜜罐合约http://bit.ly/2AAVnWD[+OpenAddressLottery+] ，在部署时使用了未初始化的存储变量
 从一些潜在的黑客那里收集以太币。合约本身相当
@@ -2348,14 +2348,14 @@ http://bit.ly/2OVkSL4[&#x201c;An
 Analysis of a Couple Ethereum Honeypot Contracts&#x201d;] 中对
 这个合约和其他类似合约的概述。(((range="endofrange", startref="ix_09smart-contracts-security-asciidoc45")))(((range="endofrange", startref="ix_09smart-contracts-security-asciidoc44")))(((range="endofrange", startref="ix_09smart-contracts-security-asciidoc43")))
 
-===浮点数和精度
+=== 浮点数和精度
 
 ((("floating-point representation security risk", id="ix_09smart-contracts-security-asciidoc47", range="startofrange")))((("security (smart contracts)","floating-point problem", id="ix_09smart-contracts-security-asciidoc48", range="startofrange"))) 在撰写本文时（v0.4.24），Solidity不支持定点和浮点
 数字。这意味着浮点数
 在Solidity中的表达必须使用整数类型。这个
 情况如果实施不正确，可能会导致错误和漏洞。
 
-[注意]
+[NOTE]
 ====
 有关更多信息，请参阅
 http://bit.ly/2Ogp2Ia[Ethereum
@@ -2363,7 +2363,7 @@ Contract Security Techniques and Tips wiki].
 ====
 
 [role="notoc"]
-====漏洞
+==== 漏洞
 
 ((("floating-point representation security risk","vulnerability"))) 由于Solidity中没有定点数类型，因此开发人员必须
 使用标准整数数据类型实现自己定义的数据。这里有
@@ -2411,7 +2411,7 @@ https://github.com/ethereum/EIPs/blob/master/EIPS/eip-20.md[ERC20]
 通证中需要更高精度时。
 
 [role="notoc"]
-====预防技术
+==== 预防技术
 
 ((("floating-point representation security risk","preventative techniques"))) 在智能合约中保持正确的精度非常重要，
 特别是在计算比率和利率这些用于经济
@@ -2443,7 +2443,7 @@ Solidity中保留所有精度较高的变量，然后转换回较低的
 ）。要查看如何完成此操作的示例，我们建议查看 https://github.com/dapphub/ds-math[DS-Math] 。它使用一些
 时髦的命名（“wads”和“rays”），但是这个概念很有用。
 
-====真实示例：Ethstick
+==== 真实示例：Ethstick
 
 ((("Ethstick contract")))((("floating-point representation security risk","real-world example: Ethstick"))) Ethstick合约http://bit.ly/2Qb7PSB[+Ethstick+ contract] 不使用扩展的精度；但是，它处理的是wei。所以，
 合约将有四舍五入的问题，但仅在wei级别
@@ -2461,7 +2461,7 @@ Contracts Are Going to Be Candy for Hackers&#x201d;].(((range="endofrange", star
 调用（或交易）的账户。在智能合约中使用此变量进行身份验证会使合约容易受到网络钓鱼者的
 攻击。
 
-[注意]
+[NOTE]
 ====
 有关的更多资料，请参阅dbryson的以太坊问题 http://bit.ly/2PxU1UM[Stack
 Exchange question]，
@@ -2470,7 +2470,7 @@ Chris Coverdale 的http://bit.ly/2P3KVA4[&#x201c;Solidity: Tx Origin Attacks&#x2
 ====
 
 [role="notoc"]
-====漏洞
+==== 漏洞
 
 ((("tx.origin authentication security threat","vulnerability"))) 合约中使用`tx.origin`变量对用户授权会
 通常容易受到网上诱骗攻击的侵害，诱骗用户
@@ -2540,7 +2540,7 @@ contract AttackContract {
 条件将被满足。
 
 [role="notoc"]
-====预防技术
+==== 预防技术
 
 ((("tx.origin authentication security threat","preventative techniques"))) `tx.origin`不应用于智能合约中的授权。
 这并不是说永远不要使用`tx.origin`变量。它
@@ -2552,7 +2552,7 @@ contract AttackContract {
 常规的无代码地址(((range="endofrange", startref="ix_09smart-contracts-security-asciidoc49")))。(((range="endofrange", startref="ix_09smart-contracts-security-asciidoc2")))
 
 [[contract_libraries_sec]]
-===合约库
+=== 合约库
 
 ((("security (smart contracts)","contract libraries for")))((("smart contracts","on-platform libraries"))) 有很多可重复使用的现有代码，它们都部署在区块链上作为可调用库，而在链下作为代码模板库。平台上已部署的库以字节码智能合约形式存在，因此在生产中使用它们之前应格外小心。然而，使用完善的现有平台库具有许多优点，例如能够从最新升级中受益，并通过减少以太坊中的实时合约总数为你节省金钱并从以太坊生态系统中受益。
 
