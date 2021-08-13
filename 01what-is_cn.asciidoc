@@ -26,13 +26,13 @@
 
 ((("blockchain","components of")))((("Ethereum (generally)","blockchain components")))一般来说，开放的公共区块链的组件包括： 
 
-* 点对点 (P2P) 网络，连接用户并且基于标准化的"gossip"通道传播交易和确认过的交易的区块:[<span class="keep-together">协议</span>]
+* 点对点 (P2P) 网络，连接用户并且基于标准化的"gossip"通道传播交易和确认过的交易的区块: pass:[<span class="keep-together">协议</span>]
 * 消息, 以交易的形式存在，表示状态转换
-*一组共识规则，用于控制构成交易以及促成有效状态转换的因素
+* 一组共识规则，用于控制构成交易以及促成有效状态转换的因素
 状态机，根据共识规则处理交易
-*一串经过加密保护的区块，包含所有已验证和接受状态转换的记录
+* 一串经过加密保护的区块，包含所有已验证和接受状态转换的记录
 共识算法，通过强制参与者在共识规则的执行上合作来达到区块链控制去中心化的目的
-基于博弈论的激励机制（如工作量证明花销和区块回馈）保证状态机在公开通道上的经济性（<span class="keep-together">环境</span>）
+基于博弈论的激励机制（如工作量证明花销和区块回馈）保证状态机在公开通道上的经济性 pass:[<span class="keep-together">环境</span>]
 一个或多个由以上部分构成的开源软件（“客户端”）
 
 这些组件全部或多数通常都集成在单个软件客户端内。举例来说，在比特币((("Bitcoin Core")))((("bitcoind client")))中，参考实现是由比特币核心（Bitcoin Core）开源项目来开发的，实施为 bitcoind 客户端。在以太坊中， 它被称为参考规范（reference specification）((("reference specification")))，而不是参考实现。参考规范是在黄皮书中对系统的数学化描述 (见 <<references>>)。有相当数量的客户端是根据参考规范来写的。
@@ -186,7 +186,7 @@ https://parity.io/
 
 以太坊能够在称为以太坊虚拟机的状态机中执行存储的程序，同时将数据读写到内存中，从而使其成为一个图灵完备的系统，从而成为一个UTM。在有限内存的限制下，以太坊可以计算任何可以在图灵机上执行的算法。
 
-以太坊的突破性创新是将存储程序计算机的通用计算架构与分布式区块链相结合，从而创建一个分布式单状态（单例）世界计算机。以太坊程序可以“无处不在”运行，但是会产生一种通行规则所保证的共同状态：[ <span class="keep-together">共识</span> ]。
+以太坊的突破性创新是将存储程序计算机的通用计算架构与分布式区块链相结合，从而创建一个分布式单状态（单例）世界计算机。以太坊程序可以“无处不在”运行，但是会产生一种通行规则所保证的共同状态： pass:[<span class="keep-together">共识</span>]。
 
 [[turing_completeness_feature]]
 ==== 作为“特性”的图灵完备
@@ -221,13 +221,13 @@ https://parity.io/
 
 [TIP]
 ====
-您可能会看到DApp拼写为 _ÐApps_。 Ð字符是拉丁字符，称为“ ETH”，暗指以太坊。要显示此字符，请使用Unicode代码点+0xD0+，或者在必要时使用HTML字符实体+eth+（或十进制实体 +#208+）。
+您可能会看到DApp拼写为 _ÐApps_。 Ð字符是拉丁字符，称为“ ETH”，暗指以太坊。要显示此字符，请使用Unicode代码点 +0xD0+ ，或者在必要时使用HTML字符实体 +eth+（或十进制实体 +#208+）。
 ====
 
 [[evolving_WWW]]
 === 互联网的第三纪元
 
-((("DApps (decentralized applications)","web3 and")))((("Ethereum (generally)","web3 and")))((("web3")))2004年，术语“ Web 2.0”开始流行，描述了网络向用户生成的内容，响应式界面和交互性的发展。 Web 2.0不是技术规范，而是描述Web pass的新焦点的术语：[ <span class="keep-together">应用程序</span> ]。
+((("DApps (decentralized applications)","web3 and")))((("Ethereum (generally)","web3 and")))((("web3")))2004年，术语“ Web 2.0”开始流行，描述了网络向用户生成的内容，响应式界面和交互性的发展。 Web 2.0不是技术规范，而是描述Web的新焦点的术语： pass:[ <span class="keep-together">应用程序</span> ]。
 
 DApps的概念旨在将互联网带入下一个进化阶段，将点对点协议的去中心化引入网页应用程序的各个方面。用于描述这种演变的术语是 _web3_，表示网络的第三个“版本”。 ((("Wood, Dr. Gavin","and web3")))首先由Gavin Wood博士提出，web3代表了Web应用程序的新愿景和新焦点：从集中拥有和管理的应用程序到基于分布协议构建的应用程序。
 

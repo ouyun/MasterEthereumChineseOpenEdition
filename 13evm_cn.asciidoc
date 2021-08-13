@@ -210,7 +210,7 @@ TODO：基本图，显示全局状态映射的结构和帐户结构
 ==== 将Solidity编译为EVM字节码
 
 [[solc_help]]
-((("EVM (Ethereum Virtual Machine)","compiling Solidity to EVM bytecode", id="ix_13evm-asciidoc4", range="startofrange")))((("EVM bytecode","compiling source file to", id="ix_13evm-asciidoc5", range="startofrange")))((("Solidity","compiling source file to EVM bytecode", id="ix_13evm-asciidoc6", range="startofrange"))) 将Solidity源文件编译为EVM字节码可以有多种方式。在<<intro_chapter>>我们使用了在线Remix编译器。在本章中，我们将在命令行中使用+ solc +可执行文件。有关选项列表，请运行以下过程 pass:[<span class="keep-together">command</span>]：
+((("EVM (Ethereum Virtual Machine)","compiling Solidity to EVM bytecode", id="ix_13evm-asciidoc4", range="startofrange")))((("EVM bytecode","compiling source file to", id="ix_13evm-asciidoc5", range="startofrange")))((("Solidity","compiling source file to EVM bytecode", id="ix_13evm-asciidoc6", range="startofrange"))) 将Solidity源文件编译为EVM字节码可以有多种方式。在<<intro_chapter>>我们使用了在线Remix编译器。在本章中，我们将在命令行中使用 +solc+ 可执行文件。有关选项列表，请运行以下过程 pass:[<span class="keep-together">command</span>]：
 
 ++++
 <pre data-type="programlisting">
@@ -244,7 +244,7 @@ $ <strong>solc -o BytecodeDir --bin Example.sol</strong>
 </pre>
 ++++
 
-生成的输出操作码文件将取决于Solidity源文件中包含的特定合约。我们简单的Solidity文件_Example.sol_只有一个合约，名为+ example +：
+生成的输出操作码文件将取决于Solidity源文件中包含的特定合约。我们简单的Solidity文件_Example.sol_只有一个合约，名为 +example+ ：
 
 [[simple_solidity_example]]
 [source,solidity]
@@ -263,7 +263,7 @@ contract example {
 
 如你所见，此合约仅执行一个永久状态变量，该变量设置为运行该合约的最后一个帐户的地址。
 
-如果查看_BytecodeDir_目录，你将看到操作码文件_example.opcode_，其中包含+ example +合约的EVM操作码指令。在文本编辑器中打开_example.opcode_文件将显示以下内容：
+如果查看_BytecodeDir_目录，你将看到操作码文件_example.opcode_，其中包含 +example+ 合约的EVM操作码指令。在文本编辑器中打开_example.opcode_文件将显示以下内容：
 
 [[opcode_output]]
 ----
@@ -354,26 +354,26 @@ ffffffffffffffffffffffffffffffffffffffff
 PUSH1 0x60 PUSH1 0x40 MSTORE CALLVALUE
 ----
 
-在这里，我们有+ PUSH1 +，后跟一个原始值+0x60+。此EVM指令将程序代码中操作码后的单个字节（作为文字值）放入堆栈中。可以将最大为32个字节的大小的值压入堆栈，如下所示：
+在这里，我们有 +PUSH1+ ，后跟一个原始值 +0x60+ 。此EVM指令将程序代码中操作码后的单个字节（作为文字值）放入堆栈中。可以将最大为32个字节的大小的值压入堆栈，如下所示：
 
 ----
 PUSH32 0x436f6e67726174756c6174696f6e732120536f6f6e20746f206d617374657221
 ----
 
-_example.opcode_中的第二个+ PUSH1 +操作码将+0x40+存储到堆栈的顶部（将已经存在的+0x60+推入下面一个位置）。
+_example.opcode_中的第二个 +PUSH1+ 操作码将 +0x40+ 存储到堆栈的顶部（将已经存在的 +0x60+ 推入下面一个位置）。
 
-接下来是+ MSTORE +，这是一种内存存储操作，可将值保存到EVM的内存中。它需要两个参数，并且像大多数EVM操作一样，从堆栈中获取它们。对于每个参数，堆栈通过：[“ popped”;]，即，将堆栈上的最高值取走，并将堆栈上的所有其他值上移一个位置。 + MSTORE +的第一个参数是内存中要存储值的词的地址。对于此程序，我们在堆栈顶部有+0x40+，因此将其从堆栈中删除并用作内存地址。第二个参数是要保存的值，此处为+0x60+。执行+ MSTORE +操作后，我们的堆栈再次为空，但是在内存位置+0x40+处我们有值+0x60+（十进制+96+）。
+接下来是 +MSTORE+ ，这是一种内存存储操作，可将值保存到EVM的内存中。它需要两个参数，并且像大多数EVM操作一样，从堆栈中获取它们。对于每个参数，堆栈通过：[“ popped”;]，即，将堆栈上的最高值取走，并将堆栈上的所有其他值上移一个位置。 +MSTORE+ 的第一个参数是内存中要存储值的词的地址。对于此程序，我们在堆栈顶部有 +0x40+ ，因此将其从堆栈中删除并用作内存地址。第二个参数是要保存的值，此处为 +0x60+ 。执行 +MSTORE+ 操作后，我们的堆栈再次为空，但是在内存位置 +0x40+ 处我们有值 +0x60+ （十进制 +96+ ）。
 
-下一个操作码是+ CALLVALUE +，这是一个环境操作码，它将随启动此执行的消息调用发送的以太币（以wei为单位）推入堆栈的顶部。
+下一个操作码是 +CALLVALUE+ ，这是一个环境操作码，它将随启动此执行的消息调用发送的以太币（以wei为单位）推入堆栈的顶部。
 
 我们可以继续以这种方式逐步执行该程序，直到我们完全理解此代码所导致的低级状态更改，但是在此阶段没有帮助。我们将在本章后面再讨论它。 (((range="endofrange", startref="ix_13evm-asciidoc6")))(((range="endofrange", startref="ix_13evm-asciidoc5")))(((range="endofrange", startref="ix_13evm-asciidoc4")))
 
 [[contract_deployment_code]]
 ==== 合约的部署代码
 
-((("EVM (Ethereum Virtual Machine)","contract deployment code", id="ix_13evm-asciidoc7", range="startofrange")))((("EVM bytecode","contract deployment code", id="ix_13evm-asciidoc8", range="startofrange"))) 在以太坊平台上创建和部署新合约时使用的代码与合约本身的代码之间存在重要但微妙的区别。为了创建新合约，需要一个特殊的交易，该交易的+ to +字段设置为特殊的+0x0+地址，其+ data +字段设置为合约的_initiation code_。处理此类创建合约交易时，新合约帐户的代码不是该交易的+ data +字段中的代码。取而代之的是，EVM会使用加载到其程序代码ROM中的交易的+ data +字段中的代码实例化，然后将该部署代码的执行输出作为新合约帐户的代码。这样一来，可以在部署时使用以太坊全局状态以编程方式初始化新合约，在合约存储中设置值，甚至发送以太币或创建其他新合约。
+((("EVM (Ethereum Virtual Machine)","contract deployment code", id="ix_13evm-asciidoc7", range="startofrange")))((("EVM bytecode","contract deployment code", id="ix_13evm-asciidoc8", range="startofrange"))) 在以太坊平台上创建和部署新合约时使用的代码与合约本身的代码之间存在重要但微妙的区别。为了创建新合约，需要一个特殊的交易，该交易的 +to+ 字段设置为特殊的 +0x0+ 地址，其 +data+ 字段设置为合约的_initiation code_。处理此类创建合约交易时，新合约帐户的代码不是该交易的 +data+ 字段中的代码。取而代之的是，EVM会使用加载到其程序代码ROM中的交易的 +data+ 字段中的代码实例化，然后将该部署代码的执行输出作为新合约帐户的代码。这样一来，可以在部署时使用以太坊全局状态以编程方式初始化新合约，在合约存储中设置值，甚至发送以太币或创建其他新合约。
 
-脱机编译合约时（例如，在命令行上使用+ solc +），您可以获取部署用_deployment字节码_或运行用_runtime字节码_。
+脱机编译合约时（例如，在命令行上使用 +solc+ ），您可以获取部署用_deployment字节码_或运行用_runtime字节码_。
 
 ((("deployment bytecode"))) 部署字节码用于新合约帐户初始化的每个方面，包括当交易调用该新合约时最终将最终执行的字节码（即运行时字节码）以及根据合约的构造函数初始化所有内容的代码。
 
@@ -406,7 +406,7 @@ contract Faucet {
 }
 ----
 
-为了获得部署的二进制字节码，我们将运行`solc --bin Faucet.sol`。如果只需要运行时字节码，则可以运行pass：[ <code>solc --bin-runtime <span class="keep-together">Faucet.sol</span></code> ]。
+为了获得部署的二进制字节码，我们将运行`solc --bin Faucet.sol`。如果只需要运行时字节码，则可以运行 pass:[ <code>solc --bin-runtime <span class="keep-together">Faucet.sol</span></code> ]。
 
 如果比较这些命令的输出，你将看到运行时字节码是部署字节码的子集。换句话说，运行时字节码完全包含在部署字节码中。(((range="endofrange", startref="ix_13evm-asciidoc8")))(((range="endofrange", startref="ix_13evm-asciidoc7")))
 
@@ -425,7 +425,7 @@ contract Faucet {
 .反汇编运行水龙头合约的字节码
 image::images/Faucet_disassembled.png["Faucet.sol runtime bytecode disassembled"]
 
-当你将交易发送到兼容ABI的智能合约（您可以假定所有合约都是）时，交易首先会与该智能合约的_dispatcher_进行交互。调度程序读取交易的+ data +字段，并将相关部分发送到适当的功能。在反汇编的_Faucet.sol_运行时字节码的开头，我们可以看到调度程序的示例。在熟悉的+ MSTORE +指令之后，我们看到以下指令：
+当你将交易发送到兼容ABI的智能合约（您可以假定所有合约都是）时，交易首先会与该智能合约的_dispatcher_进行交互。调度程序读取交易的 +data+ 字段，并将相关部分发送到适当的功能。在反汇编的_Faucet.sol_运行时字节码的开头，我们可以看到调度程序的示例。在熟悉的 +MSTORE+ 指令之后，我们看到以下指令：
 
 [[faucet_instructions]]
 ----
@@ -436,7 +436,7 @@ PUSH1 0x3f
 JUMPI
 ----
 
-如我们所见，+ PUSH1 0x4 +将+0x4+放到栈顶，否则为空。 + CALLDATASIZE +获取随交易发送的数据的字节大小（称为_calldata_），并将该数字压入堆栈。执行完这些操作后，堆栈如下所示：
+如我们所见， +PUSH1 0x4+ 将 +0x4+ 放到栈顶，否则为空。 +CALLDATASIZE+ 获取随交易发送的数据的字节大小（称为_calldata_），并将该数字压入堆栈。执行完这些操作后，堆栈如下所示：
 
 [width="40%",frame="topbot",options="header,footer"]
 |======================
@@ -446,20 +446,20 @@ JUMPI
 |
 |======================
 
-下一条指令是+ LT +，是“小于”的缩写。 + LT +指令检查堆栈中的第一项是否小于堆栈中的下一项。在我们的例子中，它检查+ CALLDATASIZE +的结果是否小于4个字节。
+下一条指令是 +LT+ ，是“小于”的缩写。 +LT+ 指令检查堆栈中的第一项是否小于堆栈中的下一项。在我们的例子中，它检查 +CALLDATASIZE+ 的结果是否小于4个字节。
 
-为什么EVM会检查交易的调用数据至少为4个字节？由于功能标识符的工作方式。每个函数由其Keccak-256哈希的前4个字节标识。通过在+ keccak256 +散列函数中放置函数的名称及其需要的参数，我们可以推导出其函数标识符。就我们而言，我们有：
+为什么EVM会检查交易的调用数据至少为4个字节？由于功能标识符的工作方式。每个函数由其Keccak-256哈希的前4个字节标识。通过在 +keccak256+ 散列函数中放置函数的名称及其需要的参数，我们可以推导出其函数标识符。就我们而言，我们有：
 
 [[faucet_function_identifier]]
 ```
 keccak256("withdraw(uint256)") = 0x2e1a7d4d...
 ```
 
-因此，+ withdraw（uint256）+函数的函数标识符为+0x2e1a7d4d+，因为它们是结果哈希的前4个字节。函数标识符的长度始终为4个字节，因此，如果发送给合约的交易的整个+ data +字段小于4个字节，那么除非定义了后备函数_fallback function_，否则没有函数可以与交易进行通信。因为我们在_Faucet.sol_中实现了这种后备功能，所以当calldata的长度小于4个字节时，EVM会跳转到该函数。
+因此， +withdraw（uint256）+ 函数的函数标识符为 +0x2e1a7d4d+ ，因为它们是结果哈希的前4个字节。函数标识符的长度始终为4个字节，因此，如果发送给合约的交易的整个 +data+ 字段小于4个字节，那么除非定义了后备函数_fallback function_，否则没有函数可以与交易进行通信。因为我们在_Faucet.sol_中实现了这种后备功能，所以当calldata的长度小于4个字节时，EVM会跳转到该函数。
 
-+ LT +从堆栈中弹出前两个值，如果交易的+ data +字段小于4个字节，则将+1+压入堆栈。否则，按+0+。在我们的示例中，假设发送到合约_was_的交易的+ data +字段小于4个字节。
++LT+ 从堆栈中弹出前两个值，如果交易的 +data+ 字段小于4个字节，则将 +1+ 压入堆栈。否则，按 +0+ 。在我们的示例中，假设发送到合约_was_的交易的 +data+ 字段小于4个字节。
 
-+ PUSH1 0x3f +指令将字节+0x3f +压入堆栈。完成此指令后，堆栈如下所示：
++PUSH1 0x3f+ 指令将字节 +0x3f+ 压入堆栈。完成此指令后，堆栈如下所示：
 
 [width="40%",frame="topbot",options="header,footer"]
 |======================
@@ -469,22 +469,22 @@ keccak256("withdraw(uint256)") = 0x2e1a7d4d...
 |
 |======================
 
-下一条指令是+ JUMPI +，代表“jump if”。它的工作原理如下：
+下一条指令是 +JUMPI+，代表“jump if”。它的工作原理如下：
 
 [[faucet_jump_instruction_text]]
 ----
 jumpi(label, cond) // Jump to "label" if "cond" is true
 ----
 
-在我们的案例中，+ label +是+0x3f +，这是我们的后备函数存在于我们的智能合约中的地方。 + cond +参数为+1+，这是先前+ LT +指令的结果。为了将整个序列写成文字，如果交易数据少于4个字节，则合约跳至后备功能。
+在我们的案例中， +label+ 是 +0x3f+ ，这是我们的后备函数存在于我们的智能合约中的地方。 +cond+ 参数为 +1+ ，这是先前 +LT+ 指令的结果。为了将整个序列写成文字，如果交易数据少于4个字节，则合约跳至后备功能。
 
-在+0x3f+处，仅跟随+ STOP +指令，因为尽管我们声明了后备函数，但仍将其保留为空。如你在<<Faucet_jumpi_instruction>>所见，如果我们未实现后备函数，则合约将抛出异常。
+在 +0x3f+ 处，仅跟随 +STOP+ 指令，因为尽管我们声明了后备函数，但仍将其保留为空。如你在<<Faucet_jumpi_instruction>>所见，如果我们未实现后备函数，则合约将抛出异常。
 
 [[Faucet_jumpi_instruction]]
 .JUMPI指令指向后备函数
 image::images/Faucet_jumpi_instruction.png["JUMPI instruction leading to fallback function"]
 
-让我们检查调度程序的中央模块。假设我们收到的调用数据长度大于4个字节，那么+ JUMPI +指令将不会跳转到后备函数。而是，代码执行将继续执行以下指令：
+让我们检查调度程序的中央模块。假设我们收到的调用数据长度大于4个字节，那么 +JUMPI+ 指令将不会跳转到后备函数。而是，代码执行将继续执行以下指令：
 
 [[faucet_instructions2]]
 ----
@@ -502,14 +502,14 @@ PUSH1 0x41
 JUMPI
 ----
 
-+ PUSH1 0x0 +将+0+压入堆栈，否则堆栈将再次为空。 + CALLDATALOAD +接受发送到智能合约的调用数据中的索引作为参数，并从该索引中读取32个字节，如下所示：
++PUSH1 0x0+ 将 +0+ 压入堆栈，否则堆栈将再次为空。 +CALLDATALOAD+ 接受发送到智能合约的调用数据中的索引作为参数，并从该索引中读取32个字节，如下所示：
 
 [[faucet_calldataload_instruction_text]]
 ----
 calldataload(p) //load 32 bytes of calldata starting from byte position p
 ----
 
-由于+0+是+ PUSH1 0x0 +命令传递给它的索引，因此+ CALLDATALOAD +读取从字节0开始的32个字节的调用数据，然后将其推入堆栈的顶部（在弹出原始+ 0x0 +之后）。在++ PUSH29 0x1000000 ++ ...指令之后，堆栈为：
+由于 +0+ 是 +PUSH1 0x0+ 命令传递给它的索引，因此 +CALLDATALOAD+ 读取从字节0开始的32个字节的调用数据，然后将其推入堆栈的顶部（在弹出原始 +0x0+ 之后）。在++ PUSH29 0x1000000 ++ ...指令之后，堆栈为：
 
 [width="40%",frame="topbot",options="header,footer"]
 |======================
@@ -519,7 +519,7 @@ calldataload(p) //load 32 bytes of calldata starting from byte position p
 |
 |======================
 
-+ SWAP1 +切换堆栈中的顶部元素，其后是第__i__个元素。在这种情况下，它将++0x1000000 ++ ...与调用数据交换。新的堆栈是：
++SWAP1+ 切换堆栈中的顶部元素，其后是第__i__个元素。在这种情况下，它将 ++ 0x1000000 ++ ...与调用数据交换。新的堆栈是：
 
 [width="40%",frame="topbot",options="header,footer"]
 |======================
@@ -529,21 +529,21 @@ calldataload(p) //load 32 bytes of calldata starting from byte position p
 |
 |======================
 
-下一条指令是+ DIV +，其工作方式如下：
+下一条指令是 +DIV+ ，其工作方式如下：
 
 [[faucet_div_instruction_text]]
 ----
 div(x, y) // integer division x / y
 ----
 
-在这种情况下，+ x + =从字节0开始的调用数据的32个字节，而+ y + = ++0x100000000 ++ ...（总共29个字节）。你能想到调度程序为什么要进行划分吗？这是一个提示：我们较早地从calldata读取了32个字节，从索引0开始。该calldata的前4个字节是函数标识符。
+在这种情况下， +x+ = 从字节0开始的调用数据的32个字节，而 +y+ = ++ 0x100000000 ++ ...（总共29个字节）。你能想到调度程序为什么要进行划分吗？这是一个提示：我们较早地从calldata读取了32个字节，从索引0开始。该calldata的前4个字节是函数标识符。
 
 
-我们之前推送的++0x100000000 ++ ...长29个字节，开头是+1+，后面是所有++0 ++。用这个值除以我们的32个字节的calldata字节将只剩下我们调用数据加载的_toptop 4个bytes_（从索引0开始）。这4个字节（即从索引0开始的calldata中的前4个字节）是函数标识符，是EVM提取该字段的方式。
+我们之前推送的++ 0x100000000 ++ ...长29个字节，开头是 +1+ ，后面是所有 ++0++ 。用这个值除以我们的32个字节的calldata字节将只剩下我们调用数据加载的_toptop 4个bytes_（从索引0开始）。这4个字节（即从索引0开始的calldata中的前4个字节）是函数标识符，是EVM提取该字段的方式。
 
-如果你不清楚此部分，请这样想：以10为底，1234000/1000 =1234。以16为底，这没什么不同。并非每个位置都是10的倍数，而是16的倍数。就像在我们较小的示例中被10 ^ 3 ^（1000）除以仅保留最高位一样，我们将32字节基数16的值除以16 ^ 29 ^也一样。
+如果你不清楚此部分，请这样想：以10为底，1234000 / 1000 = 1234。以16为底，这没什么不同。并非每个位置都是10的倍数，而是16的倍数。就像在我们较小的示例中被10 ^ 3 ^（1000）除以仅保留最高位一样，我们将32字节基数16的值除以16 ^ 29 ^也一样。
 
-+ DIV +（函数标识符）的结果被压入堆栈，我们的堆栈现在为：
++DIV+ （函数标识符）的结果被压入堆栈，我们的堆栈现在为：
 
 [width="40%",frame="topbot",options="header,footer"]
 |======================
@@ -552,7 +552,7 @@ div(x, y) // integer division x / y
 |
 |======================
 
-由于+ PUSH4 0xffffffff +和+ AND +指令是多余的，因此我们可以完全忽略它们，因为完成后堆栈将保持不变。 + DUP1 +指令复制堆栈上的第一项，即功能标识符。下一条指令+ PUSH4 0x2e1a7d4d +将pass：[ <code><span class="keep-together">withdraw</span> (uint256)</code> ]函数的预先计算的函数标识符<code><span class="keep-together">withdraw</span> (uint256)</code>入堆栈。现在的堆栈是：
+由于 +PUSH4 0xffffffff+ 和 +AND+ 指令是多余的，因此我们可以完全忽略它们，因为完成后堆栈将保持不变。 +DUP1+ 指令复制堆栈上的第一项，即功能标识符。下一条指令 +PUSH4 0x2e1a7d4d+ 将 pass:[ <code><span class="keep-together">withdraw</span> (uint256)</code> ]函数的预先计算的函数标识符 pass:[<code><span class="keep-together">withdraw</span> (uint256)</code>]入堆栈。现在的堆栈是：
 
 [width="40%",frame="topbot",options="header,footer"]
 |======================
@@ -563,7 +563,7 @@ div(x, y) // integer division x / y
 |
 |======================
 
-下一条指令，+EQ+弹出堆栈的前两个项并进行比较。这是调度程序执行其主要工作的地方：它比较交易的+ msg.data +字段中发送的函数标识符是否与pass：[ <code><span class="keep-together">withdraw</span> (uint256)</code> ]的函数标识符匹配。如果它们相等，则+ EQ +将+1+压入堆栈，这将最终用于跳转到提现函数。否则，+ EQ +将+0+压入堆栈。
+下一条指令， +EQ+ 弹出堆栈的前两个项并进行比较。这是调度程序执行其主要工作的地方：它比较交易的 +msg.data+ 字段中发送的函数标识符是否与 pass:[ <code><span class="keep-together">withdraw</span> (uint256)</code> ]的函数标识符匹配。如果它们相等，则 +EQ+ 将 +1+ 压入堆栈，这将最终用于跳转到提现函数。否则， +EQ+ 将 +0+ 压入堆栈。
 
 假设发送给我们合约的交易确实以+ withdraw（uint256）+的功能标识符开头，我们的堆栈就变成了：
 
@@ -575,18 +575,18 @@ div(x, y) // integer division x / y
 |
 |======================
 
-接下来，我们有+ PUSH1 0x41 +，这是+ withdraw（uint256）+函数存在于合约中的地址。完成此指令后，堆栈如下所示：
+接下来，我们有 +PUSH1 0x41+ ，这是+ withdraw（uint256）+函数存在于合约中的地址。完成此指令后，堆栈如下所示：
 
 [width="40%",frame="topbot",options="header,footer"]
 |======================
 |Stack
 |+0x41+
 |+1+
-|在+ msg.data +中发送的函数标识符
+|在 +msg.data+ 中发送的函数标识符
 |
 |======================
 
-接下来是+ JUMPI +指令，它再次接受堆栈中的前两个元素作为参数。在这种情况下，我们有+ jumpi（0x41，1）+，它告诉EVM执行到+ withdraw（uint256）+函数位置的跳转，然后可以继续执行该函数的代码。(((range="endofrange", startref="ix_13evm-asciidoc10")))(((range="endofrange", startref="ix_13evm-asciidoc9")))
+接下来是 +JUMPI+ 指令，它再次接受堆栈中的前两个元素作为参数。在这种情况下，我们有+ jumpi（0x41，1）+，它告诉EVM执行到+ withdraw（uint256）+函数位置的跳转，然后可以继续执行该函数的代码。(((range="endofrange", startref="ix_13evm-asciidoc10")))(((range="endofrange", startref="ix_13evm-asciidoc9")))
 
 [[turing_completeness_and_gas]]
 === 图灵完整性和燃料
@@ -595,7 +595,7 @@ div(x, y) // integer division x / y
 
 由于停止问题，以太坊世界计算机有被要求执行永不停止的程序的风险。这可能是偶然的或恶意的。我们已经讨论过，以太坊的行为就像没有任何调度程序的单线程机器一样，因此如果它陷入死循环，这将意味着它将变得不可用。
 
-但是，使用燃料就可以做出一个解决方案：如果在执行了预定的最大数量的计算之后，执行尚未结束，则EVM将停止程序的执行。这使EVM成为一台“准”车床：它可以运行你输入到其中的任何程序，但前提是该程序在特定的计算量内终止。该限制在以太坊中不是固定的，你可以付费将其增加到最大（称为“区块燃料限制”），每个人都可以同意随时间增加该最大限制。但是，在任何时候都存在一个限制，并且在执行时消耗过多燃料的交易会通过：[<span class="keep-together">停止</span>]。
+但是，使用燃料就可以做出一个解决方案：如果在执行了预定的最大数量的计算之后，执行尚未结束，则EVM将停止程序的执行。这使EVM成为一台“准”车床：它可以运行你输入到其中的任何程序，但前提是该程序在特定的计算量内终止。该限制在以太坊中不是固定的，你可以付费将其增加到最大（称为“区块燃料限制”），每个人都可以同意随时间增加该最大限制。但是，在任何时候都存在一个限制，并且在执行时消耗过多燃料的交易会通过： pass:[<span class="keep-together">停止</span>]。
 
 在以下各节中，我们将研究燃料gas并详细研究其工作原理。
 
@@ -638,7 +638,7 @@ refunded ether = remaining gas * gas price
 
 ((("EVM (Ethereum Virtual Machine)","gas accounting considerations")))((("gas","accounting considerations"))) EVM可以执行的各种操作的相对燃料成本是精心设计过的，以最好地保护以太坊区块链免受攻击。你可以在<<evm_opcodes_table>>中看到一个燃料费用的详细列表。
 
-计算量更大的操作会消耗更多的燃料。例如，执行+ SHA3 +功能（+30 gas）的成本是+ ADD +操作（+3 gas）的10倍。更重要的是，某些操作（例如+ EXP +）需要根据操作数的大小进行额外支付。使用EVM内存以及将数据存储在合约的链上存储中也会产生巨大的燃料成本。
+计算量更大的操作会消耗更多的燃料。例如，执行 +SHA3+ 功能（+30 gas）的成本是 +ADD+ 操作（+3 gas）的10倍。更重要的是，某些操作（例如 +EXP+ ）需要根据操作数的大小进行额外支付。使用EVM内存以及将数据存储在合约的链上存储中也会产生巨大的燃料成本。
 
 2016年，当攻击者发现并利用成本不匹配时，证明了将燃料成本与实际资源成本相匹配的重要性。攻击产生的交易在计算上非常昂贵，并使以太坊主网几乎停滞不前。这种不匹配问题通过硬分叉（代号为“ Tangerine Whistle”）得以解决，该分叉调整了相对的燃料成本。
 
@@ -655,9 +655,9 @@ refunded ether = remaining gas * gas price
 
 重要的是要清楚燃料成本_gas cost_和燃料价格_gas price_之间的区别。回顾一下：
 
-*燃料成本是执行特定操作所需的燃料单位数。
+* 燃料成本是执行特定操作所需的燃料单位数。
 
-*燃料价格是你将交易发送到以太坊网络时愿意为每单位燃料支付的以太币数量。
+* 燃料价格是你将交易发送到以太坊网络时愿意为每单位燃料支付的以太币数量。
 
 [TIP]
 ====
@@ -671,8 +671,8 @@ refunded ether = remaining gas * gas price
 
 EVM中有两项操作具有负的燃料成本：
 
-*销毁合约（+ SELFDESTRUCT +）可以退款24,000燃料。
-*将存储地址从非零值更改为零（+ SSTORE [x] = 0+）可获得15,000燃料的退款。
+* 销毁合约（ +SELFDESTRUCT+ ）可以退款24,000燃料。
+* 将存储地址从非零值更改为零（ +SSTORE [x] = 0+ ）可获得15,000燃料的退款。
 
 为避免滥用退款机制，每次交易的最大退款应设置为所用燃料总量的一半（四舍五入）。
 
