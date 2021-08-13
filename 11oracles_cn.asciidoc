@@ -51,9 +51,9 @@ oracle可能提供的其他一些数据示例包括：
 
 一旦数据在智能合约的存储中可用，其他智能合约就可以通过oracle智能合约的“检索”功能中的消息调用来访问这些数据。以太坊节点或启用网络的客户端也可以通过“查看” oracle的存储直接访问这些数据。
 
-设置oracle的三种主要方法可以分为请求-响应_request-response_，传递pass：[ <span class="keep-together"><em>publish-subscribe</em></span> ]和实时读取_immediate-read_。
+设置oracle的三种主要方法可以分为请求-响应 _request-response_ ，传递 pass:[ <span class="keep-together"><em>publish-subscribe</em></span> ]和实时读取 _immediate-read_ 。
 
-((("immediate-read oracles")))((("oracles","immediate-read")))首先介绍最简单的实时读取_immediate-read_ Oracles。这类Oracle提供仅需立即做出决定的数据，例如“ __ethereumbook.info__的地址是什么？”或“此人是否超过18岁？”。那些希望查询此类数据的人倾向于“及时”查询。这类需求仅在需要信息时进行查找，而且可能不再会需要了。此类oracle的例子包括保存有关组织或由组织发布的数据的oracle，例如学历证书，拨号代码，机构成员身份，机场标识符，自我主权ID等。此类oracle在智能合约存储中一次性存储数据，由此其他智能合约可以使用对oracle合约的请求调用来查找它。这些oracle中的数据可能会更新。Oracle存储中的数据还可以通过启用了区块链的（例如，以太坊通过：[<span class="keep-together">客户端连接</span>]）应用程序直接查找，而不必经过交易程序，也不会产生交易的燃料gas成本。想要检查希望购买酒精饮料的顾客的年龄的商店可以以这种方式使用oracle。这种类型的oracle对可能需要运行和维护服务器来回答此类数据请求的组织或公司很有吸引力。注意，例如由于效率或隐私原因，由oracle存储的数据可能不是oracle正在提供的原始数据。一所大学可能会为过去的学生的学业成就证书设立一个oracle。但是，存储证书的全部详细信息（可能会占用所学课程的页面和达到的成绩）将是多余的。而是，证书的哈希就足够了。同样，政府可能希望将公民身份ID放到以太坊平台上，在此平台上，显然其中的细节需要保密。同样，对数据进行哈希处理（更仔细地讲，在带有随机数的Merkle树中）并将根哈希仅存储在智能合约的存储中将是构建此类服务的有效方法。
+((("immediate-read oracles")))((("oracles","immediate-read")))首先介绍最简单的实时读取_immediate-read_ Oracles。这类Oracle提供仅需立即做出决定的数据，例如“ __ethereumbook.info__的地址是什么？”或“此人是否超过18岁？”。那些希望查询此类数据的人倾向于“及时”查询。这类需求仅在需要信息时进行查找，而且可能不再会需要了。此类oracle的例子包括保存有关组织或由组织发布的数据的oracle，例如学历证书，拨号代码，机构成员身份，机场标识符，自我主权ID等。此类oracle在智能合约存储中一次性存储数据，由此其他智能合约可以使用对oracle合约的请求调用来查找它。这些oracle中的数据可能会更新。Oracle存储中的数据还可以通过启用了区块链的（例如，以太坊通过 pass:[<span class="keep-together">客户端连接</span>]）应用程序直接查找，而不必经过交易程序，也不会产生交易的燃料gas成本。想要检查希望购买酒精饮料的顾客的年龄的商店可以以这种方式使用oracle。这种类型的oracle对可能需要运行和维护服务器来回答此类数据请求的组织或公司很有吸引力。注意，例如由于效率或隐私原因，由oracle存储的数据可能不是oracle正在提供的原始数据。一所大学可能会为过去的学生的学业成就证书设立一个oracle。但是，存储证书的全部详细信息（可能会占用所学课程的页面和达到的成绩）将是多余的。而是，证书的哈希就足够了。同样，政府可能希望将公民身份ID放到以太坊平台上，在此平台上，显然其中的细节需要保密。同样，对数据进行哈希处理（更仔细地讲，在带有随机数的Merkle树中）并将根哈希仅存储在智能合约的存储中将是构建此类服务的有效方法。
 
 ((("oracles","publish-subscribe")))((("publish-subscribe oracles")))下一种设置是传递，即发布-订阅模式_publish–subscribe_，此类oracle可以有效地为数据的更改（可能定期或频繁）发送广播服务，不仅可以为链上的智能合约提供轮询服务，也可以由链下监控程序监测数据的更新。此类别的模式类似于RSS提要，WebSub等，当oracle中有信息更新时，会标志指示新数据，并通知“已订阅”的用户。感兴趣的各方必须轮询oracle以检查最新信息是否已更改，或者订阅oracle合约的更新并在更新发生时进行响应。例子包括价格信息，天气信息，经济或社会统计数据，交通数据等。在Web服务器的世界中，轮询效率非常低，但在区块链平台的点对点环境中却并非如此：以太坊客户端必须跟上状态更改，包括合约存储的更改，因此轮询数据更改是对同步客户端的本地调用。以太坊事件日志使应用程序特别容易查找oracle更新，因此该模式在某些方面甚至可以被视为“推送”服务。但是，如果轮询是通过智能合约完成的，这对于某些分散的应用程序可能是必需的（例如，在不可能有激活激励措施的情况下），则可能会产生大量的燃料gas支出。
 
@@ -75,7 +75,7 @@ oracle可能提供的其他一些数据示例包括：
 
 发布－订阅是一种模式，其中发布者（在此情况下为oracle）不直接将消息发送给接收者，而是将发布的消息归类为不同的类别。订户能够选择对一个或多个类别的兴趣，并仅检索那些感兴趣的消息。在这种模式下，oracle可能会在每次更改时将利率写入其自己的内部存储中。多个订阅的DApp可以简单地从oracle合约中读取它，从而减少对网络带宽的影响，同时最大程度地降低存储成本。
 
-((("broadcast (multicast) oracle")))((("multicast (broadcast) oracle")))((("oracles","broadcast/multicast")))I在广播或多播模式中，会将所有消息发布到某个频道，并且订阅合约将在各种订阅模式下收听该频道。例如，oracle可能会将消息发布到加密货币汇率通道。如果订阅智能合约需要按时间排序的信息（例如，移动平均计算），则可以请求频道的全部内容；另一个可能只需要最新价格即可计算现货价格。甲骨文不需要知道订阅通行证的身份时，可以使用广播模式：[<span class="keep-together">合约</span>]。(((range="endofrange", startref="ix_11oracles-asciidoc1")))
+((("broadcast (multicast) oracle")))((("multicast (broadcast) oracle")))((("oracles","broadcast/multicast")))I在广播或多播模式中，会将所有消息发布到某个频道，并且订阅合约将在各种订阅模式下收听该频道。例如，oracle可能会将消息发布到加密货币汇率通道。如果订阅智能合约需要按时间排序的信息（例如，移动平均计算），则可以请求频道的全部内容；另一个可能只需要最新价格即可计算现货价格。甲骨文不需要知道订阅通行证的身份时，可以使用广播模式： pass:[<span class="keep-together">合约</span>]。(((range="endofrange", startref="ix_11oracles-asciidoc1")))
 
 [[data_authentication_sec]]
 === 数据认证
@@ -197,12 +197,12 @@ contract EthUsdPriceTicker is usingOraclize {
 ----
 ====
 
-要与Oraclize集成，合约 +EthUsdPriceTicker+ 必须是pass的子合约：[ <span class="keep-together"><code>usingOraclize</code></span> ]; +usingOraclize+ 合约在_oraclizeAPI_文件中定义。数据请求使用 +oraclize_query+ 函数进行，该函数继承自 +usingOraclize+ 合约。这是一个重载函数，至少需要两个参数：
+要与Oraclize集成，合约 +EthUsdPriceTicker+ 必须是pass的子合约： pass:[ <span class="keep-together"><code>usingOraclize</code></span> ]; +usingOraclize+ 合约在_oraclizeAPI_文件中定义。数据请求使用 +oraclize_query+ 函数进行，该函数继承自 +usingOraclize+ 合约。这是一个重载函数，至少需要两个参数：
 
 * 支持可用的数据源，例如URL，WolframAlpha，IPFS或计算
 * 给定数据源的参数，可能包括使用JSON或XML解析帮助器
 
-价格查询在+queryTicker+函数中执行。为了执行查询，Oraclize要求支付一小笔以太币的费用，以支付处理结果并将其传输到 +pass：[__] callback+ 函数的燃料gas成本以及该服务的附加费用。此数量取决于数据源以及（在指定的情况下）所需的真实性证明的类型。检索到数据后，由Oraclize控制的帐户有权执行 +pass：[__] callback+ 函数进行回调；它传入响应值和一个唯一的查询 +queryId+ 参数，例如，该参数可用于处理和跟踪来自Oraclize的多个等待的回调。
+价格查询在 +queryTicker+ 函数中执行。为了执行查询，Oraclize要求支付一小笔以太币的费用，以支付处理结果并将其传输到 +pass:[__]callback+ 函数的燃料gas成本以及该服务的附加费用。此数量取决于数据源以及（在指定的情况下）所需的真实性证明的类型。检索到数据后，由Oraclize控制的帐户有权执行 +pass:[__]callback+ 函数进行回调；它传入响应值和一个唯一的查询 +queryId+ 参数，例如，该参数可用于处理和跟踪来自Oraclize的多个等待的回调。
 
 ((("BlockOne IQ")))金融数据提供商Thomson Reuters还为以太坊提供了一项称为BlockOne IQ的oracle服务，允许在专用或许可网络上运行的智能合约请求市场和参考数据。 <<contract_calling_the_blockone_iq_service_for_market_data>> 显示oracle的界面，以及将发出请求的客户合约。
 
@@ -274,7 +274,7 @@ contract OracleB1IQClient {
 ====
 
 数据请求使用 +initRequest+ 函数启动，该函数除了两个回调函数外，还可以指定查询类型（在此示例中，为盘中价格请求）。
-这将返回 +uint256+ 标识符，该标识符随后可用于提供其他参数。 +addArgumentToRequestString+ 函数用于指定路透工具代码（RIC）（此处为IBM股票），并通过：[ <span class="keep-together"><code>addArgumentToRequestUint</code></span> ]允许指定时间戳。现在，为 +block.timestamp+ 传递别名将检索IBM的当前价格。然后，该请求由 +executeRequest+ 函数执行。处理完请求后，oracle合同将使用查询标识符调用 +onSuccess+ 回调函数，从而允许检索结果数据；如果检索失败，则pass：[ <span class="keep-together"><code>onFailure</code></span> ]回调将返回错误代码。成功获取的可用字段包括 +open+，+high+，+low+，+close+（OHLC）和 +bid+ / +ask+ 价格。(((range="endofrange", startref="ix_11oracles-asciidoc5")))(((range="endofrange", startref="ix_11oracles-asciidoc4")))(((range="endofrange", startref="ix_11oracles-asciidoc3")))
+这将返回 +uint256+ 标识符，该标识符随后可用于提供其他参数。 +addArgumentToRequestString+ 函数用于指定路透工具代码（RIC）（此处为IBM股票），并通过 pass:[ <span class="keep-together"><code>addArgumentToRequestUint</code></span> ]允许指定时间戳。现在，为 +block.timestamp+ 传递别名将检索IBM的当前价格。然后，该请求由 +executeRequest+ 函数执行。处理完请求后，oracle合同将使用查询标识符调用 +onSuccess+ 回调函数，从而允许检索结果数据；如果检索失败，则 pass:[ <span class="keep-together"><code>onFailure</code></span> ]回调将返回错误代码。成功获取的可用字段包括 +open+，+high+，+low+，+close+（OHLC）和 +bid+ / +ask+ 价格。(((range="endofrange", startref="ix_11oracles-asciidoc5")))(((range="endofrange", startref="ix_11oracles-asciidoc4")))(((range="endofrange", startref="ix_11oracles-asciidoc3")))
 
 
 === 本章小结

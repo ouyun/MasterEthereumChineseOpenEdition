@@ -10,7 +10,7 @@
 ((("addresses","defined"))) 通常，这表示可以在区块链上接收（目标地址）或发送（源地址）交易的EOA或智能合约。更具体地说，它是对ECDSA公钥进行Keccak哈希操作后的最右边的160位。
 
 判定，Assert::
-((("assert function","defined"))) 在Solidity语言中，+assert(false)+编译为+0xfe+，这是一个无效的操作码，它将耗尽所有剩余的燃料gas，并还原所有更改。当+assert()+ 语句失败时，将发生非常严重的意外错误，你必须要修复代码。你应该使用+assert()+来避免永远不会发生的情况。
+((("assert function","defined"))) 在Solidity语言中，+assert(false)+ 编译为 +0xfe+ ，这是一个无效的操作码，它将耗尽所有剩余的燃料gas，并还原所有更改。当 +assert()+ 语句失败时，将发生非常严重的意外错误，你必须要修复代码。你应该使用 +assert()+ 来避免永远不会发生的情况。
 
 大端序，或称大尾序， Big-endian::
 ((("big-endian, defined"))) 一种字节顺序表示形式，其中最高有效数字在第一位。而小端序 little-endian 则相反，最低有效数字在第一位。
@@ -198,7 +198,7 @@ METoken::
 
 
 矿工，Miner::
-((("miners")))通过重复遍历：[ <span class="keep-together">散列</span> ]为新块找到有效的工作量证明的网络节点。
+((("miners")))通过重复遍历： pass:[ <span class="keep-together">散列</span> ]为新块找到有效的工作量证明的网络节点。
 
 Mist::
 ((("Mist (browser-based wallet)")))((("wallets","Mist")))第一个启用以太坊的浏览器，由以太坊基金会构建。它包含一个基于浏览器的钱包，这是ERC20通证标准的第一个实现（ERC20的作者Fabian Vogelsteller，也是Mist的主要开发者）。Mist也是第一个引入camelCase校验和的钱包（EIP-55；请参见<<EIP55>>）。 Mist运行一个完整的节点，并提供完整的DApp浏览器，并支持基于Swarm的存储和ENS地址。

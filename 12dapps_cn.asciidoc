@@ -49,7 +49,7 @@ DApp的链上性质使每个人都可以检查代码并更确定其中的函数�
 
 以太坊智能合约允许您建立一个架构，在其中智能合约网络之间可以相互调用和传递数据，并在运行时读取和写入自己的状态变量，其复杂度仅受区块燃料限制。部署智能合约后，将来许多其他开发人员很可能会使用你的业务逻辑。
 
-智能合约体系结构设计的一个主要考虑因素是，一旦部署，便无法更改智能合约的代码。如果使用可访问的+ SELFDESTRUCT +操作码对其进行了编程，则可以将其删除，但是除了完全删除以外，不能以任何方式更改该代码。
+智能合约体系结构设计的一个主要考虑因素是，一旦部署，便无法更改智能合约的代码。如果使用可访问的 +SELFDESTRUCT+ 操作码对其进行了编程，则可以将其删除，但是除了完全删除以外，不能以任何方式更改该代码。
 
 智能合约体系结构设计的第二个主要考虑因素是DApp大小。一个非常大的整体智能合约可能会花费大量燃料来部署和使用。因此，某些应用程序可能选择使用链外计算和外部数据源。但是请记住，使DApp的核心业务逻辑依赖于外部数据（例如，来自中央服务器）意味着你的用户将必须信任这些外部资源。
 
@@ -106,8 +106,8 @@ https://swarm-gateways.net/bzz:/theswarm.eth/[].
 
 我们的拍卖DApp的主要组件是：
 
-* 一个实现ERC721不可替代的“契约”通证的智能合约（通过：[ <code><span class="keep-together">DeedRepository</span></code> ]）
-* 实施拍卖（+ AuctionRepository +）来出售契约的智能合约
+* 一个实现ERC721不可替代的“契约”通证的智能合约（通过 pass:[ <code><span class="keep-together">DeedRepository</span></code> ]）
+* 实施拍卖（ +AuctionRepository+ ）来出售契约的智能合约
 * 使用Vue / Vuetify JavaScript框架的Web前端
 * _web3.js_库以连接到以太坊区块链（通过MetaMask或其他客户端）
 * Swarm客户端，用于存储图像等资源
@@ -122,9 +122,9 @@ image::images/auction_diagram.png["Auction DApp: A simple example auction DApp"]
 
 ==== 拍卖DApp：后端智能合约
 
-((("Auction DApp","backend smart contracts", id="ix_12dapps-asciidoc4", range="startofrange")))((("smart contracts","as DApp backend", id="ix_12dapps-asciidoc5", range="startofrange"))) 我们的Auction DApp示例受到两个智能合约的支持，我们需要将其部署在以太坊区块链上以支持该应用程序：pass：[ <code><span class="keep-together">AuctionRepository</span></code> ]和+ DeedRepository +。
+((("Auction DApp","backend smart contracts", id="ix_12dapps-asciidoc4", range="startofrange")))((("smart contracts","as DApp backend", id="ix_12dapps-asciidoc5", range="startofrange"))) 我们的Auction DApp示例受到两个智能合约的支持，我们需要将其部署在以太坊区块链上以支持该应用程序： pass:[ <code><span class="keep-together">AuctionRepository</span></code> ]和 +DeedRepository+ 。
 
-让我们开始查看+ DeedRepository +，如<<deed_repository_code>>。该合约是与ERC721兼容的不可替代通证（请参见<<erc721>>）。
+让我们开始查看 +DeedRepository+ ，如<<deed_repository_code>>。该合约是与ERC721兼容的不可替代通证（请参见<<erc721>>）。
 
 [[deed_repository_code]]
 .DeedRepository.sol：一个用于拍卖的ERC721合约通证
@@ -135,9 +135,9 @@ include::code/auction_dapp/backend/contracts/DeedRepository.sol[]
 ----
 ====
 
-如你所见，+ DeedRepository +合约直接实现了一个兼容ERC721标准的通证。
+如你所见， +DeedRepository+ 合约直接实现了一个兼容ERC721标准的通证。
 
-我们的拍卖DApp使用+ DeedRepository +合约为每次拍卖发行和跟踪通证。拍卖本身由+ AuctionRepository +合约安排。该合约太长，无法在此处完整列出，但<<auction_repository_code>>显示合约和数据结构的主要定义。本书的GitHub存储库https://bit.ly/2IaOo9i[GitHub repository] 中提供了整个合约。
+我们的拍卖DApp使用 +DeedRepository+ 合约为每次拍卖发行和跟踪通证。拍卖本身由 +AuctionRepository+ 合约安排。该合约太长，无法在此处完整列出，但<<auction_repository_code>>显示合约和数据结构的主要定义。本书的GitHub存储库https://bit.ly/2IaOo9i[GitHub repository] 中提供了整个合约。
 
 [[auction_repository_code]]
 .AuctionRepository.sol: The main Auction DApp smart contract
@@ -176,7 +176,7 @@ contract AuctionRepository {
 ----
 ====
 
-+ AuctionRepository +合约通过以下函数管理所有拍卖：
++AuctionRepository+ 合约通过以下函数管理所有拍卖：
 
 [source,solidity]
 ----
@@ -196,7 +196,7 @@ finalizeAuction(uint _auctionId)
 bidOnAuction(uint _auctionId)
 ----
 
-你可以使用本书存储库中的+ truffle +将这些合约部署到你选择的以太坊区块链（例如Ropsten）：
+你可以使用本书存储库中的 +truffle+ 将这些合约部署到你选择的以太坊区块链（例如Ropsten）：
 
 ++++
 <pre data-type="programlisting">
@@ -260,7 +260,7 @@ frontend/
 |       `-- index.js
 ----
 
-部署合约后，请在_frontend/src/config.js_中编辑前端配置，并输入已部署的+ DeedRepository +和+ AuctionRepository +合约的地址。前端应用程序还需要访问提供以JSON-RPC和WebSockets接口的以太坊节点。一旦配置了前端，就可以使用本地计算机上的Web服务器启动它：
+部署合约后，请在_frontend/src/config.js_中编辑前端配置，并输入已部署的 +DeedRepository+ 和 +AuctionRepository+ 合约的地址。前端应用程序还需要访问提供以JSON-RPC和WebSockets接口的以太坊节点。一旦配置了前端，就可以使用本地计算机上的Web服务器启动它：
 
 ++++
 <pre data-type="programlisting">
@@ -281,7 +281,7 @@ image::images/auction_dapp_home_screen.png["Auction DApp User interface"]
 
 ((("Auction DApp","further decentralizing of")))我们的DApp已经相当去中心化了，但是我们还可以改进一些地方。
 
-+ AuctionRepository +合约的运作独立于任何监督，对任何人开放。一旦部署，就无法停止，也无法控制任何拍卖。每个拍卖都有一个单独的聊天室，任何人都可以在没有审查或鉴定的情况下就拍卖进行交流。各种拍卖资产（例如描述和相关图像）都存储在Swarm中，使它们难以审查或屏蔽。
++AuctionRepository+ 合约的运作独立于任何监督，对任何人开放。一旦部署，就无法停止，也无法控制任何拍卖。每个拍卖都有一个单独的聊天室，任何人都可以在没有审查或鉴定的情况下就拍卖进行交流。各种拍卖资产（例如描述和相关图像）都存储在Swarm中，使它们难以审查或屏蔽。
 
 任何人都可以通过手动构建交易或在其本地计算机上运行Vue前端来与DApp进行交互。 DApp代码本身是开源的，并在公共存储库上协同开发。
 
@@ -302,7 +302,7 @@ image::images/auction_dapp_home_screen.png["Auction DApp User interface"]
 
 ((("Swarm","installing and initializing"))) 要开始，你需要安装Swarm并初始化Swarm节点。 Swarm是以太坊基金会Go-Ethereum工具套件的一部分。请参阅<<go_ethereum_geth>>中安装Go-Ethereum的说明，或者安装Swarm发布的可执行版，请按照Swarm文档 http://bit.ly/2Q75KXw[Swarm documentation] 中的说明进行操作。
 
-一旦安装了Swarm，就可以使用+ version +命令运行它来检查它是否正常工作：
+一旦安装了Swarm，就可以使用 +version+ 命令运行它来检查它是否正常工作：
 
 ++++
 <pre data-type="programlisting">
@@ -410,7 +410,7 @@ dist/
 
 ----
 
-现在，你可以使用+ up +命令和+-recursive +选项将整个DApp上传到Swarm。在这里，我们还告诉Swarm，+ index.html +是用于加载此DApp的+ defaultpath +：
+现在，你可以使用 +up+ 命令和 +-recursive+ 选项将整个DApp上传到Swarm。在这里，我们还告诉Swarm， +index.html+ 是用于加载此DApp的 +defaultpath+ ：
 
 ++++
 <pre data-type="programlisting">
@@ -438,7 +438,7 @@ ab164cf37dc10647e43a233486cdeffa8334b026e32a480dd9cbd020c12d4581
 
 在传统的互联网上，域名系统（DNS）允许我们在浏览器中使用人类可读的名称，同时将这些名称解析为IP地址或幕后的其他标识符。在以太坊区块链上，_以太坊命名系统_（ENS）解决了相同的问题，但采用的是去中心化方式。
 
-例如，以太坊基金会的捐赠地址为+ 0xfB6916095ca1df60bB79Ce92cE3Ea74c37c5d359 +;在支持ENS的钱包中，它就是+ ethereum.eth +。
+例如，以太坊基金会的捐赠地址为 +0xfB6916095ca1df60bB79Ce92cE3Ea74c37c5d359+ ;在支持ENS的钱包中，它就是 +ethereum.eth+ 。
 
 ENS不仅仅是一个智能合约。它本身就是基本的DApp，提供分布式的名称服务。此外，许多DApp支持ENS进行注册，管理和拍卖注册名称。 ENS演示了DApp如何协同工作：它是为其他DApp服务而构建的DApp，由DApp生态系统支持，嵌入在其他DApp中，等等。
 
@@ -448,17 +448,17 @@ ENS不仅仅是一个智能合约。它本身就是基本的DApp，提供分布�
 
 ((("ENS (Ethereum Name Service)","history of"))) 域名注册是Namecoin率先开发的区块链的第一个非货币应用程序。以太坊白皮书 http://bit.ly/2Of1gfZ[White Paper] 中提供了两行式的类似于Namecoin的注册系统，作为其示例应用程序之一。
 
-Geth的早期版本和C ++ Ethereum客户端具有内置的+ namereg +合约（不再使用），并且提出了许多有关名称服务的提案和ERC，但这只是Nick Johnson在2016年开始为以太坊基金会工作的时候并将这个项目带到他的领导下，开始了对注册服务商的认真工作。
+Geth的早期版本和C++ Ethereum客户端具有内置的 +namereg+ 合约（不再使用），并且提出了许多有关名称服务的提案和ERC，但这只是Nick Johnson在2016年开始为以太坊基金会工作的时候并将这个项目带到他的领导下，开始了对注册服务商的认真工作。
 
 ENS于2017年5月4日的“星球大战日”启动（此前尝试在3月15日的Pi日启动失败）。
 
 ==== ENS规范
 
-((("ENS (Ethereum Name Service)","design of", id="ix_12dapps-asciidoc12", range="startofrange"))) ENS主要是 ((("ENS (Ethereum Name Service)","specification"))) 在三个以太坊改进提案中指定：EIP-137，它指定了ENS的基本功能； EIP-162，它描述了+ .eth +根的拍卖系统；和EIP-181，用于指定地址的反向解析。
+((("ENS (Ethereum Name Service)","design of", id="ix_12dapps-asciidoc12", range="startofrange"))) ENS主要是 ((("ENS (Ethereum Name Service)","specification"))) 在三个以太坊改进提案中指定：EIP-137，它指定了ENS的基本功能； EIP-162，它描述了 +.eth+ 根的拍卖系统；和EIP-181，用于指定地址的反向解析。
 
 ENS遵循“三明治”设计理念：最底层是最简单的层，随后是更复杂但可替换的代码层，顶层的工作仅仅将所有资金存放在单独的帐户中。
 
-====底层：名称所有者和解析器
+==== 底层：名称所有者和解析器
 
 ((("ENS (Ethereum Name Service)","bottom layer: name owners and resolvers", id="ix_12dapps-asciidoc13", range="startofrange"))) 名称：使用“ Namehash”算法将人类可读的名称转换为节点。
 
@@ -472,11 +472,11 @@ ENS的基础层是由ERC137定义的巧妙简单的合约（少于50行代码）
 
 “递归”是指我们通过解决一个问题的子问题来解决最初的问题，该子问题是同一类型的较小问题，然后使用该子问题的解决方案来解决原始问题。
 
-Namehash递归地对名称的组成部分进行哈希处理，从而为任何有效的输入域生成唯一的，固定长度的字符串（或“节点”）。例如，+ subdomain.example.eth +的Namehash节点是`keccak('<example.eth>' node) + keccak('<subdomain>')`。我们必须解决的子问题是为+ example.eth +计算节点，即“ `keccak('<.eth>' node) + keccak('<example>')`。首先，我们必须为+ eth +计算节点，即`keccak（<root node> ）+ keccak（'<eth>'）`。
+Namehash递归地对名称的组成部分进行哈希处理，从而为任何有效的输入域生成唯一的，固定长度的字符串（或“节点”）。例如， +subdomain.example.eth+ 的Namehash节点是`keccak('<example.eth>' node) + keccak('<subdomain>')`。我们必须解决的子问题是为 +example.eth+ 计算节点，即“ `keccak('<.eth>' node) + keccak('<example>')`。首先，我们必须为 +eth+ 计算节点，即`keccak（<root node> ）+ keccak（'<eth>'）`。
 
 根节点就是我们所谓的“基本状态”，显然我们不能递归定义它，否则算法将永远不会终止！根节点定义为“ 0x0000000000000000000000000000000000000000000000000000000000000000000000000000”（32个零字节）。
 
-全部放在一起，因此+ subdomain.example.eth +的节点通过了：[ <code><span class="keep-together">keccak</span> (keccak(keccak(0x0...0 + keccak('eth')) + keccak('example')) + keccak('subdomain'))</code>]。
+全部放在一起，因此 +subdomain.example.eth+ 的节点通过了： pass:[ <code><span class="keep-together">keccak</span> (keccak(keccak(0x0...0 + keccak('eth')) + keccak('example')) + keccak('subdomain'))</code>]。
 
 概括地说，我们可以如下定义Namehash函数（根节点的基本情况或空名称，然后是递归步骤）：
 
@@ -496,7 +496,7 @@ def namehash(name):
     return sha3(namehash(remainder) + sha3(label))
 ....
 
-因此，+ mastering-ethereum.eth +将按以下方式处理：
+因此， +mastering-ethereum.eth+ 将按以下方式处理：
 
 ....
 namehash('mastering-ethereum.eth')
@@ -505,7 +505,7 @@ namehash('mastering-ethereum.eth')
 ⇒ sha3(sha3(('\0' * 32) + sha3('eth')) + sha3('mastering-ethereum'))
 ....
 
-当然，子域本身也可以具有子域：在+ subdomain.example.eth +之后可能有+ sub.subdomain.example.eth +，然后是+ sub.sub.subdomain.example.eth +，依此类推。为避免昂贵的重新计算，由于Namehash仅取决于名称本身，因此可以预先计算给定名称的节点并将其插入到合约中，从而无需进行字符串操作，并允许立即查找ENS记录，而无需考虑原始名称中的组件数量。
+当然，子域本身也可以具有子域：在 +subdomain.example.eth+ 之后可能有 +sub.subdomain.example.eth+ ，然后是 +sub.sub.subdomain.example.eth+ ，依此类推。为避免昂贵的重新计算，由于Namehash仅取决于名称本身，因此可以预先计算给定名称的节点并将其插入到合约中，从而无需进行字符串操作，并允许立即查找ENS记录，而无需考虑原始名称中的组件数量。
 
 ===== 如何选择一个有效的名字
 ((("ENS (Ethereum Name Service)","choosing a valid name"))) 名称由一系列点分隔的标签组成。尽管允许使用大写和小写字母，但所有标签都应遵循UTS＃46规范化过程，该过程会在对标签进行哈希处理之前对标签进行大小写合并，因此，具有不同大小写但相同拼写的名称将以相同的Namehash结尾。
@@ -525,7 +525,7 @@ namehash('mastering-ethereum.eth')
 
 目前，这些主要负责人的目的和目标是与社区达成共识，以：
 
-* 一旦对系统进行评估完成，就将+ .eth + TLD的临时所有权迁移并升级为更永久的合约。
+* 一旦对系统进行评估完成，就将 +.eth+ TLD的临时所有权迁移并升级为更永久的合约。
 * 如果社群同意需要，则允许添加新的TLD。
 * 在同意，测试和实施这样的系统时，将根多重签名的所有权迁移到更分布式的合约。
 * 作为解决顶级注册表中所有错误或漏洞的最后手段。
@@ -536,15 +536,15 @@ namehash('mastering-ethereum.eth')
 
 ==== 中间层：.eth节点
 
-(((".eth nodes")))((("ENS (Ethereum Name Service)","middle layer: .eth nodes")))((("eth nodes"))) 在撰写本文时，在智能合约中唯一可唯一注册的顶级域是+ .eth +。
+(((".eth nodes")))((("ENS (Ethereum Name Service)","middle layer: .eth nodes")))((("eth nodes"))) 在撰写本文时，在智能合约中唯一可唯一注册的顶级域是 +.eth+ 。
 
 [NOTE]
 ====
 使传统DNS域所有者拥有ENS所有权的工作正在开发中。
-虽然从理论上讲，它可以用于+ .com +，但到目前为止，唯一已实现的域是http://bit.ly/2SwUuFC[+.xyz+，并且仅在Ropsten测试网上]。
+虽然从理论上讲，它可以用于 +.com+ ，但到目前为止，唯一已实现的域是http://bit.ly/2SwUuFC[+.xyz+，并且仅在Ropsten测试网上]。
 ====
 
-+ .eth +域是通过拍卖系统分发的。没有保留列表或优先级，获取名称的唯一方法是使用系统。拍卖系统是一段复杂的代码（超过500行）。 ENS中的大多数早期开发工作（和bug！）都在系统的这一部分中。但是，它也可以更换和升级，而无需花钱，以后再说。
++.eth+ 域是通过拍卖系统分发的。没有保留列表或优先级，获取名称的唯一方法是使用系统。拍卖系统是一段复杂的代码（超过500行）。 ENS中的大多数早期开发工作（和bug！）都在系统的这一部分中。但是，它也可以更换和升级，而无需花钱，以后再说。
 
 [[vickrey_auction]]
 ===== Vickrey拍卖会
@@ -553,23 +553,23 @@ namehash('mastering-ethereum.eth')
 
 在区块链上，需要进行一些修改：
 
-*为确保投标人不提交他们无意出价的报价，他们必须事先锁定等于或高于其报价的资金，以确保报价有效。
-*因为你无法在区块链上隐藏秘密，所以投标人必须至少执行两次交易（提交-披露过程），以隐藏其投标的原始价值和名称。
-*由于你无法在去中心化系统中同时显示所有出价，因此投标人必须自己显示自己的出价；如果没有，他们将没收他们的锁定资金。没有这种损失，一个人可能会出价很多次，只选择透露一个或两个，就把一次密封的竞标变成了传统的涨价：[ <span class="keep-together">Auction</span> ]。
+* 为确保投标人不提交他们无意出价的报价，他们必须事先锁定等于或高于其报价的资金，以确保报价有效。
+* 因为你无法在区块链上隐藏秘密，所以投标人必须至少执行两次交易（提交-披露过程），以隐藏其投标的原始价值和名称。
+* 由于你无法在去中心化系统中同时显示所有出价，因此投标人必须自己显示自己的出价；如果没有，他们将没收他们的锁定资金。没有这种损失，一个人可能会出价很多次，只选择透露一个或两个，就把一次密封的竞标变成了传统的涨价 pass:[ <span class="keep-together">Auction</span> ]。
 
 因此，拍卖分为四个步骤：
 
-1.开始拍卖。这是广播名称注册意图所必需的。
+1. 开始拍卖。这是广播名称注册意图所必需的。
 这将创建所有拍卖的截止日期。名称会被用哈希处理，因此只有那些在词典中具有该名称的人才能知道哪个拍卖开始了。这样可以提供一些隐私，如果你正在创建一个新项目并且不想共享有关它的详细信息，这将很有用。
 你可以同时打开多个虚拟拍卖，因此，如果有人关注你，他们将无法简单地对你提交的所有拍卖进行出价。
 
-1.进行密封投标。你必须在竞标截止日期之前执行此操作，方法是将给定数量的以太币绑定到秘密消息的哈希中（其中包括名称的哈希，实际出价和一个掺杂盐）。
+2. 进行密封投标。你必须在竞标截止日期之前执行此操作，方法是将给定数量的以太币绑定到秘密消息的哈希中（其中包括名称的哈希，实际出价和一个掺杂盐）。
 你可以锁定比实际出价更多的以太币，以掩盖你的真实估值。
 
-1.显示出价。在披露期间，你必须进行一笔交易以披露出价，然后该交易将计算出最高出价和第二高出价，并将以太币发还给失败的投标人。
+3. 显示出价。在披露期间，你必须进行一笔交易以披露出价，然后该交易将计算出最高出价和第二高出价，并将以太币发还给失败的投标人。
 每次显示出价时，都会重新计算当前中标者；因此，最终截止日期之前设定的最后一个将成为中标者。
 
-1.后期清理。如果你是获胜者，则可以完成拍卖，以收回出价与第二高的出价之间的差额。
+4. 后期清理。如果你是获胜者，则可以完成拍卖，以收回出价与第二高的出价之间的差额。
 如果你忘记披露，则可以进行较晚的披露并收回部分报价。
 
 ==== 顶层：契约
@@ -589,7 +589,7 @@ namehash('mastering-ethereum.eth')
 
 让我们注册我们的第一个名字！
 
-我们将使用几个可用的用户友好界面之一来搜索可用的名称，对名称+ ethereumbook.eth +出价，披露出价并确定名称。
+我们将使用几个可用的用户友好界面之一来搜索可用的名称，对名称 +ethereumbook.eth+ 出价，披露出价并确定名称。
 
 ENS有许多基于Web的界面，使我们可以操作ENS DApp。在此示例中，我们将使用MyCrypto接口 https://mycrypto.com/[MyCrypto interface]，并将MetaMask用作钱包。
 
@@ -599,13 +599,13 @@ image::images/ens-flow.png[]
 
 
 
-首先，我们需要确保所需名称可用。编写本书时，我们确实想注册名称+ mastering.eth +，但是，<<ens-name-search>> 显示已被占用！由于ENS注册仅持续一年，因此将来有可能确保该名称的安全。同时，让我们搜索+ ethereumbook.eth +（<<ens-name-search>>）。
+首先，我们需要确保所需名称可用。编写本书时，我们确实想注册名称 +mastering.eth+ ，但是，<<ens-name-search>> 显示已被占用！由于ENS注册仅持续一年，因此将来有可能确保该名称的安全。同时，让我们搜索 +ethereumbook.eth+ （<<ens-name-search>>）。
 
 [[ens-name-search]]
 .在MyCrypto.com上搜索ENS名称
 image::images/ens-checkname.png["Searching for ENS names on MyCrypto.com"]
 
-很好！这个名称可用。为了注册它，我们需要按<<ens-auction>>中的指示操作。让我们解锁MetaMask并开始+ ethereumbook.eth +的拍卖。
+很好！这个名称可用。为了注册它，我们需要按<<ens-auction>>中的指示操作。让我们解锁MetaMask并开始 +ethereumbook.eth+ 的拍卖。
 
 
 [[ens-auction]]
@@ -650,25 +650,25 @@ image::images/ens-manager.png["ENS网络管理界面"]
 
 ===== 创建一个ENS子域
 
-首先，让我们为示例拍卖DApp创建一个子域（请参见<<ens-manager-add-subdomain>>）。我们将子域名命名为+ auction +，因此完全限定名称为+ auction.ethereumbook.eth +。
+首先，让我们为示例拍卖DApp创建一个子域（请参见<<ens-manager-add-subdomain>>）。我们将子域名命名为 +auction+ ，因此完全限定名称为 +auction.ethereumbook.eth+ 。
 
 [[ens-manager-add-subdomain]]
 .添加子域 Auction.ethereumbook.eth
 image::images/ens_manager_add_subdomain.png["Adding the subdomain auction.ethereumbook.eth"]
 
-创建子域后，我们可以在搜索框中输入+ auction.ethereumbook.eth +并对其进行管理，就像我们管理域+ ethereumbook.eth + pass：[<span class="keep-together">先前</span>]一样。
+创建子域后，我们可以在搜索框中输入 +auction.ethereumbook.eth+ 并对其进行管理，就像我们管理域 +ethereumbook.eth+ pass:[<span class="keep-together">先前</span>]一样。
 
-[role =“ pagebreak-before”]
+[role="pagebreak-before"]
 ==== ENS解析器
 
 ((("ENS (Ethereum Name Service)","resolving a name", id="ix_12dapps-asciidoc16", range="startofrange"))) 在ENS中，解析名称的过程分为两步：
 
-1.调用ENS注册表并使用名称进行哈希处理后解析。
+1. 调用ENS注册表并使用名称进行哈希处理后解析。
 如果记录存在，则注册表返回其解析器的地址。
 
-2.使用适合于所请求资源的方法调用解析器。解析器返回所需结果。
+2. 使用适合于所请求资源的方法调用解析器。解析器返回所需结果。
 
-此两步过程具有多个好处。将解析器的功能与命名系统本身分开，可以为我们提供更大的灵活性。名称的所有者可以使用自定义解析程序来解析任何类型或资源，从而扩展ENS的功能。例如，如果将来你想将地理位置资源（经度/纬度）链接到ENS名称，则可以创建一个新的解析器来回答pass：[ <span class="keep-together"><code>geolocation</code></span> ]查询。谁知道将来会有哪些应用程序有用？使用自定义解析器，唯一的限制就是你的想象力。
+此两步过程具有多个好处。将解析器的功能与命名系统本身分开，可以为我们提供更大的灵活性。名称的所有者可以使用自定义解析程序来解析任何类型或资源，从而扩展ENS的功能。例如，如果将来你想将地理位置资源（经度/纬度）链接到ENS名称，则可以创建一个新的解析器来回答 pass:[ <span class="keep-together"><code>geolocation</code></span> ]查询。谁知道将来会有哪些应用程序有用？使用自定义解析器，唯一的限制就是你的想象力。
 
 为了方便起见，有一个默认的公共解析器，可以解析各种资源，包括地址（用于钱包或合约）和内容（用于DApp或合约源代码的Swarm哈希）。
 

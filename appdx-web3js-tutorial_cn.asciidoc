@@ -11,7 +11,7 @@ web3.js JavaScript软件库是一个模块集合，这些模块包含针对以�
 
 === web3.js以非阻塞（异步）方式进行合同基本操作
 
-((("web3.js","contract basic interaction in nonblocked (Async) fashion")))）检查你是否安装有效的+ npm +版本：
+((("web3.js","contract basic interaction in nonblocked (Async) fashion")))检查你是否安装有效的 +npm+ 版本：
 
 ++++
 <pre data-type="programlisting">
@@ -20,7 +20,7 @@ $ <strong>npm -v</strong>
 </pre>
 ++++
 
-如果还没有，请初始化+ npm +：
+如果还没有，请初始化 +npm+ ：
 
 ++++
 <pre data-type="programlisting">
@@ -74,7 +74,7 @@ $ <strong>node code/web3js/web3-contract-basic-interaction.js \
 
 ((("web3.js","reviewing demo script")))接下来，让我们审查我们的演示脚本_web3-contract-basic-interaction_。
 
-我们使用+ Web3 +对象创建一个基本的web3服务提供对象：
+我们使用 +Web3+ 对象创建一个基本的web3服务提供对象：
 
 [source,solidity]
 ----
@@ -246,4 +246,4 @@ our_contract.methods.totalSupply().call().then(function(totalSupply){
 
 === 使用Await命令完成的异步操作
 
-((("await construct")))((("web3.js","asynchronous operation with await")))现在，你已经看过基本教程，可以使用异步+ await +结构尝试完成相同的操作。查看http://bit.ly/2ABrFkl[_code/web3js_]中的_web3-contract-basic-interaction-async-await.js_脚本，并将其与本教程进行比较，以了解它们之间的区别。异步等待操作的命令更易于阅读，因为它使异步操作的行为更像是一系列阻塞调用。(((range="endofrange", startref="ix_appdx-web3js-tutorial-asciidoc0")))
+((("await construct")))((("web3.js","asynchronous operation with await")))现在，你已经看过基本教程，可以使用异步 +await+ 结构尝试完成相同的操作。查看http://bit.ly/2ABrFkl[_code/web3js_]中的_web3-contract-basic-interaction-async-await.js_脚本，并将其与本教程进行比较，以了解它们之间的区别。异步等待操作的命令更易于阅读，因为它使异步操作的行为更像是一系列阻塞调用。(((range="endofrange", startref="ix_appdx-web3js-tutorial-asciidoc0")))

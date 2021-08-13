@@ -34,7 +34,7 @@ EVM作为每个Ethereum节点上的本地实例运行，但是由于EVM的所有
 
 ((("transactions","as atomic"))) 交易是原子性_atomic_的，无论它们调用了多少个合约或调用时这些合约做什么。交易将完整执行，并且只有在所有执行成功终止后，才会记录全局状态（合约，帐户等）的任何更改。成功终止意味着程序无错误执行并到达执行结束。如果执行由于错误而失败，则将“回滚”其所有影响（状态更改），就好像交易从未运行过一样。失败的交易仍被记录为已尝试，并且从执行账户中扣除了用于执行的燃料所消耗的以太币，但对合约或账户状态没有其他影响。
 
-((("smart contracts","deleting"))) 如前所述，重要的是要记住合约的代码不能更改。但是，可以“删除”合约，从地址中删除代码及其内部状态（存储），从而保留空白帐户。合约删除后发送到该帐户地址的任何交易都不会导致执行任何代码，因为那里不再有任何代码可以执行。 ((("SELFDESTRUCT opcode"))) 要删除合约，请执行一个名为+ SELFDESTRUCT +（以前称为+ SUICIDE +）的EVM操作码。 ((("negative gas"))) 该操作花费的燃料是负值“ negative gas”，即燃料退款，目的是鼓励网络客户端删除存储状态并释放资源。由于区块链本身是不可改变的，因此以这种方式删除合约不会删除合约的交易历史（过去）。同样重要的是要注意，+ SELFDESTRUCT +功能仅在合约作者将智能合约编程为具有该功能时才可用。如果合约的代码没有+ SELFDESTRUCT +操作码，或者无法访问，则不能删除智能合约。
+((("smart contracts","deleting"))) 如前所述，重要的是要记住合约的代码不能更改。但是，可以“删除”合约，从地址中删除代码及其内部状态（存储），从而保留空白帐户。合约删除后发送到该帐户地址的任何交易都不会导致执行任何代码，因为那里不再有任何代码可以执行。 ((("SELFDESTRUCT opcode"))) 要删除合约，请执行一个名为 +SELFDESTRUCT+ （以前称为 +SUICIDE+ ）的EVM操作码。 ((("negative gas"))) 该操作花费的燃料是负值“ negative gas”，即燃料退款，目的是鼓励网络客户端删除存储状态并释放资源。由于区块链本身是不可改变的，因此以这种方式删除合约不会删除合约的交易历史（过去）。同样重要的是要注意， +SELFDESTRUCT+ 功能仅在合约作者将智能合约编程为具有该功能时才可用。如果合约的代码没有 +SELFDESTRUCT+ 操作码，或者无法访问，则不能删除智能合约。
 
 [[high_level_languages]]
 === 以太坊高级语言简介
@@ -70,7 +70,7 @@ Bamboo:: ((("Bamboo"))) 一种受Erlang影响的新开发的语言，具有明�
 
 ((("smart contracts","building with Solidity", id="ix_07smart-contracts-solidity-asciidoc3", range="startofrange")))((("Solidity","building a smart contract with", id="ix_07smart-contracts-solidity-asciidoc4", range="startofrange"))) Solidity((("smart contracts","Solidity and", id="ix_07smart-contracts-solidity-asciidoc5", range="startofrange")))((("Solidity","smart contracts and", id="ix_07smart-contracts-solidity-asciidoc6", range="startofrange"))) ((("Wood, Dr. Gavin","and Solidity"))) 由 ((("Wood, Dr. Gavin","and Solidity")))加文·伍德（Gavin Wood）博士（这本书的合著者）所创造，是一种明确用于编写智能合约的语言，该合约具有直接支持在以太坊世界计算机的去中心化环境中执行的功能。产生的属性相当笼统，因此最终被用于在其他几个区块链平台上编码智能合约。它由Christian Reitiwessner开发，然后由Alex Beregszaszi，Liana Husikyan，Yoichi Hirai和几位以太坊前核心贡献者开发。 Solidity现在作为独立项目在GitHub https://github.com/ethereum/solidity[on GitHub]上开发和维护。
 
-Solidity项目的主要“产品”是Solidity编译器+ solc +，它将以Solidity语言编写的程序转换为EVM字节码。该项目还管理着以太坊智能合约的重要应用程序二进制接口（ABI）标准，我们将在本章中对其进行详细探讨。 Solidity编译器的每个版本都对应并编译Solidity pass：[ <span class="keep-together">language</span> ]的特定版本。
+Solidity项目的主要“产品”是Solidity编译器 +solc+ ，它将以Solidity语言编写的程序转换为EVM字节码。该项目还管理着以太坊智能合约的重要应用程序二进制接口（ABI）标准，我们将在本章中对其进行详细探讨。 Solidity编译器的每个版本都对应并编译Solidity pass:[ <span class="keep-together">language</span> ]的特定版本。
 
 首先，我们将下载Solidity编译器的二进制可执行文件。然后，按照在<<intro_chapter>>中的例子开始。
 
@@ -90,7 +90,7 @@ Solidity的0.5主要版本即将发布。
 
 ((("Solidity","downloading/installing"))) 有许多方法可用于二进制版本或从源代码编译来下载和安装Solidity。你可以在Solidity文档 http://bit.ly/2RrZmup[the Solidity documentation] 中找到详细说明。
 
-以下是使用+ apt +软件包管理器在Ubuntu / Debian操作系统上安装Solidity的最新可执行版本的方法：
+以下是使用 +apt+ 软件包管理器在Ubuntu / Debian操作系统上安装Solidity的最新可执行版本的方法：
 
 ++++
 <pre data-type="programlisting">
@@ -116,7 +116,7 @@ Version: 0.4.24+commit.e67f0147.Linux.g++
 
 ==== 开发环境
 
-((("Solidity","development environment"))) 要在Solidity中进行开发，可以在命令行上使用任何文本编辑器和+ solc +。但是，你可能会找到一些专为开发而设计的文本编辑器（例如Emacs，Vim和Atom）提供了诸如语法突出显示和宏之类的附加功能，这些功能使Solidity开发更加容易。
+((("Solidity","development environment"))) 要在Solidity中进行开发，可以在命令行上使用任何文本编辑器和 + solc + 。但是，你可能会找到一些专为开发而设计的文本编辑器（例如Emacs，Vim和Atom）提供了诸如语法突出显示和宏之类的附加功能，这些功能使Solidity开发更加容易。
 
 也有基于Web的开发环境，例如 https://remix.ethereum.org/[Remix IDE] 和  https://ethfiddle.com/[EthFiddle] 。
 
@@ -124,7 +124,7 @@ Version: 0.4.24+commit.e67f0147.Linux.g++
 
 ==== 编写一个简单的Solidity程序
 
-((("Solidity","writing a simple program in"))) 在<<intro_chapter>>里面，我们编写了第一个Solidity程序。当我们第一次构建+ Faucet +合约时，我们使用Remix IDE来编译和部署合约。在本节中，我们将回顾，改进和修饰+ Faucet +。
+((("Solidity","writing a simple program in"))) 在<<intro_chapter>>里面，我们编写了第一个Solidity程序。当我们第一次构建 +Faucet+ 合约时，我们使用Remix IDE来编译和部署合约。在本节中，我们将回顾，改进和修饰 +Faucet+ 。
 
 我们的第一次尝试类似 <<original_sol_faucet>>所示。
 
@@ -139,9 +139,9 @@ include::code/Solidity/Faucet.sol[]
 
 ==== 使用Solidity编译器（solc）进行编译
 
-((("Faucet.sol contract (test example)","compiling")))((("solc (Solidity compiler)")))((("Solidity compiler (solc)"))) 现在，我们将在命令行上使用Solidity编译器直接编译我们的合约。 Solidity编译器+ solc +提供了多种选项，你可以通过传递+-help +参数来查看。
+((("Faucet.sol contract (test example)","compiling")))((("solc (Solidity compiler)")))((("Solidity compiler (solc)"))) 现在，我们将在命令行上使用Solidity编译器直接编译我们的合约。 Solidity编译器 +solc+ 提供了多种选项，你可以通过传递 +-help+ 参数来查看。
 
-我们使用+ solc +的+-bin +和+-optimize +参数来生成示例合约的优化二进制文件：
+我们使用 +solc+ 的 +-bin+ 和 +-optimize+ 参数来生成示例合约的优化二进制文件：
 
 
 ++++
@@ -184,7 +184,7 @@ Contract JSON ABI
 </pre>
 ++++
 
-如你所见，编译器生成一个JSON数组，描述_Faucet.sol_定义的两个函数。部署后，任何想要访问+ Faucet +合约的应用程序都可以使用此JSON。使用ABI，诸如钱包或DApp浏览器之类的应用程序可以构造使用正确的参数和参数类型调用+ Faucet +中的函数的交易。例如，一个钱包知道要调用+ withdraw +函数，它必须提供一个名为+ withdraw_amount +的+ uint256 +参数。钱包可以提示用户提供该值，然后对这部分进行编码并创建可以执行+ withdraw +函数的交易。
+如你所见，编译器生成一个JSON数组，描述_Faucet.sol_定义的两个函数。部署后，任何想要访问 +Faucet+ 合约的应用程序都可以使用此JSON。使用ABI，诸如钱包或DApp浏览器之类的应用程序可以构造使用正确的参数和参数类型调用 +Faucet+ 中的函数的交易。例如，一个钱包知道要调用 +withdraw+ 函数，它必须提供一个名为 +withdraw_amount+ 的 +uint256+ 参数。钱包可以提示用户提供该值，然后对这部分进行编码并创建可以执行 +withdraw+ 函数的交易。
 
 应用程序与合约进行交互所需的全部就是ABI和合约已部署的地址。
 
@@ -200,7 +200,7 @@ Contract JSON ABI
 pragma solidity ^0.4.19;
 ----
 
-Solidity编译器读取版本的标识，如果编译器版本与版本pragma不兼容，则会产生错误。在这种情况下，我们的版本编译指示说此程序可以由最低版本为0.4.19的Solidity编译器编译。但是，符号+ ^ +表示我们允许使用0.4.19以上的_minorversion_进行编译；例如0.4.20，但不是0.5.0（这是主要修订，不是次要修订）。 Pragma指令不会编译为EVM字节码。它们仅由编译器用来检查兼容性。
+Solidity编译器读取版本的标识，如果编译器版本与版本pragma不兼容，则会产生错误。在这种情况下，我们的版本编译指示说此程序可以由最低版本为0.4.19的Solidity编译器编译。但是，符号 +^+ 表示我们允许使用0.4.19以上的_minorversion_进行编译；例如0.4.20，但不是0.5.0（这是主要修订，不是次要修订）。 Pragma指令不会编译为EVM字节码。它们仅由编译器用来检查兼容性。
 
 让我们在 +Faucet+ 合约中添加一个编译指示。我们将新文件命名为 pass:[<span class="keep-together"><em>Faucet2.sol</em></span>]，以便在我们从<<add_pragma_to_faucet>>中开始进行的改变。
 
@@ -224,17 +224,17 @@ https://solidity.readthedocs.io/en/latest/[on the project website].
 
 ((("Solidity","data types", id="ix_07smart-contracts-solidity-asciidoc11", range="startofrange"))) 首先，让我们看一下Solidity中提供的一些基本数据类型：
 
-Boolean（+ bool +）:: 逻辑值，+ true +或+ false +，具有逻辑运算符+！+（非），+ && +（与），+ || +（或），+ == +（等于）和+！= +（不等于）。
+Boolean（ +bool+ ）:: 逻辑值， +true+ 或 +false+ ，具有逻辑运算符 +！+ （非）， +&&+ （与）， +||+ （或）， +==+ （等于）和 +!=+ （不等于）。
 
-Integer（+ int +，+ uint +）:: 有符号（+ int +）和无符号（+ uint +）整数，以从+ int8 +到+ uint256 +的8位增量来声明。如果没有表明大小的后缀，则默认使用256位量来匹配EVM的字长。
+Integer（ +int+ ， +uint+ ）:: 有符号（ +int+ ）和无符号（ +uint+ ）整数，以从 +int8+ 到 +uint256+ 的8位增量来声明。如果没有表明大小的后缀，则默认使用256位量来匹配EVM的字长。
 
-Fixed point（+ fixed +，+ ufixed +）:: 通过传递声明的定点数字：[（ <code>u</code> ） <code>fixed <em>M</em> x <em>N</em></code> ]，其中__ ++ M ++ __是位大小（增量为8，最大为256） __ ++ N ++ __是该点后的小数位数（最多18个）；例如+ ufixed32x2 +。
+Fixed point（ +fixed+ ， +ufixed+ ）:: 通过传递声明的定点数字： pass:[(<code>u</code>)<code>fixed<em>M</em>x<em>N</em></code>] ，其中 __++M++__ 是位大小（增量为8，最大为256） __++N++__ 是该点后的小数位数（最多18个）；例如 +ufixed32x2+ 。
 
-Address::  20字节的以太坊地址。 + address +对象具有许多有用的成员函数，主要的函数是+ balance +（返回帐户余额）并通过：[ <span class="keep-together"><code>transfer</code></span> ]（将以太币转移至帐户）。
+Address::  20字节的以太坊地址。 +address+ 对象具有许多有用的成员函数，主要的函数是 +balance+（返回帐户余额）并通过： pass:[ <span class="keep-together"><code>transfer</code></span> ]（将以太币转移至帐户）。
 
-Byte array (fixed):: 固定大小的字节数组，用+ bytes1 +声明为+ bytes32 +。
+Byte array (fixed):: 固定大小的字节数组，从 +bytes1+ 声明至 +bytes32+ 。
 
-Byte array (dynamic):: 可变大小的字节数组，用+ bytes +或+ string +声明。
+Byte array (dynamic):: 可变大小的字节数组，用 +bytes+ 或 +string+ 声明。
 
 Enum:: 用于枚举离散值的用户定义类型：+枚举名称{LABEL1，LABEL 2，pass：[...]} +。
 
@@ -242,7 +242,7 @@ Arrays:: 任何类型的数组，可以是固定或动态的： +uint32[][5]+ �
 
 Struct::  用于分组变量的用户定义数据容器：pass:[<code>struct NAME {TYPE1 <span class="keep-together">VARIABLE1</span>; TYPE2 VARIABLE2; ...}</code>]。
 
-Mapping::  __++key++__ +=>+ _++value++_ 对的哈希查找表： +mapping(KEY_TYPE => VALUE_TYPE) NAME+。
+Mapping::  __++key++__ +=>+ _++value++_ 对的哈希查找表： +mapping(KEY_TYPE => VALUE_TYPE) NAME+ 。
 
 除了这些数据类型之外，Solidity还提供了额外的数据类型，可用于计算不同单位的值：
 
@@ -258,7 +258,7 @@ Mapping::  __++key++__ +=>+ _++value++_ 对的哈希查找表： +mapping(KEY_TY
 require(withdraw_amount <= 100000000000000000);
 ----
 
-这些内容不是很容易阅读。我们可以通过使用单位乘数+ ether +来改进代码，以以太币 +ether+ 而不是wei来表示值：(((range="endofrange", startref="ix_07smart-contracts-solidity-asciidoc11")))
+这些内容不是很容易阅读。我们可以通过使用单位乘数 +ether+ 来改进代码，以以太币 +ether+ 而不是wei来表示值：(((range="endofrange", startref="ix_07smart-contracts-solidity-asciidoc11")))
 
 ----
 require(withdraw_amount <= 0.1 ether);
@@ -270,7 +270,7 @@ require(withdraw_amount <= 0.1 ether);
 
 ===== 交易/消息调用上下文
 
-((("message call")))((("msg object")))((("transaction call"))) 对象+msg+是交易调用（由EOA发起）和消息调用（由合约发起）启动了此合约的执行。它包含许多有用的属性：
+((("message call")))((("msg object")))((("transaction call"))) 对象 +msg+ 是交易调用（由EOA发起）和消息调用（由合约发起）启动了此合约的执行。它包含许多有用的属性：
 
 +msg.sender+:: 我们已经使用过这个参数。它代表发起此合约调用的地址，不一定是发送交易的始发EOA。如果我们的合约是由EOA交易直接调用的，则这是签署该交易的地址，否则将是合约地址。
 
@@ -332,7 +332,7 @@ require(withdraw_amount <= 0.1 ether);
 
 其他值得注意的内置函数有：
 
-+addmod+, +mulmod+:: 用于模加法和乘法。例如，+ addmod（x，y，k）+计算+ pass：[（x + y）％k] +。
++addmod+, +mulmod+:: 用于模加法和乘法。例如， +addmod(x,y,k)+ 计算 +pass:[(x + y) % k]+ 。
 
 +keccak256+ ， +sha256+ ， +sha3+ ， +ripemd160+:: 用于使用各种标准哈希算法计算哈希值的函数。
 
@@ -344,7 +344,7 @@ require(withdraw_amount <= 0.1 ether);
 
 ==== 合约的定义
 
-((("contract data type")))((("contract definition, Solidity")))((("Solidity","contract definition"))) Solidity的主要数据类型是+ contract +;我们的+ Faucet +示例仅定义了pass：[ <span class="keep-together"><code>contract</code></span> ]对象。与面向对象语言中的任何对象相似，合约是一个包含数据和方法的容器。
+((("contract data type")))((("contract definition, Solidity")))((("Solidity","contract definition"))) Solidity的主要数据类型是 +contract+ ;我们的 +Faucet+ 示例仅定义了 pass:[ <span class="keep-together"><code>contract</code></span> ]对象。与面向对象语言中的任何对象相似，合约是一个包含数据和方法的容器。
 
 Solidity提供了另外两种类似于合约的对象类型：
 
@@ -371,7 +371,7 @@ function FunctionName([<em>parameters</em>]) {public|private|internal|external}
 
 ++FunctionName++::  函数的名称，用于在交易中（从EOA），另一个合约甚至同一合约内调用该函数。 ((("fallback function"))) 可以在每个合约中定义一个没有名称的函数，在这种情况下，它是 _fallback_ 函数，当没有其他函数被命名时被调用。 fallback函数不能有任何参数或返回任何内容。
 
-__++parameters++__:: 在名称之后，我们指定必须传递给函数的参数及其名称和类型。在我们的+ Faucet +示例中，我们将+ uint withdraw_amount +定义为 pass:[<code><span class="keep-together">withdraw</span></code>]函数的唯一参数。
+__++parameters++__:: 在名称之后，我们指定必须传递给函数的参数及其名称和类型。在我们的 +Faucet+ 示例中，我们将 +uint withdraw_amount+ 定义为 pass:[<code><span class="keep-together">withdraw</span></code>]函数的唯一参数。
 
 下一组关键字（ +public+ ， +private+ ， +internal+ ， +external+ ）指定函数的可见性 _visibility_：
 
@@ -381,7 +381,7 @@ __++parameters++__:: 在名称之后，我们指定必须传递给函数的参�
 
 +internal+:: ((("internal function"))) 内部函数只能在合约内访问，不能被另一个合约或EOA交易调用。可以通过派生合约（继承该合约的合约）进行调用。
 
-+private+:: ((("private function"))) 私有函数类似于内部函数，但是不能通过派生pass：[ <span class="keep-together">Contracts</span> ]调用。
++private+:: ((("private function"))) 私有函数类似于内部函数，但是不能通过派生 pass:[ <span class="keep-together">Contracts</span> ]调用。
 
 请记住，术语内部 _internal_ 和私有 _private_ 有点误导。合约中的任何函数或数据在公共区块链上始终为可见的 _visible_ ，这意味着任何人都可以看到该代码或数据。此处描述的关键字仅影响调用函数的方式和时间。
 
@@ -413,7 +413,7 @@ contract MEContract {
 
 这种格式的困难在于，如果更改了合约名称而未更改构造函数名称，则它不再是构造函数。同样，如果在合约和/或构造函数的命名中出现偶然的拼写错误，则该函数不再是构造函数。这可能会导致一些非常令人讨厌，意外和难以发现的错误。例如，想象一下，构造函数是否出于控制目的而设置合约的所有者。如果由于命名错误该函数实际上不是构造函数，那么不仅在创建合约时将所有者保留为未设置状态，而且还可以将该函数作为合约的永久和“可调用”部分进行部署，例如正常功能，允许任何第三方劫持合约并在合约创建后成为“所有者”。
 
-为了解决构造函数基于与合约相同名称的潜在问题，Solidity v0.4.22引入了+ constructor +关键字，其作用类似于构造函数但没有名称。重命名合约完全不影响构造函数。同样，更容易识别哪个函数是构造函数。看起来像这样：
+为了解决构造函数基于与合约相同名称的潜在问题，Solidity v0.4.22引入了 +constructor+ 关键字，其作用类似于构造函数但没有名称。重命名合约完全不影响构造函数。同样，更容易识别哪个函数是构造函数。看起来像这样：
 
 [source,solidity]
 ----
@@ -438,7 +438,7 @@ selfdestruct(address recipient);
 
 ==== 向我们的水龙头合约示例添加构造函数和自毁函数
 
-((("constructor function","adding to faucet example")))((("Faucet.sol contract (test example)","adding constructor and selfdestruct to")))((("Solidity","adding constructor/selfdestruct to faucet example"))) 我们在<<intro_chapter>>中引入的+ Faucet +示例合同没有任何构造函数或自毁函数+ selfdestruct +。这是一个不可删除的永久合约。让我们通过添加构造函数和自毁函数+ selfdestruct +函数来更改它。我们可能希望自毁函数+ selfdestruct +仅能被最初创建合约的EOA调用。按照惯例，通常将其存储在名为+ owner +的地址变量中。我们的构造函数设置拥有者+ owner +变量，并且自毁+ selfdestruct +函数将首先检查是否是拥有者直接调用了它。
+((("constructor function","adding to faucet example")))((("Faucet.sol contract (test example)","adding constructor and selfdestruct to")))((("Solidity","adding constructor/selfdestruct to faucet example"))) 我们在<<intro_chapter>>中引入的 +Faucet+ 示例合同没有任何构造函数或自毁函数 +selfdestruct+ 。这是一个不可删除的永久合约。让我们通过添加构造函数和自毁函数 +selfdestruct+ 函数来更改它。我们可能希望自毁函数 +selfdestruct+ 仅能被最初创建合约的EOA调用。按照惯例，通常将其存储在名为 +owner+ 的地址变量中。我们的构造函数设置拥有者 +owner+ 变量，并且自毁 +selfdestruct+ 函数将首先检查是否是拥有者直接调用了它。
 
 首先，我们的构造函数如下：
 
@@ -461,7 +461,7 @@ contract Faucet {
 }
 ----
 
-我们已经更改了pragma指令，以指定v0.4.22作为此示例的最低版本，因为我们使用的是Solidity v0.4.22中引入的新+ constructor +关键字。我们的合约现在有一个 +address+ 类型的变量，名为 +owner+ 。名称“owner”在任何方面都不是特殊的。我们可以将这个地址变量称为“potato”，并且仍然以相同的方式使用它。名称 +owner+ 仅表明其目的。
+我们已经更改了pragma指令，以指定v0.4.22作为此示例的最低版本，因为我们使用的是Solidity v0.4.22中引入的新 +constructor+ 关键字。我们的合约现在有一个 +address+ 类型的变量，名为 +owner+ 。名称“owner”在任何方面都不是特殊的。我们可以将这个地址变量称为“potato”，并且仍然以相同的方式使用它。名称 +owner+ 仅表明其目的。
 
 接下来，作为合约创建交易一部分运行的构造函数将 +msg.sender+ 中的地址分配给 +owner+ 变量。我们在 pass:[<span class="keep-together"><code>withdraw</code></span>] 函数中使用 +msg.sender+ 来标识提款请求的发起者。但是，在构造函数中， +msg.sender+ 是启动合约创建的EOA或合约地址。我们知道是这种情况，因为这是一个构造函数：在合约创建期间它仅运行一次。
 
@@ -480,7 +480,7 @@ function destroy() public {
 
 ==== 函数的修改器
 
-((("function modifiers")))((("Solidity","function modifiers"))) Solidity提供一种特殊类型的函数，称为_function Modify_。通过在函数声明中添加修改器名称，可以将修改器应用于函数。修改器最常用于创建适用于合约中许多函数的条件。我们的+ destroy +函数中已经有一个访问控制语句。让我们创建一个表达该条件的函数修改器：
+((("function modifiers")))((("Solidity","function modifiers"))) Solidity提供一种特殊类型的函数，称为_function Modify_。通过在函数声明中添加修改器名称，可以将修改器应用于函数。修改器最常用于创建适用于合约中许多函数的条件。我们的 +destroy+ 函数中已经有一个访问控制语句。让我们创建一个表达该条件的函数修改器：
 
 [source,solidity]
 ----
@@ -491,9 +491,9 @@ modifier onlyOwner {
 ----
 
 
-这个名为+ onlyOwner +的功能修改器，对其修改的任何功能都设置了条件，要求存储为合约的+ owner +的地址必须与交易的+ msg.sender +的地址相同。这是访问控制的基本设计模式，仅允许合约所有者执行具有+ onlyOwner +修改器的任何功能。
+这个名为 +onlyOwner+ 的功能修改器，对其修改的任何功能都设置了条件，要求存储为合约的 +owner+ 的地址必须与交易的 +msg.sender+ 的地址相同。这是访问控制的基本设计模式，仅允许合约所有者执行具有 +onlyOwner+ 修改器的任何功能。
 
-你可能已经注意到我们的函数修改器中有一个特殊的句法“占位符”，下划线后跟一个分号（+ _; +）。该占位符被正在修改的函数的代码替换。本质上，修改器被“包装”在已修改的函数周围，将其代码放在下划线字符所标识的位置。
+你可能已经注意到我们的函数修改器中有一个特殊的句法“占位符”，下划线后跟一个分号（ +_;+ ）。该占位符被正在修改的函数的代码替换。本质上，修改器被“包装”在已修改的函数周围，将其代码放在下划线字符所标识的位置。
 
 要应用修改器，请将其名称添加到函数声明中。一个功能可以使用多个修改器。它们以声明的顺序应用，以逗号分隔的列表形式出现。
 
@@ -506,15 +506,15 @@ function destroy() public onlyOwner {
 }
 ----
 
-函数修改器的名称（+ onlyOwner +）在关键字+ public +之后，并告诉我们+ destroy +函数已由+ onlyOwner +修改器修改。本质上，你可以将其理解为“只有所有者才能销毁此合约”。实际上，生成的代码等效于将+ onlyOwner +中的代码“包装”到+ destroy +周围。
+函数修改器的名称（ +onlyOwner+ ）在关键字 +public+ 之后，并告诉我们 +destroy+ 函数已由 +onlyOwner+ 修改器修改。本质上，你可以将其理解为“只有所有者才能销毁此合约”。实际上，生成的代码等效于将 +onlyOwner+ 中的代码“包装”到 +destroy+ 周围。
 
 函数修改器是一个非常有用的工具，因为它们使我们能够编写函数的前提条件并一致地应用它们，从而使代码更易于阅读，因此更易于安全性的审核。它们最常用于访问控制，但它们用途广泛，可用于多种其他目的。
 
-在修改器内部，你可以访问对修改后的函数可见的所有值（变量和参数）。在这种情况下，我们可以访问合约中声明的+ owner +变量。但是，反之则不成立：你无法从被修改的函数内部访问修改器的任何变量。
+在修改器内部，你可以访问对修改后的函数可见的所有值（变量和参数）。在这种情况下，我们可以访问合约中声明的 +owner+ 变量。但是，反之则不成立：你无法从被修改的函数内部访问修改器的任何变量。
 
 ==== 合约的继承
 
-((("contract object", id="ix_07smart-contracts-solidity-asciidoc14", range="startofrange")))((("inheritance", id="ix_07smart-contracts-solidity-asciidoc15", range="startofrange")))((("smart contracts","inheritance", id="ix_07smart-contracts-solidity-asciidoc16", range="startofrange")))((("Solidity","contract inheritance", id="ix_07smart-contracts-solidity-asciidoc17", range="startofrange"))) Solidity的合约+ contract +对象支持继承_inheritance_，这是一种将基本合约的功能加以额外功能扩展的机制。要使用继承，请使用关键字+ is +指定父合约：
+((("contract object", id="ix_07smart-contracts-solidity-asciidoc14", range="startofrange")))((("inheritance", id="ix_07smart-contracts-solidity-asciidoc15", range="startofrange")))((("smart contracts","inheritance", id="ix_07smart-contracts-solidity-asciidoc16", range="startofrange")))((("Solidity","contract inheritance", id="ix_07smart-contracts-solidity-asciidoc17", range="startofrange"))) Solidity的合约 +contract+ 对象支持继承_inheritance_，这是一种将基本合约的功能加以额外功能扩展的机制。要使用继承，请使用关键字 +is+ 指定父合约：
 
 [source,solidity]
 ----
@@ -523,7 +523,7 @@ contract Child is Parent {
 }
 ----
 
-通过这种构造，+ Child +协定继承了+ Parent +的所有方法，功能和变量。 Solidity还支持多重继承，可以通过在关键字+ is +之后用逗号分隔的合约名称来指定：
+通过这种构造， +Child+ 协定继承了 +Parent+ 的所有方法，功能和变量。 Solidity还支持多重继承，可以通过在关键字 +is+ 之后用逗号分隔的合约名称来指定：
 
 [source,solidity]
 ----
@@ -534,9 +534,9 @@ contract Child is Parent1, Parent2 {
 
 合约继承允许我们以实现模块化，可扩展性和重用性的方式来编写合约。我们从简单的合约开始，实现最通用的功能，然后通过在更专业的合约中继承这些功能来扩展它们。
 
-在我们的+ Faucet +合约中，我们引入了构造函数和析构函数，以及在构造上分配给所有者owner的访问控制。这些功能非常通用：许多合约都将需要它们。我们可以将它们定义为通用合约，然后使用继承将其扩展到+ Faucet +合约。
+在我们的 +Faucet+ 合约中，我们引入了构造函数和析构函数，以及在构造上分配给所有者owner的访问控制。这些功能非常通用：许多合约都将需要它们。我们可以将它们定义为通用合约，然后使用继承将其扩展到 +Faucet+ 合约。
 
-我们首先定义一个基本合约+ own +，它具有一个+ owner +变量，并将其设置在合约的构造函数中：
+我们首先定义一个基本合约 +own+ ，它具有一个 +owner+ 变量，并将其设置在合约的构造函数中：
 
 [source,solidity]
 ----
@@ -568,9 +568,9 @@ contract mortal is owned {
 }
 ----
 
-如你所见，+ mortal +合约可以使用在+ owned +中定义的+ onlyOwner +函数修改器。它也间接使用+ owner +地址变量和+ own +中定义的构造函数。继承使每个合约更加简单，并专注于其特定功能，从而使我们能够以模块化方式管理细节。
+如你所见， +mortal+ 合约可以使用在 +owned+ 中定义的 +onlyOwner+ 函数修改器。它也间接使用 +owner+ 地址变量和 +own+ 中定义的构造函数。继承使每个合约更加简单，并专注于其特定功能，从而使我们能够以模块化方式管理细节。
 
-现在，我们可以进一步扩展+ own +合约，并继承+ Faucet +中的功能：
+现在，我们可以进一步扩展 +own+ 合约，并继承 +Faucet+ 中的功能：
 
 [source,solidity]
 ----
@@ -587,42 +587,42 @@ contract Faucet is mortal {
 }
 ----
 
-通过继承+ mortal +，后者又继承+ own +，+ Faucet +合约现在具有构造函数和销毁+ destroy +函数，以及定义的所有者。功能与+ Faucet +中的功能相同，但是现在我们可以在其他合约中重用这些功能，而无需再次编写它们。代码重用和模块化使我们的代码更干净，更易于阅读和审核。((range="endofrange", startref="ix_07smart-contracts-solidity-asciidoc17")))(((range="endofrange", startref="ix_07smart-contracts-solidity-asciidoc16")))(((range="endofrange", startref="ix_07smart-contracts-solidity-asciidoc15")))(((range="endofrange", startref="ix_07smart-contracts-solidity-asciidoc14")))
+通过继承 +mortal+，后者又继承 +own+ ， +Faucet+ 合约现在具有构造函数和销毁 +destroy+ 函数，以及定义的所有者。功能与 +Faucet+ 中的功能相同，但是现在我们可以在其他合约中重用这些功能，而无需再次编写它们。代码重用和模块化使我们的代码更干净，更易于阅读和审核。((range="endofrange", startref="ix_07smart-contracts-solidity-asciidoc17")))(((range="endofrange", startref="ix_07smart-contracts-solidity-asciidoc16")))(((range="endofrange", startref="ix_07smart-contracts-solidity-asciidoc15")))(((range="endofrange", startref="ix_07smart-contracts-solidity-asciidoc14")))
 
 ==== 错误处理（判别，要求，回退）
 
-((("error handling, Solidity")))((("Solidity","error handling"))) 合约调用可以终止并返回错误。 Solidity中的错误处理由以下四个函数处理：+ assert +，+ require +，+ revert +和+ throw +（现已弃用）。
+((("error handling, Solidity")))((("Solidity","error handling"))) 合约调用可以终止并返回错误。 Solidity中的错误处理由以下四个函数处理： +assert+ ， +require+ ， +revert+ 和 +throw+ （现已弃用）。
 
 当合约因错误终止时，所有状态更改（变量，余额等的更改）都将恢复，如果调用了多个合约，则一直返回到合约调用链的整个过程。这样可以确保交易是原子性_atomic_，这意味着它们要么成功完成，要么对状态没有影响，并且可以完全还原。
 
-((("assert function","Solidity and")))((("require function"))) + assert +和+ require +函数以相同的方式运行，评估条件并在条件出错时停止执行并显示错误是假的。按照惯例，当预期结果为真时，将使用+ assert +，这意味着我们使用+ assert +来测试内部条件。相比之下，+ require +用于测试输入（例如函数参数或交易字段），并设置我们对这些的通过条件期望：[<span class="keep-together">条件</span>]。
+((("assert function","Solidity and")))((("require function")))  +assert+ 和 +require+ 函数以相同的方式运行，评估条件并在条件出错时停止执行并显示错误是假的。按照惯例，当预期结果为真时，将使用 +assert+ ，这意味着我们使用 +assert+ 来测试内部条件。相比之下， +require+ 用于测试输入（例如函数参数或交易字段），并设置我们对这些的通过条件期望： pass:[<span class="keep-together">条件</span>]。
 
-我们在函数修改器+ onlyOwner +中使用+ require +来测试信息发件人是合约的所有者：
+我们在函数修改器 +onlyOwner+ 中使用 +require+ 来测试信息发件人是合约的所有者：
 
 [source,solidity]
 ----
 require(msg.sender == owner);
 ----
 
-+ require +函数充当_gate condition_，阻止执行该函数的其余部分，并在不满足要求时产生错误。
++require+ 函数充当_gate condition_，阻止执行该函数的其余部分，并在不满足要求时产生错误。
 
-从Solidity v0.4.22开始，+ require +还可以包含有用的文本消息，该消息可用于显示错误原因。该错误消息记录在交易日志中。因此，我们可以通过在+ require +函数中添加错误消息来改进代码：
+从Solidity v0.4.22开始， +require+ 还可以包含有用的文本消息，该消息可用于显示错误原因。该错误消息记录在交易日志中。因此，我们可以通过在 +require+ 函数中添加错误消息来改进代码：
 
 [source,solidity]
 ----
 require(msg.sender == owner, "Only the contract owner can call this function");
 ----
 
-((("revert function")))((("throw function"))) + revert +和+ throw +函数可终止合约的执行并恢复任何状态更改。 + throw +函数已过时，将在Solidity的未来版本中删除；你应该改用+ revert +。 + revert +函数还可以将错误消息作为唯一参数，记录在交易日志中。
+((("revert function")))((("throw function")))  +revert+ 和 +throw+ 函数可终止合约的执行并恢复任何状态更改。 +throw+ 函数已过时，将在Solidity的未来版本中删除；你应该改用 +revert+ 。 +revert+ 函数还可以将错误消息作为唯一参数，记录在交易日志中。
 
-无论我们是否明确检查它们，合约中的某些条件都会产生错误。例如，在我们的+水龙头+合约中，我们没有检查是否有足够的以太币来满足提款要求。这是因为+ transfer +函数将失败并显示错误，并且如果余额不足以进行转移，则会还原交易：
+无论我们是否明确检查它们，合约中的某些条件都会产生错误。例如，在我们的 +水龙头+ 合约中，我们没有检查是否有足够的以太币来满足提款要求。这是因为 +transfer+ 函数将失败并显示错误，并且如果余额不足以进行转移，则会还原交易：
 
 [source,solidity]
 ----
 msg.sender.transfer(withdraw_amount);
 ----
 
-但是，最好进行显式检查并在失败时提供明确的错误信息。我们可以通过在传输之前添加+ require +语句来做到这一点：
+但是，最好进行显式检查并在失败时提供明确的错误信息。我们可以通过在传输之前添加 +require+ 语句来做到这一点：
 
 [source,solidity]
 ----
@@ -631,7 +631,7 @@ require(this.balance >= withdraw_amount,
 msg.sender.transfer(withdraw_amount);
 ----
 
-像这样的额外错误检查代码会稍微增加燃料消耗，但是与省略检查相比，这样可以提供更好的错误报告。你将需要根据合约的预期使用情况在燃料消耗和详细错误检查之间找到适当的平衡。对于打算用于测试网的+ Faucet +合约，即使花费更多的燃料，我们也可能会错失额外的报告。也许对于主网合约，我们选择节俭使用燃料。
+像这样的额外错误检查代码会稍微增加燃料消耗，但是与省略检查相比，这样可以提供更好的错误报告。你将需要根据合约的预期使用情况在燃料消耗和详细错误检查之间找到适当的平衡。对于打算用于测试网的 +Faucet+ 合约，即使花费更多的燃料，我们也可能会错失额外的报告。也许对于主网合约，我们选择节俭使用燃料。
 
 [[solidity_events]]
 ==== 事件
@@ -642,7 +642,7 @@ msg.sender.transfer(withdraw_amount);
 
 事件对象采用已序列化并记录在区块链中的交易日志中的参数。你可以在参数前提供关键字+ indexed +，以使值成为可以由应用程序搜索或过滤的索引表（哈希表）的一部分。
 
-((("Faucet.sol contract (test example)","adding events to", id="ix_07smart-contracts-solidity-asciidoc20", range="startofrange"))) 到目前为止，我们尚未在+ Faucet +的例子中添加任何事件。下面让我们开始吧。我们将添加两个事件，一个事件记录所有提款，一个事件记录所有存款。我们将这些事件分别称为+ Withdrawal +和+ Deposit +。首先，我们在+ Faucet +合约中定义事件：
+((("Faucet.sol contract (test example)","adding events to", id="ix_07smart-contracts-solidity-asciidoc20", range="startofrange"))) 到目前为止，我们尚未在 +Faucet+ 的例子中添加任何事件。下面让我们开始吧。我们将添加两个事件，一个事件记录所有提款，一个事件记录所有存款。我们将这些事件分别称为 +Withdrawal+ 和 +Deposit+ 。首先，我们在 +Faucet+ 合约中定义事件：
 
 [source,solidity]
 ----
@@ -654,9 +654,9 @@ contract Faucet is Mortal {
 }
 ----
 
-我们选择将地址设置为+ indexed +，以便在为访问+ Faucet +而构建的任何用户界面中进行搜索和过滤。
+我们选择将地址设置为 +indexed+ ，以便在为访问 +Faucet+ 而构建的任何用户界面中进行搜索和过滤。
 
-接下来，我们使用+ emit +关键字将交易数据合并到事务日志中：
+接下来，我们使用 +emit+ 关键字将交易数据合并到事务日志中：
 
 [source,solidity]
 ----
@@ -687,7 +687,7 @@ include::code/Solidity/Faucet8.sol[]
 
 ((("events","catching")))((("Faucet.sol contract (test example)","catching events"))) 好的，目前我们已经设置了我们的合约，使其可以发出事件。我们如何查看交易结果并“捕获”事件？ web3.js库提供了一个包含交易日志的数据结构。在其中，我们可以看到由交易生成的事件。
 
-((("Truffle","running test transaction with"))) 让我们使用+ truffle +在修订后的+ Faucet +合约上运行测试交易。请按照 <<truffle>> 设置项目目录并编译pass：[ <span class="keep-together"><code>Faucet</code></span> ]代码。可以在本书的GitHub代码库 https://github.com/ethereumbook/ethereumbook[the book's GitHub repository] 的目录_code / truffle / FaucetEvents_下找到源代码。
+((("Truffle","running test transaction with"))) 让我们使用 +truffle+ 在修订后的 +Faucet+ 合约上运行测试交易。请按照 <<truffle>> 设置项目目录并编译 pass:[ <span class="keep-together"><code>Faucet</code></span> ]代码。可以在本书的GitHub代码库 https://github.com/ethereumbook/ethereumbook[the book's GitHub repository] 的目录_code / truffle / FaucetEvents_下找到源代码。
 
 ++++
 <pre data-type="programlisting">
@@ -723,21 +723,21 @@ Withdrawal { to: '0x627306090abab3a6e1400e9345bc60c78a8bef57',
 </pre>
 ++++
 
-使用+ deployed +功能部署合约后，我们执行两次交易。第一笔交易是存款（使用+ send +），它在交易日志中发出+ Deposit +事件：
+使用 +deployed+ 功能部署合约后，我们执行两次交易。第一笔交易是存款（使用 +send+ ），它在交易日志中发出 +Deposit+ 事件：
 
 ----
 Deposit { from: '0x627306090abab3a6e1400e9345bc60c78a8bef57',
   amount: BigNumber { s: 1, e: 18, c: [ 10000 ] } }
 ----
 
-接下来，我们使用+ withdraw +函数进行提款。这发出+ Withdrawal +事件：
+接下来，我们使用 +withdraw+ 函数进行提款。这发出 +Withdrawal+ 事件：
 
 ----
 Withdrawal { to: '0x627306090abab3a6e1400e9345bc60c78a8bef57',
   amount: BigNumber { s: 1, e: 17, c: [ 1000 ] } }
 ----
 
-为了获得这些事件，我们查看了作为交易结果（+ res +）返回的+ logs +数组。第一个日志条目（+ logs [0] +）在+ logs [0] .event +中包含一个事件名称，在+ logs [0] .args +中包含事件参数。通过在控制台上显示这些内容，我们可以看到发出的事件名称和事件参数。
+为了获得这些事件，我们查看了作为交易结果（ +res+ ）返回的 +logs+ 数组。第一个日志条目（ +logs[0]+ ）在 +logs[0].event+ 中包含一个事件名称，在 +logs[0].args+ 中包含事件参数。通过在控制台上显示这些内容，我们可以看到发出的事件名称和事件参数。
 
 事件是一种非常有用的机制，不仅用于合约内通信，而且还用于开发过程中的调试(((range="endofrange", startref="ix_07smart-contracts-solidity-asciidoc20")))。(((range="endofrange", startref="ix_07smart-contracts-solidity-asciidoc19")))(((range="endofrange", startref="ix_07smart-contracts-solidity-asciidoc18")))
 
@@ -747,7 +747,7 @@ Withdrawal { to: '0x627306090abab3a6e1400e9345bc60c78a8bef57',
 
 ===== 创建一个新实例
 
-((("smart contracts","creating new instance"))) 调用另一个合约的最安全方法是你自己创建另一个合约。这样，你就可以确定其界面和行为。为此，你可以像使用其他面向对象的语言一样，使用关键字+ new +实例化它。在Solidity中，关键字+ new +将在区块链上创建合约，并返回一个可用于引用该合约的对象。假设你要从另一个称为+ Token +的合约中创建并调用+ Faucet +合约：
+((("smart contracts","creating new instance"))) 调用另一个合约的最安全方法是你自己创建另一个合约。这样，你就可以确定其界面和行为。为此，你可以像使用其他面向对象的语言一样，使用关键字 +new+ 实例化它。在Solidity中，关键字 +new+ 将在区块链上创建合约，并返回一个可用于引用该合约的对象。假设你要从另一个称为 +Token+ 的合约中创建并调用 +Faucet+ 合约：
 
 [role="pagebreak-before"]
 [source,solidity]
@@ -761,7 +761,7 @@ contract Token is mortal {
 }
 ----
 
-此合约构建机制可确保你知道合约的确切类型及其接口。合约+ Faucet +必须在+ Token +的范围内定义，如果定义在另一个文件中，则可以使用+ import +语句来执行：
+此合约构建机制可确保你知道合约的确切类型及其接口。合约 +Faucet+ 必须在 +Token+ 的范围内定义，如果定义在另一个文件中，则可以使用 +import+ 语句来执行：
 
 [source,solidity]
 ----
@@ -776,7 +776,7 @@ contract Token is Mortal {
 }
 ----
 
-你可以选择在创建时指定以太币转移的+ value +，并将参数传递给新合约的构造函数：
+你可以选择在创建时指定以太币转移的 +value+ ，并将参数传递给新合约的构造函数：
 
 [source,solidity]
 ----
@@ -791,7 +791,7 @@ contract Token is Mortal {
 }
 ----
 
-然后，你也可以调用+ Faucet +函数。在此示例中，我们从+ Token +的+ destroy +函数中调用+ Faucet +的+ destroy +函数：
+然后，你也可以调用 +Faucet+ 函数。在此示例中，我们从 +Token+ 的 +destroy+ 函数中调用 +Faucet+ 的 +destroy+ 函数：
 
 [source,solidity]
 ----
@@ -810,7 +810,7 @@ contract Token is Mortal {
 }
 ----
 
-请注意，虽然你是+ Token +合约的所有者，但+ Token +合约本身拥有新的+ Faucet +合约，因此只有+ Token +合约才能销毁它。
+请注意，虽然你是 +Token+ 合约的所有者，但 +Token+ 合约本身拥有新的 +Faucet+ 合约，因此只有 +Token+ 合约才能销毁它。
 
 ===== 使用现有合约实例的地址
 
@@ -831,13 +831,13 @@ contract Token is Mortal {
 }
 ----
 
-在这里，我们将提供的地址用作构造函数+ _f +的参数，并将其转换为+ Faucet +对象。这比以前的机制要危险得多，因为我们不确定该地址是否实际上是+ Faucet +对象。当我们调用+ withdraw +时，我们假设它接受与+ Faucet +声明相同的参数并执行相同的代码，但是我们不能确定。就我们所知，即使命名相同，此地址处的+ withdraw +函数也可能执行与我们期望的完全不同的操作。因此，使用传递的地址作为输入并将其强制转换为特定的对象比自己创建合约要危险得多。
+在这里，我们将提供的地址用作构造函数 +_f+ 的参数，并将其转换为 +Faucet+ 对象。这比以前的机制要危险得多，因为我们不确定该地址是否实际上是 +Faucet+ 对象。当我们调用 +withdraw+ 时，我们假设它接受与 +Faucet+ 声明相同的参数并执行相同的代码，但是我们不能确定。就我们所知，即使命名相同，此地址处的 +withdraw+ 函数也可能执行与我们期望的完全不同的操作。因此，使用传递的地址作为输入并将其强制转换为特定的对象比自己创建合约要危险得多。
 
 ===== 原始调用，委托调用
 
 Solidity提供了一些更加的“低级”函数来调用其他合约。这些直接对应于同名的EVM操作码，并允许我们手动构建合约到合约的调用。这些函数代表了调用其他合约的最灵活和最危险的机制。
 
-((("smart contracts","call method", id="ix_07smart-contracts-solidity-asciidoc23", range="startofrange"))) 下面是使用+ call +方法的相同示例：
+((("smart contracts","call method", id="ix_07smart-contracts-solidity-asciidoc23", range="startofrange"))) 下面是使用 +call+ 方法的相同示例：
 
 [source,solidity]
 ----
@@ -848,7 +848,7 @@ contract Token is Mortal {
 }
 ----
 
-((("blind calls"))) 如你所见，这种+ call +是对函数的不可见_blind_调用，非常类似于构造原始交易，仅从合约的上下文中进行调用。 ((("reentrancy attacks","blind calls and"))) 它会使你的合约面临许多安全风险，最重要的是重放攻击_reentrancy_，我们将在<<reentrancy_security>>中详细介绍。如果调用出现问题，+ call +函数将返回+ false +，因此你可以评估返回值以进行错误处理：
+((("blind calls"))) 如你所见，这种 +call+ 是对函数的不可见_blind_调用，非常类似于构造原始交易，仅从合约的上下文中进行调用。 ((("reentrancy attacks","blind calls and"))) 它会使你的合约面临许多安全风险，最重要的是重放攻击_reentrancy_，我们将在<<reentrancy_security>>中详细介绍。如果调用出现问题， +call+ 函数将返回 +false+ ，因此你可以评估返回值以进行错误处理：
 
 [source,solidity]
 ----
@@ -861,13 +861,13 @@ contract Token is Mortal {
 }
 ----
 
-((("delegatecall method")))((("smart contracts","delegatecall method"))) + call +的另一个变体是+ delegatecall +，它取代了比较危险的+ callcode +。 pass：[ <code><span class="keep-together">callcode</span></code> ]方法将很快被弃用，因此不应使用。
+((("delegatecall method")))((("smart contracts","delegatecall method")))  +call+ 的另一个变体是 +delegatecall+ ，它取代了比较危险的 +callcode+ 。 pass:[ <code><span class="keep-together">callcode</span></code> ]方法将很快被弃用，因此不应使用。
 
-如<<solidity_address_object>>中提到的，+ delegatecall +与+ call +的不同之处在于+ msg +上下文不变。例如，+ call +将+ msg.sender +的值更改为调用合约的地址，而+ delegatecall +保持与调用合约相同的+ msg.sender +。本质上，+ delegatecall +在当前合约的执行范围内运行另一个合约的代码。它最常用于从函数库中调用代码。它还允许你借鉴使用存储在其他位置的库函数的模式，但是使该代码可以处理你合约的存储数据。
+如<<solidity_address_object>>中提到的， +delegatecall+ 与 +call+ 的不同之处在于 +msg+ 上下文不变。例如， +call+ 将 +msg.sender+ 的值更改为调用合约的地址，而 +delegatecall+ 保持与调用合约相同的 +msg.sender+ 。本质上， +delegatecall+ 在当前合约的执行范围内运行另一个合约的代码。它最常用于从函数库中调用代码。它还允许你借鉴使用存储在其他位置的库函数的模式，但是使该代码可以处理你合约的存储数据。
 
-使用+ delegate +调用时应格外小心。它可能会产生一些意想不到的影响，尤其是如果你调用的合约没有设计成库的话。
+使用 +delegate+ 调用时应格外小心。它可能会产生一些意想不到的影响，尤其是如果你调用的合约没有设计成库的话。
 
-让我们使用示例合约来演示+ call +和+ delegatecall +用于调用库和合约的各种调用语义。在<<call_examples_code>>中，我们使用事件记录每个调用的详细信息，并查看调用的上下文如何根据调用类型而变化。
+让我们使用示例合约来演示 +call+ 和 +delegatecall+ 用于调用库和合约的各种调用语义。在<<call_examples_code>>中，我们使用事件记录每个调用的详细信息，并查看调用的上下文如何根据调用类型而变化。
 
 [[call_examples_code]]
 .CallExamples.sol：不同调用方式的示例
@@ -878,9 +878,9 @@ include::code/truffle/CallExamples/contracts/CallExamples.sol[]
 ----
 ====
 
-如你在本示例中看到的，我们的主要合约是+caller+，它调用一个库+calledLibrary+和一个合约+calledContract+。被调用的库和合约都具有相同的+ callFunction +函数，它们发出一个事件+calledEvent +。事件+calledEvent+记录三段数据：+ msg.sender +，+ tx.origin +和+ this +。每次调用+ callFunction +时，取决于是直接调用还是通过+ delegatecall +调用，它可能具有不同的执行上下文（可能为所有上下文变量使用不同的值）。
+如你在本示例中看到的，我们的主要合约是 +caller+ ，它调用一个库 +calledLibrary+ 和一个合约 +calledContract+ 。被调用的库和合约都具有相同的 +callFunction+ 函数，它们发出一个事件 +calledEvent+ 。事件 +calledEvent+ 记录三段数据： +msg.sender+ ， +tx.origin+ 和 +this+ 。每次调用 +callFunction+ 时，取决于是直接调用还是通过 +delegatecall+ 调用，它可能具有不同的执行上下文（可能为所有上下文变量使用不同的值）。
 
-在+ caller +中，我们首先通过分别调用+ callFunction +来直接调用合约和库。然后，我们显式使用底层函数+ call +和+ delegatecall +来调用+ calledContract.calledFunction +。这样，我们可以看到各种调用机制的行为。
+在 +caller+ 中，我们首先通过分别调用 +callFunction+ 来直接调用合约和库。然后，我们显式使用底层函数 +call+ 和 +delegatecall+ 来调用 +calledContract.calledFunction+ 。这样，我们可以看到各种调用机制的行为。
 
 让我们在Truffle开发环境中运行它并捕获事件，以查看其工作方式：
 
@@ -917,7 +917,7 @@ truffle(develop)> <strong>callerDeployed.make_calls(calledContract.address).then
 </pre>
 ++++
 
-让我们看看这里发生了什么。我们调用了+ make_calls +函数，并传递了+ drawnContract +的地址，然后捕获了每个不同调用发出的四个事件。让我们看一下+ make_calls +函数，并解释每个步骤。
+让我们看看这里发生了什么。我们调用了 +make_calls+ 函数，并传递了 +drawnContract+ 的地址，然后捕获了每个不同调用发出的四个事件。让我们看一下 +make_calls+ 函数，并解释每个步骤。
 
 第一个调用是：
 
@@ -925,7 +925,7 @@ truffle(develop)> <strong>callerDeployed.make_calls(calledContract.address).then
 _calledContract.calledFunction();
 ----
 
-在这里，我们直接使用+ callFunction +的高级ABI来直接调用+ drawnContract.callFunction +。发出的事件是：
+在这里，我们直接使用 +callFunction+ 的高级ABI来直接调用 +drawnContract.callFunction+ 。发出的事件是：
 
 ----
 sender: '0x8f0483125fcb9aaaefa9209d8e9d7b9c8b9fb90f',
@@ -933,9 +933,9 @@ origin: '0x627306090abab3a6e1400e9345bc60c78a8bef57',
 from: '0x345ca3e014aaf5dca488057592ee47305d9b3e10'
 ----
 
-如你所见，+ msg.sender +是+ caller +合约的地址。 + tx.origin +是我们的帐户+ web3.eth.accounts [0] +的地址，该地址将交易发送给+ caller +。从事件的最后一个参数可以看出，该事件是由+ callContract +发出的。
+如你所见， +msg.sender+ 是 +caller+ 合约的地址。 +tx.origin+ 是我们的帐户 +web3.eth.accounts[0]+ 的地址，该地址将交易发送给 +caller+ 。从事件的最后一个参数可以看出，该事件是由 +callContract+ 发出的。
 
-+ make_calls +中的下一个调用是对函数库的：
++make_calls+ 中的下一个调用是对函数库的：
 
 ----
 calledLibrary.calledFunction();
@@ -949,9 +949,9 @@ origin: '0x627306090abab3a6e1400e9345bc60c78a8bef57',
 from: '0x8f0483125fcb9aaaefa9209d8e9d7b9c8b9fb90f'
 ----
 
-这次，+ msg.sender +不是+ caller +的地址。相反，它是我们帐户的地址，并且与交易来源相同。这是因为当你调用库时，该调用始终为+ delegatecall +，并且在调用者的上下文中运行。因此，当+ calledLibrary +代码运行时，它继承了+ caller +的执行上下文，就像其代码在+ caller +内部运行一样。变量+ this +（在发出事件时显示为+ from +）是+ caller +的地址，即使它是通过pass：[被<span class="keep-together"><code>calledLibrary</code></span> ]内部访问的。
+这次， +msg.sender+ 不是 +caller+ 的地址。相反，它是我们帐户的地址，并且与交易来源相同。这是因为当你调用库时，该调用始终为 +delegatecall+ ，并且在调用者的上下文中运行。因此，当 +calledLibrary+ 代码运行时，它继承了 +caller+ 的执行上下文，就像其代码在 +caller+ 内部运行一样。变量 +this+ （在发出事件时显示为 +from+ ）是 +caller+ 的地址，即使它是通过被 pass:[<span class="keep-together"><code>calledLibrary</code></span> ]内部访问的。
 
-接下来的两个调用，使用低级+ call +和+ delegatecall +，验证了我们的期望，并发出了反映我们的真实情况的事件(((range="endofrange", startref="ix_07smart-contracts-solidity-asciidoc23"))) saw(((range="endofrange", startref="ix_07smart-contracts-solidity-asciidoc22")))(((range="endofrange", startref="ix_07smart-contracts-solidity-asciidoc21"))).(((range="endofrange", startref="ix_07smart-contracts-solidity-asciidoc10")))
+接下来的两个调用，使用低级 +call+ 和 +delegatecall+ ，验证了我们的期望，并发出了反映我们的真实情况的事件(((range="endofrange", startref="ix_07smart-contracts-solidity-asciidoc23"))) saw(((range="endofrange", startref="ix_07smart-contracts-solidity-asciidoc22")))(((range="endofrange", startref="ix_07smart-contracts-solidity-asciidoc21"))).(((range="endofrange", startref="ix_07smart-contracts-solidity-asciidoc10")))
 
 [[gas_sec]]
 === 燃料注意事项
@@ -981,7 +981,7 @@ var contract = web3.eth.contract(abi).at(address);
 var gasEstimate = contract.myAweSomeMethod.estimateGas(arg1, arg2,
     {from: account});
 
-+ gasEstimate +会告诉你执行它所需的燃料单位数量。由于EVM的图灵完备性，因此是一个估计值-创建一个函数将花费很少的精力来执行不同的调用，这相对微不足道。甚至生产代码也可以以微妙的方式更改执行路径，从而导致从一次调用到下一次调用的燃料成本差异极大。但是，大多数功能都是可估计的，并且+ estimateGas +在大多数情况下会给出良好的估计。
++gasEstimate+ 会告诉你执行它所需的燃料单位数量。由于EVM的图灵完备性，因此是一个估计值-创建一个函数将花费很少的精力来执行不同的调用，这相对微不足道。甚至生产代码也可以以微妙的方式更改执行路径，从而导致从一次调用到下一次调用的燃料成本差异极大。但是，大多数功能都是可估计的，并且 +estimateGas+ 在大多数情况下会给出良好的估计。
 
 要从网络获取燃料价格，你可以使用：
 
@@ -993,7 +993,7 @@ var gasPrice = web3.eth.getGasPrice();
 [source, javascript]
 var gasCostInEther = web3.utils.fromWei((gasEstimate * gasPrice), 'ether');
 
-让我们使用来自本书的资源库 http://bit.ly/2zf0SIO[from the book's repository] 的代码，将燃料估算函数应用于+ Faucet +示例的燃料成本估算。
+让我们使用来自本书的资源库 http://bit.ly/2zf0SIO[from the book's repository] 的代码，将燃料估算函数应用于 +Faucet+ 示例的燃料成本估算。
 
 在开发模式下启动Truffle并在<<estimateGas_function>>中执行JavaScript文件; _gas_estimates.js_。
 

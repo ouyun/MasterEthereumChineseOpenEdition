@@ -1,4 +1,4 @@
-= 精通以太坊
+= 《精通以太坊》开放版
 :author: Andreas M. Antonopoulos, Gavin Wood
 :doctype: book
 :toc:

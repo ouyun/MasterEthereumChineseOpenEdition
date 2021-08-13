@@ -7,7 +7,7 @@
 
 ((("Yellow Paper specification")))以太坊的正式规范定义在“ 黄皮书”中（请参见 <<references>>）。
 
-((("Bitcoin","Ethereum definition compared to")))这与比特币的情况不同，后者没有以任何正式的方式进行定义。比特币的“规范”是在实现比特币核心的情况下进行的参考总结，而以太坊的规范则是记录在结合了文字语言和数学语言（正式）规范的论文中。除了各种以太坊改进提案之外，此正式规范还定义了以太坊客户端的标准行为：[ <span class="keep-together"> 客户端</span> ]。随着重大变更的通过，《黄皮书》会定期更新：[ <span class="keep-together">以太坊</span> ]。
+((("Bitcoin","Ethereum definition compared to")))这与比特币的情况不同，后者没有以任何正式的方式进行定义。比特币的“规范”是在实现比特币核心的情况下进行的参考总结，而以太坊的规范则是记录在结合了文字语言和数学语言（正式）规范的论文中。除了各种以太坊改进提案之外，此正式规范还定义了以太坊客户端的标准行为： pass:[ <span class="keep-together"> 客户端</span> ]。随着重大变更的通过，《黄皮书》会定期更新： pass:[ <span class="keep-together">以太坊</span> ]。
 
 以太坊明确正式规范的好处是，以太坊客户端可以有许多独立开发但可互操作的软件。以太坊在网络上运行的实现多样性比其他任何区块链都要多，这通常被认为是一件好事。实际上，这已被证明是抵御网络攻击的绝佳方法，因为针对特定客户端的攻击只会对这一软件的开发人员感到困扰，而当他们修补漏洞时，其他客户端则正常运行，使得整个网络运行几乎不受影响 。
 
@@ -21,7 +21,7 @@
 
 * Parity，用Rust语言编写
 * Geth，用Go语言编写
-* +cpp-ethereum+，用Cpass:[++]语言编写
+* +cpp-ethereum+ ，用Cpass:[++]语言编写
 * +pyethereum+，用Python语言编写
 * Mantis，用Scala语言编写
 * Harmony，用Java语言编写
@@ -37,7 +37,7 @@
 
 在进行以太坊应用开发时无需在实时_主网_上运行的完整节点。你可以通过_测试网_节点（将连接到较小的公共测试区块链之一），本地专用区块链（如Ganache）或由服务提供商（如Infura）提供的基于云的以太坊客户端来完成几乎所有开发需要做的事情。
 
-你还可以选择运行远程客户端，该客户端不存储区块链的本地副本或不验证区块和交易。这些客户端提供了钱包的功能，并且可以创建和广播交易。远程客户端可用于连接到现有网络，例如你自己的完整节点，公共区块链，公共或许可（权限证明）测试网或私有本地区块链。实际上，你可能会使用远程客户端（例如MetaMask，Emerald Wallet，pass：[ <span class="keep-together">MyEtherWallet</span> ]或MyCrypto）作为在所有不同节点选项之间进行切换的便捷方法。
+你还可以选择运行远程客户端，该客户端不存储区块链的本地副本或不验证区块和交易。这些客户端提供了钱包的功能，并且可以创建和广播交易。远程客户端可用于连接到现有网络，例如你自己的完整节点，公共区块链，公共或许可（权限证明）测试网或私有本地区块链。实际上，你可能会使用远程客户端（例如MetaMask，Emerald Wallet，pass:[ <span class="keep-together">MyEtherWallet</span> ]或MyCrypto）作为在所有不同节点选项之间进行切换的便捷方法。
 
 ((("remote clients","wallet compared to")))((("wallets","remote clients compared to")))术语”远程客户端“和”钱包“可以互换使用，尽管有一些差异。通常，除了钱包的交易功能外，远程客户端还提供API（例如web3.js API）。
 
@@ -150,7 +150,7 @@ Parity的代码在编写时，所消耗的系统资源较少，因此，如果�
 
 ((("clients, Ethereum","software requirements for building/running", id="ix_03clients-asciidoc6", range="startofrange")))本节介绍了Parity和Geth客户端软件。它还假定你使用的是类似Unix的命令行环境。这些示例显示了在运行bash shell（命令行执行环境）的Ubuntu GNU / Linux操作系统上显示的命令和输出。
 
-通常，每个区块链都有其自己的Geth版本，而Parity则通过相同的客户端支持多个基于以太坊的区块链（以太坊，以太坊经典，密码：[ <span class="keep-together">Ellaism</span> ]，Expanse，Musicoin）。
+通常，每个区块链都有其自己的Geth版本，而Parity则通过相同的客户端支持多个基于以太坊的区块链（以太坊，以太坊经典， pass:[ <span class="keep-together">Ellaism</span> ]，Expanse，Musicoin）。
 
 [TIP]
 =====
@@ -177,7 +177,7 @@ Parity的代码在编写时，所消耗的系统资源较少，因此，如果�
 Parity 需要Rust版本1.27或更高版本。
 =====
 
-((("Parity","libraries for")))Parity还需要一些软件库，例如OpenSSL和 +libudev+。要将它们安装在与Ubuntu或Debian GNU / Linux兼容的系统上，请使用以下命令：[ <span class="keep-together">command</span> ]：
+((("Parity","libraries for")))Parity还需要一些软件库，例如OpenSSL和 +libudev+。要将它们安装在与Ubuntu或Debian GNU / Linux兼容的系统上，请使用以下 pass:[ <span class="keep-together">command</span> ]：
 
 ++++
 <pre data-type="programlisting">
@@ -187,7 +187,7 @@ $ <strong>sudo apt-get install openssl libssl-dev libudev-dev cmake clang</stron
 
 对于其他操作系统，请你使用该操作系统的软件包管理器，或按照 https://github.com/paritytech/parity/wiki/Setup[Wiki instructions] 来安装所需的软件库。
 
-现在，你已经安装了 +git+，+golang+, Rust，和必需的软件库，让我们开始操作吧！
+现在，你已经安装了 +git+ ，+golang+ , Rust，和必需的软件库，让我们开始操作吧！
 
 [[parity]]
 ==== Parity
@@ -422,7 +422,7 @@ $ <strong>curl -X POST -H "Content-Type: application/json" --data \
 </pre>
 ++++
 
-在此示例中，我们使用 +curl+ 建立与地址 _http://localhost:8545_ 的HTTP连接。我们已经在运行 +geth+，它在端口8545上提供JSON-RPC API作为HTTP服务。我们指示 +curl+ 使用HTTP +POST+ 命令，并将内容标识为+application / json+ 类型。最后，我们将JSON编码的请求作为HTTP请求的 +data+ 组件传递。我们大多数命令行只是设置 +curl+ 来正确建立HTTP连接。有趣的部分是我们发出的实际JSON-RPC命令：
+在此示例中，我们使用 +curl+ 建立与地址 _http://localhost:8545_ 的HTTP连接。我们已经在运行 +geth+ ，它在端口8545上提供JSON-RPC API作为HTTP服务。我们指示 +curl+ 使用HTTP +POST+ 命令，并将内容标识为 +application/json+ 类型。最后，我们将JSON编码的请求作为HTTP请求的 +data+ 组件传递。我们大多数命令行只是设置 +curl+ 来正确建立HTTP连接。有趣的部分是我们发出的实际JSON-RPC命令：
 
 [[JSON_RPC_command]]
 ----
@@ -441,7 +441,7 @@ JSON-RPC请求的格式根据https://www.jsonrpc.org/specification[JSON-RPC 2.0�
 
 [TIP]
 ====
-((("batching"))) +id+ 参数主要用于在单个JSON-RPC调用中发出多个请求的情况，这种做法称为_batching_。批处理用于避免每个请求的新HTTP和TCP连接的开销。例如，在以太坊上下文中，如果我们想通过一个HTTP连接检索成千上万的交易，则将使用批处理。批处理时，你为每个请求设置一个不同的 +id+，然后将其与来自JSON-RPC服务器的每个响应中的 +id+ 相匹配。实现此目的最简单的方法是维护一个计数器并为每个请求增加值。
+((("batching"))) +id+ 参数主要用于在单个JSON-RPC调用中发出多个请求的情况，这种做法称为_batching_。批处理用于避免每个请求的新HTTP和TCP连接的开销。例如，在以太坊上下文中，如果我们想通过一个HTTP连接检索成千上万的交易，则将使用批处理。批处理时，你为每个请求设置一个不同的 +id+ ，然后将其与来自JSON-RPC服务器的每个响应中的 +id+ 相匹配。实现此目的最简单的方法是维护一个计数器并为每个请求增加值。
 ====
 
 
