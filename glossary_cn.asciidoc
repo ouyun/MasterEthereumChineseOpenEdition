@@ -1,5 +1,5 @@
-[前言]
-==简明词汇目录
+[preface]
+== 简明词汇目录
 
 这个简明词汇表包含了许多与以太坊相关的术语。这些术语在整本书中都会使用，因此请将其添加为书签以供快速参考。
 
@@ -15,7 +15,7 @@
 大端序，或称大尾序， Big-endian::
 ((("big-endian, defined"))) 一种字节顺序表示形式，其中最高有效数字在第一位。而小端序 little-endian 则相反，最低有效数字在第一位。
 
-BIP ::
+BIPs::
 ((("比特币改进建议的 (BIPs)"))) 比特币改进建议的缩写。比特币社区的成员提交了一套改进比特币的提案。例如，BIP-21是一项改进比特币统一资源标识符（URI）方案的提议。
 
 区块，Block::
@@ -51,7 +51,7 @@ BIP ::
 DAO::
 ((("DAO (Decentralized Autonomous Organization)","defined"))) 分散的自治组织。没有分级管理的公司或其他组织。也可以参考2016年4月30日发布的名为“ The DAO”的合同，该合同随后于2016年6月被黑客入侵；这最终在区块＃1,192,000中激发了一个硬分叉（代号DAO），这推翻了被黑的DAO合同，并导致以太坊和以太坊经典分成两个竞争系统。
 
-DApp ::
+DApp::
 ((("DApps (decentralized applications)","defined"))分布式应用程序，也称为去中心化应用。它至少由一个智能合约和一个Web用户界面构成。更广泛地说，DApp是一个Web应用程序，它建立在开放的，分布式的，点对点基础架构服务之上。另外，许多DApp会包括分布式存储和消息协议平台。
 
 契据，Deed::
@@ -63,7 +63,7 @@ DApp ::
 数字签名，Digital signature::
 ((("digital signatures","defined"))) 用户使用私钥为文档生成的一小段数据，以便具有相应公钥，签名和文档的任何人都可以验证（1）该文档由该特定私钥的所有者“签名”，并且（2）该文档在签名后未更改。
 
-ECDSA ::
+ECDSA::
 ((("Elliptic Curve Digital Signature Algorithm (ECDSA)","defined")))椭圆曲线数字签名算法。以太坊使用的一种加密算法，以确保资金只能由其所有者使用。
 
 EIP::
@@ -189,7 +189,6 @@ LevelDB::
 
 信息调用，Message call::
 ((("message call")))将消息从一个帐户传递到另一个帐户的行为。如果目标帐户与EVM代码相关联，则将以该对象的状态启动VM，并执行该消息。
-upon.
 
 METoken::
 ((("METoken (Mastering Ethereum Token)","defined")))精通以太坊通证。本书中用于演示的ERC20通证。
@@ -243,7 +242,7 @@ Parity::
 激励，Reward::
 ((("reward, defined")))在每个新区块中生成的以太币数量，作为网络对完成工作量证明的矿工的奖励。
 
-RLP ::
+RLP::
 ((("Recursive Length Prefix (RLP)")))((("RLP (Recursive Length Prefix)")))递归长度前缀。以太坊开发人员设计的一种编码标准，用于对任意复杂度和长度的对象（数据结构）进行编码和序列化。
 
 中本聪，Satoshi Nakamoto::
@@ -258,7 +257,7 @@ RLP ::
 Serpent::
 ((("Serpent")))一种过程（命令式）智能合约编程语言，其语法类似于Python。
 
-SHA ::
+SHA::
 ((("SHA (Secure Hash Algorithm)")))安全哈希算法的缩写。美国国家标准技术研究院（NIST）发布的一系列加密哈希函数。
 
 单体，Singleton::
@@ -298,7 +297,7 @@ Truffle::
 ((("Turing completeness","defined"))) 以英国数学家和计算机科学家艾伦 图灵 Alan Turing命名的概念：一个可以按一定规则进行数据处理（例如计算机的指令集，编程语言或细胞自动机）的系统，如果可以用来模拟任何图灵机，则称其为“图灵完备”或“通用计算”。
 
 维塔里克·布特林，Vitalik Buterin::
-((("Buterin, Vitalik"))) 俄罗斯裔加拿大程序员和作家，被称为以太坊和_Bitcoin Magazine_的共同创始人。
+((("Buterin, Vitalik"))) 俄罗斯裔加拿大程序员和作家，被称为以太坊和  _Bitcoin Magazine_ 的共同创始人。
 
 Vyper::
 ((("Vyper","defined")))一种高级编程语言，类似于Serpent，具有类似Python的语法。旨在更接近纯功能语言。由Vitalik Buterin创建。
@@ -306,7 +305,7 @@ Vyper::
 钱包 Wallet::
 ((("wallets","defined"))) 一种帮助用户持有密钥的软件。用于访问和控制以太坊账户并与智能合约进行交互。密钥不必存储在钱包中，而是可以从脱机存储（例如存储卡或纸质）中检索以提高安全性。尽管名称如此，钱包从不存储实际的硬币或代币。
 
-Web3 ::
+Web3::
 ((("web3", seealso="DApps"))) 互联网网络的第三个版本。 Web3由Gavin Wood博士首先提出，代表了互联网应用程序的新视野和新焦点：从集中拥有和管理的应用程序，到基于分布式协议构建的应用程序。
 
 维，也译为微， Wei::
