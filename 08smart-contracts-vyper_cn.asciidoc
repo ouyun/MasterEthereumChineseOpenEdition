@@ -116,15 +116,15 @@ function f(uint _in, bytes32 _key) public pure returns (uint out) {
 }
 ----
 
-第一个函数（名为+f+）接受+uint+类型的输入参数。第二个函数（也称为+f+）接受两个参数，一个为+uint+类型，一个为+bytes32+类型。具有相同名称且使用不同参数的多个函数定义可能会造成混淆，因此Vyper不支持函数重载。
+第一个函数（名为 +f+ ）接受 +uint+ 类型的输入参数。第二个函数（也称为 +f+ ）接受两个参数，一个为 +uint+ 类型，一个为 +bytes32+ 类型。具有相同名称且使用不同参数的多个函数定义可能会造成混淆，因此Vyper不支持函数重载。
 
 ==== 变量类型转换
 
 ((("Solidity","variable typecasting")))((("typecasting")))((("Vyper","variable typecasting")))有两种类型的类型转换：_implicit_和_explicit_
 
-((("implicit typecasting"))) 隐式类型转换通常在编译时执行。例如，如果类型转换在语义上是合理的，并且可能不会丢失任何信息，则编译器可以执行隐式转换，例如将类型+uint8+的变量转换为+uint16+。 Vyper的最早版本允许变量的隐式类型转换，但最新版本不允许。
+((("implicit typecasting"))) 隐式类型转换通常在编译时执行。例如，如果类型转换在语义上是合理的，并且可能不会丢失任何信息，则编译器可以执行隐式转换，例如将类型 +uint8+ 的变量转换为 +uint16+ 。 Vyper的最早版本允许变量的隐式类型转换，但最新版本不允许。
 
-((("explicit typecasting")))显示类型转换可以在Solidity中使用。不幸的是，它们可能导致意外行为。例如，将 +uint32+ 转换为较小的类型+uint16+只会删除高阶位，如此处所示：
+((("explicit typecasting")))显示类型转换可以在Solidity中使用。不幸的是，它们可能导致意外行为。例如，将 +uint32+ 转换为较小的类型 +uint16+ 只会删除高阶位，如此处所示：
 
 [source,javascript]
 ----
@@ -133,7 +133,7 @@ uint16 b = uint16(a);
 // Variable b is 0x5678 now
 ----
 
-((("convert function (Vyper)"))) Vyper具有+convert+函数来执行显式强制转换。转换函数如下（位于http://bit.ly/2P36ZKT[_convert.py_] 的第82行）：
+((("convert function (Vyper)"))) Vyper具有 +convert+ 函数来执行显式强制转换。转换函数如下（位于http://bit.ly/2P36ZKT[_convert.py_] 的第82行）：
 
 [source,python]
 ----
@@ -145,7 +145,7 @@ def convert(expr, context):
         raise Exception("Conversion to {} is invalid.".format(output_type))
 ----
 
-注意使用+conversion_table+（位于同一文件的第90行），如下所示：
+注意使用 +conversion_table+ （位于同一文件的第90行），如下所示：
 
 [source,python]
 ----
@@ -157,7 +157,7 @@ conversion_table = {
 }
 ----
 
-当开发人员调用+convert+时，它将引用+conversion_table+，以确保执行适当的转换。例如，如果开发人员将+int128+传递给+convert+函数，则将执行同一（_convert.py_）文件的第26行的+to_int128+函数。 +to_int128+函数如下：
+当开发人员调用 +convert+ 时，它将引用 +conversion_table+ ，以确保执行适当的转换。例如，如果开发人员将 +int128+ 传递给 +convert+ 函数，则将执行同一（_convert.py_）文件的第26行的 +to_int128+ 函数。 +to_int128+ 函数如下：
 
 [source,python]
 ----
@@ -255,7 +255,7 @@ contract ordering {
 }
 ----
 
-在此示例中，名为 +topFunction+ 的函数正在调用另一个函数+lowerFunction+。 +topFunction+ 还为名为 +initiatizedBelowTopFunction+ 的变量分配了一个值。如你所见，Solidity不需要在执行代码调用之前在物理上声明这些函数和变量。这是有效Solidity代码并将成功编译。
+在此示例中，名为 +topFunction+ 的函数正在调用另一个函数 +lowerFunction+ 。 +topFunction+ 还为名为 +initiatizedBelowTopFunction+ 的变量分配了一个值。如你所见，Solidity不需要在执行代码调用之前在物理上声明这些函数和变量。这是有效Solidity代码并将成功编译。
 
 Vyper的排序要求不是什么新鲜事物。实际上，这些排序要求一直存在于Python编程中。 Vyper要求的排序很简单且合乎逻辑，如下面的下一个示例所示：
 
@@ -310,7 +310,7 @@ vyper -f json ~/hello_world.v.py
 [[protecting_against_overflows_sec]]
 === 在编译器级别防止溢出错误
 
-((("compiling","protecting against overflow errors at the compiler level")))((("overflow","protecting against")))((("Vyper","overflow protection"))) 软件中的溢出错误在处理真实价值时，可能会带来灾难性的后果。例如，一个 http://bit.ly/2yHfvoF[transaction from mid-April 2018] 自2018年4月中旬开始的交易显示通过：[<span class="keep-together">恶意转移了超过57,896,044,618,658,100,000,000,000,000,000,000,000,000，</span> ] 000,000,000,000,000,000 BEC通证。此交易是BeautyChain的ERC20通证合约（_BecToken.sol_）中整数溢出问题的结果。 Solidity开发人员确实可以访问安全数学库 http://bit.ly/2ABhb4l[+SafeMath+] 之类的库以及以太坊智能合约安全分析工具，例如http://bit.ly/2CQRoGU[Mythril OSS]。但是，开发人员没有被迫使用安全工具。简而言之，如果语言没有强制执行安全性检查，则开发人员可以编写有漏洞的代码，这些代码将成功编译并随后“成功”执行。
+((("compiling","protecting against overflow errors at the compiler level")))((("overflow","protecting against")))((("Vyper","overflow protection"))) 软件中的溢出错误在处理真实价值时，可能会带来灾难性的后果。例如，一个 http://bit.ly/2yHfvoF[transaction from mid-April 2018] 自2018年4月中旬开始的交易显示通过： pass:[<span class="keep-together">恶意转移了超过57,896,044,618,658,100,000,000,000,000,000,000,000,000，</span> ] 000,000,000,000,000,000 BEC通证。此交易是BeautyChain的ERC20通证合约（_BecToken.sol_）中整数溢出问题的结果。 Solidity开发人员确实可以访问安全数学库 http://bit.ly/2ABhb4l[ +SafeMath+ ] 之类的库以及以太坊智能合约安全分析工具，例如http://bit.ly/2CQRoGU[Mythril OSS]。但是，开发人员没有被迫使用安全工具。简而言之，如果语言没有强制执行安全性检查，则开发人员可以编写有漏洞的代码，这些代码将成功编译并随后“成功”执行。
 
 Vyper具有内置的溢出保护，以两种方式实现。首先，Vyper提供了http://bit.ly/2PuDfpB[a +SafeMath+ equivalent] 安全数学的等效项，其中包括整数算术必需的异常情况。其次，每当加载文字常量，将值传递给函数或分配变量时，Vyper都会使用钳位Clamps。钳位是通过低级类似Lisp的语言（LLL）编译器中的自定义函数实现的，不能禁用。 （Vyper编译器输出LLL而不是EVM字节码；这简化了Vyper本身的开发。）
 

@@ -143,15 +143,15 @@ http://bit.ly/2CUf7WG[The ERC20 standard]  ERC20标准为实现通证的合约�
 
 +transfer+:: 给定一个地址和数量，从执行转移的地址余额中将该数量的通证转移到该地址。
 
-+transferFrom+:: 给定发件人，收件人和金额，将通证从一个帐户转移到另一个帐户。与+ approve +结合使用。
++transferFrom+:: 给定发件人，收件人和金额，将通证从一个帐户转移到另一个帐户。与 +approve+ 结合使用。
 
 +approve+:: 给定收件人的地址和金额，授权该地址从发出批准的帐户中执行不超过该金额的多次转帐。
 
 +allowance+:: 给定所有者地址和支出者地址，返回允许支出者从所有者中支取的剩余金额。
 
-+Transfer+:: 事件在成功转移（调用+ transfer +或+ transferFrom +）后触发（即使是零价值的转移）。
++Transfer+:: 事件在成功转移（调用 +transfer+ 或 +transferFrom+ ）后触发（即使是零价值的转移）。
 
-+Approval+:: 成功调用+ approve +后记录的事件。
++Approval+:: 成功调用 +approve+ 后记录的事件。
 
 [[ERC20_optional_func]]
 ===== ERC20可选函数功能
@@ -162,7 +162,7 @@ http://bit.ly/2CUf7WG[The ERC20 standard]  ERC20标准为实现通证的合约�
 
 +symbol+:: 返回通证的人为可读符号（例如“ USD”）。
 
-+decimals+:: 返回用于划分通证数量的小数位数。例如，如果+ decimals +为+2+，则通证数量除以100，以获得其用户表示：[<span class="keep-together">表示形式</span>]。
++decimals+:: 返回用于划分通证数量的小数位数。例如，如果 +decimals+ 为 +2+ ，则通证数量除以100，以获得其用户 pass:[<span class="keep-together">表示形式</span>]。
 
 [[ERC20_interface]]
 ===== Solidity中定义的ERC20接口
@@ -215,11 +215,11 @@ mapping (address => mapping (address => uint256)) public allowed;
 
 ERC20允许两个不同的工作流程。第一个是使用+ transfer +功能的单一交易，简单的工作流程。钱包使用此工作流将通证发送到其他钱包。绝大多数通证交易都是通过+ transfer +工作流程进行的。
 
-执行转让合约非常简单。如果爱丽丝想向鲍勃发送10个通证，则她的钱包将交易发送到通证合约的地址，并以鲍勃的地址和+10+作为参数调用pass：[ <span class="keep-together"><code>transfer</code></span> ]函数。通证合约调整Alice的余额（–10）和Bob的余额（pass：[+ 10]）并发出+ Transfer +事件。
+执行转让合约非常简单。如果爱丽丝想向鲍勃发送10个通证，则她的钱包将交易发送到通证合约的地址，并以鲍勃的地址和 +10+ 作为参数调用 pass:[ <span class="keep-together"><code>transfer</code></span> ]函数。通证合约调整Alice的余额（–10）和Bob的余额（pass：[+ 10]）并发出 +Transfer+ 事件。
 
-((("approve & transferFrom workflow"))) 第二个工作流程是使用+ approve +后跟+ transferFrom +的双向交易工作流程。该工作流程允许通证所有者将其控制权委托给另一个地址。它最常用于将控制权委派给分配通证的合约，但也可以由交易所使用。
+((("approve & transferFrom workflow"))) 第二个工作流程是使用 +approve+ 后跟 +transferFrom+ 的双向交易工作流程。该工作流程允许通证所有者将其控制权委托给另一个地址。它最常用于将控制权委派给分配通证的合约，但也可以由交易所使用。
 
-((("Initial Coin Offerings (ICOs)","tokens and"))) 例如，如果公司正在出售ICO通证，则他们可以+批准+众筹合约地址以分发一定数量的通证。然后，众筹通证可以将通证合约所有者的余额从+转移到+通证的每个购买者，如<<approve_transferFrom_workflow>>所示。
+((("Initial Coin Offerings (ICOs)","tokens and"))) 例如，如果公司正在出售ICO通证，则他们可以 +批准+ 众筹合约地址以分发一定数量的通证。然后，众筹通证可以将通证合约所有者的余额从 +转移到+ 通证的每个购买者，如<<approve_transferFrom_workflow>>所示。
 
 [NOTE]
 ====
@@ -230,9 +230,9 @@ ERC20允许两个不同的工作流程。第一个是使用+ transfer +功能的
 .ERC20通证从批准到转移的两步工作流程
 image::images/approve_transferFrom_workflow.png["The two-step approve &amp; transferFrom workflow of ERC20 tokens"]
 
-为了完成 +approve+ 和 +transferFrom+ 的工作流程，需要两个交易。假设Alice希望允许 +AliceICO+ 合约将所有AliceCoin代币的50％出售给Bob和Charlie这样的买家。首先，爱丽丝部署 +AliceCoin+ ERC20合约，将所有AliceCoin发行到自己的地址。然后，爱丽丝启动+AliceICO+ 合约，可以出售通证来换去以太币。接下来，爱丽丝启动 +approve+ 和 +transferFrom+ 工作流程。她向+AliceCoin+ 合约发送了一笔交易，并以 +AliceICO+ 合约的地址和 +totalSupply+ 的50％作为参数调用 +approve+。这将触发 +Approval+ 事件。现在，+AliceICO+ 合约可以出售AliceCoin。
+为了完成 +approve+ 和 +transferFrom+ 的工作流程，需要两个交易。假设Alice希望允许 +AliceICO+ 合约将所有AliceCoin代币的50％出售给Bob和Charlie这样的买家。首先，爱丽丝部署 +AliceCoin+ ERC20合约，将所有AliceCoin发行到自己的地址。然后，爱丽丝启动+AliceICO+ 合约，可以出售通证来换去以太币。接下来，爱丽丝启动 +approve+ 和 +transferFrom+ 工作流程。她向 +AliceCoin+ 合约发送了一笔交易，并以 +AliceICO+ 合约的地址和 +totalSupply+ 的50％作为参数调用 +approve+。这将触发 +Approval+ 事件。现在， +AliceICO+ 合约可以出售AliceCoin。
 
-当+ AliceICO +合约从Bob收到以太币时，它需要向Bob发送一些AliceCoin作为回报。 + AliceICO +合约中包含AliceCoin与以太币之间的汇率。爱丽丝在创建+ AliceICO +合约时设置的汇率决定了Bob对于发送给+ AliceICO +合约的以太币数量将获得多少通证。当+ AliceICO +合约调用AliceCoin + transferFrom +函数时，它将Alice的地址设置为发送方，将Bob的地址设置为接收方，并使用汇率确定在+ value +字段中将多少个AliceCoin通证传输给Bob。 + AliceCoin +合约将余额从Alice的地址转移到Bob的地址，并触发+ Transfer +事件。 + AliceICO +合约可以无限次致电+ transferFrom +，只要不超过Alice设置的批准上限即可。 + AliceICO +合约可以通过调用+ allowance +函数来跟踪可以卖出多少个AliceCoin通证。(((range="endofrange", startref="ix_10tokens-asciidoc8")))(((range="endofrange", startref="ix_10tokens-asciidoc7")))
+当 +AliceICO+ 合约从Bob收到以太币时，它需要向Bob发送一些AliceCoin作为回报。 +AliceICO+ 合约中包含AliceCoin与以太币之间的汇率。爱丽丝在创建 +AliceICO+ 合约时设置的汇率决定了Bob对于发送给 +AliceICO+ 合约的以太币数量将获得多少通证。当 +AliceICO+ 合约调用AliceCoin +transferFrom+ 函数时，它将Alice的地址设置为发送方，将Bob的地址设置为接收方，并使用汇率确定在 +value+ 字段中将多少个AliceCoin通证传输给Bob。  +AliceCoin+ 合约将余额从Alice的地址转移到Bob的地址，并触发 +Transfer+ 事件。 +AliceICO+ 合约可以无限次致电 +transferFrom+ ，只要不超过Alice设置的批准上限即可。 +AliceICO+ 合约可以通过调用 +allowance+ 函数来跟踪可以卖出多少个AliceCoin通证。(((range="endofrange", startref="ix_10tokens-asciidoc8")))(((range="endofrange", startref="ix_10tokens-asciidoc7")))
 
 [[ERC20_implementation]]
 ===== ERC20的实现
@@ -246,7 +246,7 @@ https://bit.ly/2xPYck6[OpenZeppelin StandardToken] ：：此实现与ERC20兼容
 [[METoken_example]]
 ==== 发行我们自己的ERC20通证
 
-((("ERC20 token standard","METoken creation/launch example", id="ix_10tokens-asciidoc9", range="startofrange")))((("METoken (Mastering Ethereum Token)","creation/launch example", id="ix_10tokens-asciidoc10", range="startofrange"))) 让我们试着创建并启动我们自己的通证。对于此示例，我们将使用Truffle框架。该示例假定你已经安装了+ truffle +并对其进行了配置，并且熟悉其基本操作（有关详细信息，请参见<<truffle>>）。
+((("ERC20 token standard","METoken creation/launch example", id="ix_10tokens-asciidoc9", range="startofrange")))((("METoken (Mastering Ethereum Token)","creation/launch example", id="ix_10tokens-asciidoc10", range="startofrange"))) 让我们试着创建并启动我们自己的通证。对于此示例，我们将使用Truffle框架。该示例假定你已经安装了 +truffle+ 并对其进行了配置，并且熟悉其基本操作（有关详细信息，请参见<<truffle>>）。
 
 我们将我们的通证称为“ Mastering Ethereum Token”，其代号为“ MET”。
 
@@ -332,9 +332,9 @@ include::code/truffle/METoken/contracts/METoken.sol[]
 ----
 ====
 
-在这里，我们定义了可选变量+ name +，+ symbol +和+ decimals +。我们还定义了一个+ _initial_supply +变量，设置为2100万个通证；再加上小数点后两位小数，得出的总单位数为21亿。在合约的初始化（构造函数）函数中，我们将+ totalSupply +设置为等于+ _initial_supply +，并将所有+ _initial_supply +分配给创建+ METoken +合约的账户余额（+ msg.sender +）。
+在这里，我们定义了可选变量 +name+ ， +symbol+ 和 +decimals+ 。我们还定义了一个 +_initial_supply+ 变量，设置为2100万个通证；再加上小数点后两位小数，得出的总单位数为21亿。在合约的初始化（构造函数）函数中，我们将 +totalSupply+ 设置为等于 +_initial_supply+ ，并将所有 +_initial_supply+ 分配给创建 +METoken+ 合约的账户余额（ +msg.sender+ ）。
 
-现在，我们使用+ truffle +来编译+ METoken +代码：
+现在，我们使用 +truffle+ 来编译 +METoken+ 代码：
 
 ++++
 <pre data-type="programlist">
@@ -349,9 +349,9 @@ Compiling openzeppelin-solidity/contracts/token/ERC20/StandardToken.sol...
 </pre>
 ++++
 
-如你所见，+ truffle +包含来自OpenZeppelin库的必要依赖项，并且也可以编译这些合约。
+如你所见， +truffle+ 包含来自OpenZeppelin库的必要依赖项，并且也可以编译这些合约。
 
-让我们设置一个迁移脚本来部署+ METoken +合约。在_METoken/migrations_文件夹中创建一个名为__2_deploy_contracts.js__的新文件。从 http://bit.ly/2P0rHLl[in the GitHub repository] GitHub存储库中复制示例的内容：
+让我们设置一个迁移脚本来部署 +METoken+ 合约。在_METoken/migrations_文件夹中创建一个名为__2_deploy_contracts.js__的新文件。从 http://bit.ly/2P0rHLl[in the GitHub repository] GitHub存储库中复制示例的内容：
 
 
 [[METoken_migration]]
@@ -361,9 +361,9 @@ Compiling openzeppelin-solidity/contracts/token/ERC20/StandardToken.sol...
 include::code/truffle/METoken/migrations/2_deploy_contracts.js[]
 ----
 
-在我们部署到以太坊测试网络上之前，让我们启动一个本地区块链来测试所有内容。从+ ganache-cli +命令行或图形用户界面启动+ ganache +区块链。
+在我们部署到以太坊测试网络上之前，让我们启动一个本地区块链来测试所有内容。从 +ganache-cli+ 命令行或图形用户界面启动 +ganache+ 区块链。
 
-+ ganache +启动后，我们可以部署+ METoken +合约，看看一切是否按预期进行：
++ganache+ 启动后，我们可以部署 +METoken+ 合约，看看一切是否按预期进行：
 
 ++++
 <pre data-type="programlist">
@@ -387,7 +387,7 @@ Saving artifacts...
 </pre>
 ++++
 
-在+ ganache +控制台上，我们应该看到我们的部署已经创建了四个新的交易，如<<ganache_METoken>>。
+在 +ganache+ 控制台上，我们应该看到我们的部署已经创建了四个新的交易，如<<ganache_METoken>>。
 
 [[ganache_METoken]]
 .METoken在Ganache上的部署
@@ -396,7 +396,7 @@ image::images/ganache_metoken.png["METoken deployment on Ganache"]
 [[truffle_console]]
 ===== 通过Truffle控制台使用METoken
 
-((("METoken (Mastering Ethereum Token)","interacting with via Truffle console", id="ix_10tokens-asciidoc11", range="startofrange")))((("Truffle","interacting with METoken via Truffle console", id="ix_10tokens-asciidoc12", range="startofrange"))) 我们可以使用Truffle控制台与+ ganache +区块链上的合约进行交互。这是一个交互式JavaScript环境，可通过Web3访问Truffle环境和区块链。在这种情况下，我们会将Truffle控制台连接到+ ganache +区块链：
+((("METoken (Mastering Ethereum Token)","interacting with via Truffle console", id="ix_10tokens-asciidoc11", range="startofrange")))((("Truffle","interacting with METoken via Truffle console", id="ix_10tokens-asciidoc12", range="startofrange"))) 我们可以使用Truffle控制台与 +ganache+ 区块链上的合约进行交互。这是一个交互式JavaScript环境，可通过Web3访问Truffle环境和区块链。在这种情况下，我们会将Truffle控制台连接到 +ganache+ 区块链：
 
 ++++
 <pre data-type="programlist">
@@ -405,7 +405,7 @@ truffle(ganache)&gt;
 </pre>
 ++++
 
-+truffle(ganache)>+ 提示符表明我们已连接到+ ganache +区块链，并准备键入命令。 Truffle控制台支持所有+ truffle +命令，因此我们可以从控制台+ compile +和+ migrate +。我们已经运行了这些命令，因此让我们直接进入合约本身。 + METoken +合约作为Truffle环境中的JavaScript对象存在。在提示符下输入++ ** METoken ** ++，它将转储整个合约定义：
++truffle(ganache)>+ 提示符表明我们已连接到 +ganache+ 区块链，并准备键入命令。Truffle控制台支持所有 +truffle+ 命令，因此我们可以从控制台 +compile+ 和 +migrate+ 。我们已经运行了这些命令，因此让我们直接进入合约本身。 +METoken+ 合约作为Truffle环境中的JavaScript对象存在。在提示符下输入++ ** METoken ** ++，它将转储整个合约定义：
 
 ++++
 <pre data-type="programlist">
@@ -429,7 +429,7 @@ network_id: '5777' }
 </pre>
 ++++
 
-+ METoken +对象还公开了几个属性，例如合约的地址（由+ migrate +命令部署）：
++ METoken+ 对象还公开了几个属性，例如合约的地址（由 +migrate+ 命令部署）：
 
 ++++
 <pre data-type="programlist">
@@ -438,7 +438,7 @@ truffle(ganache)&gt; <strong>METoken.address</strong>
 </pre>
 ++++
 
-如果要使用已部署的合约，则必须使用异步调用，其形式为JavaScript“promise”函数。我们使用+ deployed +函数获取合约实例，然后调用+ totalSupply +函数：
+如果要使用已部署的合约，则必须使用异步调用，其形式为JavaScript“promise”函数。我们使用 +deployed+ 函数获取合约实例，然后调用 +totalSupply+ 函数：
 
 ++++
 <pre data-type="programlist">
@@ -447,7 +447,7 @@ BigNumber { s: 1, e: 9, c: [ 2100000000 ] }
 </pre>
 ++++
 
-接下来，让我们使用+ ganache +创建的帐户来检查我们的METoken余额，并将一些METoken发送到另一个地址。首先，让我们获取帐户地址：
+接下来，让我们使用 +ganache+ 创建的帐户来检查我们的METoken余额，并将一些METoken发送到另一个地址。首先，让我们获取帐户地址：
 
 ++++
 <pre data-type="programlist">
@@ -460,7 +460,7 @@ truffle(ganache)&gt; <strong>accounts[0]</strong>
 </pre>
 ++++
 
-现在，+ accounts +列表包含+ ganache +创建的所有帐户，而+ account [0] +是部署+ METoken +合约的帐户。它应该具有pass：[ <span class="keep-together">METoken</span> ]的余额，因为我们的METoken构造函数将整个通证供应提供给创建它的地址。让我们检查一下：
+现在， +accounts+ 列表包含 +ganache+ 创建的所有帐户，而 +account[0]+ 是部署 +METoken+ 合约的帐户。它应该具有 pass:[ <span class="keep-together">METoken</span> ]的余额，因为我们的METoken构造函数将整个通证供应提供给创建它的地址。让我们检查一下：
 
 ++++
 <pre data-type="programlist">
@@ -471,7 +471,7 @@ truffle(ganache)&gt; <strong>BigNumber { s: 1, e: 9, c: [ 2100000000 ] }</strong
 </pre>
 ++++
 
-最后，通过调用合约的+ transfer +函数，将1000.00 METoken从+ account [0] +转移到+ account [1] +：
+最后，通过调用合约的 +transfer+ 函数，将1000.00 METoken从 +account[0]+ 转移到 +account[1]+ ：
 
 ++++
 <pre data-type="programlist">
@@ -492,12 +492,12 @@ truffle(ganache)&gt; <strong>BigNumber { s: 1, e: 5, c: [ 100000 ] }</strong>
 
 [TIP]
 ====
-METoken的精度为2位小数，即1个METoken为合约中的100个单位。当我们转移1,000个METoken时，我们在+ transfer +函数的调用中将值指定为+100000+。
+METoken的精度为2位小数，即1个METoken为合约中的100个单位。当我们转移1,000个METoken时，我们在 +transfer+ 函数的调用中将值指定为 +100000+ 。
 ====
 
-如你所见，在控制台中，+ account [0] +现在具有20,999,000 MET，而+ account [1] +具有1,000 MET。
+如你所见，在控制台中，++ account [0] ++现在具有20,999,000 MET，而++ account [1] ++具有1,000 MET。
 
-如果你切换到+ ganache +图形用户界面，如<<ganache_METoken_transfer>>所示，你将看到调用+ transfer +函数的交易。(((range="endofrange", startref="ix_10tokens-asciidoc12")))(((range="endofrange", startref="ix_10tokens-asciidoc11")))
+如果你切换到 +ganache+ 图形用户界面，如<<ganache_METoken_transfer>>所示，你将看到调用 +transfer+ 函数的交易。(((range="endofrange", startref="ix_10tokens-asciidoc12")))(((range="endofrange", startref="ix_10tokens-asciidoc11")))
 
 [[ganache_METoken_transfer]]
 .在Ganache上转移METoke
@@ -519,7 +519,7 @@ METoken/
 |   `---- Migrations.sol
 ----
 
-我们还将添加一个迁移，以与+ METoken +分开部署+ Faucet +：
+我们还将添加一个迁移，以与 +METoken+ 分开部署 +Faucet+ ：
 
 [[faucet_migration]]
 [source,solidity]
@@ -562,7 +562,7 @@ Saving artifacts...
 </pre>
 ++++
 
-非常好。现在让我们向+ Faucet +合约发送一些MET：
+非常好。现在让我们向 +Faucet+ 合约发送一些MET：
 
 ++++
 <pre data-type="programlist">
@@ -574,13 +574,13 @@ truffle(ganache)&gt; <strong>BigNumber { s: 1, e: 5, c: [ 100000 ] }</strong>
 </pre>
 ++++
 
-好了，我们已经将1,000 MET转移到+ Faucet +合约中。现在，我们如何提取这些通证？
+好了，我们已经将1,000 MET转移到 +Faucet+ 合约中。现在，我们如何提取这些通证？
 
-记住，_Faucet.sol_是一个非常简单的合约。它只有一个函数pass：[ <span class="keep-together"><code>withdraw</code></span> ]，用于提取以太币_ether_。它没有提取MET或任何其他ERC20通证的功能。如果我们使用+ withdraw +，它将尝试发送以太币，但是由于+ Faucet +并没有以太币的余额，因此操作将失败。
+记住，_Faucet.sol_ 是一个非常简单的合约。它只有一个函数 pass:[ <span class="keep-together"><code>withdraw</code></span> ]，用于提取以太币_ether_。它没有提取MET或任何其他ERC20通证的功能。如果我们使用 +withdraw+ ，它将尝试发送以太币，但是由于 +Faucet+ 并没有以太币的余额，因此操作将失败。
 
-+ METoken +合约知道+ Faucet +有余额，但是转移余额的唯一方法是从合约地址收到对+ transfer +函数的调用。我们需要以某种方式使+ Faucet +合约通过调用[ <span class="keep-together"><code>METoken</code></span> ]功能来调用+ [ <span class="keep-together"><code>METoken</code></span> ]。
++METoken+ 合约知道 +Faucet+ 有余额，但是转移余额的唯一方法是从合约地址收到对 +transfer+ 函数的调用。我们需要以某种方式使 +Faucet+ 合约通过调用 pass:[ <span class="keep-together"><code>METoken</code></span> ]功能来调用+  pass:[ <span class="keep-together"><code>METoken</code></span> ]。
 
-如果你想知道下一步该怎么做，什么也做不了。没有解决此问题的方法。发送到+ Faucet +的MET永远被卡住。只有+ Faucet +合约可以转让它，而+ Faucet +合约没有代码来调用ERC20通证合约的+ transfer +功能。
+如果你想知道下一步该怎么做，什么也做不了。没有解决此问题的方法。发送到 +Faucet+ 的MET永远被卡住。只有 +Faucet+ 合约可以转让它，而 +Faucet+ 合约没有代码来调用ERC20通证合约的 +transfer+ 功能。
 
 也许你预料到了这个问题。大多数情况下，你很可能没有。实际上，数百名以太坊用户也没有，他们不小心将各种通证转移到了不具有任何ERC20功能的合约中。根据一些估计，价值约250万美元（在撰写本文时）的通证已经像这样“卡住”，并且永远丢失。
 
@@ -589,9 +589,9 @@ ERC20通证用户在尝试转移到交易所或其他服务时会无意中丢失
 [[transfer_workflow_demo]]
 ===== “批准并转出”工作流程的演示
 
-((("approve & transferFrom workflow", id="ix_10tokens-asciidoc15", range="startofrange")))((("Faucet.sol contract (test example)","METoken approve & transferFrom workflow demonstration", id="ix_10tokens-asciidoc16", range="startofrange")))((("METoken (Mastering Ethereum Token)","approve & transferFrom workflow demonstration", id="ix_10tokens-asciidoc17", range="startofrange"))) 我们的+水龙头+合约无法处理ERC20通证。使用+ transfer +函数向其发送通证会导致这些通证丢失。现在让我们重写合约，使其能够处理ERC20合约。具体来说，我们将其转换为向任何要求的人赠送MET的水龙头。
+((("approve & transferFrom workflow", id="ix_10tokens-asciidoc15", range="startofrange")))((("Faucet.sol contract (test example)","METoken approve & transferFrom workflow demonstration", id="ix_10tokens-asciidoc16", range="startofrange")))((("METoken (Mastering Ethereum Token)","approve & transferFrom workflow demonstration", id="ix_10tokens-asciidoc17", range="startofrange"))) 我们的 +水龙头+ 合约无法处理ERC20通证。使用 +transfer+ 函数向其发送通证会导致这些通证丢失。现在让我们重写合约，使其能够处理ERC20合约。具体来说，我们将其转换为向任何要求的人赠送MET的水龙头。
 
-在此示例中，我们将复制_truffle_项目目录（我们将其称为__METoken_METFaucet__），初始化+ truffle +和+ npm +，安装OpenZeppelin依赖项，并复制_METoken.sol_合约。请参阅<<METoken_example>>，以获取详细说明。
+在此示例中，我们将复制_truffle_项目目录（我们将其称为__METoken_METFaucet__），初始化 +truffle+ 和 +npm+ ，安装OpenZeppelin依赖项，并复制_METoken.sol_合约。请参阅<<METoken_example>>，以获取详细说明。
 
 我们新的水龙头合约_METFaucet.sol_类似<<METFaucet>>中的内容。
 
@@ -604,8 +604,8 @@ include::code/truffle/METoken_METFaucet/contracts/METFaucet.sol[]
 ----
 ====
 
-我们对基本+ Faucet +示例进行了很多更改。由于+ METFaucet +将使用+ METoken +中的+ transferFrom +函数，因此将需要两个附加变量。一个将保留已部署的+ METoken +合约的地址。另一方将持有MET所有者的地址，该所有者将批准水龙头的提款。 + METFaucet +合约将调用+ METoken.transferFrom +，并指示其将MET从所有者移至向水龙头提出提款请求的地址。
 
+我们对基本 +Faucet+ 示例进行了很多更改。由于 +METFaucet+ 将使用 +METoken+ 中的 +transferFrom+ 函数，因此将需要两个附加变量。一个将保留已部署的 +METoken+ 合约的地址。另一方将持有MET所有者的地址，该所有者将批准水龙头的提款。 +METFaucet+ 合约将调用 +METoken.transferFrom+ ，并指示其将MET从所有者移至向水龙头提出提款请求的地址。
 
 我们在这里定义这两个变量：
 
@@ -615,7 +615,7 @@ StandardToken public METoken;
 address public METOwner;
 ----
 
-由于我们的水龙头需要使用+ METoken +和+ METOwner +的正确地址进行初始化，因此我们需要声明一个自定义构造函数：
+由于我们的水龙头需要使用 +METoken+ 和 +METOwner+ 的正确地址进行初始化，因此我们需要声明一个自定义构造函数：
 
 [[custom_constructor]]
 [source,solidity]
@@ -630,7 +630,7 @@ function METFaucet(address _METoken, address _METOwner) public {
 }
 ----
 
-下一个更改是+ withdraw +函数。 + METFaucet +使用+ METoken +中的+ transferFrom +函数，而不是调用+ transfer +，并要求+ METoken +将MET转移到水龙头接收地址：
+下一个更改是 +withdraw+ 函数。 +METFaucet+ 使用 +METoken+ 中的 +transferFrom+ 函数，而不是调用 +transfer+ ，并要求 +METoken+ 将MET转移到水龙头接收地址：
 
 [[transfer_met]]
 [source,solidity]
@@ -639,7 +639,7 @@ function METFaucet(address _METoken, address _METOwner) public {
 METoken.transferFrom(METOwner, msg.sender, withdraw_amount);
 ----
 
-最后，由于我们的水龙头不再发送以太币，我们可能应该阻止任何人将以太币发送给+ METFaucet +，因为我们不希望它被卡住。我们使用+ revert +函数将所有应付款归还，从而将后备应付功能更改为拒绝传入以太币：
+最后，由于我们的水龙头不再发送以太币，我们可能应该阻止任何人将以太币发送给 +METFaucet+ ，因为我们不希望它被卡住。我们使用 +revert+ 函数将所有应付款归还，从而将后备应付功能更改为拒绝传入以太币：
 
 [[reject_incoming_eth]]
 [source,solidity]
@@ -648,7 +648,7 @@ METoken.transferFrom(METOwner, msg.sender, withdraw_amount);
 function () external payable { revert(); }
 ----
 
-现在，我们的_METFaucet.sol_代码已经准备就绪，我们需要修改迁移脚本以进行部署。由于+ METFaucet +取决于+ METoken +的地址，因此此迁移脚本会更加复杂。我们将使用JavaScript承诺按顺序部署两个合约。创建__2_deploy_contracts.js__，如下所示：
+现在，我们的_METFaucet.sol_代码已经准备就绪，我们需要修改迁移脚本以进行部署。由于 +METFaucet+ 取决于 +METoken+ 的地址，因此此迁移脚本会更加复杂。我们将使用JavaScript承诺按顺序部署两个合约。创建__2_deploy_contracts.js__，如下所示：
 
 [source,solidity]
 ----
@@ -667,7 +667,7 @@ module.exports = function(deployer) {
 }
 ----
 
-现在，我们可以在Truffle控制台中测试所有内容。首先，我们使用+ migrate +部署合约。部署+ METoken +后，它将把所有MET分配给创建它的帐户+ web3.eth.accounts [0] +。然后，我们在传递中调用+ approve +函数：[ <code><span class="keep-together">METoken</span></code> ]批准+ METFaucet +代表+ web3.eth.accounts [0] +发送最多1,000个MET。最后，要测试水龙头，我们从+ web3.eth.accounts [1] +中调用+ METFaucet.withdraw +，并尝试提取10 MET。这是控制台命令：
+现在，我们可以在Truffle控制台中测试所有内容。首先，我们使用+ migrate +部署合约。部署+ METoken +后，它将把所有MET分配给创建它的帐户+ web3.eth.accounts [0] +。然后，我们在传递中调用+ approve +函数： pass:[ <code><span class="keep-together">METoken</span></code> ]批准+ METFaucet +代表+ web3.eth.accounts [0] +发送最多1,000个MET。最后，要测试水龙头，我们从+ web3.eth.accounts [1] +中调用+ METFaucet.withdraw +，并尝试提取10 MET。这是控制台命令：
 
 ++++
 <pre data-type="programlist">
@@ -701,7 +701,7 @@ truffle(ganache)&gt; <strong>BigNumber { s: 1, e: 3, c: [ 1000 ] }</strong>
 </pre>
 ++++
 
-从结果中可以看到，我们可以使用+ approve +和+ transferFrom +工作流程来授权一个合约转移另一个通证中定义的通证。如果使用得当，则EOA和其他合约可以使用ERC20通证。
+从结果中可以看到，我们可以使用 +approve+ 和 +transferFrom+ 工作流程来授权一个合约转移另一个通证中定义的通证。如果使用得当，则EOA和其他合约可以使用ERC20通证。
 
 但是，正确管理ERC20通证的负担被推到了用户界面上。如果用户错误地尝试将ERC20通证转移到合约地址，并且该合约没有接收ERC20通证的条件，则通证将丢失。(((range="endofrange", startref="ix_10tokens-asciidoc17")))(((range="endofrange", startref="ix_10tokens-asciidoc16")))(((range="endofrange", startref="ix_10tokens-asciidoc15"))).(((range="endofrange", startref="ix_10tokens-asciidoc10")))(((range="endofrange", startref="ix_10tokens-asciidoc9")))
 
@@ -710,11 +710,11 @@ truffle(ganache)&gt; <strong>BigNumber { s: 1, e: 3, c: [ 1000 ] }</strong>
 
 ((("ERC20 token standard","issues with ERC20 tokens"))) 采用ERC20通证标准确实具有爆炸性。成千上万个通证项目已经被推了出来，以试验新功能并通过各种“众筹”拍卖和ICO筹集资金。但是，正如我们在将通证转移到合约地址的问题中看到的那样，存在一些潜在的陷阱。
 
-ERC20通证不太明显的问题之一是，它们暴露了通证与以太币本身之间的细微差别。在以接收者地址为目的地的交易中转移以太币的情况下，通证转移发生在特定的通证合约状态内，并且以通证合约为目的地，而不是收件人的地址。通证合约跟踪余额并发布事件。在通证传输中，实际上没有任何交易发送给通证的接收者。取而代之的是，将收件人的地址添加到通证合约本身内的映射中。向以太币发送地址的交易会更改地址的状态。将通证传输到地址的交易只会更改通证合同的状态，而不会更改收件人地址的状态。即使支持ERC20通证的钱包也不会意识到通证余额，除非用户明确将特定通证合约添加到“监视”中。一些钱包会监视最受欢迎的通证合约，以检测其控制地址所持有的余额，但这仅限于现有ERC20合约的一小部分：[<span class="keep-together">合约</span>]。
+ERC20通证不太明显的问题之一是，它们暴露了通证与以太币本身之间的细微差别。在以接收者地址为目的地的交易中转移以太币的情况下，通证转移发生在特定的通证合约状态内，并且以通证合约为目的地，而不是收件人的地址。通证合约跟踪余额并发布事件。在通证传输中，实际上没有任何交易发送给通证的接收者。取而代之的是，将收件人的地址添加到通证合约本身内的映射中。向以太币发送地址的交易会更改地址的状态。将通证传输到地址的交易只会更改通证合同的状态，而不会更改收件人地址的状态。即使支持ERC20通证的钱包也不会意识到通证余额，除非用户明确将特定通证合约添加到“监视”中。一些钱包会监视最受欢迎的通证合约，以检测其控制地址所持有的余额，但这仅限于现有ERC20合约的一小部分 pass:[<span class="keep-together">合约</span>]。
 
 实际上，用户不太可能希望跟踪所有可能的ERC20通证合约中的所有余额。许多ERC20通证比可用通证更像是电子邮件垃圾邮件。他们自动为具有以太坊活动的账户创建余额，以吸引用户。如果你的以太坊地址具有悠久的活动历史，特别是如果它是在预售中创建的，那么你会发现它充满了无处不在的“垃圾”通证。当然，该地址并没有真正充满通证。是其中包含你的地址的通证合约。仅当你用来查看地址的区块浏览器或钱包正在监视这些通证合约时，您才会看到这些余额。
 
-通证的行为与以太币不同。以太币以+ send +功能发送，并被合约或任何外部地址中的所有应付款功能接受。使用仅在ERC20合约中存在的+ transfer +或+ approve +＆+ transferFrom +功能发送通证，并且（至少在ERC20中）不会触发接收方合约中的任何应付功能。通证的设计本希望与像以太币这样的加密货币一样运作，但是它们具有的差异打破了这种幻想。
+通证的行为与以太币不同。以太币以 +send+ 功能发送，并被合约或任何外部地址中的所有应付款功能接受。使用仅在ERC20合约中存在的 +transfer+ 或 +approve+ ＆ +transferFrom+ 功能发送通证，并且（至少在ERC20中）不会触发接收方合约中的任何应付功能。通证的设计本希望与像以太币这样的加密货币一样运作，但是它们具有的差异打破了这种幻想。
 
 ((("gas","tokens and")))((("tokens","gas and")))考虑另一个问题。要发送以太坊或使用任何以太坊合约，你需要以太坊来支付燃料费。要发送通证，你还需要以太币。你无法使用代币支付交易的燃料费用，通证合约也无法为你支付燃料费用。在遥远的将来，这可能会有所改变，但与此同时，这可能会导致一些非常奇怪的用户体验。例如，假设你使用交易所或ShapeShift将某些比特币转换为通证。你可以在钱包中“接收”通证，该钱包会跟踪该通证的合约并显示你的余额。它看起来与你钱包中的其他任何加密货币相同。但是，一旦尝试发送通证，你的钱包会通知你需要以太币来完成操作。你可能会感到困惑-毕竟，你不需要以太币来接收通证。也许你没有以太币。也许你甚至都不知道该通证是以太坊上的ERC20通证。也许你认为这是一种拥有自己的区块链的加密货币。这种想法刚刚破灭。
 
@@ -725,7 +725,7 @@ ERC20通证不太明显的问题之一是，它们暴露了通证与以太币本
 [[ERC223_std]]
 ==== ERC223：拟议的通证合约接口标准申请
 
-((("ERC223 token standard proposal")))((("tokens","ERC223 standard proposal"))) ERC223提案试图通过检测目标地址是否为合约，以解决将通证无意转移到合约（可能支持或不支持通证的问题）的问题。 ERC223要求旨在接受通证的合约必须实现名为+ tokenFallback +的功能。如果传输的目的地是合约，并且该合约不支持通证（即，未实现+ tokenFallback +），则传输失败。
+((("ERC223 token standard proposal")))((("tokens","ERC223 standard proposal"))) ERC223提案试图通过检测目标地址是否为合约，以解决将通证无意转移到合约（可能支持或不支持通证的问题）的问题。 ERC223要求旨在接受通证的合约必须实现名为 +tokenFallback+ 的功能。如果传输的目的地是合约，并且该合约不支持通证（即，未实现 +tokenFallback+ ），则传输失败。
 
 [[is_contract]]
 为了检测目标地址是否是合约，ERC223标准以一种非常有创意的方式通过一小段内联字节码来实现检测：
@@ -773,15 +773,15 @@ ERC223并未得到广泛实施，并且在 https://github.com/ethereum/EIPs/issu
 ((("ERC777 token standard proposal", id="ix_10tokens-asciidoc18", range="startofrange")))((("tokens","ERC777 standard proposal", id="ix_10tokens-asciidoc19", range="startofrange"))) 另一个改进通证合约标准的建议是ERC777 https://eips.ethereum.org/EIPS/eip-777[ERC777] 。该提案有几个目标，包括：
 
 * 提供与ERC20兼容的接口
-* 要使用+ send +功能转移通证，类似于以太坊转移
+* 要使用 +send+ 功能转移通证，类似于以太坊转移
 * 与ERC820兼容以进行通证合约注册
 * 允许合约和地址通过在发送之前调用的`tokensToSend`函数控制它们发送哪些通证
-* 通过在接收者中调用“ tokensReceived”功能，使合约和地址能够收到通证的通知，并通过要求合约提供通过功能来降低通证被锁定在合约中的可能性：[ <span class="keep-together"><code>tokensReceived</code></span> ]功能
-* 允许现有合约将代理合约用于+ tokensToSend +和+ tokensReceived +函数
+* 通过在接收者中调用“ tokensReceived”功能，使合约和地址能够收到通证的通知，并通过要求合约提供通过功能来降低通证被锁定在合约中的可能性： pass:[ <span class="keep-together"><code>tokensReceived</code></span> ]功能
+* 允许现有合约将代理合约用于 +tokensToSend+ 和 +tokensReceived+ 函数
 * 无论是发送到合约还是EOA都以相同的方式操作
 * 提供特定事件来铸造和销毁通证
 * 使运营商（受信任的第三方，旨在成为经过验证的合约）能够代表通证持有者移动通证
-* 在+ userData +和+ operatorData +字段中提供有关通证转移交易的元数据
+* 在 +userData+ 和 +operatorData+ 字段中提供有关通证转移交易的元数据
 
 当前有关ERC777的讨论可以在https://github.com/ethereum/EIPs/issues/777[On GitHub]上找到。
 
@@ -871,9 +871,9 @@ ____
 
 使用“契约”一词的意图是反映“财产所有权”部分，即使在任何司法管辖区中尚未将其视为“法律文件”，也是如此。在未来的某个时候，基于区块链平台上数字签名的合法所有权可能会得到法律认可。
 
-不可替代的通证跟踪唯一物品的所有权。所拥有的物品可以是数字物品，例如游戏中的物品或数字收藏品。或事物可以是通过通证跟踪所有权的实物，例如房屋，汽车或艺术品。契约也可以代表负数价值的事物，例如贷款（债务），留置权，地役权等。ERC721标准对契约所追踪的事物的性质没有任何限制或期望，仅要求它可以唯一标识，在本标准中是通过256位pass：[<span class="keep-together">标识符</span>]实现的。
+不可替代的通证跟踪唯一物品的所有权。所拥有的物品可以是数字物品，例如游戏中的物品或数字收藏品。或事物可以是通过通证跟踪所有权的实物，例如房屋，汽车或艺术品。契约也可以代表负数价值的事物，例如贷款（债务），留置权，地役权等。ERC721标准对契约所追踪的事物的性质没有任何限制或期望，仅要求它可以唯一标识，在本标准中是通过256位 pass:[<span class="keep-together">标识符</span>]实现的。
 
-标准的详细信息和相关讨论可以在两个不同的GitHub库中找到：[ <span class="keep-together">location</span> ]：
+标准的详细信息和相关讨论可以在两个不同的GitHub库中找到 pass:[ <span class="keep-together">location</span> ]：
 
 * https://github.com/ethereum/EIPs/issues/721[Initial proposal]
 
@@ -954,7 +954,7 @@ interface ERC721Enumerable /* is ERC721 */ {
 
 ((("token standards (generally)","purpose of"))) 这些标准的主要目的是鼓励合约之间的“互操作性”。因此，所有钱包，交易所，用户界面和其他基础结构组件都可以按照可遵循的规范以任何可预见的方式操作接口。换句话说，如果你部署遵循ERC20标准的合约，则所有现有钱包用户都可以无缝地开始交易通证，而无需进行任何钱包升级或需要你来修改。
 
-这些标准应该是_descriptive_，而不是_prescriptive_。您如何选择实现这些函数的方法由你决定，合约的内部函数与标准无关。它们具有一些功能要求，这些要求可以控制特定情况下的行为，但是没有规定实现方式。例如，如果值设置为零，则+ transfer +函数的行为该如何实现并没有规定。
+这些标准应该是_descriptive_，而不是_prescriptive_。您如何选择实现这些函数的方法由你决定，合约的内部函数与标准无关。它们具有一些功能要求，这些要求可以控制特定情况下的行为，但是没有规定实现方式。例如，如果值设置为零，则 +transfer+ 函数的行为该如何实现并没有规定。
 
 [[should_use_std]]
 ==== 你应该使用这些标准吗？

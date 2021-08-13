@@ -156,13 +156,13 @@ contract Attack {
 “ EtherStore”合约的12-16行），因为之前没有提现过。
 
 3. _EtherStore.sol_，第17行：合约会将“ 1 ether”发送回给
-恶意：[<span class="keep-together">合约</span>]。
+恶意： pass:[<span class="keep-together">合约</span>]。
 
 4. _Attack.sol_，第25行：向恶意合约付款
 会导致执行后备功能。
 
-5. _Attack.sol_，第26行：+ EtherStore +合约的总余额之前为
-'10 ether' 现在是 '9 ether'，因此+ if +语句通过。
+5. _Attack.sol_，第26行： +EtherStore+ 合约的总余额之前为
+'10 ether' 现在是 '9 ether'，因此 +if+ 语句通过。
 
 6. _Attack.sol_，第27行：后备函数再次调用ʻEtherStore`
 `withdrawFunds`函数，使得再次进入`EtherStore`
@@ -190,7 +190,7 @@ contract Attack {
 
 ((("reentrancy attacks","preventative techniques"))) 有许多常见的技术可以帮助避免潜在的
 智能合约中的可重入漏洞。 ((("transfer function","to reduce reentrancy vulnerabilities"))) 首先是（尽可能）使用内置的transfer
-http://bit.ly/2Ogvnng[+transfer+]
+http://bit.ly/2Ogvnng[ +transfer+ ]
 函数来向外部合约发送ether。+transfer+ 函数
 仅发送2300个gas，不够支撑目的
 地址/合约来调用另一个合约（比如重新进入一个发送
@@ -285,7 +285,7 @@ uint8可以存储的最大数量。类似地，将'2 ^ 8 = 256' 添加到
 uint的整个长度。两个简单类比的情况是
 汽车中用于测量行进距离的里程表（里程表达到最大值后会重置为000000
 ，即最大数超过999999）和数学中的周期函数
-（在+ sin +的参数上加上+2π+会使值保持不变）。
+（在 +sin+ 的参数上加上 +2π+ 会使值保持不变）。
 
 ((("overflow","defined"))) 添加大于数据类型范围的数字称为溢出_overflow_。
 比如，将257添加到当前值为0的uint8中，
@@ -294,7 +294,7 @@ uint的整个长度。两个简单类比的情况是
 ，如果从零做递减，则回到最大数字。对于带符号的“ int”类型，即可以有负数的整型变量，一旦达到最大的负值，我们将再次开始；例如，如果我们尝试从值为-128的int8中减去1，则会得到127。
 
 这些数字陷阱可以被攻击者滥用代码并创建
-意外的逻辑流程。例如，请考虑以下内容中的+ TimeLock +合约：
+意外的逻辑流程。例如，请考虑以下内容中的 +TimeLock+ 合约：
 <<timelock_sol_security>>.
 
 [[timelock_sol_security]]
@@ -385,11 +385,11 @@ contract Token {
 允许拥有者转移通证。你看到这个合约里面
 的错误了吗？
 
-问题来自“transfer”函数。在第13行的+ require +语句
+问题来自“transfer”函数。在第13行的 +require+ 语句
 可能产生下限溢出。考虑一个用户只有零
 的余额。他们可以用调用`transfer`函数
-使用非零的参数'value'并在第13行通过+ require +语句。这是因为
-`balances [msg.sender]`是+0+（变量类型为`uint256`），因此减去
+使用非零的参数'value'并在第13行通过 +require+ 语句。这是因为
+`balances [msg.sender]`是 +0+ （变量类型为`uint256`），因此减去
 正值（不包括“ 2 ^ 256”）将产生一个正数，如前所述。第14行也是如此
 余额将记入正数。因此，在这个
 例子中，由于下限溢出漏洞，攻击者可以获得免费通证。(((range="endofrange", startref="ix_09smart-contracts-security-asciidoc10")))
@@ -404,7 +404,7 @@ contract Token {
 会在除数为0时回退）。
 
 ((("OpenZeppelin")))((("SafeMath library")))https://github.com/OpenZeppelin/openzeppelin-solidity[OpenZeppelin]
-项目在为以太坊社区构建和审核安全库方面做得非常出色。特别是，它的+SafeMath+库 http://bit.ly/2ABhb4l[+SafeMath+ library] 可用于避免溢出漏洞。
+项目在为以太坊社区构建和审核安全库方面做得非常出色。特别是，它的 +SafeMath+ 库 http://bit.ly/2ABhb4l[+SafeMath+ library] 可用于避免溢出漏洞。
 
 为了演示如何在Solidity中使用这些库，让我们使用SafeMath库更正TimeLock合约。合约的无溢出版本为：
 
@@ -605,14 +605,14 @@ contract EtherGame {
 第14行（以及关联16）和32中的“ this.balance”变量。
 一个捣蛋的攻击者可以通过“ selfdestruct”函数（前面讨论过）将少量的以太币（例如0.1以太币）强行发送到合约
 而阻止任何未来的玩家达成里程碑。由于这0.1个以太币，`this.balance`永远不会是0.5的倍数
-因为所有合法玩家只能发送0.5个以太币增量。这样可以阻止第18、21行的所有+ if +条件，
+因为所有合法玩家只能发送0.5个以太币增量。这样可以阻止第18、21行的所有 +if+ 条件，
 以及24行的条件为真。
 
 更糟糕的是，一个错过里程碑的攻击者可能会强行
 发送10个以太币（或足量的以太币可以使得
 合约的余额高于“ finalMileStone”），这将会永远锁定所有
 合约中的奖励。这是因为`claimReward`
-函数将永远重置，原因是第32行上的+ require +条件无法满足（即，因为
+函数将永远重置，原因是第32行上的 +require+ 条件无法满足（即，因为
 “ this.balance”的值大于“ finalMileStone”）。(((range="endofrange", startref="ix_09smart-contracts-security-asciidoc15")))
 
 [role="notoc"]
@@ -934,7 +934,7 @@ contract Attack {
 其它依赖库合约代码的合约。根据一般经验，
 当使用`DELEGATECALL`时要特别注意可能的调用
 范围，包括库合约和调用合约，以及
-尽可能建立无状态的传递：[<span class="keep-together">库</span>]。
+尽可能建立无状态的传递： pass:[<span class="keep-together">库</span>]。
 
 [[multisig_secondhack]]
 ==== 实际示例：Pairty Multisig钱包（Second Hack）
@@ -1014,8 +1014,8 @@ WaltLibrary合约。常数
 合约本身就是合约而且保持自己的状态。你知道
 为什么这可能是个问题？
 
-用户可以通过pass：[ <code><span class="keep-together">WalletLibrary</span></code> ]调用合约本身。
-具体来说，pass：[ <code><span class="keep-together">WalletLibrary</span></code> ]合约可以被初始化，
+用户可以通过 pass:[ <code><span class="keep-together">WalletLibrary</span></code> ]调用合约本身。
+具体来说， pass:[ <code><span class="keep-together">WalletLibrary</span></code> ]合约可以被初始化，
 并被拥有。实际上，一个用户这样做了，他调用了ʻinitWallet`函数并成为了
 “ WalletLibrary”库合约的所有者。
 同一用户随后调用了“ kill”函数。因为用户
@@ -1065,7 +1065,7 @@ contract HashForEther {
 
 这个简单的合约旨在完成一个猜测地址的赏金
 游戏。为了赢得合约的余额，用户必须生成一个
-以太坊地址，其后8个十六进制字符为+0+。一旦实现，他们
+以太坊地址，其后8个十六进制字符为 +0+ 。一旦实现，他们
 可以调用`withdrawWinnings`函数来获取赏金。
 
 不幸的是，其中未指定获取赏金函数的可见性。
@@ -1077,7 +1077,7 @@ contract HashForEther {
 
 ((("default visibility specifier security problem","preventative techniques"))) 始终指定合约中所有函数的可见性是一个好习惯
 ，即使它们都是“公开”的。最新版本的
-+ solc +会警告
++solc+ 会警告
 没有明确的可见性设置的函数，以鼓励这种做法。
 
 ==== 实际示例：Parity Multisig钱包（首次入侵）
@@ -1269,7 +1269,7 @@ contract Rot13Encryption {
 ----
 ====
 
-此代码只是获取一个字符串（字母++ a ++ – ++ z ++，无需验证），然后
+此代码只是获取一个字符串（字母 ++a++&#x2013;++z++ ，无需验证），然后
 通过将每个字符向右移动13个位置来进行加密（在
 `z`之后回转）;即，“ a”移至“ n”，而“ x”移至“ k”。如果不理解这个基于先前合约的汇编
 过程也没关系，不影响要讨论的问题
@@ -1571,7 +1571,7 @@ function transfer(address to, uint tokens) public returns (bool success);
 REP）和希望提取其100个通证份额的用户。用户
 将提交其账户地址“ 0xdeaddeaddeaddeaddeaddeaddeaddeaddeaddead”，
 和要提取通证的数量100。交易所将对这些信息进行编码
-其中参数的顺序是pass：[ <code><span class="keep-together">transfer</span></code> ]函数指定；即，先是
+其中参数的顺序是 pass:[ <code><span class="keep-together">transfer</span></code> ]函数指定；即，先是
 “地址”然后是“通证”。编码结果为：
 
 ----
@@ -1606,13 +1606,13 @@ ddeaddeaddeaddeaddeaddeadde00000000000000
 弥补发送地址的短缺部分。当这被发送到
 智能合约时，“address”参数将被读取为
 `0xdeaddeaddeaddeaddeaddeaddeaddeaddeadde00`，而该值将被读成
-如`56bc75e2d6310000000`（注意两个额外的 ++0++）。这个值是
+如`56bc75e2d6310000000`（注意两个额外的 ++0++ ）。这个值是
 现在变成了25600个通证（该值已乘以256）。在这个
 例子，如果交易所持有这么多通证，那么用户将撤回
 25600个通证（交易所认为用户只是在提取
 100”）到修改后的地址。显然，攻击者不会拥有
 在此示例中的修改后的地址，但如果攻击者要生成
-任何以++0++结尾的地址（可以很容易地用暴力破解）并
+任何以 ++0++ 结尾的地址（可以很容易地用暴力破解）并
 使用这个生成的地址，他们可以从
 毫无防护的交易所里面盗取通证。
 
@@ -1691,12 +1691,12 @@ contract Lotto {
 一个更好的解决方案
 http://bit.ly/2CSdF7y[recommendation]
 是采用_提款方式_。在此解决方案中，每个用户必须
-调用一个独立的+ withdraw +函数
+调用一个独立的 +withdraw+ 函数
 处理发送合约中的以太币并
 处理发送交易失败的后果。
 这个想法是在逻辑上将外部发送功能与
 其余的代码库，并将潜在失败的负担
-放在最终用户调用+ withdraw +函数进行的交易。
+放在最终用户调用 +withdraw+ 函数进行的交易。
 
 ==== 实际示例：Etherpot 和 King of the Ether
 
@@ -1755,7 +1755,7 @@ http://bit.ly/2ACsfi1[King of
 the Ether]。一个很好的例子
 http://bit.ly/2ESoaub[post-mortem] 是
 合约详细说明了未经检查的失败“send”如何
-可以被用来完成攻击 :[<span class="keep-together">contract</span>].(((range="endofrange", startref="ix_09smart-contracts-security-asciidoc36")))(((range="endofrange", startref="ix_09smart-contracts-security-asciidoc35")))(((range="endofrange", startref="ix_09smart-contracts-security-asciidoc34")))(((range="endofrange", startref="ix_09smart-contracts-security-asciidoc33")))
+可以被用来完成攻击  pass:[<span class="keep-together">contract</span>].(((range="endofrange", startref="ix_09smart-contracts-security-asciidoc36")))(((range="endofrange", startref="ix_09smart-contracts-security-asciidoc35")))(((range="endofrange", startref="ix_09smart-contracts-security-asciidoc34")))(((range="endofrange", startref="ix_09smart-contracts-security-asciidoc33")))
 
 [[frontrunning_security]]
 === 比赛条件/抢跑
@@ -1959,7 +1959,7 @@ contract DistributeTokens {
 请注意，此合约中的循环在一个数组上运行，该数组可以是
 人为扩展的。攻击者可以创建许多用户帐户，从而
 导致`investor`数组很大。原则上，可以这样做，以便
-执行+ for +循环所需的燃料值超出了区块燃料的上限值，
+执行 +for+ 循环所需的燃料值超出了区块燃料的上限值，
 实质上导致“distribute”函数无法使用。
 
 所有者操作：
@@ -1992,7 +1992,7 @@ function transfer(address _to, uint _value) returns (bool) {
 +
 在这种情况下，如果特权用户丢失其私钥或变成
 无效账户，整个通证合约将无法使用。在这种情况下
-所有者不能调用：[ <span class="keep-together"><code>finalize</code></span> ]通证不能被转让；
+所有者不能调用 pass:[ <span class="keep-together"><code>finalize</code></span> ]通证不能被转让；
 通证生态系统的全部操作取决于一个
 账户地址。
 
@@ -2019,7 +2019,7 @@ function transfer(address _to, uint _value) returns (bool) {
 合约的状态。在这样的例子中，故障保护可以在
 在合约所有者丧失管理能力时使用。一种解决方案
 是使所有者成为多重签名合约。另一种解决方案
-是使用时间锁定：在给出第5行+ require +的示例中，可以包含一个
+是使用时间锁定：在给出第5行 +require+ 的示例中，可以包含一个
 基于时间的机制，例如
 `require（msg.sender == owner || now&gt; unlockTime）`，允许任何用户
 在`unlockTime`指定的一段时间后完成。这类
@@ -2144,7 +2144,7 @@ http://governmental.github.io/GovernMental/[GovernMental], ((("block timestamp m
 虽然事实并非如此）。有关更多详细信息，请参见
 下面的资料：
 Tanya 撰写的 http://bit.ly/2Q1AMA6[&#x201c;History
-of Ethereum Security Vulnerabilities, Hacks and Their Fixes&#x201d; post] 以太坊安全漏洞，黑客及其修复》一文：[ <span class="keep-together">Bahrynovska</span> ]。(((range="endofrange", startref="ix_09smart-contracts-security-asciidoc42")))(((range="endofrange", startref="ix_09smart-contracts-security-asciidoc41")))
+of Ethereum Security Vulnerabilities, Hacks and Their Fixes&#x201d; post] 以太坊安全漏洞，黑客及其修复》一文： pass:[ <span class="keep-together">Bahrynovska</span> ]。(((range="endofrange", startref="ix_09smart-contracts-security-asciidoc42")))(((range="endofrange", startref="ix_09smart-contracts-security-asciidoc41")))
 
 === 仔细编写合约的构建函数
 
@@ -2305,12 +2305,12 @@ slot [0]，slot [1]中存储的是registeredNameRecord，resolve
 
 下一个难题是默认情况下，Solidity把
 复杂的数据类型，例如++ struct ++，在存储时将它们初始化
-为局部变量。因此，第18行的pass：[ <span class="keep-together"><code>newRecord</code></span> ]默认为storage。该漏洞是由以下事实造成的：[ <span class="keep-together"><code>newRecord</code></span> ]并
+为局部变量。因此，第18行的 pass:[ <span class="keep-together"><code>newRecord</code></span> ]默认为storage。该漏洞是由以下事实造成的： pass:[ <span class="keep-together"><code>newRecord</code></span> ]并
 未初始化。由于默认为存储，因此将其映射到
-存储位置 + slot [0] +，当前包含指向“unlocked”的指针。
+存储位置 ++ slot [0] ++，当前包含指向“unlocked”的指针。
 请注意，在第19和20行，我们
-接着将newRecord.name设置为_name，将newRecord.mappedAddress设置为：[ <span class="keep-together"><code>_mappedAddress</code></span> ];这将更新位于+ slot [0] +
-和+ slot [1] +的存储内容，导致“unlocked”的内容和
+接着将newRecord.name设置为_name，将newRecord.mappedAddress设置为： pass:[ <span class="keep-together"><code>_mappedAddress</code></span> ];这将更新位于++ slot [0] ++
+和++ slot [1] ++的存储内容，导致“unlocked”的内容和
 与`registeredNameRecord`相关联的存储内容被修改。
 
 这意味着变量“unlocked”可以被直接修改，只需通过
@@ -2337,12 +2337,12 @@ _name的最后一个字节非零，它将修改
 
 ==== 真实示例：OpenAddressLottery和CryptoRoulette Honey Pots
 
-((("OpenAddressLottery honey pot")))((("uninitialized storage pointers security threat","real-world examples: OpenAddressLottery and CryptoRoulette honey pots"))) 一个名为OpenAddressLottery的蜜罐合约http://bit.ly/2AAVnWD[+OpenAddressLottery+] ，在部署时使用了未初始化的存储变量
+((("OpenAddressLottery honey pot")))((("uninitialized storage pointers security threat","real-world examples: OpenAddressLottery and CryptoRoulette honey pots"))) 一个名为OpenAddressLottery的蜜罐合约http://bit.ly/2AAVnWD[ +OpenAddressLottery+ ] ，在部署时使用了未初始化的存储变量
 从一些潜在的黑客那里收集以太币。合约本身相当
 复杂，我们将分析留给关于这个问题的讨论区 http://bit.ly/2OgxPtG[Reddit
 thread]，其中对攻击的解释很清楚。
 
-((("CryptoRoulette honey pot"))) 另一个蜜罐，http：//bit.ly/2OfNGJ2 [+ CryptoRoulette +]，也利用了这个技巧：[<span class="keep-together">尝试</span>]并收集一些以太币。如果你
+((("CryptoRoulette honey pot"))) 另一个蜜罐，http：//bit.ly/2OfNGJ2 [ +CryptoRoulette+ ]，也利用了这个技巧 pass:[<span class="keep-together">尝试</span>]并收集一些以太币。如果你
 无法弄清楚攻击是如何进行的，请参阅
 http://bit.ly/2OVkSL4[&#x201c;An
 Analysis of a Couple Ethereum Honeypot Contracts&#x201d;] 中对
@@ -2524,7 +2524,7 @@ contract AttackContract {
 }
 ----
 
-攻击者可能将此合约伪装成自己的私人地址，并对受害人（+ Phishable +合约的所有者）进行社交推广，以将某种形式的交易发送到该地址-也许向该合约发送了一定数量的以太币。除非小心，否则受害者可能不会注意到
+攻击者可能将此合约伪装成自己的私人地址，并对受害人（ +Phishable+ 合约的所有者）进行社交推广，以将某种形式的交易发送到该地址-也许向该合约发送了一定数量的以太币。除非小心，否则受害者可能不会注意到
 攻击者的地址上有代码，或者攻击者可能会将其伪装为
 为多签名钱包或某些高级存储钱包（请记住
 默认情况下，公共合约的源代码不会显示）。
@@ -2560,14 +2560,14 @@ contract AttackContract {
 
 ((("frameworks","ZeppelinOS")))((("ZeppelinOS"))) Zeppelin的人也是 https://zeppelinos.org/[ZeppelinOS] ，这是一个开源的平台，提供可用于安全地开发和使用智能合约应用程序的服务和工具。 ZeppelinOS在EVM之上提供了一层，使开发人员可以轻松地启动可升级的DApp，这些DApp链接到经过测试的，本身可以升级的合约的链上库。这些库的不同版本可以在以太坊平台上共存，凭证系统允许用户向不同方向提出或推动改进。该平台还提供了一组用于调试，测试，部署和监视分布式应用程序的链下工具。
 
-((("ethpm project"))) + ethpm +项目旨在通过提供程序包管理系统来组织生态系统中正在开发的各种资源。因此，其注册表提供了更多示例供你浏览：
+((("ethpm project"))) +ethpm+ 项目旨在通过提供程序包管理系统来组织生态系统中正在开发的各种资源。因此，其注册表提供了更多示例供你浏览：
 
-*网站：https://www.ethpm.com/
-*资料库链接：https://www.ethpm.com/registry
+* 网站：https://www.ethpm.com/
+* 资料库链接：https://www.ethpm.com/registry
 * GitHub 链接: https://github.com/ethpm
-*文档：https://www.ethpm.com/docs/integration-guide
+* 文档：https://www.ethpm.com/docs/integration-guide
 
-===结论
+=== 结论
 
 任何在智能合约领域工作的开发人员都需要了解和理解很多东西。通过遵循智能合约设计和代码编写中的最佳实践，你将避免许多严重的陷阱和陷阱。
 
