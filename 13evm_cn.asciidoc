@@ -12,8 +12,8 @@
 EVM具有基于堆栈的体系结构，可将所有内存中的值存储在堆栈中。它的字长为256位（主要是为了促进本机哈希和椭圆曲线操作），并且具有几个可寻址的数据组件：
 
 [role="pagebreak-before"]
-* 不可改变的_程序代码ROM_，装载有要执行的智能合约的字节码
-* 动态内存_memory_，每个位置都确定初始化为零
+* 不可改变的 _程序代码ROM_，装载有要执行的智能合约的字节码
+* 动态内存 _memory_，每个位置都确定初始化为零
 * 永久存储，作为以太坊状态的一部分，也是初始化为零的
 
 执行期间还有一组环境变量和数据可用。我们将在本章后面详细介绍这些内容。
@@ -196,7 +196,7 @@ GASLIMIT   //Get the block's gas limit
 
 ((("EVM (Ethereum Virtual Machine)","Ethereum state updating"))) EVM的工作是通过计算由于执行智能合约代码而产生的有效状态转换来更新以太坊状态，以太坊定义协议。这方面导致以太坊被描述为“基于交易的状态机”，这反映了以下事实：外部参与者（即帐户持有人和矿工）通过创建，接受和订购交易来发起状态转换。这时考虑一下以太坊状态的构成是有用的。
 
-((("world state")))At the top level, we have the Ethereum _world state_. The world state is a mapping of Ethereum addresses (160-bit values) to ((("account","world state and")))_accounts_. ((("balance, world state and")))((("nonces","world state and"))) 在较低级别，每个以太坊地址代表一个包含以太币余额_balance_（存储为wei数的账户）该帐户拥有的），交易计数_ nonce_（如果是EOA，则表示从该帐户成功发送的交易数量；如果是合约帐户，则表示由该帐户创建的合约数量），该帐户的存储_storage_（这是永久数据的存储，仅由智能合约使用）和帐户的_程序代码_（同样，仅当该帐户是智能合约帐户时）。一个EOA将始终没有代码，并且存储空间为空。
+((("world state")))At the top level, we have the Ethereum _world state_. The world state is a mapping of Ethereum addresses (160-bit values) to ((("account","world state and")))_accounts_. ((("balance, world state and")))((("nonces","world state and"))) 在较低级别，每个以太坊地址代表一个包含以太币余额 _balance_（存储为wei数的账户）该帐户拥有的），交易计数 _nonce_（如果是EOA，则表示从该帐户成功发送的交易数量；如果是合约帐户，则表示由该帐户创建的合约数量），该帐户的存储 _storage_（这是永久数据的存储，仅由智能合约使用）和帐户的 _程序代码_（同样，仅当该帐户是智能合约帐户时）。一个EOA将始终没有代码，并且存储空间为空。
 
 ////
 TODO：基本图，显示全局状态映射的结构和帐户结构
@@ -219,7 +219,7 @@ $ <strong>solc --help</strong>
 ++++
 
 [[solc_opcodes_option]]
-使用+-opcodes +命令行选项可以轻松实现生成Solidity源文件的原始操作码流。该操作码流省略了一些信息（+-asm +选项产生了完整的信息），但是对于此讨论而言已足够。例如，使用以下命令来完成示例Solidity文件_Example.sol_的编译并将操作码输出发送到名为_BytecodeDir_的目录中：
+使用+-opcodes +命令行选项可以轻松实现生成Solidity源文件的原始操作码流。该操作码流省略了一些信息（+-asm +选项产生了完整的信息），但是对于此讨论而言已足够。例如，使用以下命令来完成示例Solidity文件 _Example.sol_ 的编译并将操作码输出发送到名为 _BytecodeDir_ 的目录中：
 
 ++++
 <pre data-type="programlisting">
@@ -244,7 +244,7 @@ $ <strong>solc -o BytecodeDir --bin Example.sol</strong>
 </pre>
 ++++
 
-生成的输出操作码文件将取决于Solidity源文件中包含的特定合约。我们简单的Solidity文件_Example.sol_只有一个合约，名为 +example+ ：
+生成的输出操作码文件将取决于Solidity源文件中包含的特定合约。我们简单的Solidity文件 _Example.sol_ 只有一个合约，名为 +example+ ：
 
 [[simple_solidity_example]]
 [source,solidity]
@@ -263,7 +263,7 @@ contract example {
 
 如你所见，此合约仅执行一个永久状态变量，该变量设置为运行该合约的最后一个帐户的地址。
 
-如果查看_BytecodeDir_目录，你将看到操作码文件_example.opcode_，其中包含 +example+ 合约的EVM操作码指令。在文本编辑器中打开_example.opcode_文件将显示以下内容：
+如果查看 _BytecodeDir_ 目录，你将看到操作码文件 _example.opcode_，其中包含 +example+ 合约的EVM操作码指令。在文本编辑器中打开 _example.opcode_ 文件将显示以下内容：
 
 [[opcode_output]]
 ----
@@ -278,7 +278,7 @@ REVERT JUMPDEST CALLER PUSH1 0x0 DUP1 PUSH2 0x100 EXP DUP2 SLOAD DUP2 PUSH20
 EXTCODESIZE 0xe2 0xb8 SWAP10 0xed 0x
 ----
 
-使用+-asm +选项编译示例会在_BytecodeDir_目录中生成一个名为_example.evm_的文件。这包含对EVM字节码指令的更高层次的描述，以及一些有用的注释：
+使用+-asm +选项编译示例会在 _BytecodeDir_ 目录中生成一个名为 _example.evm_ 的文件。这包含对EVM字节码指令的更高层次的描述，以及一些有用的注释：
 
 [[asm_output]]
 [source,solidity]
@@ -360,7 +360,7 @@ PUSH1 0x60 PUSH1 0x40 MSTORE CALLVALUE
 PUSH32 0x436f6e67726174756c6174696f6e732120536f6f6e20746f206d617374657221
 ----
 
-_example.opcode_中的第二个 +PUSH1+ 操作码将 +0x40+ 存储到堆栈的顶部（将已经存在的 +0x60+ 推入下面一个位置）。
+_example.opcode_ 中的第二个 +PUSH1+ 操作码将 +0x40+ 存储到堆栈的顶部（将已经存在的 +0x60+ 推入下面一个位置）。
 
 接下来是 +MSTORE+ ，这是一种内存存储操作，可将值保存到EVM的内存中。它需要两个参数，并且像大多数EVM操作一样，从堆栈中获取它们。对于每个参数，堆栈通过：[“ popped”;]，即，将堆栈上的最高值取走，并将堆栈上的所有其他值上移一个位置。 +MSTORE+ 的第一个参数是内存中要存储值的词的地址。对于此程序，我们在堆栈顶部有 +0x40+ ，因此将其从堆栈中删除并用作内存地址。第二个参数是要保存的值，此处为 +0x60+ 。执行 +MSTORE+ 操作后，我们的堆栈再次为空，但是在内存位置 +0x40+ 处我们有值 +0x60+ （十进制 +96+ ）。
 
@@ -371,15 +371,15 @@ _example.opcode_中的第二个 +PUSH1+ 操作码将 +0x40+ 存储到堆栈的�
 [[contract_deployment_code]]
 ==== 合约的部署代码
 
-((("EVM (Ethereum Virtual Machine)","contract deployment code", id="ix_13evm-asciidoc7", range="startofrange")))((("EVM bytecode","contract deployment code", id="ix_13evm-asciidoc8", range="startofrange"))) 在以太坊平台上创建和部署新合约时使用的代码与合约本身的代码之间存在重要但微妙的区别。为了创建新合约，需要一个特殊的交易，该交易的 +to+ 字段设置为特殊的 +0x0+ 地址，其 +data+ 字段设置为合约的_initiation code_。处理此类创建合约交易时，新合约帐户的代码不是该交易的 +data+ 字段中的代码。取而代之的是，EVM会使用加载到其程序代码ROM中的交易的 +data+ 字段中的代码实例化，然后将该部署代码的执行输出作为新合约帐户的代码。这样一来，可以在部署时使用以太坊全局状态以编程方式初始化新合约，在合约存储中设置值，甚至发送以太币或创建其他新合约。
+((("EVM (Ethereum Virtual Machine)","contract deployment code", id="ix_13evm-asciidoc7", range="startofrange")))((("EVM bytecode","contract deployment code", id="ix_13evm-asciidoc8", range="startofrange"))) 在以太坊平台上创建和部署新合约时使用的代码与合约本身的代码之间存在重要但微妙的区别。为了创建新合约，需要一个特殊的交易，该交易的 +to+ 字段设置为特殊的 +0x0+ 地址，其 +data+ 字段设置为合约的 _initiation code_。处理此类创建合约交易时，新合约帐户的代码不是该交易的 +data+ 字段中的代码。取而代之的是，EVM会使用加载到其程序代码ROM中的交易的 +data+ 字段中的代码实例化，然后将该部署代码的执行输出作为新合约帐户的代码。这样一来，可以在部署时使用以太坊全局状态以编程方式初始化新合约，在合约存储中设置值，甚至发送以太币或创建其他新合约。
 
-脱机编译合约时（例如，在命令行上使用 +solc+ ），您可以获取部署用_deployment字节码_或运行用_runtime字节码_。
+脱机编译合约时（例如，在命令行上使用 +solc+ ），您可以获取部署用 _deployment字节码_ 或运行用 _runtime字节码_。
 
 ((("deployment bytecode"))) 部署字节码用于新合约帐户初始化的每个方面，包括当交易调用该新合约时最终将最终执行的字节码（即运行时字节码）以及根据合约的构造函数初始化所有内容的代码。
 
 ((("runtime bytecode"))) 另一方面，运行时字节码是在调用新协定时最终被执行的字节码，仅此而已；它不包括部署期间初始化合约所需的字节码。
 
-让我们以前面创建的简单_Faucet.sol_合约为例：
+让我们以前面创建的简单 _Faucet.sol_ 合约为例：
 
 [[faucet_example]]
 [source,solidity]
@@ -419,13 +419,13 @@ contract Faucet {
 -https://github.com/trailofbits/ethersplay[_Ethersplay_] 是反汇编程序Binary Ninja的EVM插件。
 -https://github.com/trailofbits/ida-evm[_IDA-Evm_] 是另一个反汇编程序IDA的EVM插件。
 
-在本节中，我们将使用Binary Ninja的Ethersplay插件并启动<<Faucet_disassembled>>。在获得_Faucet.sol_的运行时字节码后，我们可以将其输入Binary Ninja（在加载Ethersplay插件之后），以查看EVM指令的外观。
+在本节中，我们将使用Binary Ninja的Ethersplay插件并启动<<Faucet_disassembled>>。在获得 _Faucet.sol_ 的运行时字节码后，我们可以将其输入Binary Ninja（在加载Ethersplay插件之后），以查看EVM指令的外观。
 
 [[Faucet_disassembled]]
 .反汇编运行水龙头合约的字节码
 image::images/Faucet_disassembled.png["Faucet.sol runtime bytecode disassembled"]
 
-当你将交易发送到兼容ABI的智能合约（您可以假定所有合约都是）时，交易首先会与该智能合约的_dispatcher_进行交互。调度程序读取交易的 +data+ 字段，并将相关部分发送到适当的功能。在反汇编的_Faucet.sol_运行时字节码的开头，我们可以看到调度程序的示例。在熟悉的 +MSTORE+ 指令之后，我们看到以下指令：
+当你将交易发送到兼容ABI的智能合约（您可以假定所有合约都是）时，交易首先会与该智能合约的 _dispatcher_ 进行交互。调度程序读取交易的 +data+ 字段，并将相关部分发送到适当的功能。在反汇编的 _Faucet.sol_ 运行时字节码的开头，我们可以看到调度程序的示例。在熟悉的 +MSTORE+ 指令之后，我们看到以下指令：
 
 [[faucet_instructions]]
 ----
@@ -436,7 +436,7 @@ PUSH1 0x3f
 JUMPI
 ----
 
-如我们所见， +PUSH1 0x4+ 将 +0x4+ 放到栈顶，否则为空。 +CALLDATASIZE+ 获取随交易发送的数据的字节大小（称为_calldata_），并将该数字压入堆栈。执行完这些操作后，堆栈如下所示：
+如我们所见， +PUSH1 0x4+ 将 +0x4+ 放到栈顶，否则为空。 +CALLDATASIZE+ 获取随交易发送的数据的字节大小（称为 _calldata_），并将该数字压入堆栈。执行完这些操作后，堆栈如下所示：
 
 [width="40%",frame="topbot",options="header,footer"]
 |======================
@@ -455,9 +455,9 @@ JUMPI
 keccak256("withdraw(uint256)") = 0x2e1a7d4d...
 ```
 
-因此， +withdraw（uint256）+ 函数的函数标识符为 +0x2e1a7d4d+ ，因为它们是结果哈希的前4个字节。函数标识符的长度始终为4个字节，因此，如果发送给合约的交易的整个 +data+ 字段小于4个字节，那么除非定义了后备函数_fallback function_，否则没有函数可以与交易进行通信。因为我们在_Faucet.sol_中实现了这种后备功能，所以当calldata的长度小于4个字节时，EVM会跳转到该函数。
+因此， +withdraw（uint256）+ 函数的函数标识符为 +0x2e1a7d4d+ ，因为它们是结果哈希的前4个字节。函数标识符的长度始终为4个字节，因此，如果发送给合约的交易的整个 +data+ 字段小于4个字节，那么除非定义了后备函数 _fallback function_，否则没有函数可以与交易进行通信。因为我们在 _Faucet.sol_ 中实现了这种后备功能，所以当calldata的长度小于4个字节时，EVM会跳转到该函数。
 
-+LT+ 从堆栈中弹出前两个值，如果交易的 +data+ 字段小于4个字节，则将 +1+ 压入堆栈。否则，按 +0+ 。在我们的示例中，假设发送到合约_was_的交易的 +data+ 字段小于4个字节。
++LT+ 从堆栈中弹出前两个值，如果交易的 +data+ 字段小于4个字节，则将 +1+ 压入堆栈。否则，按 +0+ 。在我们的示例中，假设发送到合约 _was_ 的交易的 +data+ 字段小于4个字节。
 
 +PUSH1 0x3f+ 指令将字节 +0x3f+ 压入堆栈。完成此指令后，堆栈如下所示：
 
@@ -539,9 +539,9 @@ div(x, y) // integer division x / y
 在这种情况下， +x+ = 从字节0开始的调用数据的32个字节，而 +y+ = ++ 0x100000000 ++ ...（总共29个字节）。你能想到调度程序为什么要进行划分吗？这是一个提示：我们较早地从calldata读取了32个字节，从索引0开始。该calldata的前4个字节是函数标识符。
 
 
-我们之前推送的++ 0x100000000 ++ ...长29个字节，开头是 +1+ ，后面是所有 ++0++ 。用这个值除以我们的32个字节的calldata字节将只剩下我们调用数据加载的_toptop 4个bytes_（从索引0开始）。这4个字节（即从索引0开始的calldata中的前4个字节）是函数标识符，是EVM提取该字段的方式。
+我们之前推送的++ 0x100000000 ++ ...长29个字节，开头是 +1+ ，后面是所有 ++0++ 。用这个值除以我们的32个字节的calldata字节将只剩下我们调用数据加载的 _toptop 4个bytes_（从索引0开始）。这4个字节（即从索引0开始的calldata中的前4个字节）是函数标识符，是EVM提取该字段的方式。
 
-如果你不清楚此部分，请这样想：以10为底，1234000 / 1000 = 1234。以16为底，这没什么不同。并非每个位置都是10的倍数，而是16的倍数。就像在我们较小的示例中被10 ^ 3 ^（1000）除以仅保留最高位一样，我们将32字节基数16的值除以16 ^ 29 ^也一样。
+如果你不清楚此部分，请这样想：以10为底，1234000 / 1000 = 1234。以16为底，这没什么不同。并非每个位置都是10的倍数，而是16的倍数。就像在我们较小的示例中被10^3^（1000）除以仅保留最高位一样，我们将32字节基数16的值除以16^29^也一样。
 
 +DIV+ （函数标识符）的结果被压入堆栈，我们的堆栈现在为：
 
@@ -591,7 +591,7 @@ div(x, y) // integer division x / y
 [[turing_completeness_and_gas]]
 === 图灵完整性和燃料
 
-((("EVM (Ethereum Virtual Machine)","Turing completeness and Gas")))((("Turing completeness","EVM and"))) 我们已经简单地谈到了系统或如果可以运行任何程序，则编程语言为图灵完备_Turing complete_。但是，此功能有一个非常重要的警告：一些程序会永远运行。其中一个重要方面是，仅通过查看程序并无法确定它是否将永远执行。我们实际上必须完成程序的执行，并等待其完成才能找到答案。((("halting problem"))) 当然，如果要花很长时间才能执行，我们将不得不永远等待找出答案。这被称为“暂停问题”，如果不解决的话，对以太坊将是一个巨大的问题。
+((("EVM (Ethereum Virtual Machine)","Turing completeness and Gas")))((("Turing completeness","EVM and"))) 我们已经简单地谈到了系统或如果可以运行任何程序，则编程语言为图灵完备 _Turing complete_。但是，此功能有一个非常重要的警告：一些程序会永远运行。其中一个重要方面是，仅通过查看程序并无法确定它是否将永远执行。我们实际上必须完成程序的执行，并等待其完成才能找到答案。((("halting problem"))) 当然，如果要花很长时间才能执行，我们将不得不永远等待找出答案。这被称为“暂停问题”，如果不解决的话，对以太坊将是一个巨大的问题。
 
 由于停止问题，以太坊世界计算机有被要求执行永不停止的程序的风险。这可能是偶然的或恶意的。我们已经讨论过，以太坊的行为就像没有任何调度程序的单线程机器一样，因此如果它陷入死循环，这将意味着它将变得不可用。
 
@@ -602,7 +602,7 @@ div(x, y) // integer division x / y
 [[gas]]
 === 燃料Gas
 
-((("EVM (Ethereum Virtual Machine)","gas and", id="ix_13evm-asciidoc11", range="startofrange")))((("gas","EVM and", id="ix_13evm-asciidoc12", range="startofrange"))) 燃料_ Gas_是用于衡量在以太坊区块链上执行操作所需的计算和存储资源的单位。与比特币不同，比特币的交易费用仅考虑了交易以千字节为单位的大小，以太坊必须考虑到交易和智能合约代码执行所执行的每个计算步骤。
+((("EVM (Ethereum Virtual Machine)","gas and", id="ix_13evm-asciidoc11", range="startofrange")))((("gas","EVM and", id="ix_13evm-asciidoc12", range="startofrange"))) 燃料 _Gas_ 是用于衡量在以太坊区块链上执行操作所需的计算和存储资源的单位。与比特币不同，比特币的交易费用仅考虑了交易以千字节为单位的大小，以太坊必须考虑到交易和智能合约代码执行所执行的每个计算步骤。
 
 交易或合约执行的每个操作都消耗固定量的燃料。以太坊黄皮书中的一些示例：
 
@@ -653,7 +653,7 @@ refunded ether = remaining gas * gas price
 
 实际上，交易的发送者将设置一个燃料限制，该限制高于或等于预期使用的燃料量。如果将燃料限制设置为高于所消耗的燃料量，则发件人将获得超出部分的退款，因为矿工仅对其实际执行的工作得到补偿。
 
-重要的是要清楚燃料成本_gas cost_和燃料价格_gas price_之间的区别。回顾一下：
+重要的是要清楚燃料成本 _gas cost_ 和燃料价格 _gas price_ 之间的区别。回顾一下：
 
 * 燃料成本是执行特定操作所需的燃料单位数。
 

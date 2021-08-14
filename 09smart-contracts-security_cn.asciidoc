@@ -175,7 +175,7 @@ contract Attack {
 
 8. _EtherStore.sol_，第17行：攻击合约提取了另外的“ 1 ether”。
 
-9. 重复步骤4至8，直到不再出现“ EtherStore.balance > 1”，如_Attack.sol_中的第26行所指示。
+9. 重复步骤4至8，直到不再出现“ EtherStore.balance > 1”，如 _Attack.sol_ 中的第26行所指示。
 
 10. _Attack.sol_，第26行：一旦`EtherStore`合约中剩下1（或更少）个以太币，此`if`语句将失败。然后，这将允许执行“ EtherStore”合约的第18行和第19行（对于每次对“ withdrawFunds”函数的调用）。
 
@@ -198,8 +198,8 @@ http://bit.ly/2Ogvnng[ +transfer+ ]
 
 ((("checks-effects-interactions pattern"))) 第二种技术是确保所有更改状态的逻辑
 变量在以太币被发送出合约之前发生（或任何其他
-外部调用）。在“ EtherStore”示例中，第18行和第19行
-_EtherStore.sol_应该放在第17行之前。一个好习惯是对于任何执行对未知地址的外部调用的代码，
+外部调用）。在“ EtherStore”示例中，第18行和第19行 
+_EtherStore.sol_ 应该放在第17行之前。一个好习惯是对于任何执行对未知地址的外部调用的代码，
 都将其作为本地函数或一段代码执行中的最后一个操作。这个
 被称为
 http://bit.ly/2EVo70v[checks-effects-interactions
@@ -210,7 +210,7 @@ pattern].
 重入调用。
 
 应用所有这些技术（不需要全部使用三种，但是我们这里
-是出于说明目的）到_EtherStore.sol_，就是下面这个可以
+是出于说明目的）到 _EtherStore.sol_，就是下面这个可以
 避免再入的合约：
 
 [source,solidity,linenums]
@@ -278,16 +278,16 @@ https://bit.ly/2xvbx1M[&#x201c;Ethereum, Solidity and integer overflows: program
 变量的数据类型范围。
 
 ((("underflow"))) 例如，从值为0的uint8（8位无符号整数；即非负数）变量中减去1。
-会导致结果为255。这是一个下限溢出错误_underflow_。我们定义了一个数字
+会导致结果为255。这是一个下限溢出错误 _underflow_。我们定义了一个数字
 低于ʻuint8`的范围，因此结果导致了回转并给出了
-uint8可以存储的最大数量。类似地，将'2 ^ 8 = 256' 添加到
+uint8可以存储的最大数量。类似地，将'2^8^ = 256' 添加到
 'uint8'的变量将使变量值保持不变，因为我们已经转回
 uint的整个长度。两个简单类比的情况是
 汽车中用于测量行进距离的里程表（里程表达到最大值后会重置为000000
 ，即最大数超过999999）和数学中的周期函数
 （在 +sin+ 的参数上加上 +2π+ 会使值保持不变）。
 
-((("overflow","defined"))) 添加大于数据类型范围的数字称为溢出_overflow_。
+((("overflow","defined"))) 添加大于数据类型范围的数字称为溢出 _overflow_。
 比如，将257添加到当前值为0的uint8中，
 结果是数字“ 1”。固定大小的变量可以被视为
 是循环的，如果在最大的变量值上方加上数字，我们将回到零
@@ -341,7 +341,7 @@ contract TimeLock {
 攻击者可以指定当前的“ lockTime”到他们的地址，
 即所掌握的公钥（这是一个公共变量）。我们称之为
 `userLockTime`。然后，他们可以调用ʻincreaseLockTime`函数，然后
-将数字2 ^ 256-userLockTime作为参数传递。这个数字会
+将数字 2^256^ - userLockTime 作为参数传递。这个数字会
 被加到到当前ʻuserLockTime`值并导致溢出，重置
 lockTime [msg.sender]的值为0。然后，攻击者可以简单地调用
 `withdraw`函数获得他们的奖励。
@@ -390,7 +390,7 @@ contract Token {
 的余额。他们可以用调用`transfer`函数
 使用非零的参数'value'并在第13行通过 +require+ 语句。这是因为
 `balances [msg.sender]`是 +0+ （变量类型为`uint256`），因此减去
-正值（不包括“ 2 ^ 256”）将产生一个正数，如前所述。第14行也是如此
+正值（不包括 2^256^ ）将产生一个正数，如前所述。第14行也是如此
 余额将记入正数。因此，在这个
 例子中，由于下限溢出漏洞，攻击者可以获得免费通证。(((range="endofrange", startref="ix_09smart-contracts-security-asciidoc10")))
 
@@ -695,7 +695,7 @@ Solidity Coding Contest]，其中还提供了许多
 外部合约/函数的范围内运行。 `DELEGATECALL`操作码与其
 几乎相同，除了在目标地址执行的代码是
 在调用合约的范围中运行，而msg.sender和msg.value保持不变。这个
-特征启用_libraries_的实现，从而使开发人员能够
+特征启用 _libraries_ 的实现，从而使开发人员能够
 只需部署一次可重复使用的代码，并从将来的合约中调用它。
 
 尽管这两个操作码之间的区别很简单和
@@ -750,9 +750,9 @@ contract FibonacciLib {
 ----
 ====
 
-该合约库提供了可以生成第_n_个斐波纳契
+该合约库提供了可以生成第 _n_ 个斐波纳契
 序列中的数字的函数。它允许用户更改
-序列（`start`）并在这个新的序列中计算第_n_个类斐波那契数
+序列（`start`）并在这个新的序列中计算第 _n_ 个类斐波那契数
 字。
 
 现在让我们考虑一个利用该库的合约，如<<fib_balance_security>>。
@@ -845,7 +845,7 @@ selector]，并放入`calldata`中以指定
 在讨论实际问题之前，让我们快速回顾一下
 状态变量实际上是如何
 存储在合约中的。状态或存储变量（变量值
-在单个交易中不变）放入_slots_
+在单个交易中不变）放入 _slots_
 是按合约中的顺序进行。 （这里有些复杂；请参阅http://bit.ly/2JslDWf[Solidity docs]以获取更全面的了解。）
 
 作为示例，让我们看一下合约库。它有两个状态
@@ -1690,7 +1690,7 @@ contract Lotto {
 
 一个更好的解决方案
 http://bit.ly/2CSdF7y[recommendation]
-是采用_提款方式_。在此解决方案中，每个用户必须
+是采用 _提款方式_。在此解决方案中，每个用户必须
 调用一个独立的 +withdraw+ 函数
 处理发送合约中的以太币并
 处理发送交易失败的后果。
@@ -1890,7 +1890,7 @@ function approve(address _spender, uint256 _value) returns (bool success)
 
 此功能允许用户批准其他用户代表自己传送通证
 。抢跑漏洞发生在以下情况中：
-用户Alice 批准，即_approves_她的朋友Bob可以支付100个通证。Alice
+用户Alice 批准，即 _approves_ 她的朋友Bob可以支付100个通证。Alice
 后来决定她要撤消Bob的批准，例如说，
 100个通证，因此她创建了一个交易来设置Bob的额度
 到50个通证。Bob一直在仔细观察区块链，他发现了
@@ -2293,7 +2293,7 @@ contract NameRegistrar {
 要讨论此漏洞，首先我们需要了解存储方式
 是如何在Solidity中使用的。作为高级概述（没有任何适当的
 技术细节-我们建议阅读Solidity文档以获取适当信息
-内容），状态变量按它们在合约中出现的顺序存储在_slots_中
+内容），状态变量按它们在合约中出现的顺序存储在 _slots_ 中
 （它们可以组合在一起，但是不在此
 例子中，因此我们不必为此担心）。因此，“unlocked”存在于
 slot [0]，slot [1]中存储的是registeredNameRecord，resolve

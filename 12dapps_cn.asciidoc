@@ -1,7 +1,7 @@
 [[decentralized_applications_chap]]
 == 去中心化应用程序（DApps）
 
-((("DApps (decentralized applications)", id="ix_12dapps-asciidoc0", range="startofrange")))在本章中，我们将探讨_去中心化应用程序_或_DApps_的世界。从以太坊的早期开始，创始人的视野远不止“智能合约”：((("web3"))) 等于重新发明了网络并创造了一个新的DApp世界，恰当地称为_web3_。智能合约是一种分布式应用程序的控制逻辑和支付功能的方式。 Web3 DApp与构建分布式应用程序的所有其他方面有关：存储，消息传递，命名等（请参见<<image_web3_suite>>）。
+((("DApps (decentralized applications)", id="ix_12dapps-asciidoc0", range="startofrange")))在本章中，我们将探讨 _去中心化应用程序_ 或 _DApps_ 的世界。从以太坊的早期开始，创始人的视野远不止“智能合约”：((("web3"))) 等于重新发明了网络并创造了一个新的DApp世界，恰当地称为 _web3_。智能合约是一种分布式应用程序的控制逻辑和支付功能的方式。 Web3 DApp与构建分布式应用程序的所有其他方面有关：存储，消息传递，命名等（请参见<<image_web3_suite>>）。
 
 [[image_web3_suite]]
 .Web3：使用智能合约和P2P技术的去中心化网络
@@ -60,7 +60,7 @@ DApp的链上性质使每个人都可以检查代码并更确定其中的函数�
 
 尽管也可以创建移动DApp，但目前几乎没有资源可用于创建移动DApp前端，这主要是由于缺少可以用作具有密钥管理功能的轻型客户端的移动客户端。
 
-前端通常通过_web3.js_ JavaScript库链接到以太坊，该库与前端资源捆绑在一起，并由Web服务器提供给浏览器。
+前端通常通过 _web3.js_ JavaScript库链接到以太坊，该库与前端资源捆绑在一起，并由Web服务器提供给浏览器。
 
 [[data_storage_sec]]
 ==== 数据存储
@@ -91,7 +91,7 @@ https://swarm-gateways.net/bzz:/theswarm.eth/[].
 [[interdapp_coammunications_protocol_sec]]
 ==== 去中心化的信息通信协议
 
-((("DApps (decentralized applications)","decentralized message communication protocols")))((("message communication protocols"))) 应用程序的另一个主要组成部分是进程间通信。这意味着能够在应用程序之间，应用程序的不同实例之间或应用程序的用户之间交换消息。传统上，这是依赖中央服务器来实现的。但是，对于基于服务器的协议，有许多去中心化的替代方法，它们可通过P2P网络提供消息传递。 ((("Whisper"))) DApp最著名的P2P信息协议是 Whisper http://bit.ly/2CSls5h[_Whisper_] ，它是以太坊基金会Go-Ethereum工具组件的一部分。
+((("DApps (decentralized applications)","decentralized message communication protocols")))((("message communication protocols"))) 应用程序的另一个主要组成部分是进程间通信。这意味着能够在应用程序之间，应用程序的不同实例之间或应用程序的用户之间交换消息。传统上，这是依赖中央服务器来实现的。但是，对于基于服务器的协议，有许多去中心化的替代方法，它们可通过P2P网络提供消息传递。 ((("Whisper"))) DApp最著名的P2P信息协议是 http://bit.ly/2CSls5h[_Whisper_] ，它是以太坊基金会Go-Ethereum工具组件的一部分。
 
 可以去中心化处理的应用程序的最后一个方面是名称解析。在本章后面，我们将详细介绍以太坊的名称服务。现在，让我们看一个例子。(((range="endofrange", startref="ix_12dapps-asciidoc1")))
 
@@ -109,7 +109,7 @@ https://swarm-gateways.net/bzz:/theswarm.eth/[].
 * 一个实现ERC721不可替代的“契约”通证的智能合约（通过 pass:[ <code><span class="keep-together">DeedRepository</span></code> ]）
 * 实施拍卖（ +AuctionRepository+ ）来出售契约的智能合约
 * 使用Vue / Vuetify JavaScript框架的Web前端
-* _web3.js_库以连接到以太坊区块链（通过MetaMask或其他客户端）
+* _web3.js_ 库以连接到以太坊区块链（通过MetaMask或其他客户端）
 * Swarm客户端，用于存储图像等资源
 * Whisper客户端，为所有参与者创建拍卖前的聊天室
 
@@ -221,7 +221,7 @@ $ <strong>truffle migrate --network ropsten</strong>
 
 ((("Auction DApp","frontend user interface"))) 部署了拍卖 DApp的合约后，你可以使用自己喜欢的JavaScript控制台和web3.js或另一个web3库与它们进行交互。但是，大多数用户将需要一个易于使用的界面。我们的拍卖 DApp用户界面是使用Google的Vue2 / Vuetify JavaScript框架构建的。
 
-您可以在这本书的存储库 https://github.com/ethereumbook/ethereumbook[the book's repository] 的_code/auction_dapp/frontend_文件夹中找到用户界面代码。该目录具有以下结构和内容：
+您可以在这本书的存储库 https://github.com/ethereumbook/ethereumbook[the book's repository] 的 _code/auction_dapp/frontend_ 文件夹中找到用户界面代码。该目录具有以下结构和内容：
 
 ----
 frontend/
@@ -260,7 +260,7 @@ frontend/
 |       `-- index.js
 ----
 
-部署合约后，请在_frontend/src/config.js_中编辑前端配置，并输入已部署的 +DeedRepository+ 和 +AuctionRepository+ 合约的地址。前端应用程序还需要访问提供以JSON-RPC和WebSockets接口的以太坊节点。一旦配置了前端，就可以使用本地计算机上的Web服务器启动它：
+部署合约后，请在 _frontend/src/config.js_ 中编辑前端配置，并输入已部署的 +DeedRepository+ 和 +AuctionRepository+ 合约的地址。前端应用程序还需要访问提供以JSON-RPC和WebSockets接口的以太坊节点。一旦配置了前端，就可以使用本地计算机上的Web服务器启动它：
 
 ++++
 <pre data-type="programlisting">
@@ -359,7 +359,7 @@ ec13042c83ffc2fb5cb0aa8c53f770d36c9b3b35d0468a0c0a77c97016bb8d7c
 </pre>
 ++++
 
-Swarm已上传_README.md_文件，并返回了一个哈希，你可以使用该哈希从任何Swarm节点访问该文件。例如，你可以使用公共Swarm网关 https://bit.ly/2znWUP9[public Swarm gateway]。
+Swarm已上传 _README.md_ 文件，并返回了一个哈希，你可以使用该哈希从任何Swarm节点访问该文件。例如，你可以使用公共Swarm网关 https://bit.ly/2znWUP9[public Swarm gateway]。
 
 虽然上传一个文件相对简单，但是上传整个DApp前端要复杂一些。这是因为各种DApp资源（HTML，CSS，JavaScript，库等）具有彼此嵌入的引用。通常，Web服务器会将URL转换为本地文件并提供正确的资源。通过打包DApp，我们可以为Swarm实现相同的目标。
 
@@ -391,7 +391,7 @@ Build complete.
 </pre>
 ++++
 
-该命令的结果将是一个新目录_code / auction_dapp / frontend / dist_，其中包含打包在一起的整个Auction DApp前端代码：
+该命令的结果将是一个新目录 _code/auction_dapp/frontend/dist_，其中包含打包在一起的整个Auction DApp前端代码：
 
 ----
 dist/
@@ -622,7 +622,7 @@ image::images/ens-bid.png["Placing a bid for an ENS name"]
 
 [WARNING]
 ====
-如&<<vickrey_auction>>，你必须在拍卖完成后的48小时内披露你的出价，否则就会_扣除出价中的资金_。我们是否忘记这样做并自己损失了0.01 ETH？肯定不会啊。
+如&<<vickrey_auction>>，你必须在拍卖完成后的48小时内披露你的出价，否则就会 _扣除出价中的资金_。我们是否忘记这样做并自己损失了0.01 ETH？肯定不会啊。
 
 截取屏幕截图，保存你的秘密短语（作为出价的备份），并在日历中添加提示日期和时间的提醒，以免你忘记或丢失资金。
 ====

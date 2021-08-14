@@ -120,7 +120,7 @@ function f(uint _in, bytes32 _key) public pure returns (uint out) {
 
 ==== 变量类型转换
 
-((("Solidity","variable typecasting")))((("typecasting")))((("Vyper","variable typecasting")))有两种类型的类型转换：_implicit_和_explicit_
+((("Solidity","variable typecasting")))((("typecasting")))((("Vyper","variable typecasting")))有两种类型的类型转换：_implicit_ 和 _explicit_
 
 ((("implicit typecasting"))) 隐式类型转换通常在编译时执行。例如，如果类型转换在语义上是合理的，并且可能不会丢失任何信息，则编译器可以执行隐式转换，例如将类型 +uint8+ 的变量转换为 +uint16+ 。 Vyper的最早版本允许变量的隐式类型转换，但最新版本不允许。
 

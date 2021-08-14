@@ -44,11 +44,11 @@ DAO攻击的工作方式如下：
 === The DAO事件的硬分叉
 ((("DAO (Decentralized Autonomous Organization)","hard fork", id="ix_appdx-forks-history-asciidoc4", range="startofrange")))((("forks","DAO", id="ix_appdx-forks-history-asciidoc5", range="startofrange")))((("hard forks", id="ix_appdx-forks-history-asciidoc6", range="startofrange")))幸运的是，DAO合约内部设置了几项保护措施：重要的是，所有提款请求都将延迟28天。这给了社区一些时间来讨论如何利用此措施来补上漏洞，因为从6月17日至7月20日左右，DAO攻击者将无法将其DAO代币转换为以太币。
 
-几位开发人员致力于找到可行的解决方案，并在较短的时间内探索了多种途径。其中包括6月24日宣布的http://bit.ly/2qhruEK[_DAO软分叉_]和晚些于7月15日宣布的http://bit.ly/2AAGjIu[_DAO硬分叉_]，以一种特殊的系统状态改变来翻转DAO攻击的影响。
+几位开发人员致力于找到可行的解决方案，并在较短的时间内探索了多种途径。其中包括6月24日宣布的 http://bit.ly/2qhruEK[_DAO软分叉_]和晚些于7月15日宣布的 http://bit.ly/2AAGjIu[_DAO硬分叉_]，以一种特殊的系统状态改变来翻转DAO攻击的影响。
 
-6月28日，开发人员发现了http://bit.ly/2zgOxUn（DAO软叉中的DoS攻击），并得出结论，DAO硬叉将是唯一解决此问题的可行选择。 DAO硬分叉会将已在DAO中投资的所有以太币转移到新的退款智能合约中，从而使以太坊的原始所有者可以要求全额退款。这提供了一种返还被盗资金的解决方案，但也意味着干扰网络上特定地址的余额，无论它们是多么孤立。 DAO的某些部分中还会有一些剩余的以太坊，称为_childDAOs_。一组受托人将手动授权剩余的以太币，当时价值为http://bit.ly/2RuUrJh[~6-700万美元]。
+6月28日，开发人员发现了http://bit.ly/2zgOxUn（DAO软叉中的DoS攻击），并得出结论，DAO硬叉将是唯一解决此问题的可行选择。 DAO硬分叉会将已在DAO中投资的所有以太币转移到新的退款智能合约中，从而使以太坊的原始所有者可以要求全额退款。这提供了一种返还被盗资金的解决方案，但也意味着干扰网络上特定地址的余额，无论它们是多么孤立。 DAO的某些部分中还会有一些剩余的以太坊，称为 _childDAOs_。一组受托人将手动授权剩余的以太币，当时价值为http://bit.ly/2RuUrJh[~6-700万美元]。
 
-随着时间的流逝，多个以太坊开发团队创建了客户端，使用户可以决定是否要启用此派生。但是，客户创建者想决定是选择加入（默认不分叉）还是选择退出（默认为分叉）。 7月15日，在http://bit.ly/2ABkTuV[_carbonvote.com_]上进行了投票。第二天，在区块高度http://bit.ly/2yHb7Gl[1,894,000]上，投票关闭了。在投票的http://bit.ly/2RuUrJh [占以太币供应总量的5.5％]中，约80％的选票（占以太币供应总量的约4.5％）投票反对退出。退出表决的四分之一来自一个地址。
+随着时间的流逝，多个以太坊开发团队创建了客户端，使用户可以决定是否要启用此派生。但是，客户创建者想决定是选择加入（默认不分叉）还是选择退出（默认为分叉）。 7月15日，在 http://bit.ly/2ABkTuV[_carbonvote.com_]上进行了投票。第二天，在区块高度http://bit.ly/2yHb7Gl[1,894,000]上，投票关闭了。在投票的http://bit.ly/2RuUrJh [占以太币供应总量的5.5％]中，约80％的选票（占以太币供应总量的约4.5％）投票反对退出。退出表决的四分之一来自一个地址。
 
 最终，决定默认了硬分叉，因此，那些反对DAO硬分叉的人将需要通过更改正在运行的软件中的配置选项来明确声明其反对意见。
 
@@ -70,7 +70,7 @@ DAO攻击的工作方式如下：
 -2016年6月21日：RHG http://bit.ly/2zgl3Gk [公告]它已保护DAO中存储的约70％的以太币。
 -2016年6月24日：用户可以通过Geth和Parity客户端进行签名，来选择是否加入http://bit.ly/2qhruEK [软分叉投票]，旨在临时扣留资金，直到社区可以做出更好的决定。
 -2016年6月28日：在软叉中发现了http://bit.ly/2zgOxUn [漏洞]，并将其放弃。
--2016年6月28日至7月15日：用户们讨论是否要进行硬分叉；大部分公开辩论都在_ / r / ethereum_ subreddit上进行。
+-2016年6月28日至7月15日：用户们讨论是否要进行硬分叉；大部分公开辩论都在 _/r/ethereum_ subreddit上进行。
 -2016年7月15日：提出了http://bit.ly/2qmo3g1[DAO硬叉]，以退还DAO攻击中获得的资金。
 -2016年7月15日：CarbonVote上的http://bit.ly/2ABkTuV [举行投票]决定DAO硬分叉是选择加入（默认情况下不进行分叉）还是选择退出（选择分叉）默认）。
 -2016年7月16日：http：//bit.ly/2RuUrJh [占以太币供应总票数的5.5％]；通过：[〜80％的选票（约占总供应量的4.5％]）赞成默认硬分叉，赞成票的四分之一来自单个地址。
@@ -121,7 +121,7 @@ ____
 
 以下是一些较著名的分支的简要概述：
 
--((("Expanse")))_ Expanse_是以太坊区块链中第一个获得关注的分支。它是在2015年9月7日通过比特币谈话论坛宣布的。实际的分叉发生在一周后的2015年9月14日，区块高度为800,000。它最初由Christopher Franko和James Clayton创立。他们明确要创建一个以“身份，治理，慈善，商业和公平”为愿景的高级链。
--((("ETF (EthereumFog)")))((("EthereumFog (ETF)")))_ EthereumFog_（ETF）于2017年12月14日推出，并以4,730,660的区块高度分叉。该项目的既定目标是通过专注于雾计算和分散存储来开发“世界分布式雾计算”。关于这实际上需要做什么的信息仍然很少。
+-((("Expanse"))) _Expanse_ 是以太坊区块链中第一个获得关注的分支。它是在2015年9月7日通过比特币谈话论坛宣布的。实际的分叉发生在一周后的2015年9月14日，区块高度为800,000。它最初由Christopher Franko和James Clayton创立。他们明确要创建一个以“身份，治理，慈善，商业和公平”为愿景的高级链。
+-((("ETF (EthereumFog)")))((("EthereumFog (ETF)"))) _EthereumFog_（ETF）于2017年12月14日推出，并以4,730,660的区块高度分叉。该项目的既定目标是通过专注于雾计算和分散存储来开发“世界分布式雾计算”。关于这实际上需要做什么的信息仍然很少。
 -_EtherZero_（ETZ）(("EtherZero (ETZ)")))于2018年1月19日发布，区块高度为4,936,270。它的显著创新是引入了主节点体系结构，并取消了智能合约的交易费用，从而使DApp的种类更加广泛。以太坊社区的一些著名项目，如MyEtherWallet和MetaMask对此提出了一些批评，因为项目对开发过程缺乏清晰的解释，并存在一些网络钓鱼的可能性。
--((("EtherInc (ETI)")))((("ETI (EtherInc)")))_ EtherInc_（ETI）于2018年2月13日启动，区块高度为5,078,585，重点是建立分散式的组织。项目宣布的目标包括减少出块时间，增加矿工奖励，取消叔块奖励并为可开采以太币设定上限。 EtherInc使用与以太坊相同的私钥，并实现了重播保护以保护原始未分叉链上的以太币。(((range="endofrange", startref="ix_appdx-forks-history-asciidoc2")))(((range="endofrange", startref="ix_appdx-forks-history-asciidoc1")))(((range="endofrange", startref="ix_appdx-forks-history-asciidoc0")))
+-((("EtherInc (ETI)")))((("ETI (EtherInc)"))) _EtherInc_（ETI）于2018年2月13日启动，区块高度为5,078,585，重点是建立分散式的组织。项目宣布的目标包括减少出块时间，增加矿工奖励，取消叔块奖励并为可开采以太币设定上限。 EtherInc使用与以太坊相同的私钥，并实现了重播保护以保护原始未分叉链上的以太币。(((range="endofrange", startref="ix_appdx-forks-history-asciidoc2")))(((range="endofrange", startref="ix_appdx-forks-history-asciidoc1")))(((range="endofrange", startref="ix_appdx-forks-history-asciidoc0")))

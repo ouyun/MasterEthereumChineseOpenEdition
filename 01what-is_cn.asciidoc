@@ -81,10 +81,10 @@ https://vitalik.ca/general/2017/09/14/prehistory.html[].
 
 ((("Ethereum (generally)","four stages of development")))以太坊的发展被分为四个明确的阶段，每个阶段都有重要的改变。 ((("hard forks", seealso="DAO; other specific hard forks, e.g.: Spurious Dragon")))一个阶段可能包含多个子发布，也就是众所周知的“硬分叉” ，它以一种不向后兼容的方式来改变功能。
 
-以太坊四个主要的开发阶段分别名为 _Frontier_，_Homestead_，_Metropolis_和_Serenity_。迄今为止已经发生（或计划中）的硬分叉的代号为 _Ice Age_，_DAO_，_Tangerine Whistle_，_Spurious Dragon_，_Byzantium_和 _Constantinople_。在以下时间轴上显示了开发阶段和中间的硬分叉，并按区块号标记为“日期”：
+以太坊四个主要的开发阶段分别名为 _Frontier_，_Homestead_，_Metropolis_ 和 _Serenity_。迄今为止已经发生（或计划中）的硬分叉的代号为 _Ice Age_，_DAO_，_Tangerine Whistle_，_Spurious Dragon_，_Byzantium_ 和 _Constantinople_。在以下时间轴上显示了开发阶段和中间的硬分叉，并按区块号标记为“日期”：
 
 
-区块 #0:: ((("Frontier")))__Frontier__&#x2014以太坊的初始阶段，持续时间从2015年7月30日到2016年3月。
+区块 #0:: ((("Frontier")))__Frontier__&#x2014;以太坊的初始阶段，持续时间从2015年7月30日到2016年3月。
 
 区块 #200,000:: ((("Ice Age")))__Ice Age__&#x2014;硬分叉版本引入指数难度增加，促使系统在适当时间向PoS过渡。
 
@@ -94,7 +94,7 @@ https://vitalik.ca/general/2017/09/14/prehistory.html[].
 
 区块 #2,463,000:: ((("Tangerine Whistle")))__Tangerine Whistle__&#x2014;硬分叉，用于更改某些I / O繁重操作的gas计算，并且当黑客利用这些操作的低gas成本来实施拒绝服务（DoS）时，可以清除系统中的累积状态，保护系统。
 
-区块 #2,675,000:: ((("Spurious Dragon")))__Spurious Dragon__&#x2014; 硬分叉用于解决更多DoS攻击媒介，以及另一种状态清除方法。此外，还提供了对重放攻击的保护机制。
+区块 #2,675,000:: ((("Spurious Dragon")))__Spurious Dragon__&#x2014;硬分叉用于解决更多DoS攻击媒介，以及另一种状态清除方法。此外，还提供了对重放攻击的保护机制。
 
 
 区块 #4,370,000:: ((("Metropolis")))((("Byzantium fork")))__Metropolis Byzantium__&#x2014;Metropolis是以太坊的第三阶段，在撰写此书时，该阶段于2017年10月启动。Byzantium是计划用于Metropolis的两个硬叉中的第一个。
