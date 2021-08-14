@@ -88,7 +88,7 @@
 [[hd_wallets]]
 ==== 分层确定性钱包（BIP-32 / BIP-44）
 
-((("Bitcoin improvement proposals (BIPs)","Hierarchical Deterministic Wallets (BIP-32/BIP-44)")))((("hierarchical deterministic wallets (BIP-32/BIP-44)"))) 确定性开发钱包的目的是可以从单个种子中获取许多密钥。当前，确定性钱包的最高级形式是由比特币的http://bit.ly/2B2vQWs[_BIP-32 standard_]定义的 _hierarchical deterministic_（HD）钱包。 HD钱包包含以树结构派生的密钥，以便父密钥可以派生一系列子密钥，每个子密钥都可以派生孙密钥序列，依此类推。该树结构在<<hd_wallets_figure>>。
+((("Bitcoin improvement proposals (BIPs)","Hierarchical Deterministic Wallets (BIP-32/BIP-44)")))((("hierarchical deterministic wallets (BIP-32/BIP-44)"))) 确定性开发钱包的目的是可以从单个种子中获取许多密钥。当前，确定性钱包的最高级形式是由比特币的 http://bit.ly/2B2vQWs[_BIP-32 standard_] 定义的 _hierarchical deterministic_（HD）钱包。 HD钱包包含以树结构派生的密钥，以便父密钥可以派生一系列子密钥，每个子密钥都可以派生孙密钥序列，依此类推。该树结构在<<hd_wallets_figure>>。
 
 [[hd_wallets_figure]]
 .HD钱包：从单个种子生成的密钥树

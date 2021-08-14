@@ -137,7 +137,7 @@ include::code/auction_dapp/backend/contracts/DeedRepository.sol[]
 
 如你所见， +DeedRepository+ 合约直接实现了一个兼容ERC721标准的通证。
 
-我们的拍卖DApp使用 +DeedRepository+ 合约为每次拍卖发行和跟踪通证。拍卖本身由 +AuctionRepository+ 合约安排。该合约太长，无法在此处完整列出，但<<auction_repository_code>>显示合约和数据结构的主要定义。本书的GitHub存储库https://bit.ly/2IaOo9i[GitHub repository] 中提供了整个合约。
+我们的拍卖DApp使用 +DeedRepository+ 合约为每次拍卖发行和跟踪通证。拍卖本身由 +AuctionRepository+ 合约安排。该合约太长，无法在此处完整列出，但<<auction_repository_code>>显示合约和数据结构的主要定义。本书的GitHub存储库 https://bit.ly/2IaOo9i[GitHub repository] 中提供了整个合约。
 
 [[auction_repository_code]]
 .AuctionRepository.sol: The main Auction DApp smart contract
@@ -541,7 +541,7 @@ namehash('mastering-ethereum.eth')
 [NOTE]
 ====
 使传统DNS域所有者拥有ENS所有权的工作正在开发中。
-虽然从理论上讲，它可以用于 +.com+ ，但到目前为止，唯一已实现的域是http://bit.ly/2SwUuFC[+.xyz+，并且仅在Ropsten测试网上]。
+虽然从理论上讲，它可以用于 +.com+ ，但到目前为止，唯一已实现的域是 http://bit.ly/2SwUuFC[+.xyz+，并且仅在Ropsten测试网上]。
 ====
 
 +.eth+ 域是通过拍卖系统分发的。没有保留列表或优先级，获取名称的唯一方法是使用系统。拍卖系统是一段复杂的代码（超过500行）。 ENS中的大多数早期开发工作（和bug！）都在系统的这一部分中。但是，它也可以更换和升级，而无需花钱，以后再说。
@@ -637,7 +637,7 @@ image::images/ens-metamask-bid.png["MetaMask transaction containing your bid"]
 
 ==== 管理你的ENS名称
 
-((("ENS (Ethereum Name Service)","managing your ENS name"))) 一旦注册了ENS名称，就可以使用另一个用户友好的界面进行管理：https://manager.ens.domains/[ENS Manager]。
+((("ENS (Ethereum Name Service)","managing your ENS name"))) 一旦注册了ENS名称，就可以使用另一个用户友好的界面进行管理： https://manager.ens.domains/[ENS Manager]。
 
 
 到达后，在搜索框中输入要管理的名称（请参见<<ens-manager>>）。你需要解锁以太坊钱包（例如MetaMask），以便ENS Manager DApp可以代表你管理名称。

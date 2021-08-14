@@ -429,7 +429,7 @@ $ <strong>curl -X POST -H "Content-Type: application/json" --data \
 {"jsonrpc":"2.0","method":"web3_clientVersion","params":[],"id":1}
 ----
 
-JSON-RPC请求的格式根据https://www.jsonrpc.org/specification[JSON-RPC 2.0规范]设置。每个请求包含四个元素：
+JSON-RPC请求的格式根据 https://www.jsonrpc.org/specification[JSON-RPC 2.0规范]设置。每个请求包含四个元素：
 
 ++jsonrpc++:: JSON-RPC协议的版本。这必须是++"2.0"++。
 

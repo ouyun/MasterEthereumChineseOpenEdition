@@ -120,7 +120,7 @@ Truffle沙盒: http://truffleframework.com/boxes/
 
 ((("Node.js")))((("Truffle","installing"))) Truffle框架包含多个Node.js程序包。在安装 +truffle+ 之前，你需要安装Node.js和Node Package Manager（ +npm+ ）的最新且可用的安装。
 
-建议安装Node.js和 +npm+ 的方法是使用节点版本管理器（ +nvm+ ）。安装 +nvm+ 后，它将为你处理所有依赖项和更新。请按照http://nvm.sh []上的说明进行操作。
+建议安装Node.js和 +npm+ 的方法是使用节点版本管理器（ +nvm+ ）。安装 +nvm+ 后，它将为你处理所有依赖项和更新。请按照 http://nvm.sh[]上的说明进行操作。
 
 在操作系统上安装 +nvm+ 之后，安装Node.js就很简单。使用 +-lts+ 标志告诉 +nvm+ 你需要最新的Node.js“长期支持”（LTS）版本：
 
@@ -825,9 +825,9 @@ web3.eth.getStorageAt(<em>address</em>, <em>position</em>)
 [[ganache]]
 ==== Ganache：本地测试区块链
 
-((("Ganache","local blockchain testing with"))) Ganache是一个本地测试区块链，可用于部署合约，开发应用程序和运行测试。它可作为Windows，macOS和Linux的桌面应用程序（带有图形用户界面）使用。它也可以作为名为 +ganache-cli+ 的命令行实用程序使用。有关Ganache桌面应用程序的更多详细信息和安装说明，请参阅 https://truffleframework.com/ganache []。
+((("Ganache","local blockchain testing with"))) Ganache是一个本地测试区块链，可用于部署合约，开发应用程序和运行测试。它可作为Windows，macOS和Linux的桌面应用程序（带有图形用户界面）使用。它也可以作为名为 +ganache-cli+ 的命令行实用程序使用。有关Ganache桌面应用程序的更多详细信息和安装说明，请参阅 https://truffleframework.com/ganache[]。
 
-可以在https://github.com/trufflesuite/ganache-cli/ []中找到 +ganache-cli+ 代码。
+可以在 https://github.com/trufflesuite/ganache-cli/[]中找到 +ganache-cli+ 代码。
 
 要安装命令行 +ganache-cli+ ，请使用 +npm+ ：
 
