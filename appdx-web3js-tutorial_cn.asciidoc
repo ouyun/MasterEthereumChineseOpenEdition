@@ -38,7 +38,7 @@ $ <strong>npm i node-rest-client-promise</strong>
 </pre>
 ++++
 
-这将把新的软件配置项更新到_package.json_配置文件中。
+这将把新的软件配置项更新到 _package.json_ 配置文件中。
 
 ==== Node.js脚本的执行
 
@@ -72,7 +72,7 @@ $ <strong>node code/web3js/web3-contract-basic-interaction.js \
 
 === 查看演示脚本
 
-((("web3.js","reviewing demo script")))接下来，让我们审查我们的演示脚本_web3-contract-basic-interaction_。
+((("web3.js","reviewing demo script")))接下来，让我们审查我们的演示脚本 _web3-contract-basic-interaction_。
 
 我们使用 +Web3+ 对象创建一个基本的web3服务提供对象：
 
@@ -110,7 +110,7 @@ web3.eth.getBlockNumber().then(function(blockNumber) {
 
 === 合约的使用
 
-((("web3.js","contract interaction", id="ix_appdx-web3js-tutorial-asciidoc1", range="startofrange")))现在让我们学习一些智能合约的基本使用方法。对于这些示例，我们将在Kovan测试网上使用https://bit.ly/2MPZZLx[+WETH9_+ contract]。
+((("web3.js","contract interaction", id="ix_appdx-web3js-tutorial-asciidoc1", range="startofrange")))现在让我们学习一些智能合约的基本使用方法。对于这些示例，我们将在Kovan测试网上使用 https://bit.ly/2MPZZLx[+WETH9_+ contract]。
 
 [role="pagebreak-before"]
 首先，让我们初始化合约地址：
