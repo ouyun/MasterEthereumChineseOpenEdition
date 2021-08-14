@@ -231,7 +231,7 @@ Parity有一个用于访问JSON RPC接口的Web控制台，但是这里我们使
 
 ((("transactions","value and data fields", id="ix_06transactions-asciidoc5", range="startofrange")))The main "payload" of a transaction is contained in ((("data field", id="ix_06transactions-asciidoc6", range="startofrange")))((("value field", id="ix_06transactions-asciidoc7", range="startofrange"))) 交易的主要“内容”包含在两个字段中： +value+ 和 +data+ 。交易可以同时具有价值和数据，只有价值，只有数据，或者既没有价值也没有数据。所有四个组合均有效。
 
-((("invocation")))((("payment")))只有价值的交易是支付_payment_。仅包含数据的交易是调用_invocation_。具有价值和数据的交易既是支付又是调用。既没有价值也没有数据的交易-可能只是浪费燃料gas！但是还是有可能存在的。
+((("invocation")))((("payment")))只有价值的交易是支付 _payment_。仅包含数据的交易是调用 _invocation_。具有价值和数据的交易既是支付又是调用。既没有价值也没有数据的交易-可能只是浪费燃料gas！但是还是有可能存在的。
 
 让我们尝试所有这些组合。首先，我们将从钱包中设置源地址和目标地址，只是为了使演示易于阅读：
 
@@ -304,11 +304,11 @@ image::images/parity_txdemo_novalue_nodata.png["Parity wallet showing a transact
 [[value_EOA_contracts]]
 ==== 将价值转移到EOA和合约
 
-((("EOA (Externally Owned Account)","transmitting value to")))((("smart contracts","transmitting value to")))((("transactions","transmitting value to EOAs and contract"))) 构建包含价值的以太坊交易时，它等同于支付_payment_。根据目的地址是否为合约，此类交易的行为有所不同。
+((("EOA (Externally Owned Account)","transmitting value to")))((("smart contracts","transmitting value to")))((("transactions","transmitting value to EOAs and contract"))) 构建包含价值的以太坊交易时，它等同于支付 _payment_。根据目的地址是否为合约，此类交易的行为有所不同。
 
 对于EOA地址，或者对于在区块链上未标记为合约的任何地址，以太坊将记录状态更改，并将你发送的值添加到该地址的余额中。如果以前没有看到该地址，它将被添加到客户的状态内部表示中，并且其余额会初始化为你的付款金额。
 
-如果目标地址（ +to+ ）是合约，则EVM将执行合约并尝试调用交易有效数据负载中命名的函数。如果你的交易中没有数据，则EVM将调用后备_fallback_函数，如果该函数是可收款的，则将执行该函数以确定下一步要执行的操作。如果 fallback 中没有代码，则交易的效果将是增加合同的余额，就像向钱包付款一样。如果没有 fallback 或 不可付款的 fallback，交易则将回退。
+如果目标地址（ +to+ ）是合约，则EVM将执行合约并尝试调用交易有效数据负载中命名的函数。如果你的交易中没有数据，则EVM将调用后备 _fallback_ 函数，如果该函数是可收款的，则将执行该函数以确定下一步要执行的操作。如果 fallback 中没有代码，则交易的效果将是增加合同的余额，就像向钱包付款一样。如果没有 fallback 或 不可付款的 fallback，交易则将回退。
 
 合约可以在调用函数时立即抛出异常，也可以根据函数中编码的条件确定，从而拒绝传入的付款。如果函数成功终止（无异常），则合约状态将更新以反映合约以太币余额的增加。(((range="endofrange", startref="ix_06transactions-asciidoc7")))(((range="endofrange", startref="ix_06transactions-asciidoc6")))
 
@@ -317,7 +317,7 @@ image::images/parity_txdemo_novalue_nodata.png["Parity wallet showing a transact
 
 ((("data payload, transmitting to EOAs and contracts", id="ix_06transactions-asciidoc8", range="startofrange")))((("EOA (Externally Owned Account)","transmitting data payload to", id="ix_06transactions-asciidoc9", range="startofrange")))((("smart contracts","transmitting data payload to", id="ix_06transactions-asciidoc10", range="startofrange")))((("transactions","transmitting data payload to EOAs and contracts", id="ix_06transactions-asciidoc11", range="startofrange"))) 当你的交易包含数据时，最有可能将其发送到合约地址。这并不意味着你不能将有效数据载荷发送到EOA，这在以太坊协议中是完全有效的。但是，在这种情况下，对这些数据的解释取决于你用于访问EOA的钱包。以太坊协议中忽略了对EOA交易中数据载荷的解释。大多数钱包也忽略了在其控制的EOA交易中收到的任何数据。将来，可能会出现一些标准，允许钱包以合约方式解释数据，从而允许交易调用用户钱包内部运行的功能。关键区别是由EOA的数据有效载荷的任何解释不受共识规则的限制，不同于合约 pass:[<span class="keep-together">执行</span>]。
 
-现在，让我们假设你的交易正在将数据传递到合约地址。 ((("contract invocation")))((("invocation")))大多数合约更具体地将此数据用作函数_function调用_，调用命名的函数并将任何编码参数传递给该函数。
+现在，让我们假设你的交易正在将数据传递到合约地址。 ((("contract invocation")))((("invocation")))大多数合约更具体地将此数据用作函数 _function调用_，调用命名的函数并将任何编码参数传递给该函数。
 
 发送到兼容ABI的合约（您可以假定所有合约都是）的有效数据载荷是以下内容的十六进制序列化编码：
 
@@ -333,7 +333,7 @@ image::images/parity_txdemo_novalue_nodata.png["Parity wallet showing a transact
 function withdraw(uint withdraw_amount) public {
 ----
 
-((("prototype of a function"))) 函数的原型_prototype_定义为包含函数名称的字符串，其后是每个参数的数据类型，并用括号括起来并以逗号分隔。这里的函数名称是 +withdraw+ ，它接受一个单独的参数 +uint+ （这是 +uint256+ 的别名），因此 +withdraw+ 的原型为：
+((("prototype of a function"))) 函数的原型 _prototype_ 定义为包含函数名称的字符串，其后是每个参数的数据类型，并用括号括起来并以逗号分隔。这里的函数名称是 +withdraw+ ，它接受一个单独的参数 +uint+ （这是 +uint256+ 的别名），因此 +withdraw+ 的原型为：
 
 [source,solidity]
 ----
@@ -373,9 +373,9 @@ withdraw(uint256)
 [[contract_reg]]
 === 特殊交易：创建智能合约
 
-((("contract creation transaction", id="ix_06transactions-asciidoc12", range="startofrange")))((("transactions","contract creation", id="ix_06transactions-asciidoc13", range="startofrange"))) 我们应该提到的一种特殊情况是在区块链上_创建一个新合约_并将其部署以供将来使用的交易。 ((("zero address","contract creation"))) 合约创建交易被发送到称为零地址_zero address_的特殊目标地址；合约注册交易中的 +to+ 字段包含地址 +0x0+ 。该地址既不代表EOA（没有对应的私钥-公钥对）也不代表合约。它永远不会花费以太币或发起交易。它仅用作目的地，其特殊含义是“创建此合约”。
+((("contract creation transaction", id="ix_06transactions-asciidoc12", range="startofrange")))((("transactions","contract creation", id="ix_06transactions-asciidoc13", range="startofrange"))) 我们应该提到的一种特殊情况是在区块链上 _创建一个新合约_ 并将其部署以供将来使用的交易。 ((("zero address","contract creation"))) 合约创建交易被发送到称为零地址 _zero address_ 的特殊目标地址；合约注册交易中的 +to+ 字段包含地址 +0x0+ 。该地址既不代表EOA（没有对应的私钥-公钥对）也不代表合约。它永远不会花费以太币或发起交易。它仅用作目的地，其特殊含义是“创建此合约”。
 
-虽然零地址仅用于合约创建，但有时会从各种地址接收付款。 ((("ether burn"))) 对此有两种解释：要么是偶然的，导致了以太币的丢失，要么是故意的销毁_ether burn_（故意将以太币发送到某个永远无法消费的地址来销毁它）。但是，如果要进行故意的以太币销毁，则应向网络明确意图并使用专门指定的销毁地址：
+虽然零地址仅用于合约创建，但有时会从各种地址接收付款。 ((("ether burn"))) 对此有两种解释：要么是偶然的，导致了以太币的丢失，要么是故意的销毁 _ether burn_（故意将以太币发送到某个永远无法消费的地址来销毁它）。但是，如果要进行故意的以太币销毁，则应向网络明确意图并使用专门指定的销毁地址：
 
 [[burn_address]]
 ----
@@ -389,7 +389,7 @@ withdraw(uint256)
 
 用于创建合约的交易只需包含一个有效数据载荷，该有效数据载荷中包含将创建合约的已编译二进制码。此交易的唯一作用是创建合约。如果要以期初余额设置新合约，可以在+ value +字段中包含以太币数量，但这完全是可选的。如果将值（以太币）发送到没有有效数据负载的合约创建地址（即没有合约），则效果与发送到销毁地址相同：没有合约可以接收以太币，会导致以太币丢失。
 
-举例来说，我们可以手动创建一个<<intro_chapter>>中用的_Faucet.sol合约，通过创建一个到零地址的交易，并在数据有效负载中使用合约来完成。合约需要编译为二进制码表示形式。这可以通过Solidity编译器完成：
+举例来说，我们可以手动创建一个<<intro_chapter>>中用的 _Faucet.sol_ 合约，通过创建一个到零地址的交易，并在数据有效负载中使用合约来完成。合约需要编译为二进制码表示形式。这可以通过Solidity编译器完成：
 
 ++++
 <pre data-type="programlisting" class="pagebreak-before">
@@ -482,9 +482,9 @@ image::images/published_contract_transactions.png["Etherscan showing the transac
 [[ecdsa]]
 ==== 椭圆曲线数字签名算法
 
-((("digital signatures","ECDSA and")))((("Elliptic Curve Digital Signature Algorithm (ECDSA)","about"))) 以太坊中使用的数字签名算法是_椭圆曲线数字签名算法_（ ECDSA）。它基于椭圆曲线上的私钥-公钥对，如<<elliptic_curve>>。
+((("digital signatures","ECDSA and")))((("Elliptic Curve Digital Signature Algorithm (ECDSA)","about"))) 以太坊中使用的数字签名算法是 _椭圆曲线数字签名算法_（ ECDSA）。它基于椭圆曲线上的私钥-公钥对，如<<elliptic_curve>>。
 
-数字签名在以太坊中具有三个目的（请参阅以下边栏）。首先，签名证明私钥的所有者（即以太坊账户的所有者）已经授权以太币的支出或合约的执行。 ((("non-repudiation"))) 其次，它保证交易不可否认_non-repudiation_：即不可否认的授权证明。第三，签名证明交易签名之后，任何人都不能切无法修改。
+数字签名在以太坊中具有三个目的（请参阅以下边栏）。首先，签名证明私钥的所有者（即以太坊账户的所有者）已经授权以太币的支出或合约的执行。 ((("non-repudiation"))) 其次，它保证交易不可否认 _non-repudiation_：即不可否认的授权证明。第三，签名证明交易签名之后，任何人都不能切无法修改。
 
 [[digital_signature_definition]]
 .Wikipedia对数字签名的定义
@@ -541,7 +541,7 @@ _Source: https://en.wikipedia.org/wiki/Digital_signature_
 * _Sig_ 是签名结果。
 
 [[sign_function]]
-函数 _F_~_sig_~生成签名__Sig__，该签名由两个值组成，通常称为 _r_和_s_：
+函数 _F_~_sig_~生成签名__Sig__，该签名由两个值组成，通常称为 _r_ 和 _s_：
 
 ++++
 <div data-type="equation">
@@ -566,21 +566,21 @@ _Source: https://en.wikipedia.org/wiki/Digital_signature_
 [[verify_sign]]
 ==== 签名的验证
 
-((("digital signatures","verifying"))) 要验证签名，必须具有签名（_r_和_s_），序列化的交易以及与用于创建签名的私钥相对应的公钥。本质上，签名的验证意味着“只有生成此公钥的私钥的所有者才能在此交易中生成此签名”。
+((("digital signatures","verifying"))) 要验证签名，必须具有签名（_r_ 和 _s_），序列化的交易以及与用于创建签名的私钥相对应的公钥。本质上，签名的验证意味着“只有生成此公钥的私钥的所有者才能在此交易中生成此签名”。
 
-签名验证算法获取消息（即，供我们使用的交易的哈希值），签名者的公钥和签名（_r_和_s_值），如果签名对此消息和公钥有效，则返回 +true+ 。
+签名验证算法获取消息（即，供我们使用的交易的哈希值），签名者的公钥和签名（ _r_ 和 _s_ 值），如果签名对此消息和公钥有效，则返回 +true+ 。
 
 [[ecdsa_math]]
 ==== ECDSA数学算法
 
-((("digital signatures","ECDSA math", id="ix_06transactions-asciidoc16", range="startofrange")))((("Elliptic Curve Digital Signature Algorithm (ECDSA)","mathematics of", id="ix_06transactions-asciidoc17", range="startofrange"))) 如前所述，签名是由数学函数 _F_〜_sig_〜创建的，该函数生成由两个值 _r_和_s_组成的签名。在本节中，我们将详细介绍函数 _F_〜_sig_〜。
+((("digital signatures","ECDSA math", id="ix_06transactions-asciidoc16", range="startofrange")))((("Elliptic Curve Digital Signature Algorithm (ECDSA)","mathematics of", id="ix_06transactions-asciidoc17", range="startofrange"))) 如前所述，签名是由数学函数 _F_〜_sig_〜创建的，该函数生成由两个值 _r_ 和 _s_ 组成的签名。在本节中，我们将详细介绍函数 _F_〜_sig_〜。
 
 ((("ephemeral private key"))) 签名算法首先以加密安全的方式生成 _ephemeral_（临时）私钥。该临时密钥用于计算 _r_ 和 _s_ 值，以确保攻击者无法查看以太坊网络上已签名的交易，从而无法计算发送者的实际私钥。
 
 我们从<<pubkey>>，临时专用密钥用于派生相应的（临时）公共密钥，因此我们有：
 
 * 密码学安全的随机数 _q_，用作临时私钥
-* 从 _q_和椭圆曲线生成器点_G_生成的对应的临时公钥_Q_
+* 从 _q_ 和椭圆曲线生成器点 _G_ 生成的对应的临时公钥 _Q_
 
 然后，数字签名的 _r_ 值就是临时公共密钥 _Q_ 的 _x_ 坐标。
 
@@ -600,11 +600,11 @@ _Source: https://en.wikipedia.org/wiki/Digital_signature_
 * _m_ 是交易数据。
 * _p_ 是椭圆曲线的素数阶。
 
-验证是签名生成函数的逆函数，使用 _r_和_s_值以及发送者的公钥来计算值_Q_，该值是椭圆曲线上的点（签名创建中使用的临时公钥）。步骤如下：
+验证是签名生成函数的逆函数，使用 _r_ 和 _s_ 值以及发送者的公钥来计算值 _Q_，该值是椭圆曲线上的点（签名创建中使用的临时公钥）。步骤如下：
 
 1. 检查所有输入的格式是否正确
 2. 计算 _w_ = __s__^-1^ _mod p_
-3. 计算 _u~1~_ = __Keccak256 __（__ m__）* _w_ _mod p_
+3. 计算 _u~1~_ = __Keccak256__（__m__）* _w_ _mod p_
 4. 计算 _u~2~_ = _r_ * _w_ _mod p_
 5. 最后，计算椭圆曲线 _Q_ &#8801; _u~1~_ * _G_ + _u~2~_ * _K_ {nbsp} {nbsp}（_mod p_）
 
@@ -616,7 +616,7 @@ _Source: https://en.wikipedia.org/wiki/Digital_signature_
 * _G_ 是椭圆曲线的生成点。
 * _p_ 是椭圆曲线的素数阶。
 
-如果所计算的点 _Q_的_x_坐标等于_r_，则验证者可以得出签名有效的结论。
+如果所计算的点 _Q_ 的 _x_ 坐标等于 _r_，则验证者可以得出签名有效的结论。
 
 请注意，在验证签名时，既不需要知道也不需要公开私钥。
 
@@ -650,7 +650,7 @@ ECDSA算法是相当复杂的数学；对其完整的解释超出了本书的范
 [[raw_tx]]
 ==== 原始交易创建和签名
 
-((("EthereumJS")))((("transactions","raw transaction creation/signing"))) 在本节中，我们将使用+ ethereumjs-tx +库创建一个原始交易并对其进行签名，该库可以用npm安装。这演示了通常在钱包或代表用户签名交易的应用程序内部使用的功能。该示例的源代码位于该书的GitHub存储库 http://bit.ly/2yI2GL3[GitHub repository]:中的文件__raw_tx_demo.js__中：
+((("EthereumJS")))((("transactions","raw transaction creation/signing"))) 在本节中，我们将使用+ ethereumjs-tx +库创建一个原始交易并对其进行签名，该库可以用npm安装。这演示了通常在钱包或代表用户签名交易的应用程序内部使用的功能。该示例的源代码位于该书的GitHub存储库 http://bit.ly/2yI2GL3[GitHub repository] 中的文件__raw_tx_demo.js__中：
 
 [[raw_tx_demo_source]]
 [source,javascript]
@@ -673,7 +673,7 @@ Signed Raw Transaction: 0xf866808609184e72a0008303000094b0920c523d582040f2bcb1..
 [[raw_tx_eip155]]
 ==== 创建使用EIP-155标准的原始交易
 
-((("chain identifier")))((("EIP-155 Simple Replay Attack Protection standard")))((("transactions","raw transaction creation with EIP-1455"))) EIP-155“简单重放攻击保护”标准指定了重放攻击保护的交易编码，其中在签名之前在交易数据中包含一个_链标识符_。这确保了为一个区块链（例如，以太坊主网络）创建的交易在另一区块链（例如，以太坊经典或Ropsten测试网络）上无效。因此，在一个网络上广播的交易不能在另一个网络上重放，这就是标准名称的由来。
+((("chain identifier")))((("EIP-155 Simple Replay Attack Protection standard")))((("transactions","raw transaction creation with EIP-1455"))) EIP-155“简单重放攻击保护”标准指定了重放攻击保护的交易编码，其中在签名之前在交易数据中包含一个 _链标识符_。这确保了为一个区块链（例如，以太坊主网络）创建的交易在另一区块链（例如，以太坊经典或Ropsten测试网络）上无效。因此，在一个网络上广播的交易不能在另一个网络上重放，这就是标准名称的由来。
 
 EIP-155在交易数据结构的六个主要字段中添加了三个字段，即链标识符, +0+, 和 +0+。这三个字段在对数据进行编码和哈希处理之前添加到交易数据中。这样它们就会更改了交易的哈希值，该哈希值稍后将应用于签名。通过在要签名的数据中包含链标识符，交易签名可以防止任何更改，因为如果链标识符被修改，签名将失效。因此，EIP-155使得不可能在另一条链上重播交易，因为签名的有效性取决于链标识符。
 
@@ -732,10 +732,10 @@ EIP-155在交易数据结构的六个主要字段中添加了三个字段，即�
 
 其中：
 
-* __K__~1~ 和 __K__~2~是签名者公钥的两种可能性。
+* __K__~1~ 和 __K__~2~ 是签名者公钥的两种可能性。
 * __r__^-1^ 是签名的 +r+ 值的乘法逆。
 * _s_ 是签名的 +s+ 值。
-* __R__和 __R __^'^是临时公钥 _Q_ 的两种可能性。
+* __R__ 和 __R __^'^是临时公钥 _Q_ 的两种可能性。
 * _z_ 是信息哈希值的 __n__ 个最低位。
 * _G_ 是椭圆曲线的生成点。
 
@@ -758,25 +758,25 @@ EIP-155在交易数据结构的六个主要字段中添加了三个字段，即�
 .以太坊交易的离线签名
 image::images/offline_signing.png["以太坊交易的脱机签名"]
 
-根据所需的安全级别，你的“离线签名”计算机与在线计算机的隔离程度可能有所不同，范围从带有隔离功能和防火墙的子网络（联机但隔离）到完全脱机的系统（称为_air-gapped_系统） 。 ((("air-gapped system"))) 在一个气隙式的系统中根本没有网络连接：计算机与在线环境之间存在“ 空气”间隙。要签署交易，你可以使用数据存储介质或（更好）网络摄像头和QR码在气隙计算机之间进行交易。当然，这意味着你必须手动转移要签名的每个交易，并且这种方式无法扩展。
+根据所需的安全级别，你的“离线签名”计算机与在线计算机的隔离程度可能有所不同，范围从带有隔离功能和防火墙的子网络（联机但隔离）到完全脱机的系统（称为 _air-gapped_ 系统） 。 ((("air-gapped system"))) 在一个气隙式的系统中根本没有网络连接：计算机与在线环境之间存在“ 空气”间隙。要签署交易，你可以使用数据存储介质或（更好）网络摄像头和QR码在气隙计算机之间进行交易。当然，这意味着你必须手动转移要签名的每个交易，并且这种方式无法扩展。
 
 尽管没有多少环境可以使用完全隔离的系统，但即使是很小程度的隔离也具有明显的安全优势。例如，带有防火墙的隔离子网仅允许通过消息队列协议，与在在线系统上签名相比，可以大大减少攻击面，并提供更高的安全性。 ((("ZeroMQ (0MQ)"))) 许多公司为此使用诸如ZeroMQ（0MQ）之类的协议。通过这样的设置，交易将被序列化并排队等待签名。排队协议以类似于TCP套接字的方式将序列化的消息传输到签名计算机。签名计算机（仔细地）从队列中读取序列化的交易，使用适当的密钥应用签名，并将其放置在传出队列中。传出队列将已签名的交易传输到带有以太坊客户端的计算机，以太坊客户端将其提出并向网络广播。(((range="endofrange", startref="ix_06transactions-asciidoc20")))(((range="endofrange", startref="ix_06transactions-asciidoc19")))(((range="endofrange", startref="ix_06transactions-asciidoc18")))
 
 [[tx_propagation]]
 === 交易的广播
 
-((("flood routing")))((("node","transaction propagation")))((("propagation of transactions")))((("transactions","propagation of")))以太坊网络使用“洪泛路由”协议。每个以太坊客户端都充当peer-to-peer（P2P）_网络中的节点_node_，该网络（理想情况下）形成网状_mesh_网络。没有一个网络节点是特殊的：它们都充当同等的对等体。我们将使用术语“节点”来指代连接到并参与P2P网络的以太坊客户端。
+((("flood routing")))((("node","transaction propagation")))((("propagation of transactions")))((("transactions","propagation of")))以太坊网络使用“洪泛路由”协议。每个以太坊客户端都充当peer-to-peer（P2P）网络中的节点 _node_，该网络（理想情况下）形成网状 _mesh_ 网络。没有一个网络节点是特殊的：它们都充当同等的对等体。我们将使用术语“节点”来指代连接到并参与P2P网络的以太坊客户端。
 
-交易的传播开始于最初创建（或从离线接收）已签名的交易的起始以太坊节点。交易经过验证，然后传输到直接连接到起始节点的所有其他以太坊节点。 ((("neighbor nodes"))) 平均而言，每个以太坊节点保持与至少13个其他节点的连接，这些节点称为邻居节点_neighbors_。每个邻居节点在收到交易后都会立即对其进行验证。如果它们同意该交易有效，则会存储一份副本并将其传播给所有邻居（交易的来源除外）。结果，交易从发起节点按照漫水方式_flooding_跨网络向外波动，直到网络中的所有节点都具有交易的副本。节点可以过滤它们传播的信息，但是默认设置是传播它们接收的所有有效交易信息。
+交易的传播开始于最初创建（或从离线接收）已签名的交易的起始以太坊节点。交易经过验证，然后传输到直接连接到起始节点的所有其他以太坊节点。 ((("neighbor nodes"))) 平均而言，每个以太坊节点保持与至少13个其他节点的连接，这些节点称为邻居节点 _neighbors_。每个邻居节点在收到交易后都会立即对其进行验证。如果它们同意该交易有效，则会存储一份副本并将其传播给所有邻居（交易的来源除外）。结果，交易从发起节点按照漫水方式 _flooding_ 跨网络向外波动，直到网络中的所有节点都具有交易的副本。节点可以过滤它们传播的信息，但是默认设置是传播它们接收的所有有效交易信息。
 
 在短短的几秒钟内，以太坊交易就会传播到全球所有以太坊节点。从每个节点的角度来看，无法识别交易的起源。将其发送到该节点的邻居可能是交易的始发者，或者可能已从其邻居之一接收到它。为了能够跟踪交易的起源或干扰传播，攻击者必须控制所有节点的很大一部分。这是P2P网络安全和隐私设计的一部分，尤其是应用于区块链网络时。
 
 [[chain_record]]
 === 记录到区块链上
 
-((("blockchain","recording transactions on")))((("miners")))((("mining farms")))((("transactions","recording on the blockchain"))) 虽然以太坊中的所有节点都是同等的对等节点，但是其中一些节点由矿工_miners_操作，并将交易和区块馈送到矿池_mining farms_，这是具有高性能图形处理单元（GPU）的计算机。采矿计算机将交易添加到候选区块，并尝试找到使候选区块有效的工作证明。我们将在<<consensus>>中详细讨论这一过程。
+((("blockchain","recording transactions on")))((("miners")))((("mining farms")))((("transactions","recording on the blockchain"))) 虽然以太坊中的所有节点都是同等的对等节点，但是其中一些节点由矿工 _miners_ 操作，并将交易和区块馈送到矿池 _mining farms_，这是具有高性能图形处理单元（GPU）的计算机。采矿计算机将交易添加到候选区块，并尝试找到使候选区块有效的工作证明。我们将在<<consensus>>中详细讨论这一过程。
 
-无需赘述，有效交易将最终包含在交易块中，并因此记录在以太坊区块链中。一旦被挖掘成一个区块，交易还会通过修改账户余额（在简单付款的情况下）或通过调用更改其内部状态的合约来修改以太坊单例的状态。这些更改以交易收据_receipt_的形式记录在交易旁边，该交易也可以包含事件_events_。我们将在<<evm_chapter>>中详细解释这些内容。
+无需赘述，有效交易将最终包含在交易块中，并因此记录在以太坊区块链中。一旦被挖掘成一个区块，交易还会通过修改账户余额（在简单付款的情况下）或通过调用更改其内部状态的合约来修改以太坊单例的状态。这些更改以交易收据 _receipt_ 的形式记录在交易旁边，该交易也可以包含事件 _events_。我们将在<<evm_chapter>>中详细解释这些内容。
 
 一个交易的完整旅程是从使用EOA签名创建交易，链上传播，再到通过挖矿改变了单例的状态，最终在区块链上留下了不可磨灭的标记。
 

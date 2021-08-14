@@ -6,7 +6,7 @@
 [[smart_contracts_definition]]
 === 什么是智能合约？
 
-((("smart contracts","defined")))多年来，术语智能合约_smart contract_用于描述各种各样的事物。 ((("contract creation transaction")))((("Szabo, Nick"))) 在1990年代，密码学家Nick Szabo创造了该术语，并将其定义为“一组以数字形式指定的承诺，包括内部的协议各方在其他承诺上履行的义务。”从那时起，智能合约的概念不断发展，特别是在2009年随着比特币的发明引入去中心化区块链平台之后。在以太坊的上下文中，该术语实际上有点用词不当，因为以太坊智能合约既不是智能，也不是具有法律效力的合约，但约定俗成。在本书中，我们使用术语“智能合约”来指代在以太坊虚拟机（作为以太坊网络协议的一部分）（即，在分布的以太坊世界计算机上）的以太坊虚拟机的环境中确定运行的不可变计算机程序。
+((("smart contracts","defined")))多年来，术语智能合约 _smart contract_ 用于描述各种各样的事物。 ((("contract creation transaction")))((("Szabo, Nick"))) 在1990年代，密码学家Nick Szabo创造了该术语，并将其定义为“一组以数字形式指定的承诺，包括内部的协议各方在其他承诺上履行的义务。”从那时起，智能合约的概念不断发展，特别是在2009年随着比特币的发明引入去中心化区块链平台之后。在以太坊的上下文中，该术语实际上有点用词不当，因为以太坊智能合约既不是智能，也不是具有法律效力的合约，但约定俗成。在本书中，我们使用术语“智能合约”来指代在以太坊虚拟机（作为以太坊网络协议的一部分）（即，在分布的以太坊世界计算机上）的以太坊虚拟机的环境中确定运行的不可变计算机程序。
 
 让我们了解几个定义：
 
@@ -28,24 +28,24 @@ EVM作为每个Ethereum节点上的本地实例运行，但是由于EVM的所有
 [[smart_contract_lifecycle]]
 === 智能合约的生命周期
 
-((("smart contracts","life cycle of"))) 智能合约通常以高级语言编写，例如Solidity。但是要运行，必须将它们编译为在EVM中运行的低级字节码。编译后，它们使用特殊的创建合约_contract creation_交易部署在以太坊平台上，该交易通过发送到特殊的合约创建地址 +0x0+ 进行标识（请参见<<contract_reg> >）。每个合约由以太坊地址标识，这个以太坊地址是根据原始账户和随机数从合约创建交易中得出的。合约的以太坊地址可以在交易中用作接收者，使得用户可以向合约发送资金或调用合约的函数。请注意，与EOA不同，创建智能合约的新帐户地址并没有密钥与其相关联。作为合约创建者，你不会在协议级别获得任何特殊特权（尽管你可以将其显式编码到智能合约中）。你当然不会收到合约帐户的私钥，而实际上它不存在，可以说，智能合约帐户是自己的。
+((("smart contracts","life cycle of"))) 智能合约通常以高级语言编写，例如Solidity。但是要运行，必须将它们编译为在EVM中运行的低级字节码。编译后，它们使用特殊的创建合约 _contract creation_ 交易部署在以太坊平台上，该交易通过发送到特殊的合约创建地址 +0x0+ 进行标识（请参见<<contract_reg> >）。每个合约由以太坊地址标识，这个以太坊地址是根据原始账户和随机数从合约创建交易中得出的。合约的以太坊地址可以在交易中用作接收者，使得用户可以向合约发送资金或调用合约的函数。请注意，与EOA不同，创建智能合约的新帐户地址并没有密钥与其相关联。作为合约创建者，你不会在协议级别获得任何特殊特权（尽管你可以将其显式编码到智能合约中）。你当然不会收到合约帐户的私钥，而实际上它不存在，可以说，智能合约帐户是自己的。
 
 ((("transactions","smart contracts and"))) 重要的是，合约仅通过交易调用来运行。最终，由于从EOA发起的交易，以太坊中的所有智能合约均得以执行。合约可以调用另一个合约，而这个合约也可以调用另一个合约，依此类推，但是这样一个执行链中的第一个合约将始终由EOA中的交易调用发起。合约永远不会“独立运行”或“在后台运行”。合约实际上处于休眠状态，直到交易触发执行，无论是直接还是间接作为合约调用链的一部分。还值得注意的是，智能合约在任何意义上都不是“并行”执行的—以太坊世界计算机可以看作是单线程计算机。
 
-((("transactions","as atomic"))) 交易是原子性_atomic_的，无论它们调用了多少个合约或调用时这些合约做什么。交易将完整执行，并且只有在所有执行成功终止后，才会记录全局状态（合约，帐户等）的任何更改。成功终止意味着程序无错误执行并到达执行结束。如果执行由于错误而失败，则将“回滚”其所有影响（状态更改），就好像交易从未运行过一样。失败的交易仍被记录为已尝试，并且从执行账户中扣除了用于执行的燃料所消耗的以太币，但对合约或账户状态没有其他影响。
+((("transactions","as atomic"))) 交易是原子性 _atomic_ 的，无论它们调用了多少个合约或调用时这些合约做什么。交易将完整执行，并且只有在所有执行成功终止后，才会记录全局状态（合约，帐户等）的任何更改。成功终止意味着程序无错误执行并到达执行结束。如果执行由于错误而失败，则将“回滚”其所有影响（状态更改），就好像交易从未运行过一样。失败的交易仍被记录为已尝试，并且从执行账户中扣除了用于执行的燃料所消耗的以太币，但对合约或账户状态没有其他影响。
 
 ((("smart contracts","deleting"))) 如前所述，重要的是要记住合约的代码不能更改。但是，可以“删除”合约，从地址中删除代码及其内部状态（存储），从而保留空白帐户。合约删除后发送到该帐户地址的任何交易都不会导致执行任何代码，因为那里不再有任何代码可以执行。 ((("SELFDESTRUCT opcode"))) 要删除合约，请执行一个名为 +SELFDESTRUCT+ （以前称为 +SUICIDE+ ）的EVM操作码。 ((("negative gas"))) 该操作花费的燃料是负值“ negative gas”，即燃料退款，目的是鼓励网络客户端删除存储状态并释放资源。由于区块链本身是不可改变的，因此以这种方式删除合约不会删除合约的交易历史（过去）。同样重要的是要注意， +SELFDESTRUCT+ 功能仅在合约作者将智能合约编程为具有该功能时才可用。如果合约的代码没有 +SELFDESTRUCT+ 操作码，或者无法访问，则不能删除智能合约。
 
 [[high_level_languages]]
 === 以太坊高级语言简介
 
-((("EVM (Ethereum Virtual Machine)","and Ethereum high-level languages", id="ix_07smart-contracts-solidity-asciidoc1", range="startofrange")))((("smart contracts","and Ethereum high-level languages", id="ix_07smart-contracts-solidity-asciidoc2", range="startofrange"))) EVM是运行特殊形式的((("EVM bytecode")))_EVM字节代码_的虚拟机，类似于计算机的CPU运行，诸如x86_64之类的机器代码。我们将在<<evm_chapter>>中详细介绍EVM的操作和语言。 在本节中，我们将研究如何编写智能合约以在EVM上运行。
+((("EVM (Ethereum Virtual Machine)","and Ethereum high-level languages", id="ix_07smart-contracts-solidity-asciidoc1", range="startofrange")))((("smart contracts","and Ethereum high-level languages", id="ix_07smart-contracts-solidity-asciidoc2", range="startofrange"))) EVM是运行特殊形式的((("EVM bytecode"))) _EVM字节代码_ 的虚拟机，类似于计算机的CPU运行，诸如x86_64之类的机器代码。我们将在<<evm_chapter>>中详细介绍EVM的操作和语言。 在本节中，我们将研究如何编写智能合约以在EVM上运行。
 
 尽管可以直接用字节码对智能合约进行编程，但EVM字节码相当笨重，并且难以让程序员阅读和理解。相反，大多数以太坊开发人员使用高级语言编写程序，并使用编译器将其转换为字节码。
 
 尽管可以使用任何高级语言来编写智能合约，但将任意一种语言修改为可编译为EVM字节码是一项非常繁琐的工作，并且通常会引起一定程度的混乱。智能合约在高度受限和简约的执行环境（EVM）中运行。此外，还需要一组特殊的EVM专用系统变量和函数。因此，从头开始构建一种智能合约语言要比改造通用编程语言以适合编写智能合约要容易。这样导致的结果就是出现了许多用于编程智能合约的专用语言。以太坊有几种这样的语言，以及产生EVM可执行字节码所需的编译器。
 
-((("declarative programming"))) 通常，编程语言可以分为两种广泛的编程范例：声明式_declarative_和命令式_imperative_，也分别称为功能式_functional_和过程式_procedural_。在声明式编程中，我们编写的函数表示程序的逻辑_logic_，但不表示程序的流程_flow_。  ((("side effects"))) 声明式编程用于创建没有_副作用_的程序，这意味着函数外部的状态没有任何变化。声明性编程语言包括Haskell和SQL。相比之下，((("hybrid programming languages")))((("imperative programming"))) 命令式编程是程序员在其中编写一组将程序的逻辑和流程结合在一起的过程。命令式编程语言包括C ++和Java。有些语言是“混合的”，这意味着它们鼓励声明式编程，但也可以用于表达命令式编程范例。这种混合包括Lisp，JavaScript和Python。通常，任何命令式语言均可用于以声明式范式进行编写，但通常会导致代码不雅致。相比之下，纯声明性语言不能用于命令式范式中。在纯声明性语言中，没有“变量”。
+((("declarative programming"))) 通常，编程语言可以分为两种广泛的编程范例：声明式 _declarative_ 和命令式 _imperative_，也分别称为功能式 _functional_ 和过程式 _procedural_。在声明式编程中，我们编写的函数表示程序的逻辑 _logic_，但不表示程序的流程 _flow_。  ((("side effects"))) 声明式编程用于创建没有 _副作用_ 的程序，这意味着函数外部的状态没有任何变化。声明性编程语言包括Haskell和SQL。相比之下，((("hybrid programming languages")))((("imperative programming"))) 命令式编程是程序员在其中编写一组将程序的逻辑和流程结合在一起的过程。命令式编程语言包括C ++和Java。有些语言是“混合的”，这意味着它们鼓励声明式编程，但也可以用于表达命令式编程范例。这种混合包括Lisp，JavaScript和Python。通常，任何命令式语言均可用于以声明式范式进行编写，但通常会导致代码不雅致。相比之下，纯声明性语言不能用于命令式范式中。在纯声明性语言中，没有“变量”。
 
 尽管命令式编程是程序员更常用的方法，但是编写像预期那样精确执行的程序可能非常困难。程序的任何部分更改其他任何状态的能力使得很难对程序的执行进行推理，并为错误提供了很多机会。相比之下，声明式编程使人们更容易理解程序的行为方式：由于它没有副作用，因此程序的任何部分都可以孤立地理解。
 
@@ -76,7 +76,7 @@ Solidity项目的主要“产品”是Solidity编译器 +solc+ ，它将以Solid
 
 ==== 选择Solidity语言的版本
 
-((("semantic versioning")))((("Solidity","selecting version of"))) Solidity遵循一个称为https://semver.org/[_semantic versioning__]的版本控制模型，该模型指定结构为由点分隔的三个数字：__ ++ MAJOR.MINOR.PATCH ++ __。对于主要更改和向后兼容_backward-incompatible_更改，“主要”编号增加，当在主要版本之间添加向后兼容功能时，“次要”编号增加，而对于向后兼容的错误修复，“补丁”编号增加。
+((("semantic versioning")))((("Solidity","selecting version of"))) Solidity遵循一个称为https://semver.org/[_semantic versioning_]的版本控制模型，该模型指定结构为由点分隔的三个数字：__ ++ MAJOR.MINOR.PATCH ++ __。对于主要更改和向后兼容 _backward-incompatible_ 更改，“主要”编号增加，当在主要版本之间添加向后兼容功能时，“次要”编号增加，而对于向后兼容的错误修复，“补丁”编号增加。
 
 在撰写本文时，Solidity版本为0.4.24。主要版本0（用于项目的初始开发）的规则是不同的：任何内容都可能随时更改。在实践中，Solidity将“次要”号视为主要版本，将“补丁”号视为次要版本。因此，在0.4.24中，将4视为主要版本，将24视为次要版本。
 
@@ -120,7 +120,7 @@ Version: 0.4.24+commit.e67f0147.Linux.g++
 
 也有基于Web的开发环境，例如 https://remix.ethereum.org/[Remix IDE] 和  https://ethfiddle.com/[EthFiddle] 。
 
-你可以选择一个高效的工具。最后，Solidity程序只是纯文本文件。虽然精美的编辑器和开发环境可以使事情变得容易，但你只需要简单的文本编辑器，例如nano（Linux / Unix），TextEdit（macOS）甚至是NotePad（Windows）。只需使用_.sol_扩展名保存程序源代码，Solidity编译器会将其识别为Solidity程序。
+你可以选择一个高效的工具。最后，Solidity程序只是纯文本文件。虽然精美的编辑器和开发环境可以使事情变得容易，但你只需要简单的文本编辑器，例如nano（Linux / Unix），TextEdit（macOS）甚至是NotePad（Windows）。只需使用 _.sol_ 扩展名保存程序源代码，Solidity编译器会将其识别为Solidity程序。
 
 ==== 编写一个简单的Solidity程序
 
@@ -164,7 +164,7 @@ $ <strong>solc --optimize --bin Faucet.sol</strong>
 [[eth_contract_abi_sec]]
 === 以太坊合约ABI
 
-((("ABI (application binary interface)", id="ix_07smart-contracts-solidity-asciidoc7", range="startofrange")))((("application binary interface (ABI)", id="ix_07smart-contracts-solidity-asciidoc8", range="startofrange")))((("smart contracts","ABI", id="ix_07smart-contracts-solidity-asciidoc9", range="startofrange"))) 在计算机软件中，_应用二进制接口_是两个程序模块之间的接口；通常，在操作系统和用户程序之间。ABI定义了如何在_机器代码_中访问数据结构和功能；这不能与API相混淆，后者以高级的、通常是人类可读的格式定义了这种访问，即_源代码_。因此，ABI 是将数据编码和解码为机器代码的主要方式。
+((("ABI (application binary interface)", id="ix_07smart-contracts-solidity-asciidoc7", range="startofrange")))((("application binary interface (ABI)", id="ix_07smart-contracts-solidity-asciidoc8", range="startofrange")))((("smart contracts","ABI", id="ix_07smart-contracts-solidity-asciidoc9", range="startofrange"))) 在计算机软件中，_应用二进制接口_ 是两个程序模块之间的接口；通常，在操作系统和用户程序之间。ABI定义了如何在 _机器代码_ 中访问数据结构和功能；这不能与API相混淆，后者以高级的、通常是人类可读的格式定义了这种访问，即 _源代码_。因此，ABI 是将数据编码和解码为机器代码的主要方式。
 
 在以太坊中，ABI被用来编码EVM的合约调用，并从交易中读出数据。ABI的目的是定义合约中可以调用的函数，并描述每个函数将如何接受参数和返回其结果。
 
@@ -184,7 +184,7 @@ Contract JSON ABI
 </pre>
 ++++
 
-如你所见，编译器生成一个JSON数组，描述_Faucet.sol_定义的两个函数。部署后，任何想要访问 +Faucet+ 合约的应用程序都可以使用此JSON。使用ABI，诸如钱包或DApp浏览器之类的应用程序可以构造使用正确的参数和参数类型调用 +Faucet+ 中的函数的交易。例如，一个钱包知道要调用 +withdraw+ 函数，它必须提供一个名为 +withdraw_amount+ 的 +uint256+ 参数。钱包可以提示用户提供该值，然后对这部分进行编码并创建可以执行 +withdraw+ 函数的交易。
+如你所见，编译器生成一个JSON数组，描述 _Faucet.sol_ 定义的两个函数。部署后，任何想要访问 +Faucet+ 合约的应用程序都可以使用此JSON。使用ABI，诸如钱包或DApp浏览器之类的应用程序可以构造使用正确的参数和参数类型调用 +Faucet+ 中的函数的交易。例如，一个钱包知道要调用 +withdraw+ 函数，它必须提供一个名为 +withdraw_amount+ 的 +uint256+ 参数。钱包可以提示用户提供该值，然后对这部分进行编码并创建可以执行 +withdraw+ 函数的交易。
 
 应用程序与合约进行交互所需的全部就是ABI和合约已部署的地址。
 
@@ -193,14 +193,14 @@ Contract JSON ABI
 
 ((("Solidity","selecting compiler and language version"))) 如前面的代码所示，我们的 +Faucet+ 合约已使用Solidity 0.4.21版成功编译。但是，如果我们使用了不同版本的Solidity编译器怎么办？语言仍在不断变化，并且事情可能会以意想不到的方式发生变化。我们的合约相当简单，但是如果我们的程序使用仅在Solidity版本0.4.19中添加的功能，而我们尝试使用0.4.18进行编译，该怎么办？
 
-((("compiler directive")))((("version pragma"))) 为了解决此类问题，Solidity提供了一个称为版本标识 _version pragma_的编译 _compiler指令_ ，该指令指示编译器该程序需要特定的编译器（和语言）的版本。让我们看一个例子：
+((("compiler directive")))((("version pragma"))) 为了解决此类问题，Solidity提供了一个称为版本标识 _version pragma_ 的 _compiler编译指令_ ，该指令指示编译器该程序需要特定的编译器（和语言）的版本。让我们看一个例子：
 
 [[compiler_version]]
 ----
 pragma solidity ^0.4.19;
 ----
 
-Solidity编译器读取版本的标识，如果编译器版本与版本pragma不兼容，则会产生错误。在这种情况下，我们的版本编译指示说此程序可以由最低版本为0.4.19的Solidity编译器编译。但是，符号 +^+ 表示我们允许使用0.4.19以上的_minorversion_进行编译；例如0.4.20，但不是0.5.0（这是主要修订，不是次要修订）。 Pragma指令不会编译为EVM字节码。它们仅由编译器用来检查兼容性。
+Solidity编译器读取版本的标识，如果编译器版本与版本pragma不兼容，则会产生错误。在这种情况下，我们的版本编译指示说此程序可以由最低版本为0.4.19的Solidity编译器编译。但是，符号 +^+ 表示我们允许使用0.4.19以上的 _minorversion_ 进行编译；例如0.4.20，但不是0.5.0（这是主要修订，不是次要修订）。 Pragma指令不会编译为EVM字节码。它们仅由编译器用来检查兼容性。
 
 让我们在 +Faucet+ 合约中添加一个编译指示。我们将新文件命名为 pass:[<span class="keep-together"><em>Faucet2.sol</em></span>]，以便在我们从<<add_pragma_to_faucet>>中开始进行的改变。
 
@@ -480,7 +480,7 @@ function destroy() public {
 
 ==== 函数的修改器
 
-((("function modifiers")))((("Solidity","function modifiers"))) Solidity提供一种特殊类型的函数，称为_function Modify_。通过在函数声明中添加修改器名称，可以将修改器应用于函数。修改器最常用于创建适用于合约中许多函数的条件。我们的 +destroy+ 函数中已经有一个访问控制语句。让我们创建一个表达该条件的函数修改器：
+((("function modifiers")))((("Solidity","function modifiers"))) Solidity提供一种特殊类型的函数，称为 _function Modify_。通过在函数声明中添加修改器名称，可以将修改器应用于函数。修改器最常用于创建适用于合约中许多函数的条件。我们的 +destroy+ 函数中已经有一个访问控制语句。让我们创建一个表达该条件的函数修改器：
 
 [source,solidity]
 ----
@@ -514,7 +514,7 @@ function destroy() public onlyOwner {
 
 ==== 合约的继承
 
-((("contract object", id="ix_07smart-contracts-solidity-asciidoc14", range="startofrange")))((("inheritance", id="ix_07smart-contracts-solidity-asciidoc15", range="startofrange")))((("smart contracts","inheritance", id="ix_07smart-contracts-solidity-asciidoc16", range="startofrange")))((("Solidity","contract inheritance", id="ix_07smart-contracts-solidity-asciidoc17", range="startofrange"))) Solidity的合约 +contract+ 对象支持继承_inheritance_，这是一种将基本合约的功能加以额外功能扩展的机制。要使用继承，请使用关键字 +is+ 指定父合约：
+((("contract object", id="ix_07smart-contracts-solidity-asciidoc14", range="startofrange")))((("inheritance", id="ix_07smart-contracts-solidity-asciidoc15", range="startofrange")))((("smart contracts","inheritance", id="ix_07smart-contracts-solidity-asciidoc16", range="startofrange")))((("Solidity","contract inheritance", id="ix_07smart-contracts-solidity-asciidoc17", range="startofrange"))) Solidity的合约 +contract+ 对象支持继承 _inheritance_，这是一种将基本合约的功能加以额外功能扩展的机制。要使用继承，请使用关键字 +is+ 指定父合约：
 
 [source,solidity]
 ----
@@ -593,7 +593,7 @@ contract Faucet is mortal {
 
 ((("error handling, Solidity")))((("Solidity","error handling"))) 合约调用可以终止并返回错误。 Solidity中的错误处理由以下四个函数处理： +assert+ ， +require+ ， +revert+ 和 +throw+ （现已弃用）。
 
-当合约因错误终止时，所有状态更改（变量，余额等的更改）都将恢复，如果调用了多个合约，则一直返回到合约调用链的整个过程。这样可以确保交易是原子性_atomic_，这意味着它们要么成功完成，要么对状态没有影响，并且可以完全还原。
+当合约因错误终止时，所有状态更改（变量，余额等的更改）都将恢复，如果调用了多个合约，则一直返回到合约调用链的整个过程。这样可以确保交易是原子性 _atomic_，这意味着它们要么成功完成，要么对状态没有影响，并且可以完全还原。
 
 ((("assert function","Solidity and")))((("require function")))  +assert+ 和 +require+ 函数以相同的方式运行，评估条件并在条件出错时停止执行并显示错误是假的。按照惯例，当预期结果为真时，将使用 +assert+ ，这意味着我们使用 +assert+ 来测试内部条件。相比之下， +require+ 用于测试输入（例如函数参数或交易字段），并设置我们对这些的通过条件期望： pass:[<span class="keep-together">条件</span>]。
 
@@ -604,7 +604,7 @@ contract Faucet is mortal {
 require(msg.sender == owner);
 ----
 
-+require+ 函数充当_gate condition_，阻止执行该函数的其余部分，并在不满足要求时产生错误。
++require+ 函数充当 _gate condition_，阻止执行该函数的其余部分，并在不满足要求时产生错误。
 
 从Solidity v0.4.22开始， +require+ 还可以包含有用的文本消息，该消息可用于显示错误原因。该错误消息记录在交易日志中。因此，我们可以通过在 +require+ 函数中添加错误消息来改进代码：
 
@@ -636,7 +636,7 @@ msg.sender.transfer(withdraw_amount);
 [[solidity_events]]
 ==== 事件
 
-((("events","Solidity", id="ix_07smart-contracts-solidity-asciidoc18", range="startofrange")))((("Solidity","event objects", id="ix_07smart-contracts-solidity-asciidoc19", range="startofrange"))) 当交易完成（无论成功与否）时，它会产生我们在<<evm_chapter>>中看到的交易收据_transaction receive_。交易收据包含日志_log_条目，这些条目提供有关在交易执行期间发生的操作的信息。 _Events_是用于构造这些日志的Solidity高级对象。
+((("events","Solidity", id="ix_07smart-contracts-solidity-asciidoc18", range="startofrange")))((("Solidity","event objects", id="ix_07smart-contracts-solidity-asciidoc19", range="startofrange"))) 当交易完成（无论成功与否）时，它会产生我们在<<evm_chapter>>中看到的交易收据 _transaction receive_。交易收据包含日志 _log_ 条目，这些条目提供有关在交易执行期间发生的操作的信息。 _Events_ 是用于构造这些日志的Solidity高级对象。
 
 事件对于轻型客户端和DApp服务特别有用，它们可以“监视”特定事件并将其报告给用户界面，或者更改应用程序的状态以在基础合约中反映事件。
 
@@ -672,7 +672,7 @@ function () external payable {
 }
 ----
 
-生成的_Faucet.sol_合约看起来如<<Faucet8_sol>>。
+生成的 _Faucet.sol_ 合约看起来如<<Faucet8_sol>>。
 
 [[Faucet8_sol]]
 .Faucet8.sol: 修改后的带事件的Faucet合约
@@ -687,7 +687,7 @@ include::code/Solidity/Faucet8.sol[]
 
 ((("events","catching")))((("Faucet.sol contract (test example)","catching events"))) 好的，目前我们已经设置了我们的合约，使其可以发出事件。我们如何查看交易结果并“捕获”事件？ web3.js库提供了一个包含交易日志的数据结构。在其中，我们可以看到由交易生成的事件。
 
-((("Truffle","running test transaction with"))) 让我们使用 +truffle+ 在修订后的 +Faucet+ 合约上运行测试交易。请按照 <<truffle>> 设置项目目录并编译 pass:[ <span class="keep-together"><code>Faucet</code></span> ]代码。可以在本书的GitHub代码库 https://github.com/ethereumbook/ethereumbook[the book's GitHub repository] 的目录_code / truffle / FaucetEvents_下找到源代码。
+((("Truffle","running test transaction with"))) 让我们使用 +truffle+ 在修订后的 +Faucet+ 合约上运行测试交易。请按照 <<truffle>> 设置项目目录并编译 pass:[ <span class="keep-together"><code>Faucet</code></span> ]代码。可以在本书的GitHub代码库 https://github.com/ethereumbook/ethereumbook[the book's GitHub repository] 的目录 _code/truffle/FaucetEvents_ 下找到源代码。
 
 ++++
 <pre data-type="programlisting">
@@ -848,7 +848,7 @@ contract Token is Mortal {
 }
 ----
 
-((("blind calls"))) 如你所见，这种 +call+ 是对函数的不可见_blind_调用，非常类似于构造原始交易，仅从合约的上下文中进行调用。 ((("reentrancy attacks","blind calls and"))) 它会使你的合约面临许多安全风险，最重要的是重放攻击_reentrancy_，我们将在<<reentrancy_security>>中详细介绍。如果调用出现问题， +call+ 函数将返回 +false+ ，因此你可以评估返回值以进行错误处理：
+((("blind calls"))) 如你所见，这种 +call+ 是对函数的不可见 _blind_ 调用，非常类似于构造原始交易，仅从合约的上下文中进行调用。 ((("reentrancy attacks","blind calls and"))) 它会使你的合约面临许多安全风险，最重要的是重放攻击 _reentrancy_，我们将在<<reentrancy_security>>中详细介绍。如果调用出现问题， +call+ 函数将返回 +false+ ，因此你可以评估返回值以进行错误处理：
 
 [source,solidity]
 ----
@@ -1049,4 +1049,4 @@ gas cost estimation = 0.00062794 ether
 
 === 本章小结
 
-在本章中，我们开始详细研究智能合约，并探索了Solidity合约编程语言。(((range="endofrange", startref="ix_07smart-contracts-solidity-asciidoc4")))(((range="endofrange", startref="ix_07smart-contracts-solidity-asciidoc3"))) 我们采用了一个简单的示例合约_Faucet.sol_，并逐步对其进行了改进，使其变得更加复杂，并利用它来探索Solidity语言的各个方面。在<<vyper_chap>>中，我们将使用另一种面向合约的编程语言Vyper。我们将Vyper与Solidity进行比较，以显示这两种语言在设计上的一些差异，并加深我们对智能合约编程的理解。(((range="endofrange", startref="ix_07smart-contracts-solidity-asciidoc0")))
+在本章中，我们开始详细研究智能合约，并探索了Solidity合约编程语言。(((range="endofrange", startref="ix_07smart-contracts-solidity-asciidoc4")))(((range="endofrange", startref="ix_07smart-contracts-solidity-asciidoc3"))) 我们采用了一个简单的示例合约 _Faucet.sol_，并逐步对其进行了改进，使其变得更加复杂，并利用它来探索Solidity语言的各个方面。在<<vyper_chap>>中，我们将使用另一种面向合约的编程语言Vyper。我们将Vyper与Solidity进行比较，以显示这两种语言在设计上的一些差异，并加深我们对智能合约编程的理解。(((range="endofrange", startref="ix_07smart-contracts-solidity-asciidoc0")))

@@ -1,7 +1,7 @@
 [[oracles_chap]]
 == Oracles
 
-((("oracles", id="ix_11oracles-asciidoc0", range="startofrange")))在本章中，我们讨论_oracles_，这是可以为以太坊智能合约提供外部数据源的系统。 预言机“Oracles”一词来自希腊神话，在希腊神话中是指与众神交流的人，他们可以看到未来的愿景。在区块链的背景下，Oracle是一个可以回答以太坊外部问题的系统。 ((("trustless systems", seealso="oracles")))理想情况下，oracle是一个无需信任_trustless_的系统，这意味着它们不需要被信任，因为它们基于分布式的原则进行操作。
+((("oracles", id="ix_11oracles-asciidoc0", range="startofrange")))在本章中，我们讨论 _oracles_，这是可以为以太坊智能合约提供外部数据源的系统。 预言机“Oracles”一词来自希腊神话，在希腊神话中是指与众神交流的人，他们可以看到未来的愿景。在区块链的背景下，Oracle是一个可以回答以太坊外部问题的系统。 ((("trustless systems", seealso="oracles")))理想情况下，oracle是一个无需信任 _trustless_ 的系统，这意味着它们不需要被信任，因为它们基于分布式的原则进行操作。
 
 [[why_oracles]]
 === 为什么需要预言机Oracles
@@ -53,11 +53,11 @@ oracle可能提供的其他一些数据示例包括：
 
 设置oracle的三种主要方法可以分为请求-响应 _request-response_ ，传递 pass:[ <span class="keep-together"><em>publish-subscribe</em></span> ]和实时读取 _immediate-read_ 。
 
-((("immediate-read oracles")))((("oracles","immediate-read")))首先介绍最简单的实时读取_immediate-read_ Oracles。这类Oracle提供仅需立即做出决定的数据，例如“ __ethereumbook.info__的地址是什么？”或“此人是否超过18岁？”。那些希望查询此类数据的人倾向于“及时”查询。这类需求仅在需要信息时进行查找，而且可能不再会需要了。此类oracle的例子包括保存有关组织或由组织发布的数据的oracle，例如学历证书，拨号代码，机构成员身份，机场标识符，自我主权ID等。此类oracle在智能合约存储中一次性存储数据，由此其他智能合约可以使用对oracle合约的请求调用来查找它。这些oracle中的数据可能会更新。Oracle存储中的数据还可以通过启用了区块链的（例如，以太坊通过 pass:[<span class="keep-together">客户端连接</span>]）应用程序直接查找，而不必经过交易程序，也不会产生交易的燃料gas成本。想要检查希望购买酒精饮料的顾客的年龄的商店可以以这种方式使用oracle。这种类型的oracle对可能需要运行和维护服务器来回答此类数据请求的组织或公司很有吸引力。注意，例如由于效率或隐私原因，由oracle存储的数据可能不是oracle正在提供的原始数据。一所大学可能会为过去的学生的学业成就证书设立一个oracle。但是，存储证书的全部详细信息（可能会占用所学课程的页面和达到的成绩）将是多余的。而是，证书的哈希就足够了。同样，政府可能希望将公民身份ID放到以太坊平台上，在此平台上，显然其中的细节需要保密。同样，对数据进行哈希处理（更仔细地讲，在带有随机数的Merkle树中）并将根哈希仅存储在智能合约的存储中将是构建此类服务的有效方法。
+((("immediate-read oracles")))((("oracles","immediate-read")))首先介绍最简单的实时读取 _immediate-read_ Oracles。这类Oracle提供仅需立即做出决定的数据，例如“ __ethereumbook.info__的地址是什么？”或“此人是否超过18岁？”。那些希望查询此类数据的人倾向于“及时”查询。这类需求仅在需要信息时进行查找，而且可能不再会需要了。此类oracle的例子包括保存有关组织或由组织发布的数据的oracle，例如学历证书，拨号代码，机构成员身份，机场标识符，自我主权ID等。此类oracle在智能合约存储中一次性存储数据，由此其他智能合约可以使用对oracle合约的请求调用来查找它。这些oracle中的数据可能会更新。Oracle存储中的数据还可以通过启用了区块链的（例如，以太坊通过 pass:[<span class="keep-together">客户端连接</span>]）应用程序直接查找，而不必经过交易程序，也不会产生交易的燃料gas成本。想要检查希望购买酒精饮料的顾客的年龄的商店可以以这种方式使用oracle。这种类型的oracle对可能需要运行和维护服务器来回答此类数据请求的组织或公司很有吸引力。注意，例如由于效率或隐私原因，由oracle存储的数据可能不是oracle正在提供的原始数据。一所大学可能会为过去的学生的学业成就证书设立一个oracle。但是，存储证书的全部详细信息（可能会占用所学课程的页面和达到的成绩）将是多余的。而是，证书的哈希就足够了。同样，政府可能希望将公民身份ID放到以太坊平台上，在此平台上，显然其中的细节需要保密。同样，对数据进行哈希处理（更仔细地讲，在带有随机数的Merkle树中）并将根哈希仅存储在智能合约的存储中将是构建此类服务的有效方法。
 
-((("oracles","publish-subscribe")))((("publish-subscribe oracles")))下一种设置是传递，即发布-订阅模式_publish–subscribe_，此类oracle可以有效地为数据的更改（可能定期或频繁）发送广播服务，不仅可以为链上的智能合约提供轮询服务，也可以由链下监控程序监测数据的更新。此类别的模式类似于RSS提要，WebSub等，当oracle中有信息更新时，会标志指示新数据，并通知“已订阅”的用户。感兴趣的各方必须轮询oracle以检查最新信息是否已更改，或者订阅oracle合约的更新并在更新发生时进行响应。例子包括价格信息，天气信息，经济或社会统计数据，交通数据等。在Web服务器的世界中，轮询效率非常低，但在区块链平台的点对点环境中却并非如此：以太坊客户端必须跟上状态更改，包括合约存储的更改，因此轮询数据更改是对同步客户端的本地调用。以太坊事件日志使应用程序特别容易查找oracle更新，因此该模式在某些方面甚至可以被视为“推送”服务。但是，如果轮询是通过智能合约完成的，这对于某些分散的应用程序可能是必需的（例如，在不可能有激活激励措施的情况下），则可能会产生大量的燃料gas支出。
+((("oracles","publish-subscribe")))((("publish-subscribe oracles")))下一种设置是传递，即发布-订阅模式 _publish–subscribe_，此类oracle可以有效地为数据的更改（可能定期或频繁）发送广播服务，不仅可以为链上的智能合约提供轮询服务，也可以由链下监控程序监测数据的更新。此类别的模式类似于RSS提要，WebSub等，当oracle中有信息更新时，会标志指示新数据，并通知“已订阅”的用户。感兴趣的各方必须轮询oracle以检查最新信息是否已更改，或者订阅oracle合约的更新并在更新发生时进行响应。例子包括价格信息，天气信息，经济或社会统计数据，交通数据等。在Web服务器的世界中，轮询效率非常低，但在区块链平台的点对点环境中却并非如此：以太坊客户端必须跟上状态更改，包括合约存储的更改，因此轮询数据更改是对同步客户端的本地调用。以太坊事件日志使应用程序特别容易查找oracle更新，因此该模式在某些方面甚至可以被视为“推送”服务。但是，如果轮询是通过智能合约完成的，这对于某些分散的应用程序可能是必需的（例如，在不可能有激活激励措施的情况下），则可能会产生大量的燃料gas支出。
 
-((("oracles","request-response")))((("request-response oracles"))) 请求-响应_request-response_类型最复杂。这种类型一般用于当数据空间太大而无法存储在智能合约之内，而且预计用户一次只需要整个数据集的一小部分的情况。同时也适用于数据提供商业务的模型。实际上，这样的oracle可以作为一个为链上智能合约和链下的基础架构提供数据监听、检索和返回服务的系统。分布式应用程序的数据请求通常是一个涉及多个步骤的异步过程。在这种模式下，首先，EOA调用分布式应用程序，从而与oracle智能合约中定义的函数功能进行交互。该函数向oracle发送请求，包括详细说明所请求数据的相关参数，和可能包括回调函数和调度参数的补充信息。一旦该请求被验证，oracle的请求即可以被视为oracle合约发出的EVM事件或状态变更；请求的参数就可以被用于执行链下数据源的实际查询。Oracle可能还需要为处理请求付费，为回调提供燃料费以及访问所请求数据的权限。最后，结果数据由oracle所有者签名，以证明数据在给定时间的有效性，并以事务处理方式直接或通过oracle合约交付给提出请求的去中心化应用程序。依照调度参数，oracle可以广播后续的交易，以规定的时间间隔更新数据（例如，日末价格信息）。
+((("oracles","request-response")))((("request-response oracles"))) 请求-响应 _request-response_ 类型最复杂。这种类型一般用于当数据空间太大而无法存储在智能合约之内，而且预计用户一次只需要整个数据集的一小部分的情况。同时也适用于数据提供商业务的模型。实际上，这样的oracle可以作为一个为链上智能合约和链下的基础架构提供数据监听、检索和返回服务的系统。分布式应用程序的数据请求通常是一个涉及多个步骤的异步过程。在这种模式下，首先，EOA调用分布式应用程序，从而与oracle智能合约中定义的函数功能进行交互。该函数向oracle发送请求，包括详细说明所请求数据的相关参数，和可能包括回调函数和调度参数的补充信息。一旦该请求被验证，oracle的请求即可以被视为oracle合约发出的EVM事件或状态变更；请求的参数就可以被用于执行链下数据源的实际查询。Oracle可能还需要为处理请求付费，为回调提供燃料费以及访问所请求数据的权限。最后，结果数据由oracle所有者签名，以证明数据在给定时间的有效性，并以事务处理方式直接或通过oracle合约交付给提出请求的去中心化应用程序。依照调度参数，oracle可以广播后续的交易，以规定的时间间隔更新数据（例如，日末价格信息）。
 
 请求-响应预言机的运行步骤可以总结如下：
 
@@ -80,7 +80,7 @@ oracle可能提供的其他一些数据示例包括：
 [[data_authentication_sec]]
 === 数据认证
 
-((("data authentication, oracles and")))((("oracles","and data authentication")))((("oracles","data authentication with")))假设我们通过 DApp查询到的数据既权威又值得信赖（一个重要的假设），仍然存在一个悬而未决的问题：鉴于oracle和请求-响应机制可能是由不同的实体操作的，我们如何才能信任该机制？数据在传输过程中极有可能被篡改，因此链下方法能够证明返回的数据的完整性至关重要。数据认证的两种常见方法是真实性证明_authenticityproofs_和可信赖运行环境_trusted execution environment_（TEE）。
+((("data authentication, oracles and")))((("oracles","and data authentication")))((("oracles","data authentication with")))假设我们通过 DApp查询到的数据既权威又值得信赖（一个重要的假设），仍然存在一个悬而未决的问题：鉴于oracle和请求-响应机制可能是由不同的实体操作的，我们如何才能信任该机制？数据在传输过程中极有可能被篡改，因此链下方法能够证明返回的数据的完整性至关重要。数据认证的两种常见方法是真实性证明 _authenticityproofs_ 和可信赖运行环境 _trusted execution environment_（TEE）。
 
 ((("authenticity proofs")))真实性证明是未篡改数据的加密保证。基于各种证明技术（例如，数字签名的证明），它们有效地将信任从数据传送者转移到证明者（即证明的提供者）。通过在链上验证真实性证明，智能合约能够在对数据进行操作之前验证数据的完整性。 ((("Oraclize"))) http://www.oraclize.it/ [Oraclize]是利用各种真实性证明的oracle服务的示例。 (("TLSNotary proofs"))) TLSNotary证明是当前可用于从以太坊主网络进行数据查询的一种此类证明。 TLSNotary证明允许客户端向第三方提供客户端和服务器之间发生HTTPS Web流量的证据。虽然HTTPS本身是安全的，但它不支持数据签名。结果，TLSNotary证明依赖TLSNotary（通过PageSigner）签名。 TLSNotary证明利用传输层安全性（TLS）协议，使TLS主密钥（在访问数据后对数据进行签名）可以在以下三个方之间分配：服务器（oracle），被审核方（Oraclize）和审核员。 Oraclize使用Amazon Web Services（AWS）虚拟机实例作为审核器，可以验证该实例自实例化以来未经修改。该AWS实例存储TLSNotary机密，从而允许其提供诚实证明。尽管它提供了比纯粹的请求-响应机制更高的数据篡改保证，但这种方法确实需要假设Amazon本身不会篡改VM实例。
 
@@ -197,7 +197,7 @@ contract EthUsdPriceTicker is usingOraclize {
 ----
 ====
 
-要与Oraclize集成，合约 +EthUsdPriceTicker+ 必须是pass的子合约： pass:[ <span class="keep-together"><code>usingOraclize</code></span> ]; +usingOraclize+ 合约在_oraclizeAPI_文件中定义。数据请求使用 +oraclize_query+ 函数进行，该函数继承自 +usingOraclize+ 合约。这是一个重载函数，至少需要两个参数：
+要与Oraclize集成，合约 +EthUsdPriceTicker+ 必须是pass的子合约： pass:[ <span class="keep-together"><code>usingOraclize</code></span> ]; +usingOraclize+ 合约在 _oraclizeAPI_ 文件中定义。数据请求使用 +oraclize_query+ 函数进行，该函数继承自 +usingOraclize+ 合约。这是一个重载函数，至少需要两个参数：
 
 * 支持可用的数据源，例如URL，WolframAlpha，IPFS或计算
 * 给定数据源的参数，可能包括使用JSON或XML解析帮助器
@@ -281,6 +281,6 @@ contract OracleB1IQClient {
 
 如你所见，Oracle为智能合约提供了至关重要的服务：它们将外部事实带到了合约执行中。当然，这也给Oracle带来了巨大的风险。如果Oracle被信任的同时，遭到破坏，则可能导致依赖于它们的智能合约的执行受到破坏。
 
-通常而言，在考虑使用Oracle时，请特别注意_trust model_。如果你默认Oracle是可以信任的，则可能将智能合约暴露给潜在的错误输入，从而破坏了合约的安全性。就是说，如果能够仔细考虑并保证安全性，Oracle将非常有用。
+通常而言，在考虑使用Oracle时，请特别注意 _trust model_。如果你默认Oracle是可以信任的，则可能将智能合约暴露给潜在的错误输入，从而破坏了合约的安全性。就是说，如果能够仔细考虑并保证安全性，Oracle将非常有用。
 
 去中心化的Oracle可以解决上面提到的一些问题，并为以太坊智能合约提供不受信任的外部数据。如果你仔细使用，就可以通过Oracle为以太坊和“真实世界”之间建立起桥梁。(((range="endofrange", startref="ix_11oracles-asciidoc0")))
