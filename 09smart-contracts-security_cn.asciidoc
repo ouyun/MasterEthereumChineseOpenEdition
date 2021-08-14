@@ -475,7 +475,7 @@ contract TimeLock {
 被从合约中盗走。 Eric Banisadr在他的博客中很好地概述了下限溢出是如何发生的
 （与之前描述的Ethernaut挑战不一样） https://bit.ly/2wrxIFJ[blog post]。
 
-http://bit.ly/2CUf7WG[Another example] 另一个示例]来自将`batchTransfer（）`函数实现到一组ERC20通证合约中。该实现包含一个溢出漏洞；你可以在https://bit.ly/2HDlIs8[PeckShield's account] 中了解详细信息。(((range="endofrange", startref="ix_09smart-contracts-security-asciidoc9")))(((range="endofrange", startref="ix_09smart-contracts-security-asciidoc8")))(((range="endofrange", startref="ix_09smart-contracts-security-asciidoc7")))(((range="endofrange", startref="ix_09smart-contracts-security-asciidoc6")))
+http://bit.ly/2CUf7WG[Another example] 另一个示例]来自将`batchTransfer（）`函数实现到一组ERC20通证合约中。该实现包含一个溢出漏洞；你可以在 https://bit.ly/2HDlIs8[PeckShield's account] 中了解详细信息。(((range="endofrange", startref="ix_09smart-contracts-security-asciidoc9")))(((range="endofrange", startref="ix_09smart-contracts-security-asciidoc8")))(((range="endofrange", startref="ix_09smart-contracts-security-asciidoc7")))(((range="endofrange", startref="ix_09smart-contracts-security-asciidoc6")))
 
 ===意外的以太币
 
@@ -541,7 +541,7 @@ function]，从合约地址中删除所有字节码并将
 根据Keccak-256（通常也称为SHA-3）的哈希算法对
 创建合约的地址和创建合约时的交易计数而得出的。
 具体来说，其格式为“地址= sha3（rlp.encode（[account_address，transaction_nonce]））”
-（有关此功能的一些有趣用例，请参见Adrian Manning对http://bit.ly/2EPj5Tq[“Keyless Ether”]的讨论）。这
+（有关此功能的一些有趣用例，请参见Adrian Manning对 http://bit.ly/2EPj5Tq[“Keyless Ether”]的讨论）。这
 意味着任何人都可以计算出合约的地址并在其
 创建之前发送以太币到该地址。当合约
 创建后它将具有非零的以太币余额。
@@ -846,7 +846,7 @@ selector]，并放入`calldata`中以指定
 状态变量实际上是如何
 存储在合约中的。状态或存储变量（变量值
 在单个交易中不变）放入 _slots_
-是按合约中的顺序进行。 （这里有些复杂；请参阅http://bit.ly/2JslDWf[Solidity docs]以获取更全面的了解。）
+是按合约中的顺序进行。 （这里有些复杂；请参阅 http://bit.ly/2JslDWf[Solidity docs] 以获取更全面的了解。）
 
 作为示例，让我们看一下合约库。它有两个状态
 变量，“ start”和“ calculatedFibNumber”。第一个变量
@@ -926,7 +926,7 @@ contract Attack {
 ==== 预防技术
 
 ((("DELEGATECALL opcode security threat","preventative techniques"))) Solidity提供`library`关键字用于实现
-合约库（有关更多详细信息，请参见http://bit.ly/2zjD8TI[docs]）。这样可以确保合约库是
+合约库（有关更多详细信息，请参见 http://bit.ly/2zjD8TI[docs]）。这样可以确保合约库是
 无状态且无自毁函数。将合约库强制设为无状态
 降低了本节所展示的存储环境的复杂性
 问题。无状态库还可以防止攻击者
@@ -944,7 +944,7 @@ contract Attack {
 http://bit.ly/2Dg7GtW[&#x201c;Parity Multisig Hacked. Again&#x201d;] 和 http://bit.ly/2Of06B9[&#x201c;An In-Depth Look at the Parity Multisig Bug&#x201d;].
 
 为了增加理解这些资料，让我们了解一下出现问题的
-合约。相应的库文件合钱包合约可以在http://bit.ly/2OgnXQC[on GitHub]上找到。
+合约。相应的库文件合钱包合约可以在 http://bit.ly/2OgnXQC[on GitHub]上找到。
 
 库合约如下：
 
@@ -1033,7 +1033,7 @@ WaltLibrary合约。常数
 这些函数可以被调用。可见性是用以确定
 一个函数可以由用户，其他衍生合约在外部调用，
 仅在内部调用，或仅在外部调用。总共有四个可见性
-说明符，在http://bit.ly/2ABiv7j[Solidity docs]中有详细说明。函数默认为`public`，即允许用户从外部调用它们
+说明符，在 http://bit.ly/2ABiv7j[Solidity docs]中有详细说明。函数默认为`public`，即允许用户从外部调用它们
 现在，我们将看到对可见性说明符的错误使用将如何导致智能合约中的一些破坏性漏洞。
 
 [role="notoc"]
@@ -1159,7 +1159,7 @@ https://vitalik.ca/files/randomness.html[&#x201c;Validator Ordering and Randomne
 打赌的东西），这使得在区块链上构建赌博系统（
 确定性系统）相当困难。显然，不确定性
 必须来自区块链外部的来源。这对于
-玩家之间的下注（例如，参见http://bit.ly/2CUh2KS [提交-披露技术]）是可能实现的；不过难度将大大提高，如果你想要
+玩家之间的下注（例如，参见 http://bit.ly/2CUh2KS[提交-披露技术]）是可能实现的；不过难度将大大提高，如果你想要
 编写一个合约可以充当“house”（例如二十一点或
 轮盘赌）的游戏。一个常见的陷阱是使用将来的区块变量-即，
 变量包含有关尚不知道其值的交易区块的信息，例如
@@ -1172,7 +1172,7 @@ https://vitalik.ca/files/randomness.html[&#x201c;Validator Ordering and Randomne
 选择不发布他们的区块而继续挖掘，除非他们找到一个
 区块哈希为偶数的解决方案（假设区块
 奖励和费用少于100万美元）。使用过去或现在的变量可能
-会导致更具破坏性的问题，就像马丁·斯文德（Martin Swende）在其博客http://martin.swende.se/blog/Breaking_the_house.html[blog post]中所展示的那样。
+会导致更具破坏性的问题，就像马丁·斯文德（Martin Swende）在其博客 http://martin.swende.se/blog/Breaking_the_house.html[blog post]中所展示的那样。
 此外，如果仅使用区块变量意味着伪随机
 数在一个区块中所有的交易中将相同，因此攻击者
 可以通过在一个区块内完成许多交易来增加胜利的次数
@@ -1638,7 +1638,7 @@ ddeaddeaddeaddeaddeaddeadde00000000000000
 函数仅返回“ false”。一个常见的错误是
 如果外部调用失败，开发人员希望交易将发生还原过程，并且不检查返回值。
 
-有关更多信息，请参见http://www.dasp.co/#item-4[DASP Top 10 of 2018]上的＃4和
+有关更多信息，请参见 http://www.dasp.co/#item-4[DASP Top 10 of 2018]上的＃4和
 http://bit.ly/2RnS1vA[&#x201c;Scanning
 Live Ethereum Contracts for the &lsquo;Unchecked-Send&rsquo; Bug&#x201d;].
 
@@ -1767,7 +1767,7 @@ Solidity中的陷阱，用户通过_race_代码执行来获取
 通过比赛条件实施攻击。在本节中，我们将讨论
 以太坊区块链上可能发生的其他种类的比赛条件
 关于这个主题有很多好的文章，包括
-&#x201c;Race Conditions&#x201d; 还有http://bit.ly/2yFesFF[Ethereum
+&#x201c;Race Conditions&#x201d; 还有 http://bit.ly/2yFesFF[Ethereum
 Wiki], http://www.dasp.co/#item-7[#7 on the DASP Top10 of 2018], 和
 http://bit.ly/2Q6E4lP[Ethereum Smart Contract Best Practices]。
 
@@ -2040,7 +2040,7 @@ function transfer(address _to, uint _value) returns (bool) {
 
 http://governmental.github.io/GovernMental/[GovernMental] ((("denial of service (DoS) attacks","real-world example: GovernMental")))((("GovernMental Ponzi scheme","DoS vulnerability"))) 是一个老的
 庞氏骗局，其中积累了大量的以太币（一次为1,100个以太币）。不幸的是，它
-容易受到本节中提到的DoS漏洞的影响。 etherik的帖子http://bit.ly/2DcgvFc[Reddit post]描述了合约如何要求删除大的
+容易受到本节中提到的DoS漏洞的影响。 etherik的帖子 http://bit.ly/2DcgvFc[Reddit post]描述了合约如何要求删除大的
 映射以便提现以太币。删除该映射需要
 的燃料成本超过了区块燃料上限，因此
 不可能提取1,100以太币。合约地址是
@@ -2337,12 +2337,11 @@ _name的最后一个字节非零，它将修改
 
 ==== 真实示例：OpenAddressLottery和CryptoRoulette Honey Pots
 
-((("OpenAddressLottery honey pot")))((("uninitialized storage pointers security threat","real-world examples: OpenAddressLottery and CryptoRoulette honey pots"))) 一个名为OpenAddressLottery的蜜罐合约http://bit.ly/2AAVnWD[ +OpenAddressLottery+ ] ，在部署时使用了未初始化的存储变量
+((("OpenAddressLottery honey pot")))((("uninitialized storage pointers security threat","real-world examples: OpenAddressLottery and CryptoRoulette honey pots"))) 一个名为OpenAddressLottery的蜜罐合约 http://bit.ly/2AAVnWD[ +OpenAddressLottery+ ] ，在部署时使用了未初始化的存储变量
 从一些潜在的黑客那里收集以太币。合约本身相当
-复杂，我们将分析留给关于这个问题的讨论区 http://bit.ly/2OgxPtG[Reddit
-thread]，其中对攻击的解释很清楚。
+复杂，我们将分析留给关于这个问题的讨论区 http://bit.ly/2OgxPtG[Reddit thread]，其中对攻击的解释很清楚。
 
-((("CryptoRoulette honey pot"))) 另一个蜜罐，http：//bit.ly/2OfNGJ2 [ +CryptoRoulette+ ]，也利用了这个技巧 pass:[<span class="keep-together">尝试</span>]并收集一些以太币。如果你
+((("CryptoRoulette honey pot"))) 另一个蜜罐， http://bit.ly/2OfNGJ2[ +CryptoRoulette+ ]，也利用了这个技巧 pass:[<span class="keep-together">尝试</span>]并收集一些以太币。如果你
 无法弄清楚攻击是如何进行的，请参阅
 http://bit.ly/2OVkSL4[&#x201c;An
 Analysis of a Couple Ethereum Honeypot Contracts&#x201d;] 中对
@@ -2445,7 +2444,7 @@ Solidity中保留所有精度较高的变量，然后转换回较低的
 
 ==== 真实示例：Ethstick
 
-((("Ethstick contract")))((("floating-point representation security risk","real-world example: Ethstick"))) Ethstick合约http://bit.ly/2Qb7PSB[+Ethstick+ contract] 不使用扩展的精度；但是，它处理的是wei。所以，
+((("Ethstick contract")))((("floating-point representation security risk","real-world example: Ethstick"))) Ethstick合约 http://bit.ly/2Qb7PSB[+Ethstick+ contract] 不使用扩展的精度；但是，它处理的是wei。所以，
 合约将有四舍五入的问题，但仅在wei级别
 的精度。它有一些更严重的缺陷，但是这些问题是
 之前讨论过的，在区块链上获取熵的困难性（请参阅
@@ -2465,8 +2464,8 @@ Contracts Are Going to Be Candy for Hackers&#x201d;].(((range="endofrange", star
 ====
 有关的更多资料，请参阅dbryson的以太坊问题 http://bit.ly/2PxU1UM[Stack
 Exchange question]，
-Peter Vessenes 的http://bit.ly/2qm7ocJ[&#x201c;Tx.Origin and Ethereum Oh My!&#x201d;] ，和
-Chris Coverdale 的http://bit.ly/2P3KVA4[&#x201c;Solidity: Tx Origin Attacks&#x201d;] 。
+Peter Vessenes 的 http://bit.ly/2qm7ocJ[&#x201c;Tx.Origin and Ethereum Oh My!&#x201d;] ，和
+Chris Coverdale 的 http://bit.ly/2P3KVA4[&#x201c;Solidity: Tx Origin Attacks&#x201d;] 。
 ====
 
 [role="notoc"]
@@ -2556,16 +2555,16 @@ contract AttackContract {
 
 ((("security (smart contracts)","contract libraries for")))((("smart contracts","on-platform libraries"))) 有很多可重复使用的现有代码，它们都部署在区块链上作为可调用库，而在链下作为代码模板库。平台上已部署的库以字节码智能合约形式存在，因此在生产中使用它们之前应格外小心。然而，使用完善的现有平台库具有许多优点，例如能够从最新升级中受益，并通过减少以太坊中的实时合约总数为你节省金钱并从以太坊生态系统中受益。
 
-((("frameworks","OpenZeppelin suite")))((("OpenZeppelin"))) 在以太坊中，使用最广泛的资源是https://openzeppelin.org/[OpenZeppelin suite]，其中合约的范围从ERC20和ERC721通证的实现到多种类型的众筹模型，再到合约中常见的简单行为，例如“拥有”，“可暂停”或“限制余额”。该存储库中的合约已经过广泛的测试，在某些情况下甚至可以作为事实上的标准实现。它们是免费使用的，由 https://zeppelin.solutions[Zeppelin] 以及越来越多的外部贡献者一起构建和维护。
+((("frameworks","OpenZeppelin suite")))((("OpenZeppelin"))) 在以太坊中，使用最广泛的资源是 https://openzeppelin.org/[OpenZeppelin suite]，其中合约的范围从ERC20和ERC721通证的实现到多种类型的众筹模型，再到合约中常见的简单行为，例如“拥有”，“可暂停”或“限制余额”。该存储库中的合约已经过广泛的测试，在某些情况下甚至可以作为事实上的标准实现。它们是免费使用的，由 https://zeppelin.solutions[Zeppelin] 以及越来越多的外部贡献者一起构建和维护。
 
 ((("frameworks","ZeppelinOS")))((("ZeppelinOS"))) Zeppelin的人也是 https://zeppelinos.org/[ZeppelinOS] ，这是一个开源的平台，提供可用于安全地开发和使用智能合约应用程序的服务和工具。 ZeppelinOS在EVM之上提供了一层，使开发人员可以轻松地启动可升级的DApp，这些DApp链接到经过测试的，本身可以升级的合约的链上库。这些库的不同版本可以在以太坊平台上共存，凭证系统允许用户向不同方向提出或推动改进。该平台还提供了一组用于调试，测试，部署和监视分布式应用程序的链下工具。
 
 ((("ethpm project"))) +ethpm+ 项目旨在通过提供程序包管理系统来组织生态系统中正在开发的各种资源。因此，其注册表提供了更多示例供你浏览：
 
-* 网站：https://www.ethpm.com/
-* 资料库链接：https://www.ethpm.com/registry
+* 网站： https://www.ethpm.com/
+* 资料库链接： https://www.ethpm.com/registry
 * GitHub 链接: https://github.com/ethpm
-* 文档：https://www.ethpm.com/docs/integration-guide
+* 文档： https://www.ethpm.com/docs/integration-guide
 
 === 结论
 

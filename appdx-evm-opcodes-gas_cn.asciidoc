@@ -2,7 +2,7 @@
 [[evm_opcodes]]
 == 以太坊虚拟机EVM操作码和所需燃料gas量
 
-((("EVM (Ethereum Virtual Machine)","opcodes and gas consumption")))((("gas","EVM opcodes and gas consumption")))本附录基于开发者所做的工作https://github.com/trailofbits/evm-opcodes，可以作为以太坊虚拟机（EVM）操作码和指令信息的参考，版权遵循http://bit.ly/2zfrv0b[Apache许可2.0]许可。
+((("EVM (Ethereum Virtual Machine)","opcodes and gas consumption")))((("gas","EVM opcodes and gas consumption")))本附录基于开发者所做的工作 https://github.com/trailofbits/evm-opcodes[]，可以作为以太坊虚拟机（EVM）操作码和指令信息的参考，版权遵循 http://bit.ly/2zfrv0b[Apache许可2.0]许可。
 
 [[evm_opcodes_table]]
 [cols=",,,,",options="header",]

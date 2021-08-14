@@ -416,8 +416,8 @@ contract Faucet {
 ((("EVM (Ethereum Virtual Machine)","disassembling bytecode", id="ix_13evm-asciidoc9", range="startofrange")))((("EVM bytecode","disassembling", id="ix_13evm-asciidoc10", range="startofrange"))) 反汇编EVM字节码是了解高级Solidity如何在EVM中起作用的好方法。你可以使用一些反汇编程序来执行此操作：
 
 - https://github.com/comaeio/porosity[_Porosity_] 是一个流行的开源反编译工具.
--https://github.com/trailofbits/ethersplay[_Ethersplay_] 是反汇编程序Binary Ninja的EVM插件。
--https://github.com/trailofbits/ida-evm[_IDA-Evm_] 是另一个反汇编程序IDA的EVM插件。
+- https://github.com/trailofbits/ethersplay[_Ethersplay_] 是反汇编程序Binary Ninja的EVM插件。
+- https://github.com/trailofbits/ida-evm[_IDA-Evm_] 是另一个反汇编程序IDA的EVM插件。
 
 在本节中，我们将使用Binary Ninja的Ethersplay插件并启动<<Faucet_disassembled>>。在获得 _Faucet.sol_ 的运行时字节码后，我们可以将其输入Binary Ninja（在加载Ethersplay插件之后），以查看EVM指令的外观。
 

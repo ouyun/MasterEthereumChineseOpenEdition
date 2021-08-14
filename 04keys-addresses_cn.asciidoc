@@ -253,7 +253,7 @@ Type "help", "copyright", "credits" or "license" for more information.
 
 在某些情况下（例如，如果 _P_~1~ 和 _P_~2~ 具有相同的 _x_ 值但具有不同的 _y_ 值），则该线将完全垂直，在这种情况下 _P_~3~ = 无穷远点。
 
-如果 _P_~1~ 是无穷远点，则 _P_~1~ + _P_~2~ = _P_~2~。同样，如果 _P_~2~ 是无穷远点，则 _P_~1~+ _P_~2~= _P_~1~。这显示了无穷远点如何在“正常”算术中扮演零的角色。
+如果 _P_~1~ 是无穷远点，则 _P_~1~ + _P_~2~ = _P_~2~。同样，如果 _P_~2~ 是无穷远点，则 _P_~1~ + _P_~2~ = _P_~1~。这显示了无穷远点如何在“正常”算术中扮演零的角色。
 
 事实证明，加法运算 pass:[+] 满足结合律，这意味着 (_A_ pass:[+] _B_) pass:[+] _C_ = _A_ pass:[+] (_B_ pass:[+] _C_)。这意味着我们可以毫不含糊地编写 _A_ pass:[+] _B_ pass:[+] _C_（不带括号）。
 
@@ -309,7 +309,7 @@ x = 6e145ccef1033dea239875dd00dfb4fee6e3348b84985c92f103444683bae07b
 y = 83b5c38e5e2b0c8529d7fa3f64d46daa1ece2d9ac14cab9477d042c84c32ccd0
 ----
 
-((("SECG (Standards for Efficient Cryptography Group)")))((("Standards for Efficient Cryptography Group (SECG)")))在以太坊中，你可能会看到130个十六进制字符（65字节）序列化的公钥。这是行业协会高效密码技术标准组（SECG）提出的标准序列化格式，该格式在 http://www.secg.org/sec1-v2.pdf [高效密码技术标准（SEC1）]中进行了说明。该标准定义了四个可能的前缀，可用于识别椭圆曲线上的点，列在<<EC_prefix_table>>。
+((("SECG (Standards for Efficient Cryptography Group)")))((("Standards for Efficient Cryptography Group (SECG)")))在以太坊中，你可能会看到130个十六进制字符（65字节）序列化的公钥。这是行业协会高效密码技术标准组（SECG）提出的标准序列化格式，该格式在 http://www.secg.org/sec1-v2.pdf[高效密码技术标准(SEC1)]中进行了说明。该标准定义了四个可能的前缀，可用于识别椭圆曲线上的点，列在<<EC_prefix_table>>。
 
 [[EC_prefix_table]]
 .序列化的EC公钥前缀
@@ -353,7 +353,7 @@ c8529d7fa3f64d46daa1ece2d9ac14cab9477d042c84c32ccd0
 
 在本节中，我们将讨论哈希函数，探索其基本属性，并了解这些属性如何使它们在现代密码学的许多领域中使用。我们在这里讨论哈希函数，因为它们是将以太坊公钥转换为地址的一部分。((("digital fingerprint")))它们也可以用于创建数字指纹 _digital fingerprints_ ，以帮助验证数据。
 
-((("one-way functions"))) 简单来说，哈希函数http://bit.ly/2CR26gD[_hash function_]是可用于将任意大小的数据映射到固定大小的数据的任何函数。((("pre-image")))哈希函数的输入称为 _pre-image_ ， _message_ 或简称为 _input data_ 。输出称为 _hash_ 。 密码学哈希函数 http://bit.ly/2Jrn3jM[_Cryptographic hash functions_]是一个特殊的子类别，具有特定的属性，这些属性可用于保护以太坊等平台。
+((("one-way functions"))) 简单来说，哈希函数 http://bit.ly/2CR26gD[_hash function_] 是可用于将任意大小的数据映射到固定大小的数据的任何函数。((("pre-image")))哈希函数的输入称为 _pre-image_ ， _message_ 或简称为 _input data_ 。输出称为 _hash_ 。 密码学哈希函数 http://bit.ly/2Jrn3jM[_Cryptographic hash functions_] 是一个特殊的子类别，具有特定的属性，这些属性可用于保护以太坊等平台。
 
 密码学哈希函数是一种“单向哈希”函数，它将任意大小的数据映射到固定大小的位字符串。 “单向”性质意味着，如果仅知道输出哈希，则在计算上无法重新创建输入数据。确定可能输入的唯一方法是进行蛮力搜索，检查每个候选者是否有匹配的输出。鉴于搜索空间实际上是无限的，因此很容易理解该任务的实际可能性。即使你找到一些创建匹配哈希的输入数据，也可能不是原始输入数据：哈希函数是“多对一”函数。 ((("hash collision")))查找哈希到同一输出的两组输入数据称为查找哈希冲突 _hash collision_ 。粗略地说，哈希函数越好，哈希冲突就越少。对于以太坊来说，它们实际上是不可能的。
 
@@ -415,7 +415,7 @@ SHA3("") =
 
 [NOTE]
 ====
-由于以太坊（Keccak-256）和最终标准（FIP-202 SHA-3）中使用的哈希函数之间的差异造成了混乱，因此正在努力重命名所有代码和操作码中 +sha3+ 的所有引用实例，以及涉及到的 +keccak256+ 软件库。有关详细信息，请参见https://github.com/ethereum/EIPs/issues/59[ERC59] 。
+由于以太坊（Keccak-256）和最终标准（FIP-202 SHA-3）中使用的哈希函数之间的差异造成了混乱，因此正在努力重命名所有代码和操作码中 +sha3+ 的所有引用实例，以及涉及到的 +keccak256+ 软件库。有关详细信息，请参见 https://github.com/ethereum/EIPs/issues/59[ERC59] 。
 ====
 
 
@@ -482,7 +482,7 @@ Keccak256(K) = 2a5bc342ed616b5ba5732269001d3f1ef827552ae1114027bd3ecf1f086ba0f9
 [[ICAP]]
 ==== 互换客户端地址协议
 
-((("addresses","ICAP encoding", id="ix_04keys-addresses-asciidoc16", range="startofrange")))((("ICAP (Inter-exchange Client Address Protocol)", id="ix_04keys-addresses-asciidoc17", range="startofrange")))((("Inter-exchange Client Address Protocol (ICAP)", id="ix_04keys-addresses-asciidoc18", range="startofrange"))) 互换客户端地址协议（ICAP）是一种部分兼容国际银行帐号（IBAN）的以太坊地址编码，为以太坊地址提供通用，包含校验和验证，以及解析的编码。 ICAP地址可以对以太坊地址或在以太坊名称注册表中注册的通用名称进行编码。你可以在http://bit.ly/2JsZHKu[Ethereum Wiki] 上阅读有关ICAP的更多信息。
+((("addresses","ICAP encoding", id="ix_04keys-addresses-asciidoc16", range="startofrange")))((("ICAP (Inter-exchange Client Address Protocol)", id="ix_04keys-addresses-asciidoc17", range="startofrange")))((("Inter-exchange Client Address Protocol (ICAP)", id="ix_04keys-addresses-asciidoc18", range="startofrange"))) 互换客户端地址协议（ICAP）是一种部分兼容国际银行帐号（IBAN）的以太坊地址编码，为以太坊地址提供通用，包含校验和验证，以及解析的编码。 ICAP地址可以对以太坊地址或在以太坊名称注册表中注册的通用名称进行编码。你可以在 http://bit.ly/2JsZHKu[Ethereum Wiki] 上阅读有关ICAP的更多信息。
 
 IBAN是用于识别银行帐号的国际标准，主要用于电汇。它已在欧洲单一欧元支付区（SEPA）及更多地区广泛采用。 IBAN是一项中心化并且被严格监管的服务。 ICAP是用于以太坊地址的分布式但兼容的实现。
 
@@ -540,7 +540,7 @@ XE60HAMICDXSV5QXVJA7TJW47Q9CHWKJD
 [[EIP55]]
 ==== 大写形式带有校验总量的十六进制编码（EIP-55）
 
-((("addresses","hex encoding with checksum in capitalization (EIP-55)", id="ix_04keys-addresses-asciidoc19", range="startofrange")))((("checksum","EIP-55 and", id="ix_04keys-addresses-asciidoc20", range="startofrange")))((("EIP-55 (Ethereum Improvement Proposal 55)","checksum for addresses", id="ix_04keys-addresses-asciidoc21", range="startofrange")))由于ICAP和名称服务的开发进展缓慢，以太坊改进提案55中提出了一个标准（EIP-55）https://github.com/Ethereum/EIPs/blob/master/EIPS/eip-55.md[Ethereum Improvement Proposal 55 (EIP-55)]。 EIP-55通过修改十六进制地址的大小写为以太坊地址提供了向后兼容的校验和。这个想法是，以太坊地址不区分大小写，并且所有钱包都应该接受以大写或小写字符表示的以太坊地址，而在解析使用上没有任何区别。
+((("addresses","hex encoding with checksum in capitalization (EIP-55)", id="ix_04keys-addresses-asciidoc19", range="startofrange")))((("checksum","EIP-55 and", id="ix_04keys-addresses-asciidoc20", range="startofrange")))((("EIP-55 (Ethereum Improvement Proposal 55)","checksum for addresses", id="ix_04keys-addresses-asciidoc21", range="startofrange")))由于ICAP和名称服务的开发进展缓慢，以太坊改进提案55中提出了一个标准（EIP-55） https://github.com/Ethereum/EIPs/blob/master/EIPS/eip-55.md[Ethereum Improvement Proposal 55 (EIP-55)]。 EIP-55通过修改十六进制地址的大小写为以太坊地址提供了向后兼容的校验和。这个想法是，以太坊地址不区分大小写，并且所有钱包都应该接受以大写或小写字符表示的以太坊地址，而在解析使用上没有任何区别。
 
 通过修改地址中字母字符的大小写，我们可以在地址中引入一个校验和，该校验和可用于保护地址的完整性，以防止键入或读取错误。不支持EIP-55校验和的钱包只会忽略地址包含大小写混合的事实，但是支持地址的钱包可以对其进行验证，并以99.986％的准确度检测错误。
 

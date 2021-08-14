@@ -88,7 +88,7 @@ Ethash::
 (("Ether (cryptocurrency)")))以太坊生态系统使用的原生加密货币，涵盖执行智能合约时的燃料gas成本。它的符号是Ξ，希腊大写的Xi字符。
 
 事件，Event::
-((("events","defined"))) 事件允许使用EVM的日志工具，DApp可以监听这些事件，并通过它们来调用用户界面中JavaScript回调函数。更多信息，参见http://solidity.readthedocs.io/en/develop/contracts.html#events.
+((("events","defined"))) 事件允许使用EVM的日志工具，DApp可以监听这些事件，并通过它们来调用用户界面中JavaScript回调函数。更多信息，参见 http://solidity.readthedocs.io/en/develop/contracts.html#events.
 
 以太坊虚拟机，EVM::
 ((("EVM (Ethereum Virtual Machine)","defined"))) 以太坊虚拟机。一个基于堆栈的虚拟机，它执行字节码。在以太坊中，执行模型指定在给定一系列字节码指令和少量元数据的情况下如何更改系统状态。这是通过虚拟状态机的正式模型指定的。

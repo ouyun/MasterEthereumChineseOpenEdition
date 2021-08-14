@@ -76,7 +76,7 @@ Solidity项目的主要“产品”是Solidity编译器 +solc+ ，它将以Solid
 
 ==== 选择Solidity语言的版本
 
-((("semantic versioning")))((("Solidity","selecting version of"))) Solidity遵循一个称为https://semver.org/[_semantic versioning_]的版本控制模型，该模型指定结构为由点分隔的三个数字：__ ++ MAJOR.MINOR.PATCH ++ __。对于主要更改和向后兼容 _backward-incompatible_ 更改，“主要”编号增加，当在主要版本之间添加向后兼容功能时，“次要”编号增加，而对于向后兼容的错误修复，“补丁”编号增加。
+((("semantic versioning")))((("Solidity","selecting version of"))) Solidity遵循一个称为 https://semver.org/[_semantic versioning_]的版本控制模型，该模型指定结构为由点分隔的三个数字：__ ++ MAJOR.MINOR.PATCH ++ __。对于主要更改和向后兼容 _backward-incompatible_ 更改，“主要”编号增加，当在主要版本之间添加向后兼容功能时，“次要”编号增加，而对于向后兼容的错误修复，“补丁”编号增加。
 
 在撰写本文时，Solidity版本为0.4.24。主要版本0（用于项目的初始开发）的规则是不同的：任何内容都可能随时更改。在实践中，Solidity将“次要”号视为主要版本，将“补丁”号视为次要版本。因此，在0.4.24中，将4视为主要版本，将24视为次要版本。
 
@@ -110,7 +110,7 @@ Version: 0.4.24+commit.e67f0147.Linux.g++
 </pre>
 ++++
 
-根据你的操作系统和要求，还有许多其他安装Solidity的方法，包括直接从源代码进行编译。有关更多信息，请参见https://github.com/ethereum/solidity []。
+根据你的操作系统和要求，还有许多其他安装Solidity的方法，包括直接从源代码进行编译。有关更多信息，请参见 https://github.com/ethereum/solidity[]。
 
 
 

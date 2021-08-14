@@ -541,7 +541,7 @@ _Source: https://en.wikipedia.org/wiki/Digital_signature_
 * _Sig_ 是签名结果。
 
 [[sign_function]]
-函数 _F_~_sig_~生成签名__Sig__，该签名由两个值组成，通常称为 _r_ 和 _s_：
+函数 _F_~_sig_~ 生成签名__Sig__，该签名由两个值组成，通常称为 _r_ 和 _s_：
 
 ++++
 <div data-type="equation">
@@ -573,7 +573,7 @@ _Source: https://en.wikipedia.org/wiki/Digital_signature_
 [[ecdsa_math]]
 ==== ECDSA数学算法
 
-((("digital signatures","ECDSA math", id="ix_06transactions-asciidoc16", range="startofrange")))((("Elliptic Curve Digital Signature Algorithm (ECDSA)","mathematics of", id="ix_06transactions-asciidoc17", range="startofrange"))) 如前所述，签名是由数学函数 _F_〜_sig_〜创建的，该函数生成由两个值 _r_ 和 _s_ 组成的签名。在本节中，我们将详细介绍函数 _F_〜_sig_〜。
+((("digital signatures","ECDSA math", id="ix_06transactions-asciidoc16", range="startofrange")))((("Elliptic Curve Digital Signature Algorithm (ECDSA)","mathematics of", id="ix_06transactions-asciidoc17", range="startofrange"))) 如前所述，签名是由数学函数 _F_~_sig_~ 创建的，该函数生成由两个值 _r_ 和 _s_ 组成的签名。在本节中，我们将详细介绍函数 _F_~_sig_~。
 
 ((("ephemeral private key"))) 签名算法首先以加密安全的方式生成 _ephemeral_（临时）私钥。该临时密钥用于计算 _r_ 和 _s_ 值，以确保攻击者无法查看以太坊网络上已签名的交易，从而无法计算发送者的实际私钥。
 
@@ -622,7 +622,7 @@ _Source: https://en.wikipedia.org/wiki/Digital_signature_
 
 [TIP]
 ====
-ECDSA算法是相当复杂的数学；对其完整的解释超出了本书的范围。网上有很多很棒的指南，逐步指导您：搜索“解释的ECDSA”或尝试以下链接：http://bit.ly/2r0HhGB[].(((range="endofrange", startref="ix_06transactions-asciidoc17")))(((range="endofrange", startref="ix_06transactions-asciidoc16")))
+ECDSA算法是相当复杂的数学；对其完整的解释超出了本书的范围。网上有很多很棒的指南，逐步指导您：搜索“解释的ECDSA”或尝试以下链接： http://bit.ly/2r0HhGB[].(((range="endofrange", startref="ix_06transactions-asciidoc17")))(((range="endofrange", startref="ix_06transactions-asciidoc16")))
 ====
 
 [[tx_sign]]
@@ -699,7 +699,7 @@ EIP-155在交易数据结构的六个主要字段中添加了三个字段，即�
 
 生成的交易结构经过RLP编码，哈希处理和签名。对签名算法进行了稍微修改，并且可以在 +v+ 前缀中编码链标识符。
 
-有关更多详细信息，请参见http://bit.ly/2CQUgne[the EIP-155 specification]。(((range="endofrange", startref="ix_06transactions-asciidoc15")))(((range="endofrange", startref="ix_06transactions-asciidoc14")))
+有关更多详细信息，请参见 http://bit.ly/2CQUgne[the EIP-155 specification]。(((range="endofrange", startref="ix_06transactions-asciidoc15")))(((range="endofrange", startref="ix_06transactions-asciidoc14")))
 
 [[sign_prefix]]
 === 签名前缀值（v）和恢复公钥

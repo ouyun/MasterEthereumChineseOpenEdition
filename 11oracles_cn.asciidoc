@@ -82,9 +82,9 @@ oracle可能提供的其他一些数据示例包括：
 
 ((("data authentication, oracles and")))((("oracles","and data authentication")))((("oracles","data authentication with")))假设我们通过 DApp查询到的数据既权威又值得信赖（一个重要的假设），仍然存在一个悬而未决的问题：鉴于oracle和请求-响应机制可能是由不同的实体操作的，我们如何才能信任该机制？数据在传输过程中极有可能被篡改，因此链下方法能够证明返回的数据的完整性至关重要。数据认证的两种常见方法是真实性证明 _authenticityproofs_ 和可信赖运行环境 _trusted execution environment_（TEE）。
 
-((("authenticity proofs")))真实性证明是未篡改数据的加密保证。基于各种证明技术（例如，数字签名的证明），它们有效地将信任从数据传送者转移到证明者（即证明的提供者）。通过在链上验证真实性证明，智能合约能够在对数据进行操作之前验证数据的完整性。 ((("Oraclize"))) http://www.oraclize.it/ [Oraclize]是利用各种真实性证明的oracle服务的示例。 (("TLSNotary proofs"))) TLSNotary证明是当前可用于从以太坊主网络进行数据查询的一种此类证明。 TLSNotary证明允许客户端向第三方提供客户端和服务器之间发生HTTPS Web流量的证据。虽然HTTPS本身是安全的，但它不支持数据签名。结果，TLSNotary证明依赖TLSNotary（通过PageSigner）签名。 TLSNotary证明利用传输层安全性（TLS）协议，使TLS主密钥（在访问数据后对数据进行签名）可以在以下三个方之间分配：服务器（oracle），被审核方（Oraclize）和审核员。 Oraclize使用Amazon Web Services（AWS）虚拟机实例作为审核器，可以验证该实例自实例化以来未经修改。该AWS实例存储TLSNotary机密，从而允许其提供诚实证明。尽管它提供了比纯粹的请求-响应机制更高的数据篡改保证，但这种方法确实需要假设Amazon本身不会篡改VM实例。
+((("authenticity proofs")))真实性证明是未篡改数据的加密保证。基于各种证明技术（例如，数字签名的证明），它们有效地将信任从数据传送者转移到证明者（即证明的提供者）。通过在链上验证真实性证明，智能合约能够在对数据进行操作之前验证数据的完整性。 ((("Oraclize"))) http://www.oraclize.it/[Oraclize]是利用各种真实性证明的oracle服务的示例。 (("TLSNotary proofs"))) TLSNotary证明是当前可用于从以太坊主网络进行数据查询的一种此类证明。 TLSNotary证明允许客户端向第三方提供客户端和服务器之间发生HTTPS Web流量的证据。虽然HTTPS本身是安全的，但它不支持数据签名。结果，TLSNotary证明依赖TLSNotary（通过PageSigner）签名。 TLSNotary证明利用传输层安全性（TLS）协议，使TLS主密钥（在访问数据后对数据进行签名）可以在以下三个方之间分配：服务器（oracle），被审核方（Oraclize）和审核员。 Oraclize使用Amazon Web Services（AWS）虚拟机实例作为审核器，可以验证该实例自实例化以来未经修改。该AWS实例存储TLSNotary机密，从而允许其提供诚实证明。尽管它提供了比纯粹的请求-响应机制更高的数据篡改保证，但这种方法确实需要假设Amazon本身不会篡改VM实例。
 
-((("TEEs (trusted execution environments)")))((("Town Crier")))((("trusted execution environments (TEEs)"))) http://www.town-crier.org/ [Town Crier]是基于TEE方法的经过身份验证的数据馈送的Oracle系统；这种方法利用基于硬件的安全区域来确保数据完整性。 Town Crier使用Intel的((("SGX (Software Guard eXtensions)")))((("Software Guard eXtensions (SGX)"))) Software Guard eXtensions（SGX）确保来自HTTPS查询的响应可以被验证为真实。 SGX提供完整性保证，确保在非本地环境中运行的应用程序受到CPU的保护，以防止被其他任何进程篡改。它还提供机密性，确保在安全区域内运行时应用程序的状态对于其他进程是不透明的。最后，SGX通过生成数字签名证明来证明应用程序（该应用程序通过其构建的哈希值安全地标识）实际上在某个区域中运行。通过验证此数字签名，分布式应用程序可以证明Town Crier实例在SGX的非本地环境中安全运行。反过来，这证明该实例未被篡改，因此Town Crier发出的数据是真实的。机密性属性还允许Town Crier处理数据，方法是允许使用Town Crier实例的公钥对数据查询进行加密。在诸如SGX之类的飞地中运行oracle的查询/响应机制，可以有效地使我们认为它在受信任的第三方硬件上安全运行，从而确保返回的请求数据不受任何篡改（假设我们信任Intel / SGX）。
+((("TEEs (trusted execution environments)")))((("Town Crier")))((("trusted execution environments (TEEs)"))) http://www.town-crier.org/[Town Crier]是基于TEE方法的经过身份验证的数据馈送的Oracle系统；这种方法利用基于硬件的安全区域来确保数据完整性。 Town Crier使用Intel的((("SGX (Software Guard eXtensions)")))((("Software Guard eXtensions (SGX)"))) Software Guard eXtensions（SGX）确保来自HTTPS查询的响应可以被验证为真实。 SGX提供完整性保证，确保在非本地环境中运行的应用程序受到CPU的保护，以防止被其他任何进程篡改。它还提供机密性，确保在安全区域内运行时应用程序的状态对于其他进程是不透明的。最后，SGX通过生成数字签名证明来证明应用程序（该应用程序通过其构建的哈希值安全地标识）实际上在某个区域中运行。通过验证此数字签名，分布式应用程序可以证明Town Crier实例在SGX的非本地环境中安全运行。反过来，这证明该实例未被篡改，因此Town Crier发出的数据是真实的。机密性属性还允许Town Crier处理数据，方法是允许使用Town Crier实例的公钥对数据查询进行加密。在诸如SGX之类的飞地中运行oracle的查询/响应机制，可以有效地使我们认为它在受信任的第三方硬件上安全运行，从而确保返回的请求数据不受任何篡改（假设我们信任Intel / SGX）。
 
 [[computation_oracles_sec]]
 === 计算型Oracle
@@ -116,7 +116,7 @@ True机器之类的系统存在广泛的应用，范围涵盖从机器学习到�
 
 ((("oracles","decentralized")))虽然集中式数据或计算型oracles可以满足许多应用程序的需求，但它们代表了以太坊网络中的单点故障。围绕分布式oracle的想法已经提出了许多方案，以确保数据的可用性以及使用链上数据聚合系统创建单个数据提供者的网络。
 
-((("ChainLink"))) https://www.smartcontract.com/link [ChainLink]提出了一个分布式的oracle网络，该网络由三个关键的智能合约组成：信誉合约，订单匹配合约和聚合合约；以及数据提供商的链下注册表。信誉合约用于跟踪数据提供者的绩效。信誉合约中的分数用于填充链下注册表。订单匹配合同使用信誉合约从Oracle中选择出价。然后，它最终确定一个服务级别协议，其中包括查询参数和所需的Oracle数量。这意味着购买者无需直接与各个Oracle进行交易。聚合合约从多个预言机收集响应（使用提交-披露方案提交），计算查询的最终汇总结果，最后将结果反馈回信誉合约。
+((("ChainLink"))) https://www.smartcontract.com/link[ChainLink]提出了一个分布式的oracle网络，该网络由三个关键的智能合约组成：信誉合约，订单匹配合约和聚合合约；以及数据提供商的链下注册表。信誉合约用于跟踪数据提供者的绩效。信誉合约中的分数用于填充链下注册表。订单匹配合同使用信誉合约从Oracle中选择出价。然后，它最终确定一个服务级别协议，其中包括查询参数和所需的Oracle数量。这意味着购买者无需直接与各个Oracle进行交易。聚合合约从多个预言机收集响应（使用提交-披露方案提交），计算查询的最终汇总结果，最后将结果反馈回信誉合约。
 
 这种去中心化方法的主要挑战之一是聚合函数的制定。 ChainLink建议计算加权响应，从而允许为每个预言响应报告有效性分数。在这里检测“无效”分数是不平凡的，因为它依赖于这样一个前提，即通过与对等方提供的响应的偏差来衡量的外围数据点是错误的。根据响应分布中oracle响应的位置来计算有效性分数可能会给正确答案带来超过平均答案的惩罚。因此，ChainLink提供了一组标准的聚合合约，但也允许指定自定义的聚合合约。
 
