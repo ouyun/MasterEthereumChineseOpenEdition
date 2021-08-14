@@ -59,7 +59,7 @@ _++恒定宽度斜体字++_:: 显示应替换为用户提供的值或由上下�
 [[code_examples_sec]]
 === 代码示例
 
-((("code examples, obtaining and using"))所有的程序示例都是用Solidity，Vyper和JavaScript写成的，并在类似Unix的操作系统的命令行下进行操作。所有代码均位于GitHub代码库 _code_ 子目录下。你可以复制书里面的代码，测试它们，并通过GitHub提交更正：https://github.com/ethereumbook/ethereumbook.
+((("code examples, obtaining and using"))所有的程序示例都是用Solidity，Vyper和JavaScript写成的，并在类似Unix的操作系统的命令行下进行操作。所有代码均位于GitHub代码库 _code_ 子目录下。你可以复制书里面的代码，测试它们，并通过GitHub提交更正： https://github.com/ethereumbook/ethereumbook.
 
 所有代码片段都可以在大多数操作系统上进行复制，而只需安装相应语言的编译器，解释器和库即可。必要时，我们提供基本的安装说明以及这些说明的分步示例输出结果。
 
@@ -99,10 +99,10 @@ _++恒定宽度斜体字++_:: 显示应替换为用户提供的值或由上下�
 ==== 联系作者Andreas
 
 您可以在他的个人网站上联系Andreas M. Antonopoulos：
-链接:$$https://antonopoulos.com/$$[]
+link:$$https://antonopoulos.com/$$[]
 
 在YouTube上订阅Andreas的频道：
-链接:$$https://www.youtube.com/aantonop$$[]
+link:$$https://www.youtube.com/aantonop$$[]
 
 在Facebook上把Andreas加为好友：
 link:$$https://www.facebook.com/AndreasMAntonopoulos$$[]
@@ -120,13 +120,13 @@ link:$$https://patreon.com/aantonop$$[].
 ==== 联系伍德博士
 
 你可以在他的个人网站上联系Gavin Wood博士：
-链接:$$http://gavwood.com/$$[]
+link:$$http://gavwood.com/$$[]
 
 在推特上关注Gavin：
-链接:$$https://twitter.com/gavofyork$$[]
+link:$$https://twitter.com/gavofyork$$[]
 
 Gavin通常在Riot.im的Polkadot Watercooler中浏览：
-链接:$$http://bit.ly/2xciG68$$[]
+link:$$http://bit.ly/2xciG68$$[]
 
 
 [[acknowledgments_sec]]

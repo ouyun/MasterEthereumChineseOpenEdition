@@ -94,7 +94,7 @@ Emerald Wallet:: ((("Emerald Wallet")))Emerald Wallet是设计为与以太坊经
 [[installing_MetaMask]]
 === MetaMask入门
 
-((("Ethereum (generally)","MetaMask basics", id="ix_02intro-asciidoc2", range="startofrange")))((("MetaMask","basics", id="ix_02intro-asciidoc3", range="startofrange")))打开Google Chrome浏览器，然后导航至https://chrome.google.com/webstore/category/extensions []。
+((("Ethereum (generally)","MetaMask basics", id="ix_02intro-asciidoc2", range="startofrange")))((("MetaMask","basics", id="ix_02intro-asciidoc3", range="startofrange")))打开Google Chrome浏览器，然后导航至 https://chrome.google.com/webstore/category/extensions[]。
 
 搜索“ MetaMask”，然后单击狐狸的标识。你应该看到类似<<metamask_download>>的结果。
 
@@ -188,13 +188,13 @@ image::images/metamask_ropsten_faucet.png["MetaMask Ropsten测试水龙头"]
 0x7c7ad5aaea6474adccf6f5c5d6abed11b70a350fbc6f9590109e099568090c57
 ----
 
-几秒钟后，新交易将由Ropsten网络的矿工进行确认，你的MetaMask钱包将显示1 ETH余额。单击交易ID，浏览器将带跳转到 _block explorer_，这是一个网站，你可以通过它浏览和查看区块，地址和交易。 MetaMask使用https://etherscan.io/[Etherscan区块浏览器]，它是较流行的以太坊区块浏览器之一。包含来自Ropsten测试水龙头的付款的交易显示在 <<ropsten_block_explorer>>。
+几秒钟后，新交易将由Ropsten网络的矿工进行确认，你的MetaMask钱包将显示1 ETH余额。单击交易ID，浏览器将带跳转到 _block explorer_，这是一个网站，你可以通过它浏览和查看区块，地址和交易。 MetaMask使用 https://etherscan.io/[Etherscan区块浏览器]，它是较流行的以太坊区块浏览器之一。包含来自Ropsten测试水龙头的付款的交易显示在 <<ropsten_block_explorer>>。
 
 [[ropsten_block_explorer]]
 .Etherscan Ropsten测试网区块浏览器
 image::images/ropsten_block_explorer.png["Etherscan Ropsten Block Explorer"]
 
-该交易已记录在Ropsten区块链上，任何人都可以随时查看，只需搜索交易ID或http://bit.ly/2Q860Wk [访问链接]即可。
+该交易已记录在Ropsten区块链上，任何人都可以随时查看，只需搜索交易ID或 http://bit.ly/2Q860Wk[访问链接]即可。
 
 你可以尝试访问该链接，或在 _ropsten.etherscan.io_ 网站中输入交易哈希并亲自查看。
 
@@ -282,7 +282,7 @@ include::code/Solidity/Faucet.sol[]
 
 [NOTE]
 ====
-你可以在 https://github.com/ethereumbook/ethereumbook/ [该书的GitHub存储库]的 _code_ 子目录中找到该书的所有代码示例。具体来说，我们的 _Faucet.sol_ 合约位于：
+你可以在 https://github.com/ethereumbook/ethereumbook/[该书的GitHub存储库]的 _code_ 子目录中找到该书的所有代码示例。具体来说，我们的 _Faucet.sol_ 合约位于：
 
 ----
 code/Solidity/Faucet.sol

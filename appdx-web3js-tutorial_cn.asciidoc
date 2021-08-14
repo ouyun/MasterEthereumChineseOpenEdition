@@ -7,7 +7,7 @@
 
 web3.js JavaScript软件库是一个模块集合，这些模块包含针对以太坊生态系统的特定功能，以及实现通用JSON RPC规范的与以太坊兼容的JavaScript API。
 
-要运行此脚本，您无需运行自己的本地节点，可以使用https://infura.io [Infura services]。
+要运行此脚本，您无需运行自己的本地节点，可以使用 https://infura.io[Infura services]。
 
 === web3.js以非阻塞（异步）方式进行合同基本操作
 
@@ -50,7 +50,7 @@ $ <strong>node code/web3js/web3-contract-basic-interaction.js</strong>
 </pre>
 ++++
 
-使用您自己的Infura令牌（在https://infura.io/ []注册，并将api-key存储在名为__infura_token__的本地文件中）：
+使用您自己的Infura令牌（在 https://infura.io/[]注册，并将api-key存储在名为__infura_token__的本地文件中）：
 
 ++++
 <pre data-type="programlisting">
@@ -246,4 +246,4 @@ our_contract.methods.totalSupply().call().then(function(totalSupply){
 
 === 使用Await命令完成的异步操作
 
-((("await construct")))((("web3.js","asynchronous operation with await")))现在，你已经看过基本教程，可以使用异步 +await+ 结构尝试完成相同的操作。查看http://bit.ly/2ABrFkl[_code/web3js_]中的_web3-contract-basic-interaction-async-await.js_脚本，并将其与本教程进行比较，以了解它们之间的区别。异步等待操作的命令更易于阅读，因为它使异步操作的行为更像是一系列阻塞调用。(((range="endofrange", startref="ix_appdx-web3js-tutorial-asciidoc0")))
+((("await construct")))((("web3.js","asynchronous operation with await")))现在，你已经看过基本教程，可以使用异步 +await+ 结构尝试完成相同的操作。查看 http://bit.ly/2ABrFkl[_code/web3js_]中的_web3-contract-basic-interaction-async-await.js_脚本，并将其与本教程进行比较，以了解它们之间的区别。异步等待操作的命令更易于阅读，因为它使异步操作的行为更像是一系列阻塞调用。(((range="endofrange", startref="ix_appdx-web3js-tutorial-asciidoc0")))

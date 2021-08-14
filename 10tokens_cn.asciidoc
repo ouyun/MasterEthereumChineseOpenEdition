@@ -783,7 +783,7 @@ ERC223并未得到广泛实施，并且在 https://github.com/ethereum/EIPs/issu
 * 使运营商（受信任的第三方，旨在成为经过验证的合约）能够代表通证持有者移动通证
 * 在 +userData+ 和 +operatorData+ 字段中提供有关通证转移交易的元数据
 
-当前有关ERC777的讨论可以在https://github.com/ethereum/EIPs/issues/777[On GitHub]上找到。
+当前有关ERC777的讨论可以在 https://github.com/ethereum/EIPs/issues/777[On GitHub]上找到。
 
 [[ERC777_interface]]
 ERC777合约接口规范为：
@@ -967,7 +967,7 @@ interface ERC721Enumerable /* is ERC721 */ {
 
 [NOTE]
 ====
-根据Wikipedia的说法，https://en.wikipedia.org/wiki/Not_invented_here[“此处未发明”]是社会，公司或机构文化所采取的避免使用或购买现有产品，研究，标准或知识的立场。由于其外部来源和费用，例如特许权使用费。
+根据Wikipedia的说法， https://en.wikipedia.org/wiki/Not_invented_here[“此处未发明”]是社会，公司或机构文化所采取的避免使用或购买现有产品，研究，标准或知识的立场。由于其外部来源和费用，例如特许权使用费。
 ====
 
 
