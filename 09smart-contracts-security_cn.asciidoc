@@ -1762,7 +1762,7 @@ http://bit.ly/2ESoaub[post-mortem] 是
 
 ((("front-running attacks", id="ix_09smart-contracts-security-asciidoc37", range="startofrange")))((("security (smart contracts)","race conditions/front running threat", id="ix_09smart-contracts-security-asciidoc38", range="startofrange")))通过 ((("race conditions", seealso="front-running security threat; reentrancy attack")))外部调用其他合约和多用户
 的区块链基础性质带来了各种潜在
-Solidity中的陷阱，用户通过_race_代码执行来获取
+Solidity中的陷阱，用户通过 _race_ 代码执行来获取
 意外状态。重入攻击（本章前面已讨论过）就是这样的一个例子。
 通过比赛条件实施攻击。在本节中，我们将讨论
 以太坊区块链上可能发生的其他种类的比赛条件
