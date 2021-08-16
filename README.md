@@ -1,6 +1,6 @@
 # MasterEthereumChineseOpenEdition - 《精通以太坊》中文开放版
 
-此中文版动态跟踪[Master Ethereum](https://github.com/ethereumbook/ethereumbook/)的开放版分支的最新提交，后续将不断迭代纠正并同步。
+此中文版动态跟踪[Master Ethereum](https://github.com/ethereumbook/ethereumbook/)的开放版分支的最新提交，后续将不断迭代订正并同步。
 
 ### 封面
 ![Mastering Ethereum](images/cover_oe.png)
@@ -29,3 +29,6 @@
 ### [附录D：开发⼯具，开发框架和库](appdx-dev-tools_cn.asciidoc)
 ### [附录E：web3.js教程](appdx-web3js-tutorial_cn.asciidoc)
 ### [附录F：本书短链接引用](appdx-shortlinks_cn.asciidoc)
+
+## 迭代流程
+### openedition ===> open ---> dev <---> master
