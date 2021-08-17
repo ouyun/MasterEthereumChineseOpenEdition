@@ -59,7 +59,7 @@ _++恒定宽度斜体字++_:: 显示应替换为用户提供的值或由上下�
 [[code_examples_sec]]
 === 代码示例
 
-((("code examples, obtaining and using"))所有的程序示例都是用Solidity，Vyper和JavaScript写成的，并在类似Unix的操作系统的命令行下进行操作。所有代码均位于GitHub代码库 _code_ 子目录下。你可以复制书里面的代码，测试它们，并通过GitHub提交更正： https://github.com/ethereumbook/ethereumbook.
+((("code examples, obtaining and using")))所有的程序示例都是用 Solidity，Vyper 和 JavaScript写成的，并在类Unix的操作系统的命令行下进行操作。所有代码均位于GitHub代码库 _code_ 子目录下。你可以复制书里面的代码，测试它们，并通过GitHub提交更正： https://github.com/ethereumbook/ethereumbook.
 
 所有代码片段都可以在大多数操作系统上进行复制，而只需安装相应语言的编译器，解释器和库即可。必要时，我们提供基本的安装说明以及这些说明的分步示例输出结果。
 

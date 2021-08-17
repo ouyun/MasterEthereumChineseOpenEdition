@@ -9,7 +9,7 @@
 地址，Address::
 ((("addresses","defined"))) 通常，这表示可以在区块链上接收（目标地址）或发送（源地址）交易的EOA或智能合约。更具体地说，它是对ECDSA公钥进行Keccak哈希操作后的最右边的160位。
 
-判定，Assert::
+断言，Assert::
 ((("assert function","defined"))) 在Solidity语言中，+assert(false)+ 编译为 +0xfe+ ，这是一个无效的操作码，它将耗尽所有剩余的燃料gas，并还原所有更改。当 +assert()+ 语句失败时，将发生非常严重的意外错误，你必须要修复代码。你应该使用 +assert()+ 来避免永远不会发生的情况。
 
 大端序，或称大尾序， Big-endian::
@@ -19,13 +19,13 @@ BIPs::
 ((("比特币改进建议的 (BIPs)"))) 比特币改进建议的缩写。比特币社区的成员提交了一套改进比特币的提案。例如，BIP-21是一项改进比特币统一资源标识符（URI）方案的提议。
 
 区块，Block::
-((("block, defined")))有关所包含的事务的必需信息（一个区块头）的集合，以及一组称为ommers的其他区块头。矿工将区块添加到以太坊网络。
+((("block, defined")))有关所包含的交易的必需信息（一个区块头）的集合，以及一组称为ommers的其他区块头。矿工将区块添加到以太坊网络。
 
 区块链，Blockchain::
 ((("blockchain","defined"))) 在以太坊中，由工作量证明系统验证的一系列区块，每个区块都与其前一个区块链接，一直到创世区块。这与比特币协议的不同之处在于它没有区块大小限制。相反，它使用变化的燃料gas来限制区块的容量。
 
-二进制码，Bytecode::
-((("bytecode", seealso="EVM bytecode"))) 一种抽象指令集，旨在由软件解释器或虚拟机高效执行。与人类可读的源代码不同，二进制码以数字格式表示。
+字节码，Bytecode::
+((("bytecode", seealso="EVM bytecode"))) 一种抽象指令集，旨在由软件解释器或虚拟机高效执行。与人类可读的源代码不同，字节码以数字格式表示。
 
 拜占庭分叉::
 ((("Byzantium fork"))) 以太坊大都会 Metropolis 版本开发阶段的两个硬分叉中的第一个。本次分叉包括EIP-649：《大都市难度炸弹延迟》和《降低区块奖励》，其中，冰河世纪 Ice Age（见下文）被延迟了1年，而区块奖励则从5降为3。
@@ -49,13 +49,13 @@ BIPs::
 ((("contract creation transaction")))以“零地址”为接收者的特殊交易，用于创建智能合约并将其记录在以太坊区块链上（请参阅“零地址”）。
 
 DAO::
-((("DAO (Decentralized Autonomous Organization)","defined"))) 分散的自治组织。没有分级管理的公司或其他组织。也可以参考2016年4月30日发布的名为“ The DAO”的合同，该合同随后于2016年6月被黑客入侵；这最终在区块＃1,192,000中激发了一个硬分叉（代号DAO），这推翻了被黑的DAO合同，并导致以太坊和以太坊经典分成两个竞争系统。
+((("DAO (Decentralized Autonomous Organization)","defined"))) 分散的自治组织。没有分级管理的公司或其他组织。也可以参考2016年4月30日发布的名为“ The DAO”的合约，该合约随后于2016年6月被黑客入侵；这最终在区块＃1,192,000中激发了一个硬分叉（代号DAO），这推翻了被黑的DAO合约，并导致以太坊和以太坊经典分成两个竞争系统。
 
 DApp::
-((("DApps (decentralized applications)","defined"))分布式应用程序，也称为去中心化应用。它至少由一个智能合约和一个Web用户界面构成。更广泛地说，DApp是一个Web应用程序，它建立在开放的，分布式的，点对点基础架构服务之上。另外，许多DApp会包括分布式存储和消息协议平台。
+((("DApps (decentralized applications)","defined")))去中心化应用。它至少由一个智能合约和一个Web用户界面构成。更广泛地说，DApp是一个Web应用程序，它建立在开放的，去中心化的，点对点基础架构服务之上。另外，许多DApp会包括去中心化存储和/或一个消息协议和平台。
 
 契据，Deed::
-((("deed","defined")))ERC721提案引入的不可替代通证（NFT）标准。与ERC20代币不同，契约可以证明所有权并且不可替换，但是目前在所有司法管辖区中均未被视为法律文件，或者说至少在当前尚未被确认有法律效力（请参见“ NFT”），。
+((("deed","defined")))ERC721提案引入的不可替代通证（NFT）标准。与ERC20代币不同，契约可以证明所有权并且不可替换，但是目前在所有司法管辖区中均未被视为法律文件，或者说至少在当前尚未被确认有法律效力（请参见“ NFT”）。
 
 难度，Difficulty::
 ((("difficulty setting")))网络范围内的设置，用于控制工作量证明所需的计算量。
@@ -67,7 +67,7 @@ ECDSA::
 ((("Elliptic Curve Digital Signature Algorithm (ECDSA)","defined")))椭圆曲线数字签名算法。以太坊使用的一种加密算法，以确保资金只能由其所有者使用。
 
 EIP::
-(("EIPs (Ethereum Improvement Proposals)","defined")))以太坊改善建议。一个设计文档，向以太坊社区提供信息，描述建议的新功能、流程或环境。有关更多信息，请参见 https://github.com/ethereum/EIPs （另请参见“ ERC”）。
+((("EIPs (Ethereum Improvement Proposals)","defined")))以太坊改善建议。一个设计文档，向以太坊社区提供信息，描述建议的新功能、流程或环境。有关更多信息，请参见 https://github.com/ethereum/EIPs （另请参见“ ERC”）。
 
 以太坊名称服务，ENS::
 ((("ENS (Ethereum Name Service)")))以太坊名称服务。有关更多信息，请参见 https://github.com/ethereum/ens/ 。
@@ -85,7 +85,7 @@ Ethash::
 ((("Ethash")))以太坊1.0的工作量证明算法。更多信息，参见 https://github.com/ethereum/wiki/wiki/Ethash.
 
 以太币，Ether::
-(("Ether (cryptocurrency)")))以太坊生态系统使用的原生加密货币，涵盖执行智能合约时的燃料gas成本。它的符号是Ξ，希腊大写的Xi字符。
+((("Ether (cryptocurrency)")))以太坊生态系统使用的原生加密货币，涵盖执行智能合约时的燃料gas成本。它的符号是Ξ，希腊大写的Xi字符。
 
 事件，Event::
 ((("events","defined"))) 事件允许使用EVM的日志工具，DApp可以监听这些事件，并通过它们来调用用户界面中JavaScript回调函数。更多信息，参见 http://solidity.readthedocs.io/en/develop/contracts.html#events.
@@ -94,7 +94,7 @@ Ethash::
 ((("EVM (Ethereum Virtual Machine)","defined"))) 以太坊虚拟机。一个基于堆栈的虚拟机，它执行字节码。在以太坊中，执行模型指定在给定一系列字节码指令和少量元数据的情况下如何更改系统状态。这是通过虚拟状态机的正式模型指定的。
 
 EVM汇编语言，EVM assembly language::
-((("EVM assembly language")))一种便于人们阅读的EVM二进制码的形式。
+((("EVM assembly language")))一种便于人们阅读的EVM字节码的形式。
 
 后备函数，Fallback function::
 ((("fallback function")))在没有数据或声明的函数名称的情况下调用的默认函数。
@@ -103,7 +103,7 @@ EVM汇编语言，EVM assembly language::
 ((("faucet, defined")))可以在测试网上自动分发免费测试币的服务。
 
 Finney::
-((("finney")))A denomination of ether. 1 finney = 10^15^ wei, 10^3^ finney = 1 ether.
+((("finney")))以太的一种面值。 1 finney = 10^15^ wei, 10^3^ finney = 1 ether。
 
 分叉，Fork::
 ((("forks")))协议更改而导致替代链出现，或者在挖掘过程中两个潜在区块路径出现暂时的差异。
@@ -128,10 +128,10 @@ Ganache::
 ((("genesis block")))区块链中的第一个块，用于初始化特定的网络及其加密货币。
 
 Geth::
-((("Geth (Go-Ethereum)","defined"))) GO语言编写的以太坊客户端。用Go语言编写的以太坊协议最重要的实现之一。
+((("Geth (Go-Ethereum)","defined"))) Go Ethereum。用Go语言编写的以太坊协议最重要的实现之一。
 
 硬分叉，Hard fork::
-((("hard forks")))区块链中的永久分叉；也称为硬分叉的变化。通常会发生在区块链软件升级后，未升级的节点无法验证已升级节点创建的区块，即未升级节点无法遵循更新的共识规则。不要与分叉，软分叉，软件分叉或Git复制相混淆。
+((("hard forks")))区块链中的永久分叉；也称为硬分叉的变化。通常会发生在区块链软件升级后，未升级的节点无法验证已升级节点创建的区块，即未升级节点无法遵循更新的共识规则。不要与分叉，软分叉，软件分叉或Git分叉相混淆。
 
 哈希，Hash::
 ((("hash, defined")))又译成散列或者杂凑，由哈希函数产生的可变大小输入的定长指纹。
@@ -146,7 +146,7 @@ Geth::
 ((("Homestead")))以太坊的第二个开发阶段，于2016年3月在1,150,000区块启动。
 
 ICAP::
-(("ICAP (Inter-exchange Client Address Protocol)")))((("Inter-exchange Client Address Protocol (ICAP)")))交换客户端地址协议。一种与国际银行帐号（IBAN）编码部分兼容的以太坊地址编码，为以太坊地址提供通用，校验和且可互操作的编码。 ICAP地址使用新的IBAN伪国家代码：XE，表示“扩展的以太坊”，用于非管辖性货币（例如XBT，XRP，XCP）。
+((("ICAP (Inter-exchange Client Address Protocol)")))((("Inter-exchange Client Address Protocol (ICAP)")))交换客户端地址协议。一种与国际银行帐号（IBAN）编码部分兼容的以太坊地址编码，为以太坊地址提供通用，校验和且可互操作的编码。 ICAP地址使用新的IBAN伪国家代码：XE，表示“扩展的以太坊”，用于非管辖性货币（例如XBT，XRP，XCP）。
 
 冰河世纪，Ice Age::
 ((("Ice Age")))以太坊的硬分叉在＃200,000区块处引入了指数难度增加（又名难度炸弹，Difficulty Bomb），促使人们转向权益证明。
@@ -181,7 +181,7 @@ LevelDB::
 轻量级客户端，Lightweight client::
 ((("light/lightweight client")))一种以太坊客户端，它不存储区块链的本地副本，也不参与区块和交易的验证。它提供了钱包的功能，可以创建和广播交易。
 
-默克尔帕特里夏树，简称默克尔树，Merkle Patricia Tree::
+默克尔帕特里夏树，Merkle Patricia Tree::
 ((("Merkle Patricia Tree")))以太坊中用于有效存储键-值对的数据结构。
 
 信息，Message::
@@ -198,7 +198,7 @@ METoken::
 
 
 矿工，Miner::
-((("miners")))通过重复遍历： pass:[ <span class="keep-together">散列</span> ]为新块找到有效的工作量证明的网络节点。
+((("miners")))通过重复 pass:[<span class="keep-together">散列运算 </span>]为新块找到有效的工作量证明的网络节点。
 
 Mist::
 ((("Mist (browser-based wallet)")))((("wallets","Mist")))第一个启用以太坊的浏览器，由以太坊基金会构建。它包含一个基于浏览器的钱包，这是ERC20通证标准的第一个实现（ERC20的作者Fabian Vogelsteller，也是Mist的主要开发者）。Mist也是第一个引入camelCase校验和的钱包（EIP-55；请参见<<EIP55>>）。 Mist运行一个完整的节点，并提供完整的DApp浏览器，并支持基于Swarm的存储和ENS地址。
@@ -206,8 +206,8 @@ Mist::
 网络，Network::
 ((("networks (Ethereum)","defined")))((("networks (Ethereum)","MetaMask and")))指的是以太坊网络，一个传播交易和包含交易的区块到每个以太坊节点（网络参与者）的对等网络。
 
-不可替代的通证，NFT::
-((("nonfungible tokens (NFTs)","defined")))A non-fungible token (also known as a "deed"). 不可替代的通证（也称为“契约”）。这是ERC721提案引入的通证标准。可以跟踪和交易NFT，但是每个通证都是唯一且不同的；它们不能像ERC20通证那样互换。 NFT可以代表数字资产或实物资产的所有权。
+非同质化代币，NFT::
+((("nonfungible tokens (NFTs)","defined")))非同质化代币（也称为“契约”）。这是ERC721提案引入的通证标准。可以跟踪和交易NFT，但是每个通证都是唯一且不同的；它们不能像ERC20通证那样互换。 NFT可以代表数字资产或实物资产的所有权。
 
 节点，Node::
 ((("node","defined")))参与以太坊网络的客户端软件。
@@ -216,18 +216,18 @@ Mist::
 ((("nonces","defined")))在密码学中，只能使用一次的值。以太坊使用的随机数有两种类型：帐户随机数是每个帐户中的交易计数器，用于防止重放攻击；工作量证明随机数是一个区块中用于满足工作量证明的随机值。
 
 Ommer::
-((("ommer, defined")))一个祖区块的子区块，其本身不是祖区块。它的产生过程如下，当一个矿工找到一个有效的区块时，另一个矿工可能已经发布了一个竞争区块，该区块被添加到了区块链的尖端。与比特币不同，以太坊中的孤立区块可以作为新的区块包含在新区块中并获得部分区块奖励。术语“ ommer”是一个性别中立的术语，用于描述父母的兄弟姐妹，但是有时也通称为“叔”。
+((("ommer, defined")))一个祖区块的子区块，其本身不是祖区块。它的产生过程如下，当一个矿工找到一个有效的区块时，另一个矿工可能已经发布了一个竞争区块，该区块被添加到了区块链的尖端。与比特币不同，以太坊中的孤立区块可以作为新的区块包含在新区块中并获得部分区块奖励。术语“ommer”是一个性别中立的术语，用于描述父母的兄弟姐妹，但是有时也通称为“叔”。
 
 Parity::
-((("Parity","defined"))以太坊最重要的实现了互操作客户端软件之一。
+((("Parity","defined"))) 以太坊客户软件最重要的可交互实现之一。
 
 私钥，Private key::
-请参阅“密钥”。
+请参阅“密钥secret key”。
 
 权益证明，Proof of stake (PoS)::
 ((("proof of stake (PoS)","defined")))一种方法，通过该方法，加密货币区块链协议旨在实现分布式共识。 PoS要求用户证明一定数量的加密货币（它们在网络中的“利益”）的所有权，以便能够参与交易的验证。
 
-工作量，Proof of work (PoW)::
+工作量证明，Proof of work (PoW)::
 ((("proof of work (PoW)","defined")))需要大量计算才能找到的一条数据（证明）。在以太坊中，矿工必须找到符合全网难度目标的Ethash算法的数值解决方案。
 
 公钥，Public key::
