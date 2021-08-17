@@ -33,4 +33,4 @@
 ### [附录F：本书短链接引用](appdx-shortlinks_cn.asciidoc)
 
 ## 迭代流程
-### openedition ===> open ---> dev <---> master
+### openedition ===> open ---> en_cn <--- cn ---> master
