@@ -1,5 +1,7 @@
 # MasterEthereumChineseOpenEdition - 《精通以太坊》中文开放版
 
+大佬侯俊杰曾在他的著作《深入浅出MFC 2e》中以“勿在浮沙建高台”为第1篇的标题，共勉之！
+
 此中文版动态跟踪[Master Ethereum](https://github.com/ethereumbook/ethereumbook/)的开放版分支的最新提交，后续将不断迭代订正并同步。
 
 ### 封面
