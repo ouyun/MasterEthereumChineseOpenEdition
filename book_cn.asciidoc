@@ -51,4 +51,4 @@ include::appdx-dev-tools_cn.asciidoc[]
 include::appdx-web3js-tutorial_cn.asciidoc[]
 
 [appendix]
-include::appdx-shortlinks.asciidoc[]
+include::appdx-shortlinks_cn.asciidoc[]
