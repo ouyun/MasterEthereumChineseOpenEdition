@@ -312,7 +312,7 @@ Web3::
 ((("wei, defined")))以太坊系统中货币的最小单位。 10^18^ 维 wei = 1 以太 ether。
 
 低语系统，Whisper::
-(("Whisper")))以太坊提供的一个分布式（P2P）消息服务。它可以与 Web3 和 Swarm 一起用于构建 DApp。
+((("Whisper")))以太坊提供的一个分布式（P2P）消息服务。它可以与 Web3 和 Swarm 一起用于构建 DApp。
 
 零地址，Zero address::
 ((("zero address","defined")))一个特殊的以太坊地址，完全由零组成，被指定为创建智能合约交易的目标地址。
