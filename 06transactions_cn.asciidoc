@@ -254,7 +254,7 @@ web3.eth.sendTransaction({from: src, to: dst, \
 
 [[parity_txdemo_value_nodata]]
 .Parity钱包展示一个有价值传递，但不包括数据的交易 
-image::images/parity_txdemo_value_nodata.png["Parity wallet showing a transaction with value, but no data"]
+image::{abspath}images/parity_txdemo_value_nodata.png["Parity wallet showing a transaction with value, but no data"]
 
 
 下一个例子同时指定了值和有效数据负载：
@@ -270,7 +270,7 @@ web3.eth.sendTransaction({from: src, to: dst, \
 
 [[parity_txdemo_value_data]]
 .Parity钱包显示具有价值和数据的交易
-image::images/parity_txdemo_value_data.png["Parity 钱包软件展示一个包含价值和数据的交易"]
+image::{abspath}images/parity_txdemo_value_data.png["Parity 钱包软件展示一个包含价值和数据的交易"]
 
 下一个交易包括有效数据，但交易的值为零：
 
@@ -284,7 +284,7 @@ web3.eth.sendTransaction({from: src, to: dst, value: 0, data: "0x1234"});
 
 [[parity_txdemo_novalue_data]]
 .Parity钱包显示一个没有价值传递，但有数据的交易
-image::images/parity_txdemo_novalue_data.png["Parity wallet showing a transaction with no value, only data"]
+image::{abspath}images/parity_txdemo_novalue_data.png["Parity wallet showing a transaction with no value, only data"]
 
 [role="pagebreak-before"]
 最后，一个交易既不包含要发送的值，也不包含有效数据载荷：
@@ -299,7 +299,7 @@ web3.eth.sendTransaction({from: src, to: dst, value: 0, data: ""}));
 
 [[parity_txdemo_novalue_nodata]]
 .Parity钱包显示一个没有价值传递，没有数据的交易
-image::images/parity_txdemo_novalue_nodata.png["Parity wallet showing a transaction with no value, and no data"]
+image::{abspath}images/parity_txdemo_novalue_nodata.png["Parity wallet showing a transaction with no value, and no data"]
 
 [[value_EOA_contracts]]
 ==== 将价值转移到EOA和合约
@@ -422,7 +422,7 @@ $ <strong>solc --bin Faucet.sol</strong>
 
 [[publish_contract_from_web3]]
 .Etherscan显示合约被成功挖出
-image::images/contract_published.png["Etherscan showing the contract successfully mined"]
+image::{abspath}images/contract_published.png["Etherscan showing the contract successfully mined"]
 
 我们可以查看交易的收据以获取有关合约的信息：
 
@@ -471,7 +471,7 @@ image::images/contract_published.png["Etherscan showing the contract successfull
 
 [[publish_contract_transactions]]
 .Etherscan显示发送和接收资金的交易
-image::images/published_contract_transactions.png["Etherscan showing the transactions for sending and receiving funds"]
+image::{abspath}images/published_contract_transactions.png["Etherscan showing the transactions for sending and receiving funds"]
 
 
 [[digital_sign]]
@@ -756,7 +756,7 @@ EIP-155在交易数据结构的六个主要字段中添加了三个字段，即�
 
 [[offline_signing]]
 .以太坊交易的离线签名
-image::images/offline_signing.png["以太坊交易的脱机签名"]
+image::{abspath}images/offline_signing.png["以太坊交易的脱机签名"]
 
 根据所需的安全级别，你的“离线签名”计算机与在线计算机的隔离程度可能有所不同，范围从带有隔离功能和防火墙的子网络（联机但隔离）到完全脱机的系统（称为 _air-gapped_ 系统） 。 ((("air-gapped system"))) 在一个气隙式的系统中根本没有网络连接：计算机与在线环境之间存在“ 空气”间隙。要签署交易，你可以使用数据存储介质或（更好）网络摄像头和QR码在气隙计算机之间进行交易。当然，这意味着你必须手动转移要签名的每个交易，并且这种方式无法扩展。
 

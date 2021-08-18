@@ -22,7 +22,7 @@ EVM具有基于堆栈的体系结构，可将所有内存中的值存储在堆�
 
 [[evm_architecture]]
 .以太坊虚拟机（EVM）架构和执行内容
-image::images/evm-architecture.png["The Ethereum Virtual Machine (EVM) Architecture and Execution Context"]
+image::{abspath}images/evm-architecture.png["The Ethereum Virtual Machine (EVM) Architecture and Execution Context"]
 
 [[evm_comparison]]
 ==== 与现有技术的比较
@@ -423,7 +423,7 @@ contract Faucet {
 
 [[Faucet_disassembled]]
 .反汇编运行水龙头合约的字节码
-image::images/Faucet_disassembled.png["Faucet.sol runtime bytecode disassembled"]
+image::{abspath}images/Faucet_disassembled.png["Faucet.sol runtime bytecode disassembled"]
 
 当你将交易发送到兼容ABI的智能合约（您可以假定所有合约都是）时，交易首先会与该智能合约的 _dispatcher_ 进行交互。调度程序读取交易的 +data+ 字段，并将相关部分发送到适当的功能。在反汇编的 _Faucet.sol_ 运行时字节码的开头，我们可以看到调度程序的示例。在熟悉的 +MSTORE+ 指令之后，我们看到以下指令：
 
@@ -482,7 +482,7 @@ jumpi(label, cond) // Jump to "label" if "cond" is true
 
 [[Faucet_jumpi_instruction]]
 .JUMPI指令指向后备函数
-image::images/Faucet_jumpi_instruction.png["JUMPI instruction leading to fallback function"]
+image::{abspath}images/Faucet_jumpi_instruction.png["JUMPI instruction leading to fallback function"]
 
 让我们检查调度程序的中央模块。假设我们收到的调用数据长度大于4个字节，那么 +JUMPI+ 指令将不会跳转到后备函数。而是，代码执行将继续执行以下指令：
 

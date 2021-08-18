@@ -5,7 +5,7 @@
 
 [[image_web3_suite]]
 .Web3：使用智能合约和P2P技术的去中心化网络
-image::images/web3suite.png["Web3: A decentralized web using smart contracts and P2P Technologies"]
+image::{abspath}images/web3suite.png["Web3: A decentralized web using smart contracts and P2P Technologies"]
 
 [WARNING]
 ====
@@ -115,7 +115,7 @@ https://swarm-gateways.net/bzz:/theswarm.eth/[].
 
 [[auction_dapp_overview]]
 .拍卖DApp：拍卖DApp的简单示例
-image::images/auction_diagram.png["Auction DApp: A simple example auction DApp"]
+image::{abspath}images/auction_diagram.png["Auction DApp: A simple example auction DApp"]
 
 你可以在本书的存储库中找到拍卖DApp的源代码 http://bit.ly/2DcmjyA[in the book's repository] 。
 
@@ -275,7 +275,7 @@ $ <strong>npm run dev</strong>
 
 [[auction_dapp_screen]]
 .拍卖DApp的用户界面
-image::images/auction_dapp_home_screen.png["Auction DApp User interface"]
+image::{abspath}images/auction_dapp_home_screen.png["Auction DApp User interface"]
 
 === 将拍卖DApp进一步去中心化
 
@@ -344,7 +344,7 @@ http://localhost:8500.
 
 [[image_swarm_gateway]]
 .localhost上的swarm网关
-image::images/swarm-gateway.png["Swarm gateway on localhost"]
+image::{abspath}images/swarm-gateway.png["Swarm gateway on localhost"]
 
 ==== 上传文件到Swarm
 
@@ -595,7 +595,7 @@ ENS有许多基于Web的界面，使我们可以操作ENS DApp。在此示例中
 
 [[ens_registration_timeline]]
 .ENS注册时间表
-image::images/ens-flow.png[]
+image::{abspath}images/ens-flow.png["ENS注册时间表"]
 
 
 
@@ -603,14 +603,14 @@ image::images/ens-flow.png[]
 
 [[ens-name-search]]
 .在MyCrypto.com上搜索ENS名称
-image::images/ens-checkname.png["Searching for ENS names on MyCrypto.com"]
+image::{abspath}images/ens-checkname.png["Searching for ENS names on MyCrypto.com"]
 
 很好！这个名称可用。为了注册它，我们需要按<<ens-auction>>中的指示操作。让我们解锁MetaMask并开始 +ethereumbook.eth+ 的拍卖。
 
 
 [[ens-auction]]
 .开始拍卖一个ENS名称
-image::images/ens-auction.png["Starting an auction for an ENS name"]
+image::{abspath}images/ens-auction.png["Starting an auction for an ENS name"]
 
 
 让我们出价吧。为此，我们需要按照<<ens-bid>>的步骤来实现。
@@ -618,7 +618,7 @@ image::images/ens-auction.png["Starting an auction for an ENS name"]
 
 [[ens-bid]]
 .竞标ENS名称
-image::images/ens-bid.png["Placing a bid for an ENS name"]
+image::{abspath}images/ens-bid.png["Placing a bid for an ENS name"]
 
 [WARNING]
 ====
@@ -631,7 +631,7 @@ image::images/ens-bid.png["Placing a bid for an ENS name"]
 
 [[ens-metamask-bid]]
 .MetaMask交易包含你的出价
-image::images/ens-metamask-bid.png["MetaMask transaction containing your bid"]
+image::{abspath}images/ens-metamask-bid.png["MetaMask transaction containing your bid"]
 
 如果一切顺利，以这种方式提交交易后，你可以在48小时内返回并开标，这样你所请求的名称将被注册到你的以太坊地址。（（（（range =“ endofrange”，startref =“ ix_12dapps- asciidoc15“）））（（（（range =” endofrange“，startref =” ix_12dapps-asciidoc14“））））
 
@@ -644,7 +644,7 @@ image::images/ens-metamask-bid.png["MetaMask transaction containing your bid"]
 
 [[ens-manager]]
 .ENS网络管理界面
-image::images/ens-manager.png["ENS网络管理界面"]
+image::{abspath}images/ens-manager.png["ENS网络管理界面"]
 
 使用这个接口，我们可以创建子域，设置解析器合约（稍后会详细介绍），并将每个名称连接到适当的资源，例如DApp前端的Swarm地址。
 
@@ -654,7 +654,7 @@ image::images/ens-manager.png["ENS网络管理界面"]
 
 [[ens-manager-add-subdomain]]
 .添加子域 Auction.ethereumbook.eth
-image::images/ens_manager_add_subdomain.png["Adding the subdomain auction.ethereumbook.eth"]
+image::{abspath}images/ens_manager_add_subdomain.png["Adding the subdomain auction.ethereumbook.eth"]
 
 创建子域后，我们可以在搜索框中输入 +auction.ethereumbook.eth+ 并对其进行管理，就像我们管理域 +ethereumbook.eth+ pass:[<span class="keep-together">先前</span>]一样。
 
@@ -676,7 +676,7 @@ image::images/ens_manager_add_subdomain.png["Adding the subdomain auction.ethere
 
 [[ens-manager-set-default-resolver]]
 .设置域名 auction.ethereumbook.eth 的默认公共解析器
-image::images/ens-manager-set-default-resolver.png["Set the default public resolver for auction.ethereumbook.eth"]
+image::{abspath}images/ens-manager-set-default-resolver.png["Set the default public resolver for auction.ethereumbook.eth"]
 
 ==== 将名称解析为Swarm哈希（内容）
 
@@ -684,7 +684,7 @@ image::images/ens-manager-set-default-resolver.png["Set the default public resol
 
 [[ens-set-content]]
 .设置 auction.ethereumbook.eth 的返回“内容”
-image::images/ens-manager-set-content.png["Set the 'content' return for auction.ethereumbook.eth"]
+image::{abspath}images/ens-manager-set-content.png["Set the 'content' return for auction.ethereumbook.eth"]
 
 等待一小段时间以确认我们的交易后，我们应该能够正确解析该名称。在设置名称之前，可以在Swarm网关上通过其哈希值找到我们的拍卖 DApp：
 
@@ -725,7 +725,7 @@ image::images/ens-manager-set-content.png["Set the 'content' return for auction.
 
 [[auction_dapp_final_architecture]]
 .拍卖DApp的架构
-image::images/auction_dapp_final_architecture.png [“拍卖DApp的架构”]
+image::{abspath}images/auction_dapp_final_architecture.png [“拍卖DApp的架构”]
 
 === 本章小结
 
