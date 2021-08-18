@@ -1,0 +1,8 @@
+////
+Do not translate the :variable names:
+Translate the content following the variables
+////
+:author: Andreas M. Antonopoulos, Gavin Wood
+:book_title: 《精通以太坊》中文开放版
+:subtitle: 构建智能合约（Smart Contractts）和分布式应用（DApps）
+:publisher: Aantonop 图书有限公司
