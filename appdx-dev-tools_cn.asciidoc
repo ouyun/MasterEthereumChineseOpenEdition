@@ -38,7 +38,7 @@ A tool that uses webhooks allowing developers to receive notifications whenever 
 ==== Setup
 To use Alchemy's products, you need an API key to authenticate your requests. Create an Alchemy account, generate your first app, and select "View Key" in the dashboard for your chosen app to get your new key.
 
-image::images/alchemy-new-app.gif["Retrieving the API key from a new Alchemy App"]
+image::{abspath}images/alchemy-new-app.gif["Retrieving the API key from a new Alchemy App"]
 
 ===== Making Requests
 
@@ -347,7 +347,7 @@ Faucet $ <strong>truffle migrate --network localnode</strong>
 
 [[parity_deployment_confirmation]]
 .Parity要求确认部署水龙头合约
-image::images/parity_deployment_confirmation.png["Parity asking for confirmation to deploy Faucet"]
+image::{abspath}images/parity_deployment_confirmation.png["Parity asking for confirmation to deploy Faucet"]
 
 共有四笔交易：一笔用于部署 +Migrations+，一笔用于将部署计数器更新为 +1+ ，一笔用于部署 +Faucet+ ，另一笔将部署计数器更新为 +2+。
 

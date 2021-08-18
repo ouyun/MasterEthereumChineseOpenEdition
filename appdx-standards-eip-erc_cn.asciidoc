@@ -14,13 +14,13 @@ EIP是以太坊改进提案的缩写。 EIP是一个设计文档，可以向以�
 ____
 
 [[eip_workflow]]
-以太坊改善提案工作流程
-image::images/eip_workflow.png["以太坊改进提案工作流程"]
+.以太坊改善提案工作流程
+image::{abspath}images/eip_workflow.png["以太坊改进提案工作流程"]
 
 [[eip_table]]
 === 最重要的EIP和ERC列表
 
-重要的EIP和ERC
+.重要的EIP和ERC
 [options="header"]
 |===
 | EIP/ERC＃ | 标题/说明 | 作者 | 层 | 现状 | 创建版本

@@ -228,7 +228,7 @@ ERC20允许两个不同的工作流程。第一个是使用+ transfer +功能的
 
 [[approve_transferFrom_workflow]]
 .ERC20通证从批准到转移的两步工作流程
-image::images/approve_transferFrom_workflow.png["The two-step approve &amp; transferFrom workflow of ERC20 tokens"]
+image::{abspath}images/approve_transferFrom_workflow.png["The two-step approve &amp; transferFrom workflow of ERC20 tokens"]
 
 为了完成 +approve+ 和 +transferFrom+ 的工作流程，需要两个交易。假设Alice希望允许 +AliceICO+ 合约将所有AliceCoin代币的50％出售给Bob和Charlie这样的买家。首先，爱丽丝部署 +AliceCoin+ ERC20合约，将所有AliceCoin发行到自己的地址。然后，爱丽丝启动+AliceICO+ 合约，可以出售通证来换去以太币。接下来，爱丽丝启动 +approve+ 和 +transferFrom+ 工作流程。她向 +AliceCoin+ 合约发送了一笔交易，并以 +AliceICO+ 合约的地址和 +totalSupply+ 的50％作为参数调用 +approve+。这将触发 +Approval+ 事件。现在， +AliceICO+ 合约可以出售AliceCoin。
 
@@ -391,7 +391,7 @@ Saving artifacts...
 
 [[ganache_METoken]]
 .METoken在Ganache上的部署
-image::images/ganache_metoken.png["METoken deployment on Ganache"]
+image::{abspath}images/ganache_metoken.png["METoken deployment on Ganache"]
 
 [[truffle_console]]
 ===== 通过Truffle控制台使用METoken
@@ -501,7 +501,7 @@ METoken的精度为2位小数，即1个METoken为合约中的100个单位。当�
 
 [[ganache_METoken_transfer]]
 .在Ganache上转移METoke
-image::images/ganache_metoken_transfer.png["METoken transfer on Ganache"]
+image::{abspath}images/ganache_metoken_transfer.png["METoken transfer on Ganache"]
 
 [[sending_erc20_tokens_contracts]]
 ===== 将ERC20通证发送到合约地址
