@@ -2148,7 +2148,7 @@ of Ethereum Security Vulnerabilities, Hacks and Their Fixes&#x201d; post] 以太
 
 === 仔细编写合约的构建函数
 
-security threat")))((("security (smart contracts)","constructors and contract name-change threat"))) 构造函数是一些特殊的函数，经常在初始化合同时执行关键，
+security threat")))((("security (smart contracts)","constructors and contract name-change threat"))) 构造函数是一些特殊的函数，经常在初始化合约时执行关键，
 特殊的任务。在Solidity v0.4.22之前，
 构造函数被定义为和包含它们的合约具有相同名字的函数。
 在这种情况下，当合约名称在开发中被修改时，

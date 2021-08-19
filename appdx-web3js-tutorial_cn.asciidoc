@@ -9,7 +9,7 @@ web3.js JavaScript软件库是一个模块集合，这些模块包含针对以�
 
 要运行此脚本，您无需运行自己的本地节点，可以使用 https://infura.io[Infura services]。
 
-=== web3.js以非阻塞（异步）方式进行合同基本操作
+=== web3.js以非阻塞（异步）方式进行合约基本操作
 
 ((("web3.js","contract basic interaction in nonblocked (Async) fashion")))检查你是否安装有效的 +npm+ 版本：
 

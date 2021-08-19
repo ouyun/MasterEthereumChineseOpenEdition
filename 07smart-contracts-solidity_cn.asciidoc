@@ -438,7 +438,7 @@ selfdestruct(address recipient);
 
 ==== 向我们的水龙头合约示例添加构造函数和自毁函数
 
-((("constructor function","adding to faucet example")))((("Faucet.sol contract (test example)","adding constructor and selfdestruct to")))((("Solidity","adding constructor/selfdestruct to faucet example"))) 我们在<<intro_chapter>>中引入的 +Faucet+ 示例合同没有任何构造函数或自毁函数 +selfdestruct+ 。这是一个不可删除的永久合约。让我们通过添加构造函数和自毁函数 +selfdestruct+ 函数来更改它。我们可能希望自毁函数 +selfdestruct+ 仅能被最初创建合约的EOA调用。按照惯例，通常将其存储在名为 +owner+ 的地址变量中。我们的构造函数设置拥有者 +owner+ 变量，并且自毁 +selfdestruct+ 函数将首先检查是否是拥有者直接调用了它。
+((("constructor function","adding to faucet example")))((("Faucet.sol contract (test example)","adding constructor and selfdestruct to")))((("Solidity","adding constructor/selfdestruct to faucet example"))) 我们在<<intro_chapter>>中引入的 +Faucet+ 示例合约没有任何构造函数或自毁函数 +selfdestruct+ 。这是一个不可删除的永久合约。让我们通过添加构造函数和自毁函数 +selfdestruct+ 函数来更改它。我们可能希望自毁函数 +selfdestruct+ 仅能被最初创建合约的EOA调用。按照惯例，通常将其存储在名为 +owner+ 的地址变量中。我们的构造函数设置拥有者 +owner+ 变量，并且自毁 +selfdestruct+ 函数将首先检查是否是拥有者直接调用了它。
 
 首先，我们的构造函数如下：
 

@@ -318,7 +318,7 @@ Writing artifacts to ./build/contracts
 
 我们只有一个合约 _Faucet.sol_，这意味着迁移系统是大材小用的。不幸的是，我们必须使用它。但是，通过学习如何将其用于一个合约，我们可以开始为开发工作流程培养一些良好的习惯。随着事情变得越来越复杂，这种努力将获得回报。
 
-Truffle的 _migrations_ 目录是找到迁移脚本的位置。现在，只有一个脚本__1_initial_migration.js__可以自行部署 _Migrations.sol_ 合同：
+Truffle的 _migrations_ 目录是找到迁移脚本的位置。现在，只有一个脚本__1_initial_migration.js__可以自行部署 _Migrations.sol_ 合约：
 
 
 [source,javascript,linenums]
@@ -351,7 +351,7 @@ image::{abspath}images/parity_deployment_confirmation.png["Parity asking for con
 
 共有四笔交易：一笔用于部署 +Migrations+，一笔用于将部署计数器更新为 +1+ ，一笔用于部署 +Faucet+ ，另一笔将部署计数器更新为 +2+。
 
-Truffle将显示迁移完成，每个交易以及合同地址：(((range="endofrange", startref="ix_appdx-dev-tools-asciidoc6")))(((range="endofrange", startref="ix_appdx-dev-tools-asciidoc5")))(((range="endofrange", startref="ix_appdx-dev-tools-asciidoc4")))
+Truffle将显示迁移完成，每个交易以及合约地址：(((range="endofrange", startref="ix_appdx-dev-tools-asciidoc6")))(((range="endofrange", startref="ix_appdx-dev-tools-asciidoc5")))(((range="endofrange", startref="ix_appdx-dev-tools-asciidoc4")))
 
 ++++
 <pre data-type="programlisting">
@@ -539,7 +539,7 @@ $ <strong>mkdir contracts</strong>
 
 在撰写本文时，OpenZeppelin包含多个遵循ERC20，ERC721和ERC827标准的基本通证合约，具有不同的排放，限制，归属，生命周期等特征。
 
-让我们制作一个可铸造的ERC20代币，这意味着初始供应从0开始，代币所有者可以创建新代币（在我们的示例中，是销售通行证 pass:[<span class="keep-together">合同</span>]）并出售给买家。为此，我们将创建一个 _contracts/SampleToken.sol_ 文件，其中包含以下内容：
+让我们制作一个可铸造的ERC20代币，这意味着初始供应从0开始，代币所有者可以创建新代币（在我们的示例中，是销售通行证 pass:[<span class="keep-together">合约</span>]）并出售给买家。为此，我们将创建一个 _contracts/SampleToken.sol_ 文件，其中包含以下内容：
 
 [source,solidity]
 ----
@@ -555,7 +555,7 @@ OpenZeppelin已经提供了 +MintableToken+ 合约，我们可以将其用作通
 include::code/OpenZeppelin/contracts/SampleCrowdsale.sol[]
 ----
 
-再说一次，我们几乎不必编写任何代码。我们只是重用了OpenZeppelin社区提供的经过战斗验证的代码。但是，必须注意，这种情况与我们的“ SampleToken”合同不同。如果你转到众筹自动测试 http://bit.ly/2Q8lQ3o[Crowdsale automated tests]，则会看到它们是独立测试的。当你将不同的代码单元集成到更大的组件中时，单独测试所有单元是不够的，因为它们之间的交互可能会导致你意想不到的行为。特别是，你将在这里看到我们引入了多重继承，如果开发人员不了解Solidity的细节，这会使开发人员感到惊讶。我们的 pass:[ <span class="keep-together"><code>SampleCrowdsale</code></span> ]合约很简单，它将按我们期望的那样工作，因为该框架旨在使此类情况变得简单明了；但不要因为此框架引入的简单性而放松警惕。每次集成OpenZeppelin框架的各个部分以构建更复杂的解决方案时，都必须全面测试解决方案的各个方面，以确保单元的所有交互都按预期工作。
+再说一次，我们几乎不必编写任何代码。我们只是重用了OpenZeppelin社区提供的经过战斗验证的代码。但是，必须注意，这种情况与我们的“ SampleToken”合约不同。如果你转到众筹自动测试 http://bit.ly/2Q8lQ3o[Crowdsale automated tests]，则会看到它们是独立测试的。当你将不同的代码单元集成到更大的组件中时，单独测试所有单元是不够的，因为它们之间的交互可能会导致你意想不到的行为。特别是，你将在这里看到我们引入了多重继承，如果开发人员不了解Solidity的细节，这会使开发人员感到惊讶。我们的 pass:[ <span class="keep-together"><code>SampleCrowdsale</code></span> ]合约很简单，它将按我们期望的那样工作，因为该框架旨在使此类情况变得简单明了；但不要因为此框架引入的简单性而放松警惕。每次集成OpenZeppelin框架的各个部分以构建更复杂的解决方案时，都必须全面测试解决方案的各个方面，以确保单元的所有交互都按预期工作。
 
 最后，当我们对我们的解决方案感到满意并对其进行了彻底的测试时，我们需要对其进行部署。 OpenZeppelin与Truffle集成良好，因此我们可以像下面这样编写一个迁移文件（_migrations/2_deploy_contracts.js_），如<<truffle_migrations_understanding_deployment_scripts>>中所介绍的：
 

@@ -32,7 +32,7 @@ oracle可能提供的其他一些数据示例包括：
 * 政治事件：用于预测市场解决方案
 * 体育赛事：用于预测市场方案和虚拟体育项目的合约
 * 地理位置数据：例如，用于跟踪供应链的数据
-* 损害验证：用于保险合同
+* 损害验证：用于保险合约
 * 其他区块链上发生的事件：互操作性功能
 * 以太币市场价格：例如，用法定货币定价燃料gas的预言机
 * 航班统计信息：例如，团体和俱乐部用于机票拼单的统计信息
@@ -116,7 +116,7 @@ True机器之类的系统存在广泛的应用，范围涵盖从机器学习到�
 
 ((("oracles","decentralized")))虽然集中式数据或计算型oracles可以满足许多应用程序的需求，但它们代表了以太坊网络中的单点故障。围绕分布式oracle的想法已经提出了许多方案，以确保数据的可用性以及使用链上数据聚合系统创建单个数据提供者的网络。
 
-((("ChainLink"))) https://www.smartcontract.com/link[ChainLink]提出了一个分布式的oracle网络，该网络由三个关键的智能合约组成：信誉合约，订单匹配合约和聚合合约；以及数据提供商的链下注册表。信誉合约用于跟踪数据提供者的绩效。信誉合约中的分数用于填充链下注册表。订单匹配合同使用信誉合约从Oracle中选择出价。然后，它最终确定一个服务级别协议，其中包括查询参数和所需的Oracle数量。这意味着购买者无需直接与各个Oracle进行交易。聚合合约从多个预言机收集响应（使用提交-披露方案提交），计算查询的最终汇总结果，最后将结果反馈回信誉合约。
+((("ChainLink"))) https://www.smartcontract.com/link[ChainLink]提出了一个分布式的oracle网络，该网络由三个关键的智能合约组成：信誉合约，订单匹配合约和聚合合约；以及数据提供商的链下注册表。信誉合约用于跟踪数据提供者的绩效。信誉合约中的分数用于填充链下注册表。订单匹配合约使用信誉合约从Oracle中选择出价。然后，它最终确定一个服务级别协议，其中包括查询参数和所需的Oracle数量。这意味着购买者无需直接与各个Oracle进行交易。聚合合约从多个预言机收集响应（使用提交-披露方案提交），计算查询的最终汇总结果，最后将结果反馈回信誉合约。
 
 这种去中心化方法的主要挑战之一是聚合函数的制定。 ChainLink建议计算加权响应，从而允许为每个预言响应报告有效性分数。在这里检测“无效”分数是不平凡的，因为它依赖于这样一个前提，即通过与对等方提供的响应的偏差来衡量的外围数据点是错误的。根据响应分布中oracle响应的位置来计算有效性分数可能会给正确答案带来超过平均答案的惩罚。因此，ChainLink提供了一组标准的聚合合约，但也允许指定自定义的聚合合约。
 
@@ -274,7 +274,7 @@ contract OracleB1IQClient {
 ====
 
 数据请求使用 +initRequest+ 函数启动，该函数除了两个回调函数外，还可以指定查询类型（在此示例中，为盘中价格请求）。
-这将返回 +uint256+ 标识符，该标识符随后可用于提供其他参数。 +addArgumentToRequestString+ 函数用于指定路透工具代码（RIC）（此处为IBM股票），并通过 pass:[ <span class="keep-together"><code>addArgumentToRequestUint</code></span> ]允许指定时间戳。现在，为 +block.timestamp+ 传递别名将检索IBM的当前价格。然后，该请求由 +executeRequest+ 函数执行。处理完请求后，oracle合同将使用查询标识符调用 +onSuccess+ 回调函数，从而允许检索结果数据；如果检索失败，则 pass:[ <span class="keep-together"><code>onFailure</code></span> ]回调将返回错误代码。成功获取的可用字段包括 +open+，+high+，+low+，+close+（OHLC）和 +bid+ / +ask+ 价格。(((range="endofrange", startref="ix_11oracles-asciidoc5")))(((range="endofrange", startref="ix_11oracles-asciidoc4")))(((range="endofrange", startref="ix_11oracles-asciidoc3")))
+这将返回 +uint256+ 标识符，该标识符随后可用于提供其他参数。 +addArgumentToRequestString+ 函数用于指定路透工具代码（RIC）（此处为IBM股票），并通过 pass:[ <span class="keep-together"><code>addArgumentToRequestUint</code></span> ]允许指定时间戳。现在，为 +block.timestamp+ 传递别名将检索IBM的当前价格。然后，该请求由 +executeRequest+ 函数执行。处理完请求后，oracle合约将使用查询标识符调用 +onSuccess+ 回调函数，从而允许检索结果数据；如果检索失败，则 pass:[ <span class="keep-together"><code>onFailure</code></span> ]回调将返回错误代码。成功获取的可用字段包括 +open+，+high+，+low+，+close+（OHLC）和 +bid+ / +ask+ 价格。(((range="endofrange", startref="ix_11oracles-asciidoc5")))(((range="endofrange", startref="ix_11oracles-asciidoc4")))(((range="endofrange", startref="ix_11oracles-asciidoc3")))
 
 
 === 本章小结

@@ -97,7 +97,7 @@
 * 没有其他用户意味着它的行为与公共区块链不同。在交易空间或通过顺序方面没有竞争 pass:[<span class="keep-together">Transactions</span>]。
 * 除你之外没有其他矿工，意味着挖矿更可预测；因此，你无法测试公共区块链上发生的某些情况。
 * 没有其他合约意味着你必须部署要测试的所有内容，包括依赖项和合约库。
-* 无法重新创建一些公共合约及其地址以测试某些情况（例如，DAO合同）。(((range="endofrange", startref="ix_03clients-asciidoc2")))(((range="endofrange", startref="ix_03clients-asciidoc1")))
+* 无法重新创建一些公共合约及其地址以测试某些情况（例如，DAO合约）。(((range="endofrange", startref="ix_03clients-asciidoc2")))(((range="endofrange", startref="ix_03clients-asciidoc1")))
 
 
 [[running_client]]

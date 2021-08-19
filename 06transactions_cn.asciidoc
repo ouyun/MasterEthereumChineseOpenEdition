@@ -308,7 +308,7 @@ image::{abspath}images/parity_txdemo_novalue_nodata.png["Parity wallet showing a
 
 对于EOA地址，或者对于在区块链上未标记为合约的任何地址，以太坊将记录状态更改，并将你发送的值添加到该地址的余额中。如果以前没有看到该地址，它将被添加到客户的状态内部表示中，并且其余额会初始化为你的付款金额。
 
-如果目标地址（ +to+ ）是合约，则EVM将执行合约并尝试调用交易有效数据负载中命名的函数。如果你的交易中没有数据，则EVM将调用后备 _fallback_ 函数，如果该函数是可收款的，则将执行该函数以确定下一步要执行的操作。如果 fallback 中没有代码，则交易的效果将是增加合同的余额，就像向钱包付款一样。如果没有 fallback 或 不可付款的 fallback，交易则将回退。
+如果目标地址（ +to+ ）是合约，则EVM将执行合约并尝试调用交易有效数据负载中命名的函数。如果你的交易中没有数据，则EVM将调用后备 _fallback_ 函数，如果该函数是可收款的，则将执行该函数以确定下一步要执行的操作。如果 fallback 中没有代码，则交易的效果将是增加合约的余额，就像向钱包付款一样。如果没有 fallback 或 不可付款的 fallback，交易则将回退。
 
 合约可以在调用函数时立即抛出异常，也可以根据函数中编码的条件确定，从而拒绝传入的付款。如果函数成功终止（无异常），则合约状态将更新以反映合约以太币余额的增加。(((range="endofrange", startref="ix_06transactions-asciidoc7")))(((range="endofrange", startref="ix_06transactions-asciidoc6")))
 
@@ -450,7 +450,7 @@ image::{abspath}images/contract_published.png["Etherscan showing the contract su
 </pre>
 ++++
 
-这包括合约的地址，我们可以使用该地址向合约发送资金或从合同接收资金，如上一部分所示：
+这包括合约的地址，我们可以使用该地址向合约发送资金或从合约接收资金，如上一部分所示：
 
 ++++
 <pre data-type="programlisting">

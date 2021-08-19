@@ -38,7 +38,7 @@ DAO攻击的工作方式如下：
 1. DAO的攻击者要求从DAO合约提取DAO通证（DAO）。
 2. 攻击者再次要求合约撤回DAO，然后合约更新其状态记录以表明DAO已撤回。
 3. 攻击者不断重复执行步骤2。
-4. 合同最终只记录了一次DAO提款，没有记录在此期间发生的其它提款。
+4. 合约最终只记录了一次DAO提款，没有记录在此期间发生的其它提款。
 
 [[dao_hard_fork]]
 === The DAO事件的硬分叉
@@ -64,7 +64,7 @@ DAO攻击的工作方式如下：
 - 2016年4月5日：Slock.it http://bit.ly/2Db4boE[发布安全性审查]，由Deja Vu Security对通用DAO框架智能合约进行。
 - 2016年4月30日：DAO众筹 http://bit.ly/2qhwhpI[启动]。
 - 2016年5月27日：DAO众筹结束。
-- 2016年6月9日：发现了一个通用的 http://bit.ly/2AAaDmA[递归调用错误]，据信它会影响许多跟踪用户余额的Solidity合同。
+- 2016年6月9日：发现了一个通用的 http://bit.ly/2AAaDmA[递归调用错误]，据信它会影响许多跟踪用户余额的Solidity合约。
 - 2016年6月12日：Stephen Tual http://bit.ly/2qmo3g1[声明] DAO的资金没有风险。
 - 2016年6月17日： http://bit.ly/2EQaLCI[被滥用的DAO]，并使用发现的漏洞的变体（称为“重入漏洞”）开始抽出合约中的资金，最终夺走了合约中约30％的以太币。
 - 2016年6月21日：RHG http://bit.ly/2zgl3Gk[公告]它已保护DAO中存储的约70％的以太币。
@@ -78,7 +78,7 @@ DAO攻击的工作方式如下：
 - 2016年7月20日：反对DAO硬分叉的用户将继续运行旧的客户端软件；这会导致 http://bit.ly/2qjJm27的问题[交易在两个链上都被重播]。
 - 2016年7月24日： http://bit.ly/2qhuNvP[Poloniex交易所]将原始的以太坊链作为单独代币列出，代币代码为ETC；这是第一个这样做的交易所。
 - 2016年8月10日：RHG http://bit.ly/2JrLpK2[将二百九十万]回收的ETC转移到Poloniex，以便根据Bity SA的建议将其转换为ETH； RHG持有总量的14％从ETC转换为ETH和其他加密货币， http://bit.ly/2ETDdUc[Poloniex冻结]其余86％的已存储ETH。
-- 2016年8月30日：冻结的资金由Poloniex发送回RHG，后者随后在ETC链上建立了退款合同。
+- 2016年8月30日：冻结的资金由Poloniex发送回RHG，后者随后在ETC链上建立了退款合约。
 - 2016年12月11日：由以太坊创始成员Charles Hoskinson领导的IOHK组建了ETC开发团队。
 - 2017年1月13日：ETC网络进行了更新以解决交易重放问题；不同的链目前在功能上是分开的。
 - 2017年2月20日：ETC 开发团队列表，由早期ETC开发人员Igor Artamonov领导(((range="endofrange", startref="ix_appdx-forks-history-asciidoc6"))) (splix).(((range="endofrange", startref="ix_appdx-forks-history-asciidoc5")))(((range="endofrange", startref="ix_appdx-forks-history-asciidoc4")))(((range="endofrange", startref="ix_appdx-forks-history-asciidoc3")))
@@ -91,7 +91,7 @@ DAO攻击的工作方式如下：
 
 [[eth_etc_differences_evm]]
 ==== 虚拟机 EVM
-((("EVM OPCODES")))在大多数情况下（在撰写本文时），这两个网络保持高度兼容：为一个链生成的合同代码可以按预期在另一个链上运行；但是EVM操作码有一些细微差异（请参阅EIP链接： http://bit.ly/2yIajkF[140]，链接： http://bit.ly/2qhKz9Y[145]和链接： http://bit.ly/2SxsrFR[214]）。
+((("EVM OPCODES")))在大多数情况下（在撰写本文时），这两个网络保持高度兼容：为一个链生成的合约代码可以按预期在另一个链上运行；但是EVM操作码有一些细微差异（请参阅EIP链接： http://bit.ly/2yIajkF[140]，链接： http://bit.ly/2qhKz9Y[145]和链接： http://bit.ly/2SxsrFR[214]）。
 
 [[eth_etc_differences_core_development]]
 ==== 核心网络开发

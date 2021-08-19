@@ -31,7 +31,7 @@ image::{abspath}images/eip_workflow.png["以太坊改进提案工作流程"]
 | http://bit.ly/2OYbc2t[EIP-6] |重命名 +SUICIDE+ 操作码|Hudson Jameson|界面 | 定稿|
 | http://bit.ly/2JxdBeN[EIP-7] | `DELEGATECALL` | Vitalik Buterin |核心|定稿|
 | http://bit.ly/2Q6Oly6[EIP-8] | devp2p 家园版本的向前兼容性要求|Felix Lange |网络|定稿|
-| http://bit.ly/2CUf7WG[EIP-20] | ERC-20通证标准。描述了通证合同可能实现的标准功能，以允许DApp和钱包跨多个接口/ DApp处理通证。方法包括：`totalSupply`，+ balanceOf（address）+，`transfer`，`transferFrom`，`approve`，`allowance`。事件包括：“ Transfer”（在通证传输时触发）， pass:[ <span class="keep-together"><code>Approval</code></span> ]（在调用“ approve”时触发）。 | Fabian Vogelsteller，Vitalik Buterin | ERC |定稿|边境版本
+| http://bit.ly/2CUf7WG[EIP-20] | ERC-20通证标准。描述了通证合约可能实现的标准功能，以允许DApp和钱包跨多个接口/ DApp处理通证。方法包括：`totalSupply`，+ balanceOf（address）+，`transfer`，`transferFrom`，`approve`，`allowance`。事件包括：“ Transfer”（在通证传输时触发）， pass:[ <span class="keep-together"><code>Approval</code></span> ]（在调用“ approve”时触发）。 | Fabian Vogelsteller，Vitalik Buterin | ERC |定稿|边境版本
 | http://bit.ly/2Q6R4YB[EIP-55] |混合大小写校验和地址编码| Vitalik Buterin | ERC |定稿|
 | http://bit.ly/2OgE5la[EIP-86] |交易来源和签名的抽象。为“抽象”帐户安全性和允许用户创建“帐户合约”奠定基础，朝着一个模型发展。在该模型中，所有帐户都是可以支付燃料gas费用的合约，用户可以自定义自己的安全模型，用于执行任何所需的签名验证和随机数检查（而不是使用协议内机制，其中ECDSA和默认随机数方案是保护帐户的唯一“标准”方式，当前已硬编码到交易处理中）。 | Vitalik Buterin |核心|递延（将被替换）|君士坦丁堡
 | http://bit.ly/2QedSFC[EIP-96] | Blockhash和状态根更改。在状态中存储区块哈希散列值以减少处理“ BLOCKHASH”操作码时协议的复杂性和客户端的复杂实现。扩展了向后扩展块哈希检查的范围，其副作用是在区块编号非常远的区块之间创建直接链接，以促进更高效的初始轻节点同步。 | Vitalik Buterin |核心|推迟|君士坦丁堡
@@ -53,7 +53,7 @@ image::{abspath}images/eip_workflow.png["以太坊改进提案工作流程"]
 | http://bit.ly/2OgCWu1[EIP-170] |合约代码大小限制| Vitalik Buterin |核心|定稿|
 | http://bit.ly/2ERNv7g[EIP-181] | ENS支持以太坊地址的反向解析|Nick Johnson | ERC |定稿|
 | http://bit.ly/2P0wPz5[EIP-190] |以太坊智能合约包装标准| Piper Merriam等。 | ERC |定稿|
-| http://bit.ly/2SwNQiz[EIP-196] |椭圆曲线 +alt_bn128+ 上用于加法和标量乘法的预编译合同。此操作是为了在区块gas限制内执行zkSNARK验证所必需的。
+| http://bit.ly/2SwNQiz[EIP-196] |椭圆曲线 +alt_bn128+ 上用于加法和标量乘法的预编译合约。此操作是为了在区块gas限制内执行zkSNARK验证所必需的。
 |Christian Reitwiessner |核心|定稿|大都会拜占庭
 | http://bit.ly/2ETDC9a[EIP-197] |预编译合约，用于在椭圆曲线 +alt_bn128+ 上进行最佳的食物配对检查。与EIP-196结合。
 | Vitalik Buterin，Christian Reitwiessner|核心|定稿|大都会拜占庭

@@ -341,7 +341,7 @@ require(withdraw_amount <= 100000000000000000);
 msg.sender.transfer(withdraw_amount);
 ----
 
-这里发生了一些有趣的事情。 +msg+ 对象是所有合约均可访问的输入之一。它代表触发该合约执行的交易。属性 +sender+ 是交易的发送者地址。函数 +transfer+ 是一个内置函数，可将以太币ether从当前合约转移到发送者的地址。从后往前看的话，这意味着 +transfer+ 这个 +msg+ 到 +sender+ 会触发该合同的执行。 +transfer+ 函数将一个数量作为唯一参数。我们将 +withdraw_amount+ 值作为参数传递给前面几行声明的 +withdraw+ 函数。
+这里发生了一些有趣的事情。 +msg+ 对象是所有合约均可访问的输入之一。它代表触发该合约执行的交易。属性 +sender+ 是交易的发送者地址。函数 +transfer+ 是一个内置函数，可将以太币ether从当前合约转移到发送者的地址。从后往前看的话，这意味着 +transfer+ 这个 +msg+ 到 +sender+ 会触发该合约的执行。 +transfer+ 函数将一个数量作为唯一参数。我们将 +withdraw_amount+ 值作为参数传递给前面几行声明的 +withdraw+ 函数。
 
 下一行是右花括号，表示 +withdraw+ 函数定义的结尾。
 
@@ -384,7 +384,7 @@ image::{abspath}images/remix_toolbar.png["单击加号打开一个新选项"]
 .将水龙头示例代码复制到新的选项卡中
 image::{abspath}images/remix_faucet_load.png[“将水龙头示例代码复制到新的选项卡中”]
 
-将 _Faucet.sol_ 合同加载到Remix IDE中之后，IDE将自动编译代码。如果一切顺利，你将在右侧的“编译”选项卡下看到一个带有“水龙头”的绿色框，确认编译成功（请参见<<remix_compile>>）。
+将 _Faucet.sol_ 合约加载到Remix IDE中之后，IDE将自动编译代码。如果一切顺利，你将在右侧的“编译”选项卡下看到一个带有“水龙头”的绿色框，确认编译成功（请参见<<remix_compile>>）。
 
 [[remix_compile]]
 .Remix成功编译了Faucet.sol合约
@@ -450,7 +450,7 @@ image::{abspath}images/remix_contract_interact.png["水龙头合约上线了!"]
 [[interact_contract]]
 === 操作合约
 
-((("Faucet.sol contract (test example)","interacting with", id="ix_02intro-asciidoc17", range="startofrange")))回顾到目前为止我们已经学到的东西：以太坊合约是可以控制资金的程序，这些程序在称为EVM的虚拟机中运行。它们由特殊交易所创建，该交易提交其二进制码以记录在区块链上。一旦在区块链上创建合约，它们就有一个以太坊地址，就像钱包一样。每当有人将交易发送到合约地址时，都会使合约的代码在EVM中运行，并将交易的内容作为输入。发送至 pass:[<span class="keep-together">合同</span> ]地址的交易可能包含以太币或数据，或两者都有。如果它们包含ether，它将“存入”合约余额。如果它们包含数据指令，则数据指令可以在合约中指定一个函数名并调用它，并将参数传递给该函数。
+((("Faucet.sol contract (test example)","interacting with", id="ix_02intro-asciidoc17", range="startofrange")))回顾到目前为止我们已经学到的东西：以太坊合约是可以控制资金的程序，这些程序在称为EVM的虚拟机中运行。它们由特殊交易所创建，该交易提交其二进制码以记录在区块链上。一旦在区块链上创建合约，它们就有一个以太坊地址，就像钱包一样。每当有人将交易发送到合约地址时，都会使合约的代码在EVM中运行，并将交易的内容作为输入。发送至 pass:[<span class="keep-together">合约</span> ]地址的交易可能包含以太币或数据，或两者都有。如果它们包含ether，它将“存入”合约余额。如果它们包含数据指令，则数据指令可以在合约中指定一个函数名并调用它，并将参数传递给该函数。
 
 [[view_contract_address]]
 ==== 在区块浏览器中查看合约地址
@@ -531,9 +531,9 @@ image::{abspath}images/metamask_withdraw.png["MetaMask调用提现功能的交�
 image::{abspath}images/etherscan_withdrawal_tx.png["Etherscan显示调用提现功能的交易"]
 
 
-现在，我们看到一个新的交易，目的地为合约地址，交易金额为0 ether。合约的余额已更改，现在为0.9以太，因为它已按要求向我们发送了0.1以太。但是，我们在 _合同地址历史记录_ 中看不到“OUT”交易。
+现在，我们看到一个新的交易，目的地为合约地址，交易金额为0 ether。合约的余额已更改，现在为0.9以太，因为它已按要求向我们发送了0.1以太。但是，我们在 _合约地址历史记录_ 中看不到“OUT”交易。
 
-那么这个提现的操作到哪里去了？合同的地址历史记录页面上出现了一个新标签，名为内部交易。 ((("internal transaction (message)")))由于源自合约代码的0.1 ether转移是内部交易（也称为 _message_ ）。点击该标签以查看它（请参见<<etherscan_withdrawal_internal>>）。
+那么这个提现的操作到哪里去了？合约的地址历史记录页面上出现了一个新标签，名为内部交易。 ((("internal transaction (message)")))由于源自合约代码的0.1 ether转移是内部交易（也称为 _message_ ）。点击该标签以查看它（请参见<<etherscan_withdrawal_internal>>）。
 
 
 合约通过以下代码发送“内部交易”（来自 _Faucet.sol_ 中的 pass:[<code><span class="keep-together">withdraw</span></code>]函数）：

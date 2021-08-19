@@ -90,7 +90,7 @@ https://vitalik.ca/general/2017/09/14/prehistory.html[].
 
 区块 #1,150,000:: ((("Homestead")))__Homestead__&#x2014;以太坊的第二阶段，于2016年3月推出。
 
-区块 #1,192,000:: ((("DAO (Decentralized Autonomous Organization)")))__DAO__&#x2014;硬分叉，用于补偿被黑客攻击的DAO合同的受害人，并导致以太坊和以太坊经典分成两个竞争系统。
+区块 #1,192,000:: ((("DAO (Decentralized Autonomous Organization)")))__DAO__&#x2014;硬分叉，用于补偿被黑客攻击的DAO合约的受害人，并导致以太坊和以太坊经典分成两个竞争系统。
 
 区块 #2,463,000:: ((("Tangerine Whistle")))__Tangerine Whistle__&#x2014;硬分叉，用于更改某些I/O繁重操作的gas计算，并且当黑客利用这些操作的低gas成本来实施拒绝服务（DoS）时，可以清除系统中的累积状态，保护系统。
 
