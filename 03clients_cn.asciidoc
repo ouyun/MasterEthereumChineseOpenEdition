@@ -7,7 +7,7 @@
 
 ((("Yellow Paper specification")))以太坊的正式规范定义在“ 黄皮书”中（请参见 <<references>>）。
 
-((("Bitcoin","Ethereum definition compared to")))这与比特币的情况不同，后者没有以任何正式的方式进行定义。比特币的“规范”是在实现比特币核心的情况下进行的参考总结，而以太坊的规范则是记录在结合了文字语言和数学语言（正式）规范的论文中。除了各种以太坊改进提案之外，此正式规范还定义了以太坊客户端的标准行为： pass:[ <span class="keep-together"> 客户端</span> ]。随着重大变更的通过，《黄皮书》会定期更新： pass:[ <span class="keep-together">以太坊</span> ]。
+((("Bitcoin","Ethereum definition compared to")))这与比特币的情况不同，后者没有以任何正式的方式进行定义。比特币的“规范”是在实现比特币核心的情况下进行的参考总结，而以太坊的规范则是记录在结合了文字语言和数学语言（正式）规范的论文中。除了各种以太坊改进提案之外，此正式规范还定义了以太坊pass:[<span class="keep-together">客户端</span>]的标准行为。随着pass:[<span class="keep-together">以太坊</span>]重大变更的通过，《黄皮书》会定期更新。
 
 以太坊明确正式规范的好处是，以太坊客户端可以有许多独立开发但可互操作的软件。以太坊在网络上运行的实现多样性比其他任何区块链都要多，这通常被认为是一件好事。实际上，这已被证明是抵御网络攻击的绝佳方法，因为针对特定客户端的攻击只会对这一软件的开发人员感到困扰，而当他们修补漏洞时，其他客户端则正常运行，使得整个网络运行几乎不受影响 。
 
@@ -33,7 +33,7 @@
 
 ((("full node","Ethereum-based networks and", id="ix_03clients-asciidoc3", range="startofrange")))((("networks (Ethereum)","full nodes and", id="ix_03clients-asciidoc4", range="startofrange")))区块链网络的健康，适应能力和抗审查性取决于拥有多少独立运行并在地理位置上分散的完整节点。每个完整节点可以帮助其他新节点获取区块数据以引导其操作，以及为运营方提供对所有交易和智能合约的权威且独立的验证。
 
-但是，运行完整的节点需要硬件资源和带宽方面的巨大成本。完整的节点必须下载80–300 GB的数据（截至2020年1月，取决于客户端类型）并将其存储在本地硬盘中。随着新的交易和区块的添加，这种数据负担每天都会迅速增加。我们在<<requirements> >有关于此主题的更多信息。
+但是，运行完整的节点需要硬件资源和带宽方面的巨大成本。完整的节点必须下载80–300 GB的数据（截至2020年1月，取决于客户端类型）并将其存储在本地硬盘中。随着新的交易和区块的添加，这种数据负担每天都会迅速增加。我们在<<requirements>>有关于此主题的更多信息。
 
 在进行以太坊应用开发时无需在实时 _主网_ 上运行的完整节点。你可以通过 _测试网_ 节点（将连接到较小的公共测试区块链之一），本地专用区块链（如Ganache）或由服务提供商（如Infura）提供的基于云的以太坊客户端来完成几乎所有开发需要做的事情。
 
@@ -94,7 +94,7 @@
 
 *缺点：*
 
-* 没有其他用户意味着它的行为与公共区块链不同。在交易空间或通过顺序方面没有竞争 pass:[<span class="keep-together">Transactions</span>]。
+* 没有其他用户意味着它的行为与公共区块链不同。在交易空间或pass:[<span class="keep-together">交易集</span>]排序方面没有竞争。
 * 除你之外没有其他矿工，意味着挖矿更可预测；因此，你无法测试公共区块链上发生的某些情况。
 * 没有其他合约意味着你必须部署要测试的所有内容，包括依赖项和合约库。
 * 无法重新创建一些公共合约及其地址以测试某些情况（例如，DAO合约）。(((range="endofrange", startref="ix_03clients-asciidoc2")))(((range="endofrange", startref="ix_03clients-asciidoc1")))
@@ -119,7 +119,7 @@
 * 使用SSD硬盘需要至少4 GB RAM，如果是HDD硬盘，则至少8 GB RAM。
 * 互联网服务的下载速度不低于8 MBit/sec
 
-这些是同步以太坊的区块链的完整（但已消减）账本的最低要求。
+这些是同步以太坊区块链的完整（但已消减）账本的最低要求。
 
 Parity的代码在编写时，所消耗的系统资源较少，因此，如果你的硬件资源有限，使用Parity可能会看到更好的结果。
 
@@ -130,7 +130,7 @@ Parity的代码在编写时，所消耗的系统资源较少，因此，如果�
 * 具有4个以上内核的高速CPU
 * 16 GB以上的RAM
 * 具有至少500 GB可用空间的高速SSD
-* 互联网服务的下载速度不低于 25+ MBit / sec
+* 互联网服务的下载速度不低于 25 MBit/sec
 
 很难预测区块链大小的增长速度以及何时需要更多磁盘空间，因此建议你在开始同步之前检查区块链账本的最新容量。
 
@@ -159,13 +159,13 @@ Parity的代码在编写时，所消耗的系统资源较少，因此，如果�
 
 在开始之前，你可能需要安装一些软件。如果你从未在当前的计算机上进行过任何软件开发，则可能需要安装一些基本工具。对于以下示例，您将需要安装 +git+，即源代码管理系统； +golang+，Go编程语言和标准库；和Rust（一种系统编程语言）。
 
-(("git"))可以按照 https://git-scm.com[] 上的说明安装Git。
+((("git")))可以按照 https://git-scm.com[] 上的说明安装Git。
 
 (("Go", seealso="Geth (Go-Ethereum)")))可以按照 https://golang.org[] 上的说明安装Go，如果你使用的是Ubuntu，可以按照 https://github.com/golang/go/wiki/Ubuntu[] 上的说明安装。
 
 [NOTE]
 =====
-(("Geth (Go-Ethereum)")))Geth的不同版本要求各不相同，不过如果你使用的是Go 1.10或更高版本，应该可以编译所需的不同版本的Geth。当然，你应该阅读参考文档以了解你选择的Geth版本。
+((("Geth (Go-Ethereum)")))Geth的不同版本要求各不相同，不过如果你使用的是Go 1.10或更高版本，应该可以编译所需的不同版本的Geth。当然，你应该阅读参考文档以了解你选择的Geth版本。
 
 安装在操作系统上默认的 +golang+ 版本可能早于1.10。如果是这样，请将其删除并从 https://golang.org/[] 安装最新版本。
 =====
@@ -187,7 +187,7 @@ $ <strong>sudo apt-get install openssl libssl-dev libudev-dev cmake clang</stron
 
 对于其他操作系统，请你使用该操作系统的软件包管理器，或按照 https://github.com/paritytech/parity/wiki/Setup[Wiki instructions] 来安装所需的软件库。
 
-现在，你已经安装了 +git+ ，+golang+ , Rust，和必需的软件库，让我们开始操作吧！
+现在，你已经安装了 +git+ ，+golang+ , +Rust+ 和必需的软件库，让我们开始操作吧！
 
 [[parity]]
 ==== Parity
@@ -291,7 +291,7 @@ $
 [[cloning_repo]]
 ===== 复制代码库
 
-(("Geth (Go-Ethereum)","cloning Git repo for")))第一步是复制Git的源代码库，以获取源代码的副本。
+((("Geth (Go-Ethereum)","cloning Git repo for")))第一步是复制Git的源代码库，以获取源代码的副本。
 
 要对所选代码库进行本地复制，请在主目录或用于开发的任何目录下，按如下所示运行 +git+ 命令：
 
@@ -317,7 +317,7 @@ Resolving deltas: 100% (57590/57590), done.
 [[build_geth_src]]
 ===== 从源代码构建Geth
 
-(("Geth (Go-Ethereum)","building from source code")))要构建Geth，请转到下载源代码的目录，并使用 +make+ 命令：
+((("Geth (Go-Ethereum)","building from source code")))要构建Geth，请转到下载源代码的目录，并使用 +make+ 命令：
 
 ++++
 <pre data-type="programlisting">
@@ -529,7 +529,7 @@ https://www.cipherbrowser.com[Cipher Browser]:: ((("Cipher Browser")))启用了�
 [[browser_wallets]]
 ==== 浏览器钱包
 
-((("browser wallets")))((("remote clients","browser wallets")))((("wallets","browser wallets")))各种钱包和DApp浏览器都可以作为插件使用-浏览器（例如Chrome和Firefox）的插件或扩展程序。这些是在浏览器中运行的远程客户端。
+((("browser wallets")))((("remote clients","browser wallets")))((("wallets","browser wallets")))各种钱包和DApp浏览器都可以作为插件使用浏览器（例如Chrome和Firefox）的插件或扩展程序。这些是在浏览器中运行的远程客户端。
 
 一些比较流行的是MetaMask，Jaxx，MyEtherWallet和MyCrypto。
 
@@ -554,7 +554,7 @@ https://www.myetherwallet.com/[MyEtherWallet] ((("MyEtherWallet (MEW)")))((("wal
 * 一个Web3界面，可以连接到另一个客户端（例如MetaMask）内嵌的Web3实例
 * 可以连接到以太坊完整客户端的RPC接口
 * 给定合约的地址和应用程序二进制接口（ABI），可以与智能合约进行交互的基本接口
-* 一种移动应用程序MEWConnect，使用户能够使用兼容的Android或iOS设备来存储资金，类似于硬件钱包。
+* 一个移动应用程序，MEWConnect，使用户能够使用兼容的Android或iOS设备来存储资金，类似于硬件钱包。
 * 使用JavaScript运行的软件钱包
 
 [WARNING]
