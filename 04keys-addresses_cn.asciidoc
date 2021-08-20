@@ -50,7 +50,7 @@
 * 椭圆曲线密码学 http://bit.ly/2zfeKCP[Elliptic curve cryptography]
 ====
 
-在以太坊中，我们使用公钥密码技术（也称为非对称密码学）来创建我们在本章中讨论过的公-私密钥对。它们被认为是“一对”，因为公钥是从私钥派生的。它们一起代表一个以太坊账户，一方面是提供一个可公开访问的账户（地址），另一方面是可以私密控制账户里的以太币，以及授权该帐户对智能合约的使用。 ((("digital signatures","private key and")))账户中的任何资金支出都需要数字签名，而这个完成这个签名的唯一信息则由需要私钥来控制访问。数字签名还用于验证智能合约的所有者或用户，正如我们在<<smart_contracts_chapter>>中所看到那样。
+在以太坊中，我们使用公钥密码技术（也称为非对称密码学）来创建我们在本章中讨论过的公-私密钥对。它们被认为是“一对”，因为公钥是从私钥派生的。它们一起代表一个以太坊账户，一方面是提供一个可公开访问的账户（地址），另一方面是可以私密控制账户里的以太币，以及授权该帐户对智能合约的使用。 ((("digital signatures","private key and")))私钥通过作为创建 _数字签名_ 所需的唯一信息来控制访问，数字签名需要签署交易以花费帐户中的任何资金。。数字签名还用于验证智能合约的所有者或用户，正如我们在<<smart_contracts_chapter>>中所看到那样。
 
 [TIP]
 ====
@@ -73,7 +73,7 @@
 
 [TIP]
 ====
-以太坊私钥只是一个数字。随机选择私钥的一种方法是简单地使用硬币，铅笔和纸：投掷256次硬币，你便拥有了可以在以太坊钱包中使用的随机私钥的二进制数字（可能；请参阅下一节）。然后可以从私钥生成公钥和地址。
+以太坊私钥只是一个数字。随机选择私钥的一种方法是简单地使用硬币，铅笔和纸：投掷256次硬币，你便拥有了可以在以太坊钱包中使用的随机私钥的二进制数字（可能&#x2014;请参阅下一节）。然后可以从私钥生成公钥和地址。
 ====
 
 [[generating_private_key]]
@@ -115,7 +115,7 @@ f8f8a2f43c8376ccb0871305060d7b27b0554d2cc72bccf41b2705608452f315
 下面就要讲数学了！不要惊慌，如果你在以下段落中的任何时候迷失，可以跳过接下来的几节。有许多工具和库可以为你完成数学运算。
 ====
 
-公钥是使用椭圆曲线乘法从私钥计算而来的，计算过程是不可逆的：_K_ = _k_ * _G_，其中 _k_ 是私钥，_G_ 是称为启动点((("generator point")))的一个常数点， _K_ 是计算的结果，即公钥，*是特殊的椭圆曲线“乘法”运算符。请注意，椭圆曲线乘法不同于正常乘法。它具有正常乘法的功能属性，仅此而已。例如，称为“查找离散对数”的反向操作（将其除以正数）（即，如果你知道 _K_ 则计算 _k_ ）与尝试 _k_ 的所有可能值一样困难（蛮力搜索）这可能会花费比目前宇宙所允许的更多的时间）。
+公钥是使用椭圆曲线乘法从私钥计算而来的，计算过程是不可逆的：_K_ = _k_ * _G_，其中 _k_ 是私钥，_G_ 是称为启动点((("generator point")))的一个常数点， _K_ 是计算的结果即公钥，* 是特殊的椭圆曲线“乘法”运算符。请注意，椭圆曲线乘法不同于正常乘法。它具有正常乘法的功能属性，仅此而已。例如，称为“查找离散对数”的反向操作（将其除以正数）（即，如果你知道 _K_ 则计算 _k_ ）与尝试 _k_ 的所有可能值一样困难（蛮力搜索）这可能会花费比目前宇宙所允许的更多的时间）。
 
 简单来说：椭圆曲线上的算术不同于“常规”整数算术。点（_G_）可以乘以整数（_k_）以产生另一个点（_K_）。但是没有 _division_ 这样的东西，因此不可能简单地将公钥 _K_ 除以点 _G_ 来计算私钥 _k_ 。这是<<pkc>>中描述的单向数学函数。
 
@@ -130,7 +130,7 @@ f8f8a2f43c8376ccb0871305060d7b27b0554d2cc72bccf41b2705608452f315
 [[elliptic_curve]]
 ==== 对椭圆曲线密码学的解说
 
-((("elliptic curve cryptography","basics", id="ix_04keys-addresses-asciidoc7", range="startofrange")))Elliptic ((("elliptic curve cryptography", id="ix_04keys-addresses-asciidoc8", range="startofrange")))((("public keys","elliptic curve cryptography and", id="ix_04keys-addresses-asciidoc9", range="startofrange")))椭圆曲线密码学是一种一种基于离散对数问题的非对称或公共的密钥密码术，如椭圆曲线上的加法和乘法运算。
+((("elliptic curve cryptography","basics", id="ix_04keys-addresses-asciidoc7", range="startofrange")))Elliptic ((("elliptic curve cryptography", id="ix_04keys-addresses-asciidoc8", range="startofrange")))((("public keys","elliptic curve cryptography and", id="ix_04keys-addresses-asciidoc9", range="startofrange")))椭圆曲线密码学是一种基于离散对数问题的非对称或公共的密钥密码术，如椭圆曲线上的加法和乘法运算。
 
 <<ecc-curve>> 是椭圆曲线的一个例子，类似于以太坊使用的曲线。
 
@@ -143,7 +143,7 @@ f8f8a2f43c8376ccb0871305060d7b27b0554d2cc72bccf41b2705608452f315
 .椭圆曲线的可视化
 image::{abspath}images/simple_elliptic_curve.png["椭圆曲线"]
 
-以太坊使用的椭圆曲线和一组的数学常数，是美国国家标准技术研究院（NIST）建立的称为 +secp256k1+ 的标准所定义。 +secp256k1+ 曲线由以下函数定义，该函数会生成椭圆曲线：
+以太坊使用的椭圆曲线和一组数学常数，是美国国家标准技术研究院（NIST）建立的称为 +secp256k1+ 的标准所定义。 +secp256k1+ 曲线由以下函数定义，该函数会生成椭圆曲线：
 
 ++++
 <div data-type="equation">
@@ -165,7 +165,7 @@ image::{abspath}images/simple_elliptic_curve.png["椭圆曲线"]
     <mspace width="3.33333pt"/>
     <mrow>
       <mo>(</mo>
-      <msub><mi>&#x1d53d;</mi> <mi>p</mi> </msub>
+      <msub><mi>𝔽</mi> <mi>p</mi> </msub>
       <mo>)</mo>
     </mrow>
   </mrow>
@@ -424,7 +424,7 @@ SHA3("") =
 [[eth_address]]
 === 以太坊地址
 
-(("addresses", id="ix_04keys-addresses-asciidoc14", range="startofrange")))((("cryptography","Ethereum addresses and", id="ix_04keys-addresses-asciidoc15", range="startofrange")))以太坊地址是“唯一标识符”，它们是使用Keccak-256单向哈希函数从公钥或合约计算得出的。
+((("addresses", id="ix_04keys-addresses-asciidoc14", range="startofrange")))((("cryptography","Ethereum addresses and", id="ix_04keys-addresses-asciidoc15", range="startofrange")))以太坊地址是“唯一标识符”，它们是使用Keccak-256单向哈希函数从公钥或合约计算得出的。
 
 在前面的示例中，我们从私钥开始，并使用椭圆曲线乘法得出公钥：
 
@@ -490,11 +490,11 @@ IBAN包含最多34个字母数字字符的字符串（不区分大小写），�
 
 ICAP使用相同的结构，通过引入代表“Ethereum”的非标准国家代码“XE”，后面跟着两个字符的校验和以及3个可能的账户标识符变体：
 
-直接 Direct:: 由36个大尾数的整数组成，由最多30个字母数字字符组成，代表以太坊地址的155个最低有效位。由于此编码的容量不足以太坊地址的全部160位，因此仅适用于以一个或多个零字节开头的以太坊地址。优点是就字段长度和校验和而言，它与IBAN兼容。示例： +XE60HAMICDXSV5QXVJA7TJW47Q9CHWKJD+ （33个字符长）。
+直接 Direct:: 由36个大端序的整数组成，由最多30个字母数字字符组成，代表以太坊地址的155个最低有效位。由于此编码的容量不足以太坊地址的全部160位，因此仅适用于以一个或多个零字节开头的以太坊地址。优点是就字段长度和校验和而言，它与IBAN兼容。示例： +XE60HAMICDXSV5QXVJA7TJW47Q9CHWKJD+ （33个字符长）。
 
 基础 Basic:: 与直接编码相同，但长度为31个字符。这允许它对任何以太坊地址进行编码，但使其与IBAN字段验证不兼容。示例： +XE18CHDJBPLTBCJ03FE9O2NS0BPOJVQCU2P+ （长35个字符）。
 
-间接 Indirect:: 对通过名称注册提供程序解析为以太坊地址的标识符进行编码。它使用16个字母数字字符，包括 _asset identifier_（例如ETH），名称服务（例如XREG）和9个字符的人类可读名称（例如KITTYCATS）。示例：+XEpass：[##] ETHXREGKITTYCATS +（长20个字符），其中 +##+ 应该由两个计算出的校验和字符替换。
+间接 Indirect:: 对通过名称注册提供程序解析为以太坊地址的标识符进行编码。它使用16个字母数字字符，包括 _asset identifier_（例如ETH），名称服务（例如XREG）和9个字符的人类可读名称（例如KITTYCATS）。示例： +XEpass:[##]ETHXREGKITTYCATS+（长20个字符），其中 +##+ 应该由两个计算出的校验和字符替换。
 
 ((("EthereumJS helpeth")))((("helpeth command-line tool"))) 我们可以使用 +helpeth+ 命令行工具来创建ICAP地址。你可以通过以下方式安装以获取帮助：
 
@@ -625,7 +625,7 @@ Keccak256("001d3f1ef827552ae1114027bd3ecf1f086ba0e9") =
 
 都错了！一些字母字符的大小写错误。请记住，大写字母是包括正确 _correct_ 校验和的编码。
 
-我们输入的地址的大写字母与刚刚计算出的校验和不匹配，这意味着地址中发生了某些变化，并且导致了错误： pass:[ <span class="keep-together">引入</span> ](((range="endofrange", startref="ix_04keys-addresses-asciidoc21")))(((range="endofrange", startref="ix_04keys-addresses-asciidoc20")))(((range="endofrange", startref="ix_04keys-addresses-asciidoc19"))).(((range="endofrange", startref="ix_04keys-addresses-asciidoc15")))(((range="endofrange", startref="ix_04keys-addresses-asciidoc14")))
+我们输入的地址的大写字母与刚刚计算出的校验和不匹配，这意味着地址中发生了某些变化，并且导致了错误被 pass:[<span class="keep-together">引入</span>](((range="endofrange", startref="ix_04keys-addresses-asciidoc21")))(((range="endofrange", startref="ix_04keys-addresses-asciidoc20")))(((range="endofrange", startref="ix_04keys-addresses-asciidoc19"))).(((range="endofrange", startref="ix_04keys-addresses-asciidoc15")))(((range="endofrange", startref="ix_04keys-addresses-asciidoc14")))
 
 
 [[keys-addresses-conclusions]]
