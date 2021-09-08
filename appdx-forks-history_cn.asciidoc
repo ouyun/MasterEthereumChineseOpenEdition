@@ -21,28 +21,28 @@ DAO代币可从2016年4月5日至2016年4月30日进行众筹购买，积累了 
 [[dao_reentrancy_bug]]
 === 重入错误
 
-((("forks","reentrancy bug")))((("reentrancy bug")))在2016年6月9日，开发人员Peter Vessenes和Chriseth报告说，大多数基于以太坊系统的托管资金合约可能都存在 http://bit.ly/2AAaDmA[容易受到攻击的弱点]，可能会清空合约的资金。几天后的6月12日，Stephen Tual（Slock.it的联合创始人）报告说， http://bit.ly/2qmo3g1[DAO的代码是安全的]，不会受到Peter和Chriseth描述的安全问题的影响。这暂时使得担心的DAO贡献者松了一口气；直到五天后，一个未名的攻击者使用了类似于被警告的漏洞对DAO合约开始攻击 http://bit.ly/2Q7zR1h[抽干DAO]开始攻击。最终，DAO攻击者从DAO合约中抽走了约360万以太币。
+((("forks","reentrancy bug")))((("reentrancy bug")))在2016年6月9日，开发人员Peter Vessenes和Chriseth报告说，大多数基于以太坊系统的托管资金合约可能都存在 http://bit.ly/2AAaDmA[容易受到攻击的弱点]，可能会清空合约的资金。几天后的6月12日，Stephen Tual（Slock.it的联合创始人）报告说， http://bit.ly/2qmo3g1[DAO的代码是安全的]，不会受到Peter和Chriseth描述的安全问题的影响。这暂时使得担心的DAO贡献者松了一口气；直到五天后，一个未名的攻击者使用了类似于被警告的漏洞对DAO合约开始攻击 http://bit.ly/2Q7zR1h[抽干DAO draining The DAO]。最终，DAO攻击者从DAO合约中抽走了约360万以太币。
 
 同时，一群自称为Robin Hood Group（RHG）的志愿者开始使用相同的漏洞来提取剩余资金，以免被DAO攻击者偷走。 6月21日， http://bit.ly/2PtX4xl[RHG宣布]，他们已经获得了DAO资金的约70％（约720万以太币），并计划将其返还给社区（他们成功地在ETC网络上这样做了 ，而在以太坊网络上分叉后无需进行）。感谢RHG的迅速思考和快速行动，帮助确保了社区的大部分以太币，他们对此表示感谢和赞赏。
 
 [[dao_reentrancy_bug_technicals]]
 ==== 技术细节
-((("reentrancy bug","technical details")))虽然 http://bit.ly/2EQaLCI[Phil Daian]给出了该错误的详细彻底的解释，但简短的解释是DAO中的两行至关重要的代码上出现了顺序错误，这意味着在检查攻击者是否有权提取以太币之前，攻击者多次要求退回以太币的要求已经完成。此类漏洞在<<reentrancy_security>>中进行了描述。
+((("reentrancy bug","technical details")))虽然 http://bit.ly/2EQaLCI[Phil Daian]给出了该错误的详细彻底的解释，但简短的解释是DAO中的两行至关重要的代码上出现了顺序错误，这意味着在检查攻击者是否有权提取以太币之前，攻击者多次要求提取以太币的请求就已经完成。此类漏洞在<<reentrancy_security>>中进行了描述。
 
 [[dao_reentrancy_bug_attack_flow]]
 ==== 攻击过程
-(("reentrancy bug","attack flow")))想象一下，你的银行帐户中有$ 100，不过你可以给银行出纳员任意数量的提款单。出纳员会按顺序给您每张提款单的钱，但是只有在处理完所有提款单后他们才会记录你的提款。如果你给他们带来了三张提款单，每张提款单要求提取$ 100怎么办？如果你带他们三千张提款单会怎么样？
+((("reentrancy bug","attack flow")))想象一下，你的银行帐户中有$100，不过你可以给银行出纳员任意数量的提款单。出纳员会按顺序给您每张提款单的钱，但是只有在处理完所有提款单后他们才会记录你的提款。如果你给他们带来了三张提款单，每张提款单要求提取$100怎么办？如果你带他们三千张提款单会怎么样？
 
 DAO攻击的工作方式如下：
 
 1. DAO的攻击者要求从DAO合约提取DAO通证（DAO）。
-2. 攻击者再次要求合约撤回DAO，然后合约更新其状态记录以表明DAO已撤回。
+2. 攻击者 _再次_ 要求合约提取DAO，然后合约更新其状态记录以表明DAO已提取。
 3. 攻击者不断重复执行步骤2。
 4. 合约最终只记录了一次DAO提款，没有记录在此期间发生的其它提款。
 
 [[dao_hard_fork]]
 === The DAO事件的硬分叉
-((("DAO (Decentralized Autonomous Organization)","hard fork", id="ix_appdx-forks-history-asciidoc4", range="startofrange")))((("forks","DAO", id="ix_appdx-forks-history-asciidoc5", range="startofrange")))((("hard forks", id="ix_appdx-forks-history-asciidoc6", range="startofrange")))幸运的是，DAO合约内部设置了几项保护措施：重要的是，所有提款请求都将延迟28天。这给了社区一些时间来讨论如何利用此措施来补上漏洞，因为从6月17日至7月20日左右，DAO攻击者将无法将其DAO代币转换为以太币。
+((("DAO (Decentralized Autonomous Organization)","hard fork", id="ix_appdx-forks-history-asciidoc4", range="startofrange")))((("forks","DAO", id="ix_appdx-forks-history-asciidoc5", range="startofrange")))((("hard forks", id="ix_appdx-forks-history-asciidoc6", range="startofrange")))幸运的是，DAO合约内部设置了几项保护措施：尤其是所有提款请求都将延迟28天。这给了社区一些时间来讨论如何利用此措施来补上漏洞，因为从6月17日至7月20日左右，DAO攻击者将无法将其DAO代币转换为以太币。
 
 几位开发人员致力于找到可行的解决方案，并在较短的时间内探索了多种途径。其中包括6月24日宣布的 http://bit.ly/2qhruEK[_DAO软分叉_]和晚些于7月15日宣布的 http://bit.ly/2AAGjIu[_DAO硬分叉_]，以一种特殊的系统状态改变来翻转DAO攻击的影响。
 
@@ -56,7 +56,7 @@ DAO攻击的工作方式如下：
 
 ((("Ethereum Classic (ETC)","origins")))当DAO硬分叉的Ethereum（现今的Ethereum）获得了多数矿工的支持时，许多人认为达成了共识，少数人支持的链会逐渐消失，像以前的硬分叉一样。尽管如此，以太坊社区的相当一部分（按价值和采矿能力计算约占10％）开始支持未分支的链，后来被称为以太坊经典。
 
-在分叉发生后的几天之内，几家交易所都开始列出以太坊（“ ETH”）和以太坊经典（“ ETC”）。由于硬分叉的性质，所有在分叉时持有以太的以太坊用户随后在两个链上都持有相同的资金余额。因此，ETC的市场价值在7月24日上市ETC后很快就建立了 http://bit.ly/2qhuNvP[Poloniex]。
+在分叉发生后的几天之内，几家交易所都开始列出以太坊（“ ETH”）和以太坊经典（“ ETC”）。由于硬分叉的性质，所有在分叉时持有以太的以太坊用户随后在两个链上都持有相同的资金余额。因此，ETC的市场价值在http://bit.ly/2qhuNvP[Poloniex]于7月24日上市ETC后很快就建立了 。
 
 [[dao_hard_fork_timeline]]
 ==== DAO硬分叉的时间表
@@ -66,22 +66,22 @@ DAO攻击的工作方式如下：
 - 2016年5月27日：DAO众筹结束。
 - 2016年6月9日：发现了一个通用的 http://bit.ly/2AAaDmA[递归调用错误]，据信它会影响许多跟踪用户余额的Solidity合约。
 - 2016年6月12日：Stephen Tual http://bit.ly/2qmo3g1[声明] DAO的资金没有风险。
-- 2016年6月17日： http://bit.ly/2EQaLCI[被滥用的DAO]，并使用发现的漏洞的变体（称为“重入漏洞”）开始抽出合约中的资金，最终夺走了合约中约30％的以太币。
-- 2016年6月21日：RHG http://bit.ly/2zgl3Gk[公告]它已保护DAO中存储的约70％的以太币。
+- 2016年6月17日： http://bit.ly/2EQaLCI[DAO被滥用]，并使用发现的漏洞的变体（称为“重入漏洞”）开始抽出合约中的资金，最终夺走了合约中约30％的以太币。
+- 2016年6月21日：RHG http://bit.ly/2zgl3Gk[声明]它已保护DAO中存储的约70％的以太币。
 - 2016年6月24日：用户可以通过Geth和Parity客户端进行签名，来选择是否加入 http://bit.ly/2qhruEK[软分叉投票]，旨在临时扣留资金，直到社区可以做出更好的决定。
 - 2016年6月28日：在软叉中发现了 http://bit.ly/2zgOxUn[漏洞]，并将其放弃。
 - 2016年6月28日至7月15日：用户们讨论是否要进行硬分叉；大部分公开辩论都在 _/r/ethereum_ subreddit上进行。
 - 2016年7月15日：提出了 http://bit.ly/2qmo3g1[DAO硬叉]，以退还DAO攻击中获得的资金。
 - 2016年7月15日：CarbonVote上的 http://bit.ly/2ABkTuV[举行投票]决定DAO硬分叉是选择加入（默认情况下不进行分叉）还是选择退出（选择分叉）默认）。
-- 2016年7月16日： http://bit.ly/2RuUrJh[占以太币供应总票数的5.5％]；通过：[〜80％的选票（约占总供应量的4.5％]）赞成默认硬分叉，赞成票的四分之一来自单个地址。
+- 2016年7月16日： http://bit.ly/2RuUrJh[占以太币供应总票数的5.5％]；pass:[〜80％的选票，约占总供应量的4.5％]）赞成默认硬分叉，赞成票的四分之一来自单个地址。
 - 2016年7月20日： http://bit.ly/2yJxZ83[硬分叉]在1,920,000区块发生了。
-- 2016年7月20日：反对DAO硬分叉的用户将继续运行旧的客户端软件；这会导致 http://bit.ly/2qjJm27的问题[交易在两个链上都被重播]。
+- 2016年7月20日：反对DAO硬分叉的用户将继续运行旧的客户端软件，这会导致 http://bit.ly/2qjJm27[交易在两个链上都被重播]的问题。
 - 2016年7月24日： http://bit.ly/2qhuNvP[Poloniex交易所]将原始的以太坊链作为单独代币列出，代币代码为ETC；这是第一个这样做的交易所。
-- 2016年8月10日：RHG http://bit.ly/2JrLpK2[将二百九十万]回收的ETC转移到Poloniex，以便根据Bity SA的建议将其转换为ETH； RHG持有总量的14％从ETC转换为ETH和其他加密货币， http://bit.ly/2ETDdUc[Poloniex冻结]其余86％的已存储ETH。
+- 2016年8月10日：RHG http://bit.ly/2JrLpK2[将290万]回收的ETC转移到Poloniex，以便根据Bity SA的建议将其转换为ETH； RHG持有总量的14％从ETC转换为ETH和其他加密货币， http://bit.ly/2ETDdUc[Poloniex冻结]其余86％的已存储ETH。
 - 2016年8月30日：冻结的资金由Poloniex发送回RHG，后者随后在ETC链上建立了退款合约。
-- 2016年12月11日：由以太坊创始成员Charles Hoskinson领导的IOHK组建了ETC开发团队。
+- 2016年12月11日：由以太坊创始成员Charles Hoskinson领导的IOHK组建了ETC开发团队（译者注：难怪2021年上半年短短数月ETC从几刀被拉高至数十刀，最高时甚至到一百多刀，截止目前2021年9月也保持在数十刀的价位，原来ETC的亲老爹是IOHK）。
 - 2017年1月13日：ETC网络进行了更新以解决交易重放问题；不同的链目前在功能上是分开的。
-- 2017年2月20日：ETC 开发团队列表，由早期ETC开发人员Igor Artamonov领导(((range="endofrange", startref="ix_appdx-forks-history-asciidoc6"))) (splix).(((range="endofrange", startref="ix_appdx-forks-history-asciidoc5")))(((range="endofrange", startref="ix_appdx-forks-history-asciidoc4")))(((range="endofrange", startref="ix_appdx-forks-history-asciidoc3")))
+- 2017年2月20日：ETCDEVTeam形成，由早期ETC开发人员Igor Artamonov领导(((range="endofrange", startref="ix_appdx-forks-history-asciidoc6"))) (splix).(((range="endofrange", startref="ix_appdx-forks-history-asciidoc5")))(((range="endofrange", startref="ix_appdx-forks-history-asciidoc4")))(((range="endofrange", startref="ix_appdx-forks-history-asciidoc3")))
 
 [[eth_etc_differences]]
 === 以太坊和以太坊经典
@@ -100,16 +100,18 @@ DAO攻击的工作方式如下：
 [[ethereum_forks]]
 === 其他著名的以太坊分叉
 
-((("Ellaism")))https://ellaism.org/about/[Ellaism]是一个基于以太坊的网络，旨在专门使用PoW来保护区块链。它没有预挖矿，也没有强制性的开发商费用，所有支持和开发都是社区免费捐赠的。它的开发人员认为，这使他们成为“最诚实的纯以太坊项目之一”，并且“对于认真的开发人员，教育者和发烧友来说，这是一个非常有趣的平台。 Ellaism是一个纯粹的智能合约平台。其目标是创建一个既公平又值得信赖的智能合约平台。”该平台的宗旨如下：
+（译者注：截止2021年9月，以下除ETZ（排名2500+）、ETI/EXP（甚至没有排名）、Ellaism项目改名为Bitcoin Evolution做起通证投资掮客，其它都没活下来，像ETHB，EMOD甚至直接消失了。）
+
+((("Ellaism")))https://ellaism.org/about/[Ellaism]是一个基于以太坊的网络，旨在专门使用PoW来保护区块链。它没有预挖矿，也不用向开发者支付任何报酬，所有支持和开发都是社区免费捐赠的。它的开发人员认为，这使他们成为“最诚实的纯以太坊项目之一”，并且“对于认真的开发人员，教育者和发烧友来说，这是一个非常有趣的平台。 Ellaism是一个纯粹的智能合约平台。其目标是创建一个既公平又值得信赖的智能合约平台。”该平台的宗旨如下：
 
 ____
 * 对协议的所有更改和升级都应努力维护和加强这些《Ellaism原则》。
 * 货币政策：2.8亿枚货币。
 * 无审查：没有人可以能够阻止有效的交易被确认。
-作为开放项目，区块链平台通常具有许多用户和贡献者。但是，由于开发此类软件所需的专业技能和知识，核心网络的开发（即，运行网络的代码的开发）通常由一个专家小组完成。在以太坊的开发上，这项工作由以太坊基金会和志愿者完成。在以太坊经典上，这是由ETCDEV，IOHK和志愿者完成的。
+* 开源：Ellaism 源代码应始终开放供任何人阅读、修改、复制、共享。
 * 无限准入：任何专门的网络防护都不应阻止任何人成为网络的一部分（用户，节点，矿工等）。
-* 假名：不要求拥有任何ID，使用Ellaism。
-* 可替代：所有货币都是平等的，应同等使用。
+* 化名：不要求拥有任何ID，使用Ellaism。
+* 同质化：所有货币都是平等的，应同等使用。
 * 不可逆转的交易：已确认的区块应当像刻在石头上一样确定。区块链的历史应该是无法改变的。
 * 无争议的硬分叉：未经整个社区的一致同意，切勿进行硬分叉。仅在必要时打破现有共识。
 * 许多功能升级无需硬分叉即可完成，例如提高EVM的性能。
@@ -121,7 +123,7 @@ ____
 
 以下是一些较著名的分支的简要概述：
 
-- ((("Expanse"))) _Expanse_ 是以太坊区块链中第一个获得关注的分支。它是在2015年9月7日通过比特币谈话论坛宣布的。实际的分叉发生在一周后的2015年9月14日，区块高度为800,000。它最初由Christopher Franko和James Clayton创立。他们明确要创建一个以“身份，治理，慈善，商业和公平”为愿景的高级链。
-- ((("ETF (EthereumFog)")))((("EthereumFog (ETF)"))) _EthereumFog_（ETF）于2017年12月14日推出，并以4,730,660的区块高度分叉。该项目的既定目标是通过专注于雾计算和分散存储来开发“世界分布式雾计算”。关于这实际上需要做什么的信息仍然很少。
-- _EtherZero_（ETZ）(("EtherZero (ETZ)")))于2018年1月19日发布，区块高度为4,936,270。它的显著创新是引入了主节点体系结构，并取消了智能合约的交易费用，从而使DApp的种类更加广泛。以太坊社区的一些著名项目，如MyEtherWallet和MetaMask对此提出了一些批评，因为项目对开发过程缺乏清晰的解释，并存在一些网络钓鱼的可能性。
+- ((("Expanse"))) _Expanse_ （EXP）是以太坊区块链中第一个获得关注的分支。它是在2015年9月7日通过Bitcoin Talk forum宣布的。实际的分叉发生在一周后的2015年9月14日，区块高度为800,000。它最初由Christopher Franko和James Clayton创立。他们明确要创建一个以“身份，治理，慈善，商业和公平”为愿景的高级链。
+- ((("ETF (EthereumFog)")))((("EthereumFog (ETF)"))) _EthereumFog_（ETF）于2017年12月14日推出，并以4,730,660的区块高度分叉。该项目的既定目标是通过专注于雾计算和分散存储来开发“世界分布式雾计算”。关于实际上需要做什么的信息仍然很少。
+- _EtherZero_（ETZ）((("EtherZero (ETZ)")))于2018年1月19日发布，区块高度为4,936,270。它的显著创新是引入了主节点体系结构，并取消了智能合约的交易费用，从而使DApp的种类更加广泛。以太坊社区的一些著名项目，如 MyEtherWallet 和 MetaMask 对此提出了一些批评，因为项目对开发过程缺乏清晰的解释，并存在一些网络钓鱼的可能性。
 - ((("EtherInc (ETI)")))((("ETI (EtherInc)"))) _EtherInc_（ETI）于2018年2月13日启动，区块高度为5,078,585，重点是建立分散式的组织。项目宣布的目标包括减少出块时间，增加矿工奖励，取消叔块奖励并为可开采以太币设定上限。 EtherInc使用与以太坊相同的私钥，并实现了重播保护以保护原始未分叉链上的以太币。(((range="endofrange", startref="ix_appdx-forks-history-asciidoc2")))(((range="endofrange", startref="ix_appdx-forks-history-asciidoc1")))(((range="endofrange", startref="ix_appdx-forks-history-asciidoc0")))

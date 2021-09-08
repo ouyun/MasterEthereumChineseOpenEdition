@@ -1,23 +1,23 @@
 [appendix]
 [[evm_opcodes]]
-== 以太坊虚拟机EVM操作码和所需燃料gas量
+== 以太坊虚拟机EVM操作码和所需燃料gas消耗量
 
-((("EVM (Ethereum Virtual Machine)","opcodes and gas consumption")))((("gas","EVM opcodes and gas consumption")))本附录基于开发者所做的工作 https://github.com/trailofbits/evm-opcodes[]，可以作为以太坊虚拟机（EVM）操作码和指令信息的参考，版权遵循 http://bit.ly/2zfrv0b[Apache许可2.0]许可。
+((("EVM (Ethereum Virtual Machine)","opcodes and gas consumption")))((("gas","EVM opcodes and gas consumption")))本附录基于 https://github.com/trailofbits/evm-opcodes[]开发者所做的工作，可以作为以太坊虚拟机（EVM）操作码和指令信息的参考，版权遵循 http://bit.ly/2zfrv0b[Apache许可2.0]许可。
 
 [[evm_opcodes_table]]
 [cols=",,,,",options="header",]
-.EVM操作码和燃料gas消耗
+.EVM操作码和燃料gas成本
 |=======================================================================================================================================================================================================
 |操作码|名称|描述|其他信息|燃料gas消耗量
-|`0x00` |+STOP+ |暂停执行|-| 0
+|`0x00` |+STOP+ |Halts execution |- |0
 
-|`0x01` | +ADD+ |加法运算|-| 3
+|`0x01` |+ADD+ |Addition operation |- |3
 
-|`0x02` | +MUL+ |乘法运算|-| 5
+|`0x02` |+MUL+ |Multiplication operation |- |5
 
-|`0x03` | +SUB+ |减法运算|-| 3
+|`0x03` |+SUB+ |Subtraction operation |- |3
 
-|`0x04` | +DIV+ |整数除法运算|-| 5
+|`0x04` |+DIV+ |Integer division operation |- |5
 
 |`0x05` |+SDIV+ |Signed integer division operation (truncated) |- |5
 
@@ -29,25 +29,25 @@
 
 |`0x09` |+MULMOD+ |Modulo multiplication operation |- |8
 
-|`0x0a` |+EXP+ | 指数运算 |- |10***
+|`0x0a` |+EXP+ |Exponential operation |- |10***
 
 |`0x0b` |+SIGNEXTEND+ |Extend length of two's complement signed integer |- |5
 
 |`0x0c` - `0x0f` | 未使用 | 未使用 |- |
 
-|`0x10` | +LT+ |小于比较|-| 3
+|`0x10` |+LT+ |Less-than comparison |- |3
 
-|`0x11` | +GT+ | 大于比较 |- |3
+|`0x11` |+GT+ |Greater-than comparison |- |3
 
-|`0x12` | +SLT+ | 带符号的小于比较 |- |3
+|`0x12` |+SLT+ |Signed less-than comparison |- |3
 
-|`0x13` | +SGT+ |Signed greater-than comparison |- |3
+|`0x13` |+SGT+ |Signed greater-than comparison |- |3
 
-|`0x14` | +EQ+ |Equality comparison |- |3
+|`0x14` |+EQ+ |Equality comparison |- |3
 
-|`0x15` | +ISZERO+ |Simple NOT operator |- |3
+|`0x15` |+ISZERO+ |Simple NOT operator |- |3
 
-|`0x16` | +AND+ |Bitwise AND operation |- |3
+|`0x16` |+AND+ |Bitwise AND operation |- |3
 
 |`0x17` |+OR+ |Bitwise OR operation |- |3
 
@@ -329,3 +329,4 @@
 
 |`0xff` |+SELFDESTRUCT+ |Halt execution and register account for later deletion |- |5000*
 |=======================================================================================================================================================================================================
+

@@ -3,9 +3,9 @@
 == web3.js教程
 
 === 说明
-((("web3.js","tutorial", id="ix_appdx-web3js-tutorial-asciidoc0", range="startofrange")))本教程基于web3@1.0.0-beta.29 web3.js 。作为对web3.js的一个介绍教程。
+((("web3.js","tutorial", id="ix_appdx-web3js-tutorial-asciidoc0", range="startofrange")))本教程基于web3@1.0.0-beta.29 web3.js ，作为对web3.js的一个介绍教程。
 
-web3.js JavaScript软件库是一个模块集合，这些模块包含针对以太坊生态系统的特定功能，以及实现通用JSON RPC规范的与以太坊兼容的JavaScript API。
+web3.js JavaScript库是一个模块集合，这些模块包含针对以太坊生态系统的特定功能，以及实现通用JSON RPC规范的与以太坊兼容的JavaScript API。
 
 要运行此脚本，您无需运行自己的本地节点，可以使用 https://infura.io[Infura services]。
 
@@ -140,7 +140,7 @@ web3.eth.getCode(our_contract_address).then(function(code) {
 
 接下来，我们将准备与Etherscan Explorer API进行通讯的环境。
 
-让我们在Evanscan Explorer API中为Kovan测试链初始化一个合约URL：
+让我们在Etherscan explorer API中为Kovan测试链初始化一个合约URL：
 
 [source,solidity]
 ----
@@ -246,4 +246,4 @@ our_contract.methods.totalSupply().call().then(function(totalSupply){
 
 === 使用Await命令完成的异步操作
 
-((("await construct")))((("web3.js","asynchronous operation with await")))现在，你已经看过基本教程，可以使用异步 +await+ 结构尝试完成相同的操作。查看 http://bit.ly/2ABrFkl[_code/web3js_]中的_web3-contract-basic-interaction-async-await.js_脚本，并将其与本教程进行比较，以了解它们之间的区别。异步等待操作的命令更易于阅读，因为它使异步操作的行为更像是一系列阻塞调用。(((range="endofrange", startref="ix_appdx-web3js-tutorial-asciidoc0")))
+((("await construct")))((("web3.js","asynchronous operation with await")))现在，你已经看过基本教程，可以使用异步 +await+ 结构尝试完成相同的操作。查看 http://bit.ly/2ABrFkl[_code/web3js_] 中的 _web3-contract-basic-interaction-async-await.js_ 脚本，并将其与本教程进行比较，以了解它们之间的区别。异步等待操作的命令更易于阅读，因为它使异步操作的行为更像是一系列阻塞调用。(((range="endofrange", startref="ix_appdx-web3js-tutorial-asciidoc0")))
