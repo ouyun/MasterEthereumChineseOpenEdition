@@ -6,12 +6,54 @@
 
 console.log('Mastering Ethereum - web3.js basic interactions using async/await')
 console.log('Author: Francisco Javier Rojas García - fjrojasgarcia@gmail.com')
+console.log('Revisor: Ou Yun - ouyangowen@gmail.com')
 
 var Web3 = require('web3');
 var fs = require('fs')
 
-// Prepare your Infura host url
-var infura_host = "https://kovan.infura.io"
+const optionDefinitions = [
+  { name: 'localRPC', alias: 'l', type: Boolean },
+  { name: 'infuraFileToken', alias: 'i', type: String, defaultOption: true },
+  { name: 'etherscanFileToken', alias: 'e', type: String, defaultOption: false }
+]
+
+const commandLineArgs = require('command-line-args')
+const options = commandLineArgs(optionDefinitions)
+
+if (options.infuraFileToken && !options.localRPC) {
+  console.log(options.infuraFileToken);
+
+  // Loading an Infura Token from a file
+  var infura_token = fs.readFileSync(options.infuraFileToken, 'utf8');
+
+  // Show your Infura token
+  console.log(infura_token);
+
+  // Prepare your Infura host url
+  var infura_host = `https://kovan.infura.io/v3/${infura_token}`
+
+} else {
+  console.log('Not argument found for infura token');
+
+  // Prepare your Infura host url
+  var infura_host = "https://kovan.infura.io/v3"
+
+}
+
+// Show your Infura host url for your web3 connection
+console.log(infura_host);
+
+if (options.etherscanFileToken) {
+  console.log(options.etherscanFileToken);
+
+  // Loading an Etherscan Token from a file
+  var etherscan_token = fs.readFileSync(options.etherscanFileToken, 'utf8');
+
+  // Show your Etherscan token
+  console.log(etherscan_token);
+} else {
+  console.log('Not argument found for etherscan token');
+}
 
 // Instantiate web3 provider
 var web3 = new Web3(infura_host);
@@ -48,7 +90,9 @@ async function basicInterations() {
   console.log("-------------------------------------------------------------\n");
 
   // Let's initialize our contract url in Etherescan for Kovan chain
-  var etherescan_url = `http://kovan.etherscan.io/api?module=contract&action=getabi&address=${our_contract_address}`
+  // Right now, querying from etherscan.io is only provided throught api key token which is only supported on mainnet
+  var your_contract_address = '0x514910771AF9Ca656af840dff83E8264EcF986CA' //address of chainlink smart contract
+  var etherescan_url = `https://api.etherscan.io/api?module=contract&action=getabi&address=${your_contract_address}&apikey=${etherscan_token}`
   console.log(etherescan_url);
 
   var client = require('node-rest-client-promise').Client();

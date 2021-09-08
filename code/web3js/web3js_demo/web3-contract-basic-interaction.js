@@ -9,10 +9,12 @@
 
 console.log('Mastering Ethereum - web3.js basic interactions')
 console.log('Author: Francisco Javier Rojas García - fjrojasgarcia@gmail.com')
+console.log('Revisor: Ou Yun - ouyangowen@gmail.com')
 
 const optionDefinitions = [
   { name: 'localRPC', alias: 'l', type: Boolean },
-  { name: 'infuraFileToken', type: String, defaultOption: true }
+  { name: 'infuraFileToken', alias: 'i', type: String, defaultOption: true },
+  { name: 'etherscanFileToken', alias: 'e', type: String, defaultOption: false }
 ]
 
 const commandLineArgs = require('command-line-args')
@@ -31,18 +33,30 @@ if (options.infuraFileToken && !options.localRPC) {
   console.log(infura_token);
 
   // Prepare your Infura host url
-  var infura_host = `https://kovan.infura.io/${infura_token}`
+  var infura_host = `https://kovan.infura.io/v3/${infura_token}`
 
 } else {
   console.log('Not argument found for infura token');
 
   // Prepare your Infura host url
-  var infura_host = "https://kovan.infura.io"
+  var infura_host = "https://kovan.infura.io/v3"
 
 }
 
 // Show your Infura host url for your web3 connection
 console.log(infura_host);
+
+if (options.etherscanFileToken) {
+  console.log(options.etherscanFileToken);
+
+  // Loading an Etherscan Token from a file
+  var etherscan_token = fs.readFileSync(options.etherscanFileToken, 'utf8');
+
+  // Show your Etherscan token
+  console.log(etherscan_token);
+} else {
+  console.log('Not argument found for etherscan token');
+}
 
 // Instantiate web3 provider
 var web3 = new Web3(infura_host);
@@ -82,8 +96,10 @@ web3.eth.getCode(our_contract_address).then(function(code) {
       console.log("-------------------------------------------------------------\n");
 })
 
-// Let's initialize our contract url in Etherescan for Kovan chain
-var etherescan_url = `http://kovan.etherscan.io/api?module=contract&action=getabi&address=${our_contract_address}`
+// Let's initialize your contract url in Etherescan for Kovan chain
+// oijen: Right now, querying from etherscan.io is only provided throught api key token which is only supported on mainnet
+var your_contract_address = '0x514910771AF9Ca656af840dff83E8264EcF986CA' // oijen: address of chainlink ERC20 token smart contract
+var etherescan_url = `https://api.etherscan.io/api?module=contract&action=getabi&address=${your_contract_address}&apikey=${etherscan_token}`
 console.log(etherescan_url);
 
 var client = require('node-rest-client-promise').Client();
@@ -95,15 +111,15 @@ client.getPromise(etherescan_url)
   //const util = require('util')
   //console.log(util.inspect(client_promise, false, null))
 
-  // We get here our contract ABI
-  our_contract_abi = JSON.parse(client_promise.data.result);
+  // We get here your contract ABI
+  your_contract_abi = JSON.parse(client_promise.data.result);
 
   // And now we create a promise to consume later
   return new Promise((resolve, reject) => {
-      var our_contract = new web3.eth.Contract(our_contract_abi, our_contract_address);
+      var your_contract = new web3.eth.Contract(your_contract_abi, your_contract_address);
       try {
         // If all goes well
-        resolve(our_contract);
+        resolve(your_contract);
       } catch (ex) {
         // If something goes wrong
         reject(ex);
@@ -111,19 +127,19 @@ client.getPromise(etherescan_url)
     });
 
 })
-.then((our_contract) => {
-  // Let's see our contract address
-  console.log(`Our Contract address:  ${our_contract._address}`);
+.then((your_contract) => {
+  // Let's see your contract address
+  console.log(`Your Contract address:  ${your_contract._address}`);
 
   // or in this other way
-  console.log(`Our Contract address in other way:  ${our_contract.options.address}`);
+  console.log(`Your Contract address in other way:  ${your_contract.options.address}`);
 
-  // Now our contract abi
-  console.log("Our contract abi: " + JSON.stringify(our_contract.options.jsonInterface));
+  // Now your contract abi
+  console.log("Your contract abi: " + JSON.stringify(your_contract.options.jsonInterface));
 
-  // This is turning more interesting, let's see what's going with our contract methods
-  // Now let's see our contract total supply in a callback fashion
-  our_contract.methods.totalSupply().call(function(err, totalSupply) {
+  // This is turning more interesting, let's see what's going with your contract methods
+  // Now let's see your contract total supply in a callback fashion
+  your_contract.methods.totalSupply().call(function(err, totalSupply) {
       if (!err) {
           console.log(`Total Supply with a callback:  ${totalSupply}`);
       } else {
@@ -132,7 +148,7 @@ client.getPromise(etherescan_url)
   });
 
   // Or you can use the returned Promise instead of passing in the callback:
-  our_contract.methods.totalSupply().call().then(function(totalSupply){
+  your_contract.methods.totalSupply().call().then(function(totalSupply){
       console.log(`Total Supply with a promise:  ${totalSupply}`);
   }).catch(function(err) {
       console.log(err);
